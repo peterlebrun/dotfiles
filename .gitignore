@@ -6,3 +6,6 @@
 .emacs.d/auto-save-list/
 .emacs.d/recentf
 .emacs.d/zenburn-theme.el
+.emacs.d/init-config/\#*
+.emacs.d/init-config/\**
+.emacs.d/init-config/*~

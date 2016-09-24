@@ -19,9 +19,9 @@
 (require 'bind-key)
 
 ;; tabs still don't work correctly
-(setq-default indent-tabs-mode nil)
-(setq c-basic-offset 2)
-(setq tab-width 2)
+;;(setq-default indent-tabs-mode nil)
+;;(setq c-basic-offset 2)
+;;(setq tab-width 2)
 
 (set-face-attribute 'default nil :font "Courier New 14")
 
@@ -52,13 +52,12 @@
                           'evil-indent-textobject
                   	  'projectile
                           'magit
-                          'helm
-                          'helm-projectile
                           'zenburn-theme
+			  'powerline
+			  'exec-path-from-shell
                           'php-mode
                           'php-extras)
  
-
 (load-theme 'zenburn t)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -123,15 +122,11 @@
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 
-(require 'init-keys)
 (require 'init-evil)
 (toggle-frame-maximized)
 (global-linum-mode 1)
 (require 'org)
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
-(setq org-agenda-files (list "~/org/home.org"
-                             "~/org/work.org"))
+(setq org-agenda-files "~/Dropbox/org/")
 (setq org-log-done t)
-
-

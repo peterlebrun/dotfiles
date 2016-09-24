@@ -3,6 +3,7 @@
 .emacs.d/url/
 .emacs.d/elpa/
 .emacs.d/*~
+.emacs.d/\#*
 .emacs.d/auto-save-list/
 .emacs.d/recentf
 .emacs.d/zenburn-theme.el

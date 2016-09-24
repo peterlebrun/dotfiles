@@ -1,7 +1,7 @@
 ;;; init-evil.el - Evil mode configuration
 ;;; Commentary:
 ;;; Code:
-(defun air--config-evil-leader ()
+(defun pbl--config-evil-leader ()
   "Configure evil leader mode."
   (evil-leader/set-leader ",")
   (evil-leader/set-key
@@ -36,7 +36,7 @@
                          :ensure t
                          :config
                          (global-evil-leader-mode)
-                         (air--config-evil-leader))
+                         (pbl--config-evil-leader))
 
              (use-package evil-indent-textobject :ensure t))
 

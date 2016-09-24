@@ -44,6 +44,8 @@
   (package-initialize))
 
 (ensure-package-installed 'ag
+			  'helm
+			  'helm-projectile
                           'helm-ag
                           'evil
                           'evil-leader

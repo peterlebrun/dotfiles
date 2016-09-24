@@ -9,6 +9,10 @@
   (setq org-directory "~/Dropbox/org")
   (setq org-log-done t))
 
+(evil-leader/set-key-for-mode 'org-mode
+  "s" 'org-sort-entries
+  "t" 'org-todo)
+
 (use-package org-bullets
   :ensure t
   :config

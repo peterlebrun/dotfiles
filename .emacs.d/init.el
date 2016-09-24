@@ -76,7 +76,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (org-bullets powerline swiper-helm swiper counsel exec-path-from-shell helm-ag ag use-package-chords use-package php-extras magit helm-spotify helm-projectile evil-visual-mark-mode evil-leader evil-indent-textobject)))
+    (powerline-evil org-bullets powerline swiper-helm swiper counsel exec-path-from-shell helm-ag ag use-package-chords use-package php-extras magit helm-spotify helm-projectile evil-visual-mark-mode evil-leader evil-indent-textobject)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
@@ -116,3 +116,4 @@
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 (require 'init-evil)
 (require 'init-org)
+(require 'init-powerline)

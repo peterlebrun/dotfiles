@@ -76,7 +76,7 @@
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (powerline swiper-helm swiper counsel exec-path-from-shell helm-ag ag use-package-chords use-package php-extras magit helm-spotify helm-projectile evil-visual-mark-mode evil-leader evil-indent-textobject)))
+    (org-bullets powerline swiper-helm swiper counsel exec-path-from-shell helm-ag ag use-package-chords use-package php-extras magit helm-spotify helm-projectile evil-visual-mark-mode evil-leader evil-indent-textobject)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
@@ -109,24 +109,10 @@
 
 (exec-path-from-shell-initialize)
 
-;; Learning to create my own custom emacs commands
-(defun prelude-google ()
-  "Googles a query or region if any."
-  (interactive)
-  (browse-url
-   (concat
-    "http://www.google.com/search?ie=utf-8&oe=utf-8&q="
-    (if mark-active
-        (buffer-substring (region-beginning) (region-end))
-      (read-string "Google: ")))))
-
-(add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
-
-(require 'init-evil)
 (toggle-frame-maximized)
 (global-linum-mode 1)
-(require 'org)
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(setq org-agenda-files "~/Dropbox/org/")
-(setq org-log-done t)
+
+;; Load in new configs
+(add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
+(require 'init-evil)
+(require 'init-org)

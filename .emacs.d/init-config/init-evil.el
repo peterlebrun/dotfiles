@@ -9,6 +9,7 @@
    ":" 'eval-expression
    ;; "*" (lambda() (interactive) ()) ag for command under cursor
    "/" 'ag
+   "a" 'org-agenda
    "B" 'magit-blame-toggle
    "c" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
    "f" 'helm-projectile
@@ -16,7 +17,7 @@
    "g" 'magit-status
    "l" 'load-file
    "n" 'mode-line-other-buffer
-   "o" (lambda() (interactive) (find-file "~/org/work.org")))
+   "o" (lambda() (interactive) (find-file "~/Desktop/org/work.org")))
 
   (defun magit-blame-toggle ()
     "Toggle magit-blame-mode on and off interactively."

@@ -45,9 +45,8 @@
                           'php-mode
                           'php-extras)
 
-(global-linum-mode 1)
-(set-face-attribute 'default nil :font "Courier New 14")
-(toggle-frame-maximized)
+(set-face-attribute 'default nil :font "Courier New 14") ;; set font to courier new, size 14
+(toggle-frame-maximized) ;; go full screen
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.  Listed alphabetically
@@ -56,3 +55,4 @@
 (require 'init-org)
 (require 'init-powerline)
 (require 'init-zenburn-theme)
+(require 'linum-off)

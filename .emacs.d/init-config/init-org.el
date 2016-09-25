@@ -1,4 +1,4 @@
-;;; init-org.el - Org mode configuration
+;;; init-org.el --- Org mode configuration
 ;;; Commentary:
 ;;; Code:
 (use-package org
@@ -10,6 +10,7 @@
   (setq org-log-done t))
 
 (evil-leader/set-key-for-mode 'org-mode
+  "d" 'org-schedule
   "s" 'org-sort-entries
   "t" 'org-todo)
 
@@ -20,3 +21,4 @@
   (setq org-bullets-bullet-list '("•")))
 
 (provide 'init-org)
+;;; init-org.el ends here

@@ -1,4 +1,4 @@
-;;; init-evil.el - Evil mode configuration
+;;; init-evil.el --- Evil mode configuration
 ;;; Commentary:
 ;;; Code:
 (defun pbl--config-evil-leader ()
@@ -42,3 +42,4 @@
              (use-package evil-indent-textobject :ensure t))
 
 (provide 'init-evil)
+;;; init-evil.el ends here

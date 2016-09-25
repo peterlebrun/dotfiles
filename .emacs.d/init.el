@@ -25,6 +25,13 @@
 (use-package projectile :ensure t)
 (use-package php-mode :ensure t)
 (use-package php-extras :ensure t)
+(use-package let-alist :ensure t)
+(use-package flycheck
+  :ensure t
+  :config
+  (evil-leader/set-key
+    "e" 'flycheck-list-errors)
+  (global-flycheck-mode 1))
 
 (set-face-attribute 'default nil :font "Courier New 14") ;; set font to courier new, size 14
 (toggle-frame-maximized) ;; go full screen
@@ -38,6 +45,7 @@
 (require 'init-powerline)
 (require 'init-zenburn-theme)
 (require 'linum-off)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -18,32 +18,13 @@
 (require 'diminish)
 (require 'bind-key)
 
-(defun ensure-package-installed (&rest packages)
-  "Assure every package is installed, ask for installation if it's not.  Return a list of installed packages or nil for every skipped package."
-  (mapcar
-   (lambda (package)
-     (if (package-installed-p package)
-	 nil
-       (if (y-or-n-p (format "Package %s is missing.  Install it? " package))
-	   (package-install package)
-	 package)))
-   packages)
-
-  ;; Make sure to have downloaded archive description
-  (or (file-exists-p package-user-dir)
-      (package-refresh-contents))
-
-  ;; Activate installed packages
-  (package-initialize))
-
-(ensure-package-installed 'ag
-			  'helm
-			  'helm-projectile
-                          'helm-ag
-                  	  'projectile
-                          'magit
-                          'php-mode
-                          'php-extras)
+(use-package ag :ensure t)
+(use-package helm :ensure t)
+(use-package helm-projectile :ensure t)
+(use-package helm-ag :ensure t)
+(use-package projectile :ensure t)
+(use-package php-mode :ensure t)
+(use-package php-extras :ensure t)
 
 (set-face-attribute 'default nil :font "Courier New 14") ;; set font to courier new, size 14
 (toggle-frame-maximized) ;; go full screen
@@ -52,7 +33,22 @@
 ;; Additional configs to load.  Listed alphabetically
 (require 'init-evil)
 (require 'init-exec-path-from-shell)
+(require 'init-magit)
 (require 'init-org)
 (require 'init-powerline)
 (require 'init-zenburn-theme)
 (require 'linum-off)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-extras php-mode helm-ag helm-projectile helm ag use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

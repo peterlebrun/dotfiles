@@ -9,28 +9,32 @@
    ":" 'eval-expression
    "/" 'ag
    "a" 'org-agenda-list
-   "B" 'magit-blame-toggle
-   "c" 'org-capture
+   "B" 'pbl--magit-blame-toggle
+   "c" 'pbl--org-task-capture
    "f" 'helm-projectile
    "F" 'helm-mini
    "g" 'magit-status
    "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
    "l" 'load-file
-   "n" 'mode-line-other-buffer
+   "m" 'mode-line-other-buffer
    "o" (lambda() (interactive) (find-file "~/Dropbox/org/todo.org"))
    "r" 'toggle-frame-maximized)
 
-  (defun magit-blame-toggle ()
+  (defun pbl--magit-blame-toggle ()
     "Toggle magit-blame-mode on and off interactively."
     (interactive)
     (if (and (boundp 'magit-blame-mode) magit-blame-mode)
         (magit-blame-quit)
       (call-interactively 'magit-blame)))
+
+  (defun pbl--org-task-capture ()
+    "Capture a task with a default org template."
+    (interactive)
+    (org-capture nil "a"))
   )
 
 (use-package evil
              :ensure t
-;;             :commands (evil-mode evil-define-key)
              :config
              (evil-mode 1)
 

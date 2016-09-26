@@ -8,16 +8,26 @@
   (setq org-todo-keywords '((sequence "TODO" "IN PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
   (setq org-default-notes-file "~/Dropbox/org/todo.org")
   (setq org-directory "~/Dropbox/org")
-  (setq org-log-done t)
+  (setq org-log-done 'time)
+  (setq org-log-redeadline 'time)
+  (setq org-log-reschedule 'time)
+  (setq org-enforce-todo-dependencies t)
   (setq org-capture-templates
 	'(("a"  "My TODO task format." entry
 	   (file "todo.org")
-	   "* TODO %?")))
+	   "* TODO\s%?
+SCHEDULED: %t")))
   )
 
+(defun pbl--org-sort-entries ()
+  "Sort entries in todo order"
+  (interactive)
+  (org-sort-entries nil ?o))
+
 (evil-leader/set-key-for-mode 'org-mode
-  "d" 'org-schedule
-  "s" 'org-sort-entries
+  "d" 'org-deadline
+  "s" 'org-schedule
+  "o" 'pbl--org-sort-entries
   "t" 'org-todo)
 
 (use-package org-bullets

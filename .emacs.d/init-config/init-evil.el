@@ -17,7 +17,8 @@
    "g" 'magit-status
    "l" 'load-file
    "n" 'mode-line-other-buffer
-   "o" (lambda() (interactive) (find-file "~/Dropbox/org/work.org")))
+   "o" (lambda() (interactive) (find-file "~/Dropbox/org/work.org"))
+   "r" 'toggle-frame-maximized)
 
   (defun magit-blame-toggle ()
     "Toggle magit-blame-mode on and off interactively."

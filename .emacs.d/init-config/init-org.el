@@ -6,8 +6,14 @@
   :config
   (setq org-agenda-files '("~/Dropbox/org"))
   (setq org-todo-keywords '((sequence "TODO" "IN PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
+  (setq org-default-notes-file "~/Dropbox/org/todo.org")
   (setq org-directory "~/Dropbox/org")
-  (setq org-log-done t))
+  (setq org-log-done t)
+  (setq org-capture-templates
+	'(("a"  "My TODO task format." entry
+	   (file "todo.org")
+	   "* TODO %?")))
+  )
 
 (evil-leader/set-key-for-mode 'org-mode
   "d" 'org-schedule

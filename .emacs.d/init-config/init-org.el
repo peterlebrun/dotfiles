@@ -8,6 +8,7 @@
   (setq org-todo-keywords '((sequence "TODO" "IN PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
   (setq org-default-notes-file "~/Dropbox/org/todo.org")
   (setq org-directory "~/Dropbox/org")
+  (setq org-archive-location "~/Dropbox/org/archive.org")
   (setq org-log-done 'time)
   (setq org-log-redeadline 'time)
   (setq org-log-reschedule 'time)

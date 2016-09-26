@@ -9,7 +9,7 @@
    ":" 'eval-expression
    ;; "*" (lambda() (interactive) ()) ag for command under cursor
    "/" 'ag
-   "a" 'org-agenda
+   "a" 'org-agenda-list
    "B" 'magit-blame-toggle
    "c" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
    "f" 'helm-projectile

@@ -5,7 +5,7 @@
   :ensure t
   :config
   (setq org-agenda-files '("~/Dropbox/org"))
-  (setq org-todo-keywords '((sequence "TODO" "IN PROGRESS" "WAITING" "DONE" "CANCELED")))
+  (setq org-todo-keywords '((sequence "TODO" "IN PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
   (setq org-directory "~/Dropbox/org")
   (setq org-log-done t))
 

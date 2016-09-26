@@ -1,4 +1,5 @@
 .wayrunnerrc
+.emacs.d/bookmarks
 .emacs.d/.emacs.d/
 .emacs.d/url/
 .emacs.d/elpa/

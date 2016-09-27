@@ -21,7 +21,8 @@
    "m" 'mode-line-other-buffer
    "o" (lambda() (interactive) (find-file "~/Dropbox/org/todo.org"))
    "r" 'toggle-frame-maximized
-   "w" 'split-window-below)
+   "w" 'split-window-below
+   )
 
   (defun pbl--magit-blame-toggle ()
     "Toggle magit-blame-mode on and off interactively."

@@ -19,11 +19,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 	subtree-end
       nil)))
 
-(defcustom pbl--org-habit-show-all-today nil
-  "If non-nill, will show the consistency graph of all habits on today's agenda, even if they aren't scheduled."
-  :group 'org-habit
-  :type 'boolean)
-
 (use-package org
   :ensure t
   :config
@@ -38,7 +33,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (setq org-log-redeadline 'time)
   (setq org-log-reschedule 'time)
   (setq org-enforce-todo-dependencies t)
-  (setq pbl--org-habit-show-all-today t)
   (setq org-agenda-custom-commands
 	'(("c" "Simple agenda view"
 	   ((tags "PRIORITY=\"A\""

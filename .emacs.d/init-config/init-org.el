@@ -19,6 +19,48 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 	subtree-end
       nil)))
 
+(defun pbl--org-agenda-next-header ()
+  "Jump to next header in an agenda series."
+  (interactive)
+  (pbl--org-agenda-goto-header))
+
+(defun pbl--org-agenda-previous-header ()
+  "Jump to the previous header in an agenda series."
+  (interactive)
+  (pbl--org-agenda-goto-header t))
+
+;; This was written by @aaronbieber
+(defun pbl--org-agenda-goto-header (&optional backwards)
+  "Find the next agenda series header forward or BACKWARDS."
+  (let ((pos (save-excursion
+	       (goto-char (if backwards
+			      (line-beginning-position)
+			    (line-end-position)))
+	       (let* ((find-func (if backwards
+				     'previous-single-property-change
+				   'next-single-property-change))
+		      (end-func (if backwards
+				    'max
+				  'min))
+		      (all-pos-raw (list (funcall find-func (point) 'org-agenda-structural-header)
+					 (funcall find-func (point) 'org-agenda-date-header)))
+		      (all-pos (cl-remove-if-not 'numberp all-pos-raw))
+		      (prop-pos (if all-pos (apply end-func all-pos) nil)))
+		 prop-pos))))
+    (if pos (goto-char pos))
+    (if backwards (goto-char (line-beginning-position)))))
+
+;; This was written by @aaronbieber
+(defun pbl--org-agenda-capture (&optional vanilla)
+  "Capture a task in agenda mode, using the date at point.
+
+If VANILLA is non-nil, run the standard `org-capture'."
+  (interactive "P")
+  (if vanilla
+      (org-capture)
+    (let ((org-overriding-default-time (org-get-cursor-date)))
+      (org-capture nil "a"))))
+
 (use-package org
   :ensure t
   :config
@@ -57,6 +99,15 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 :LAST_REPEAT:
 :END:"
 	   )))
+
+  (add-hook 'org-agenda-mode-hook
+	    (lambda ()
+	      (define-key org-agenda-mode-map "j" 'org-agenda-next-item)
+	      (define-key org-agenda-mode-map "k" 'org-agenda-previous-item)
+	      (define-key org-agenda-mode-map "J" 'pbl--org-agenda-next-header)
+	      (define-key org-agenda-mode-map "K" 'pbl--org-agenda-previous-header)
+	      (define-key org-agenda-mode-map "c" 'pbl--org-agenda-capture)
+	      ))
   )
 
 (defun pbl--org-sort-entries ()
@@ -65,10 +116,12 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   (org-sort-entries nil ?o))
 
 (evil-leader/set-key-for-mode 'org-mode
+  "SPC" 'org-priority-up
   "d" 'org-deadline
-  "s" 'org-schedule
   "o" 'pbl--org-sort-entries
-  "t" 'org-todo)
+  "s" 'org-schedule
+  "t" 'org-todo
+  )
 
 (use-package org-bullets
   :ensure t

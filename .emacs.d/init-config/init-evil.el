@@ -19,7 +19,6 @@
    "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
    "l" 'load-file
    "m" 'mode-line-other-buffer
-   "o" (lambda() (interactive) (find-file "~/Dropbox/org/todo.org"))
    "r" 'toggle-frame-maximized
    "w" 'split-window-below
    )

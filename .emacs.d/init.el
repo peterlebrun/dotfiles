@@ -1,6 +1,5 @@
 (require 'package)
 
-(package-refresh-contents)
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
@@ -45,6 +44,8 @@
 (require 'init-powerline)
 (require 'init-zenburn-theme)
 (require 'linum-off)
+
+(toggle-frame-maximized)
 
 ;; Don't edit these
 (custom-set-variables

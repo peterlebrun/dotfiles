@@ -11,14 +11,17 @@
    "a" 'pbl--org-open-custom-agenda
    "B" 'pbl--magit-blame-toggle
    "c" 'pbl--org-task-capture
+   "e" 'split-window-right
    "f" 'helm-projectile
    "F" 'helm-mini
    "g" 'magit-status
+   "h" 'pbl--org-habit-capture
    "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
    "l" 'load-file
    "m" 'mode-line-other-buffer
    "o" (lambda() (interactive) (find-file "~/Dropbox/org/todo.org"))
-   "r" 'toggle-frame-maximized)
+   "r" 'toggle-frame-maximized
+   "w" 'split-window-below)
 
   (defun pbl--magit-blame-toggle ()
     "Toggle magit-blame-mode on and off interactively."
@@ -31,6 +34,11 @@
     "Capture a task with a default org template."
     (interactive)
     (org-capture nil "a"))
+
+  (defun pbl--org-habit-capture ()
+    "Capture a habit with a default org template."
+    (interactive)
+    (org-capture nil "h"))
 
   (defun pbl--org-open-custom-agenda ()
     "Open my custom made org mode agenda view."

@@ -8,7 +8,7 @@
    "," (lambda () (interactive) (ansi-term (getenv "SHELL")))
    ":" 'eval-expression
    "/" 'ag
-   "a" 'org-agenda-list
+   "a" 'pbl--org-open-custom-agenda
    "B" 'pbl--magit-blame-toggle
    "c" 'pbl--org-task-capture
    "f" 'helm-projectile
@@ -31,6 +31,11 @@
     "Capture a task with a default org template."
     (interactive)
     (org-capture nil "a"))
+
+  (defun pbl--org-open-custom-agenda ()
+    "Open my custom made org mode agenda view."
+    (interactive)
+    (org-agenda nil "c"))
   )
 
 (use-package evil

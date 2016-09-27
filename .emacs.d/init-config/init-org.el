@@ -1,6 +1,17 @@
 ;;; init-org.el --- Org mode configuration
 ;;; Commentary:
 ;;; Code:
+(defun pbl--org-skip-subtree-if-priority (priority)
+  "Skip an agenda subtree if it has a priority of PRIORITY.
+
+PRIORITY may be one of the characters ?A, ?B, or ?C."
+  (let ((subtree-end (save-excursion (org-end-of-subtree t)))
+	(pri-value (* 1000 (- org-lowest-priority priority)))
+	(pri-current (org-get-priority (thing-at-point 'line t))))
+    (if (= pri-value pri-current)
+	subtree-end
+      nil)))
+
 (use-package org
   :ensure t
   :config
@@ -13,6 +24,16 @@
   (setq org-log-redeadline 'time)
   (setq org-log-reschedule 'time)
   (setq org-enforce-todo-dependencies t)
+  (setq org-agenda-custom-commands
+	'(("c" "Simple agenda view"
+	   ((tags "PRIORITY=\"A\""
+		  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+		   (org-agenda-overriding-header "High-priority unfinished tasks:")))
+	    (agenda "")
+	    (alltodo ""
+		     ((org-agenda-skip-function
+		       '(or (pbl--org-skip-subtree-if-priority ?A)
+			    (org-agenda-skip-if nil '(scheduled deadline))))))))))
   (setq org-capture-templates
 	'(("a"  "My TODO task format." entry
 	   (file "todo.org")

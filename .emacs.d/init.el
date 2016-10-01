@@ -23,7 +23,6 @@
 (use-package helm-projectile :ensure t)
 (use-package helm-ag :ensure t)
 (use-package projectile :ensure t)
-(use-package php-mode :ensure t)
 (use-package php-extras :ensure t)
 (use-package let-alist :ensure t)
 (use-package flycheck
@@ -37,10 +36,13 @@
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.  Listed alphabetically
+(require 'init-company)
+(require 'init-evil)
 (require 'init-evil)
 (require 'init-exec-path-from-shell)
 (require 'init-magit)
 (require 'init-org)
+(require 'init-php)
 (require 'init-powerline)
 (require 'init-zenburn-theme)
 (require 'linum-off)
@@ -62,15 +64,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-(use-package company
-  :ensure t
-  :defer t
-  :init
-  (global-company-mode)
-  :config
-  (setq company-idle-delay 0.2)
-  (setq company-selection-wrap-around t)
-  (define-key company-active-map [tab] 'company-complete)
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous))

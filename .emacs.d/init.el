@@ -49,6 +49,7 @@
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 
+(setq indent-tabs-mode nil)
 (add-hook 'php-mode-hook
   (lambda ()
     (linum-mode 1)

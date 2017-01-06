@@ -38,15 +38,33 @@
 ;; Additional configs to load.  Listed alphabetically
 (require 'init-company)
 (require 'init-evil)
-(require 'init-evil)
 (require 'init-exec-path-from-shell)
 (require 'init-magit)
 (require 'init-org)
-(require 'init-php)
 (require 'init-powerline)
 (require 'init-zenburn-theme)
 (require 'linum-off)
 
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
+
+(add-hook 'php-mode-hook
+  (lambda ()
+    (linum-mode 1)
+	  (setq tab-width 2)))
+
+(add-hook 'js-mode-hook
+  (lambda ()
+    (linum-mode 1)
+	  (setq tab-width 2)))
+
+(add-hook 'emacs-lisp-mode-hook
+  (lambda ()
+    (linum-mode 1)
+	  (setq tab-width 2)))
+
+(setq-default tab-width 2)
 (toggle-frame-maximized)
 
 ;; Don't edit these

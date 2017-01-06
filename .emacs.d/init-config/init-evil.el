@@ -18,7 +18,8 @@
    "h" 'pbl--org-habit-capture
    "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
    "l" 'load-file
-   "m" 'mode-line-other-buffer
+   "m" 'next-buffer
+	 "n" 'previous-buffer
    "r" 'toggle-frame-maximized
    "w" 'split-window-below
    )

@@ -32,7 +32,7 @@
     "e" 'flycheck-list-errors)
   (global-flycheck-mode 1))
 
-(set-face-attribute 'default nil :font "Courier New 14") ;; set font to courier new, size 14
+(set-face-attribute 'default nil :font "Courier New 20") ;; set font to courier new, size 14
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.  Listed alphabetically
@@ -49,23 +49,22 @@
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 
-(setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+(setq-default tab-stop-list (number-sequence 2 200 2))
+
 (add-hook 'php-mode-hook
   (lambda ()
-    (linum-mode 1)
-	  (setq tab-width 2)))
+    (linum-mode 1)))
 
 (add-hook 'js-mode-hook
   (lambda ()
-    (linum-mode 1)
-	  (setq tab-width 2)))
+    (linum-mode 1)))
 
 (add-hook 'emacs-lisp-mode-hook
   (lambda ()
-    (linum-mode 1)
-	  (setq tab-width 2)))
+    (linum-mode 1)))
 
-(setq-default tab-width 2)
 (toggle-frame-maximized)
 
 ;; Don't edit these

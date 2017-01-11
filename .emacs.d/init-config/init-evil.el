@@ -8,12 +8,15 @@
    "," (lambda () (interactive) (ansi-term (getenv "SHELL")))
    ":" 'eval-expression
    "/" 'ag
+   "-" 'helm-find-files
    "a" 'pbl--org-open-custom-agenda
+   "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
    "c" 'pbl--org-task-capture
+   "d" 'kill-buffer
    "e" 'split-window-right
    "f" 'helm-projectile
-   "F" 'helm-mini
+   "F" 'helm-projectile-switch-project
    "g" 'magit-status
    "h" 'pbl--org-habit-capture
    "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
@@ -22,6 +25,7 @@
 	 "n" 'previous-buffer
    "r" 'toggle-frame-maximized
    "w" 'split-window-below
+   "x" 'helm-M-x
    )
 
   (defun pbl--magit-blame-toggle ()

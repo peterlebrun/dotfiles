@@ -19,10 +19,21 @@
 (require 'bind-key)
 
 (use-package ag :ensure t)
-(use-package helm :ensure t)
+(use-package helm :ensure t :diminish helm-mode
+  :config
+  (helm-mode 1)
+  (setq helm-buffers-fuzzy-matching t)
+  (setq helm-autoresize-mode t)
+  (setq helm-buffer-max-length 40)
+  (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level))
+
 (use-package helm-projectile :ensure t)
 (use-package helm-ag :ensure t)
-(use-package projectile :ensure t)
+(use-package projectile :ensure t
+  :defer 1
+  :config
+  (projectile-global-mode)
+  (setq projectile-enable-caching t))
 (use-package php-extras :ensure t)
 (use-package let-alist :ensure t)
 (use-package flycheck
@@ -51,19 +62,21 @@
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
-(setq-default tab-stop-list (number-sequence 2 200 2))
 
 (add-hook 'php-mode-hook
   (lambda ()
-    (linum-mode 1)))
+    (linum-mode 1)
+    (setq c-basic-offset 2)))
 
 (add-hook 'js-mode-hook
   (lambda ()
-    (linum-mode 1)))
+    (linum-mode 1)
+    (setq js-indent-level 2)))
 
 (add-hook 'emacs-lisp-mode-hook
   (lambda ()
-    (linum-mode 1)))
+    (linum-mode 1)
+    (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-last-sexp)))
 
 (toggle-frame-maximized)
 

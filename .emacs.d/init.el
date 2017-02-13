@@ -63,6 +63,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'php-mode-hook
   (lambda ()
     (linum-mode 1)

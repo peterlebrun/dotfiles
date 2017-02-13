@@ -26,6 +26,7 @@
    "r" 'toggle-frame-maximized
    "w" 'split-window-below
    "x" 'helm-M-x
+   "u" (lambda() (interactive) (find-file "~/Dropbox/org/todo.org"))
    )
 
   (defun pbl--magit-blame-toggle ()

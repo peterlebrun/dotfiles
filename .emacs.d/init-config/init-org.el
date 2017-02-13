@@ -119,8 +119,8 @@ If VANILLA is non-nil, run the standard `org-capture'."
   "SPC" 'org-priority-up
   "d" 'org-deadline
   "o" 'pbl--org-sort-entries
-  "s" 'org-schedule
-  "t" 'org-todo
+  "s" 'org-todo
+  "t" 'org-set-tags
   )
 
 (use-package org-bullets

@@ -80,12 +80,7 @@ If VANILLA is non-nil, run the standard `org-capture'."
 	   ((tags "PRIORITY=\"A\""
 		  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
 		   (org-agenda-overriding-header "High-priority unfinished tasks:")))
-	    (agenda "" ((org-agenda-ndays 3)))
-	    (alltodo ""
-		     ((org-agenda-skip-function '(or (pbl--org-skip-subtree-if-habit)
-						     (pbl--org-skip-subtree-if-priority ?A)
-						     (org-agenda-skip-if nil '(scheduled deadline))))
-		      (org-agenda-overriding-header "ALL normal priority tasks:"))))
+	    (agenda "" ((org-agenda-ndays 3))))
 	   ((org-agenda-compact-blocks t)))))
   (setq org-capture-templates
 	'(("a"  "A TODO task." entry
@@ -116,11 +111,12 @@ If VANILLA is non-nil, run the standard `org-capture'."
   (org-sort-entries nil ?o))
 
 (evil-leader/set-key-for-mode 'org-mode
-  "SPC" 'org-priority-up
-  "d" 'org-deadline
+  "SPC" 'org-todo
+  "g" 'org-deadline
   "o" 'pbl--org-sort-entries
-  "s" 'org-todo
+  "s" 'org-schedule
   "t" 'org-set-tags
+  "y" 'org-priority-up
   )
 
 (use-package org-bullets
@@ -131,3 +127,9 @@ If VANILLA is non-nil, run the standard `org-capture'."
 
 (provide 'init-org)
 ;;; init-org.el ends here
+
+	    ;;;(alltodo ""
+		  ;;;   ((org-agenda-skip-function '(or (pbl--org-skip-subtree-if-habit)
+			;;;			     (pbl--org-skip-subtree-if-priority ?A)
+			;;;			     (org-agenda-skip-if nil '(scheduled deadline))))
+		  ;;;    (org-agenda-overriding-header "ALL normal priority tasks:"))))

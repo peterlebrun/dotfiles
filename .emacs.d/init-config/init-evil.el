@@ -14,6 +14,7 @@
    "B" 'pbl--magit-blame-toggle
    "c" 'pbl--org-task-capture
    "d" 'kill-buffer
+   "D" 'pbl--open-writing-file-for-today
    "e" 'split-window-right
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
@@ -50,7 +51,16 @@
     "Open my custom made org mode agenda view."
     (interactive)
     (org-agenda nil "c"))
+
+  (defun pbl--open-writing-file-for-today ()
+    ""
+    (interactive)
+    (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
+           (filename (concat "~/writings/" timestamp ".txt")))
+      (find-file filename))
+    )
   )
+
 
 (use-package evil
              :ensure t

@@ -37,16 +37,14 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 			      (line-beginning-position)
 			    (line-end-position)))
 	       (let* ((find-func (if backwards
-				     'previous-single-property-change
-				   'next-single-property-change))
-		      (end-func (if backwards
-				    'max
-				  'min))
-		      (all-pos-raw (list (funcall find-func (point) 'org-agenda-structural-header)
-					 (funcall find-func (point) 'org-agenda-date-header)))
-		      (all-pos (cl-remove-if-not 'numberp all-pos-raw))
-		      (prop-pos (if all-pos (apply end-func all-pos) nil)))
-		 prop-pos))))
+                               'previous-single-property-change
+                             'next-single-property-change))
+                (end-func (if backwards 'max 'min))
+                (all-pos-raw (list (funcall find-func (point) 'org-agenda-structural-header)
+                                   (funcall find-func (point) 'org-agenda-date-header)))
+                (all-pos (cl-remove-if-not 'numberp all-pos-raw))
+                (prop-pos (if all-pos (apply end-func all-pos) nil)))
+           prop-pos))))
     (if pos (goto-char pos))
     (if backwards (goto-char (line-beginning-position)))))
 

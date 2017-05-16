@@ -109,12 +109,11 @@ If VANILLA is non-nil, run the standard `org-capture'."
   (org-sort-entries nil ?o))
 
 (evil-leader/set-key-for-mode 'org-mode
-  "SPC" 'org-todo
+  "SPC" 'org-priority-up
   "g" 'org-deadline
   "o" 'pbl--org-sort-entries
   "s" 'org-schedule
   "t" 'org-set-tags
-  "y" 'org-priority-up
   )
 
 (use-package org-bullets

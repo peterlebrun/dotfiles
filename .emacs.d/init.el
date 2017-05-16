@@ -45,6 +45,8 @@
   (evil-leader/set-key
     "e" 'flycheck-list-errors)
   (global-flycheck-mode 1))
+(use-package yaml-mode :ensure t)
+(use-package puppet-mode :ensure t)
 
 (set-face-attribute 'default nil :font "Courier New 20") ;; set font to courier new, size 14
 
@@ -62,6 +64,8 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -92,7 +96,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-extras php-mode helm-ag helm-projectile helm ag use-package))))
+    (puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-extras php-mode helm-ag helm-projectile helm ag use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

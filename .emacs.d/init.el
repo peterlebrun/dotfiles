@@ -47,6 +47,7 @@
   (global-flycheck-mode 1))
 (use-package yaml-mode :ensure t)
 (use-package puppet-mode :ensure t)
+(use-package web-mode :ensure t)
 
 (set-face-attribute 'default nil :font "Courier New 20") ;; set font to courier new, size 14
 
@@ -63,6 +64,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode))
@@ -81,10 +83,21 @@
     (linum-mode 1)
     (setq js-indent-level 2)))
 
+(add-hook 'web-mode-hook
+  (lambda ()
+    (linum-mode 1)
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-css-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)))
+
 (add-hook 'emacs-lisp-mode-hook
   (lambda ()
     (linum-mode 1)
     (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-last-sexp)))
+
+(add-hook 'yaml-mode-hook
+  (lambda ()
+    (linum-mode 1)))
 
 (toggle-frame-maximized)
 

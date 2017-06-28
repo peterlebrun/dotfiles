@@ -170,9 +170,8 @@ function pull() {
   cd $current_directory
 }
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/peter/dev/util/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/peter/dev/util/google-cloud-sdk/path.zsh.inc'; fi
 
-PATH="/Users/plebrun/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/plebrun/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/plebrun/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/plebrun/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/plebrun/perl5"; export PERL_MM_OPT;
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/peter/dev/util/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/peter/dev/util/google-cloud-sdk/completion.zsh.inc'; fi

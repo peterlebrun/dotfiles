@@ -39,12 +39,6 @@
   (setq projectile-enable-caching t))
 (use-package php-extras :ensure t)
 (use-package let-alist :ensure t)
-(use-package flycheck
-  :ensure t
-  :config
-  (evil-leader/set-key
-    "e" 'flycheck-list-errors)
-  (global-flycheck-mode 1))
 (use-package yaml-mode :ensure t)
 (use-package puppet-mode :ensure t)
 (use-package web-mode :ensure t)

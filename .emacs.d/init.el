@@ -65,6 +65,7 @@
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
+(toggle-scroll-bar nil)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'php-mode-hook

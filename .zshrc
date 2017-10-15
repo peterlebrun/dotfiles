@@ -147,7 +147,6 @@ user=username:TOKEN
 echo $user
 # pass in parameters as key:value
 }
-
 alias realsync='perl ~/dev/util/realsync/realsync'
 alias sync-php='realsync ~/dev/code/php | tee -a ~/dev/util/logs/php.log'
 alias sync-resources='realsync ~/dev/code/resources | tee -a ~/dev/util/logs/resources.log'
@@ -175,3 +174,5 @@ if [ -f '/Users/peter/dev/util/google-cloud-sdk/path.zsh.inc' ]; then source '/U
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/peter/dev/util/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/peter/dev/util/google-cloud-sdk/completion.zsh.inc'; fi
+
+export PATH="$HOME/.composer/vendor/bin:$PATH"

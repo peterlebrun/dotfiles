@@ -43,8 +43,7 @@
 (use-package puppet-mode :ensure t)
 (use-package web-mode :ensure t)
 
-;(set-face-attribute 'default nil :font "Courier New 20") ;; set font to courier new, size 14
-(set-face-attribute 'default nil :font "Hack 20") ;; set font to courier new, size 14
+(set-face-attribute 'default nil :font "Hack 20") ;; set font to hack, size 20
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.  Listed alphabetically

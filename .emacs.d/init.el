@@ -63,6 +63,7 @@
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode))
+(add-to-list 'auto-mode-alist '("\\.java\\'" . java-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -70,6 +71,11 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'php-mode-hook
+  (lambda ()
+    (linum-mode 1)
+    (setq c-basic-offset 2)))
+
+(add-hook 'java-mode-hook
   (lambda ()
     (linum-mode 1)
     (setq c-basic-offset 2)))

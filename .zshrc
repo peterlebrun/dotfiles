@@ -88,6 +88,7 @@ alias z='vim ~/.zshrc'
 alias zs='. ~/.zshrc'
 alias t='vim ~/.tmux.conf'
 alias v='vim ~/.vimrc'
+alias gfm='git fetch origin && git reset --hard origin/master'
 
 # Not used.  Left for reference
 # Function to clear ctrlp cache if it exists, then pull/rebase

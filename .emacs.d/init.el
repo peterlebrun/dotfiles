@@ -20,6 +20,7 @@
   (require 'use-package))
 (require 'diminish)
 (require 'bind-key)
+(use-package rainbow-delimiters :ensure t)
 
 (use-package go-mode :ensure t)
 (use-package ag :ensure t)
@@ -43,6 +44,7 @@
 (use-package yaml-mode :ensure t)
 (use-package puppet-mode :ensure t)
 (use-package web-mode :ensure t)
+(use-package go-mode :ensure t)
 
 (set-face-attribute 'default nil :font "Hack 20") ;; set font to hack, size 20
 
@@ -65,12 +67,14 @@
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode))
 (add-to-list 'auto-mode-alist '("\\.java\\'" . java-mode))
+(add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (toggle-scroll-bar nil)
 
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'php-mode-hook
   (lambda ()
@@ -83,6 +87,11 @@
     (setq c-basic-offset 2)))
 
 (add-hook 'go-mode-hook
+  (lambda ()
+    (linum-mode 1)
+    (setq c-basic-offset 2)))
+
+(add-hook 'ruby-mode-hook
   (lambda ()
     (linum-mode 1)
     (setq c-basic-offset 2)))

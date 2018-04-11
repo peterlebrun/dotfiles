@@ -63,12 +63,14 @@
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.ftl\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode))
 (add-to-list 'auto-mode-alist '("\\.java\\'" . java-mode))
 (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+(add-to-list 'auto-mode-alist '("\\.xml\\'" . nxml-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -116,6 +118,11 @@
 (add-hook 'yaml-mode-hook
   (lambda ()
     (linum-mode 1)))
+
+(add-hook 'nxml-mode-hook
+  (lambda ()
+    (linum-mode 1)
+    (setq c-basic-offset 2)))
 
 (toggle-frame-maximized)
 (require 'org)

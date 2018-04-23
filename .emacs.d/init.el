@@ -71,6 +71,11 @@
 (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 (add-to-list 'auto-mode-alist '("\\.xml\\'" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.bzl\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.bazel\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("BUILD" . python-mode))
+(add-to-list 'auto-mode-alist '("WORKSPACE" . python-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -123,6 +128,11 @@
   (lambda ()
     (linum-mode 1)
     (setq c-basic-offset 2)))
+
+(add-hook 'python-mode-hook
+  (lambda ()
+    (linum-mode 1)
+    (setq python-indent 2)))
 
 (toggle-frame-maximized)
 (require 'org)

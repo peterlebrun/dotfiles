@@ -148,15 +148,11 @@ user=username:TOKEN
 echo $user
 # pass in parameters as key:value
 }
-alias realsync='perl ~/dev/util/realsync/realsync'
-alias sync-php='realsync ~/dev/code/php | tee -a ~/dev/util/logs/php.log'
-alias sync-resources='realsync ~/dev/code/resources | tee -a ~/dev/util/logs/resources.log'
-alias sync-templates='realsync ~/dev/code/templates | tee -a ~/dev/util/logs/templates.log'
-alias sync-chatbot='realsync ~/dev/code/chatbot | tee -a ~/dev/util/logs/chatbot.log'
+#alias realsync='perl ~/dev/util/realsync/realsync'
+#alias sync-php='realsync ~/dev/code/php | tee -a ~/dev/util/logs/php.log'
 
 autoload bashcompinit
 bashcompinit
-eval "$(_WAYRUNNER_COMPLETE=source wayrunner)"
 
 # For anyone else using this
 # Obviously this method won't handle things like needing to commit current changes
@@ -176,4 +172,48 @@ if [ -f '/Users/peter/dev/util/google-cloud-sdk/path.zsh.inc' ]; then source '/U
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/peter/dev/util/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/peter/dev/util/google-cloud-sdk/completion.zsh.inc'; fi
 
-export PATH="$HOME/.composer/vendor/bin:$PATH"
+export GOPATH="$HOME/dev/code/go/"
+export PATH="$HOME/.composer/vendor/bin:/Users/plebrun/bin:$PATH:$GOPATH/bin"
+
+# This will update the existing commit, force push remote, and update tag
+function update_ref() {
+    branch=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
+    if [ -z ${branch} ]; then
+        echo "You are not currently in a git repository.  No action will be taken."
+        return
+    fi
+
+    if [[ $branch != "plebrun_"* ]]; then
+        echo "Branch name doesn't start with \"plebrun_\".  No action will be taken."
+        return
+    fi
+
+    tag=`git describe --tags 2>/dev/null`
+    if [[ $tag != 'plebrun_'* ]]; then
+        echo "Tag name doesn't start with \"plebrun_\".  No action will be taken."
+        return
+    fi
+
+    echo "\e[31mUpdating remote branch...\e[39m"
+    git add -u
+    git commit --amend --no-edit
+    git push -f origin $branch
+
+    echo "\n\e[31mDeleting local tag...\e[39m"
+    git tag -d $tag
+
+    echo "\n\e[31mDeleting remote tag...\e[39m"
+    git push origin :refs/tags/$tag
+
+    echo "\n\e[31mUpdating local tag...\e[39m"
+    git tag $tag
+
+    echo "\n\e[31mUpdating remote tag...\e[39m"
+    git push origin --tags
+
+    echo "\n\e[31mThe following updates were made:\e[39m"
+    echo "Branch:\t \e[32m$branch\e[39m"
+    echo "Tag:\t \e[32m$tag"
+    return
+}
+export PATH="/usr/local/opt/node@8/bin:$PATH"

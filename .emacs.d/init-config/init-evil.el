@@ -27,7 +27,9 @@
    "r" 'toggle-frame-maximized
    "w" 'split-window-below
    "x" 'helm-M-x
+   "t" 'pbl--insert-file-contents-from-helm-search
    "u" (lambda() (interactive) (find-file "~/Dropbox/org/todo.org"))
+   "z" (lambda() (interactive) (find-file "~/.zshrc"))
    )
 
   (defun pbl--magit-blame-toggle ()
@@ -57,10 +59,13 @@
     (interactive)
     (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
            (filename (concat "~/writings/" timestamp ".txt")))
-      (find-file filename))
-    )
-  )
+      (find-file filename)))
 
+  (defun pbl--insert-file-contents-from-helm-search ()
+    "Use helm to find a file whose contents will be entered into current buffer"
+    (interactive)
+    (insert-file-contents (helm-read-file-name "")))
+  )
 
 (use-package evil
              :ensure t

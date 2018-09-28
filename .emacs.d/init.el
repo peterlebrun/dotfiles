@@ -22,7 +22,58 @@
 (require 'bind-key)
 (use-package rainbow-delimiters :ensure t)
 
-(use-package go-mode :ensure t)
+(use-package go-mode
+  :ensure t
+  :mode "\\.go\\'"
+  :config
+  (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (subword-mode)
+              (linum-mode 1)
+              (go-set-project)
+              (company-mode t)
+              (setq tab-width 4)
+              (setq indent-tabs-mode 1)))
+  :bind
+  ("M-." . godoc-at-point)
+  ("C-x r" . go-rename)
+  ("C-x C-k" . go-test-current-test)
+  ("C-x t" . go-test-current-test)
+  ("C-x f" . go-test-current-file)
+  ("C-x b" . go-test-current-benchmark)
+  ("C-x p" . go-test-current-project)
+  ("C-x x" . go-run))
+
+(use-package go-projectile
+  :ensure t)
+
+(use-package go-eldoc
+  :after go-mode)
+
+;(use-package gotest
+;  :after go-mode)
+
+;(use-package go-gopath
+;  :after go-mode)
+
+(use-package go-rename
+  :after go-mode)
+
+(use-package go-guru
+  :ensure t
+  :after go-mode
+  :config
+  (set-face-attribute 'go-guru-hl-identifier-face nil
+                      :inherit 'isearch))
+
+(use-package company-go
+  :ensure t
+  :after go-mode
+  :config
+  (add-to-list 'company-backends 'company-go))
+
 (use-package ag :ensure t)
 (use-package helm :ensure t :diminish helm-mode
   :config
@@ -44,7 +95,7 @@
 (use-package yaml-mode :ensure t)
 (use-package puppet-mode :ensure t)
 (use-package web-mode :ensure t)
-(use-package go-mode :ensure t)
+(use-package terraform-mode :ensure t)
 
 (set-face-attribute 'default nil :font "Hack 20") ;; set font to hack, size 20
 
@@ -60,6 +111,7 @@
 (require 'linum-off)
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
@@ -69,13 +121,14 @@
 (add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode))
 (add-to-list 'auto-mode-alist '("\\.java\\'" . java-mode))
 (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 (add-to-list 'auto-mode-alist '("\\.xml\\'" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.bzl\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.bazel\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("BUILD" . python-mode))
 (add-to-list 'auto-mode-alist '("WORKSPACE" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.tf\\'" . terraform-mode))
+(add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -93,11 +146,6 @@
     (linum-mode 1)
     (setq c-basic-offset 2)))
 
-(add-hook 'go-mode-hook
-  (lambda ()
-    (linum-mode 1)
-    (setq c-basic-offset 2)))
-
 (add-hook 'ruby-mode-hook
   (lambda ()
     (linum-mode 1)
@@ -106,7 +154,7 @@
 (add-hook 'js-mode-hook
   (lambda ()
     (linum-mode 1)
-    (setq js-indent-level 2)))
+    (setq js-indent-level 4)))
 
 (add-hook 'web-mode-hook
   (lambda ()
@@ -118,6 +166,8 @@
 (add-hook 'emacs-lisp-mode-hook
   (lambda ()
     (linum-mode 1)
+    (eldoc-mode 1)
+    (company-mode 1)
     (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-last-sexp)))
 
 (add-hook 'yaml-mode-hook
@@ -132,7 +182,15 @@
 (add-hook 'python-mode-hook
   (lambda ()
     (linum-mode 1)
-    (setq python-indent 2)))
+    (setq python-indent 4)))
+
+(add-hook 'terraform-mode-hook
+  (lambda ()
+    (linum-mode 1)))
+
+(add-hook 'sh-mode-hook
+  (lambda ()
+    (linum-mode 1)))
 
 (toggle-frame-maximized)
 (require 'org)

@@ -9,7 +9,7 @@
    ":" 'eval-expression
    "/" 'ag
    "-" 'helm-find-files
-   "a" 'pbl--org-open-custom-agenda
+   "a" 'pbl--insert-file-contents-from-helm-search
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
    "c" 'pbl--org-task-capture
@@ -27,7 +27,7 @@
    "r" 'toggle-frame-maximized
    "w" 'split-window-below
    "x" 'helm-M-x
-   "t" 'pbl--insert-file-contents-from-helm-search
+   "t" 'pbl--wunderline-add-todo
    "u" (lambda() (interactive) (find-file "~/Dropbox/org/todo.org"))
    "z" (lambda() (interactive) (find-file "~/.zshrc"))
    )
@@ -65,6 +65,11 @@
     "Use helm to find a file whose contents will be entered into current buffer"
     (interactive)
     (insert-file-contents (helm-read-file-name "")))
+
+  (defun pbl--wunderline-add-todo ()
+    "Add todo to wunderlist using wunderline app"
+    (interactive)
+    (shell-command (concat "wunderline add " (read-from-minibuffer "Enter todo: "))))
   )
 
 (use-package evil

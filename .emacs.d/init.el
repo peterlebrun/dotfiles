@@ -74,7 +74,7 @@
   :config
   (add-to-list 'company-backends 'company-go))
 
-(use-package ag :ensure t)
+(use-package rg :ensure t)
 (use-package helm :ensure t :diminish helm-mode
   :config
   (helm-mode 1)
@@ -84,13 +84,11 @@
   (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level))
 
 (use-package helm-projectile :ensure t)
-(use-package helm-ag :ensure t)
 (use-package projectile :ensure t
   :defer 1
   :config
   (projectile-global-mode)
   (setq projectile-enable-caching t))
-(use-package php-extras :ensure t)
 (use-package let-alist :ensure t)
 (use-package yaml-mode :ensure t)
 (use-package puppet-mode :ensure t)
@@ -204,7 +202,7 @@
  '(org-agenda-files (quote ("~/1.org" "/Users/peter/Dropbox/org/todo.org")))
  '(package-selected-packages
    (quote
-    (puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-extras php-mode helm-ag helm-projectile helm ag use-package))))
+    (puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -7,7 +7,7 @@
   (evil-leader/set-key
    "," (lambda () (interactive) (ansi-term (getenv "SHELL")))
    ":" 'eval-expression
-   "/" 'ag
+   "/" 'rgrep
    "-" 'helm-find-files
    "a" 'pbl--insert-file-contents-from-helm-search
    "b" 'helm-mini

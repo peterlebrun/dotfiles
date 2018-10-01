@@ -5,9 +5,6 @@
 
 (add-to-list
  'package-archives
- '("org" . "https://orgmode.org/elpa/"))
-(add-to-list
- 'package-archives
  '("melpa" . "https://melpa.org/packages/"))
 (add-to-list
  'package-archives
@@ -113,7 +110,6 @@
 (require 'init-evil)
 (require 'init-exec-path-from-shell)
 (require 'init-magit)
-(require 'init-org)
 (require 'init-powerline)
 (require 'init-zenburn-theme)
 (require 'linum-off)
@@ -201,7 +197,6 @@
     (linum-mode 1)))
 
 (toggle-frame-maximized)
-(require 'org)
 
 ;; Don't edit these
 (custom-set-variables
@@ -209,7 +204,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/1.org" "/Users/peter/Dropbox/org/todo.org")))
  '(package-selected-packages
    (quote
     (puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))

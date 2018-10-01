@@ -12,14 +12,12 @@
    "a" 'pbl--insert-file-contents-from-helm-search
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
-   "c" 'pbl--org-task-capture
    "d" 'kill-buffer
    "D" 'pbl--open-writing-file-for-today
    "e" 'split-window-right
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
    "g" 'magit-status
-   "h" 'pbl--org-habit-capture
    "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
    "l" 'load-file
    "m" 'next-buffer
@@ -28,7 +26,6 @@
    "w" 'split-window-below
    "x" 'helm-M-x
    "t" 'pbl--wunderline-add-todo
-   "u" (lambda() (interactive) (find-file "~/Dropbox/org/todo.org"))
    "z" (lambda() (interactive) (find-file "~/.zshrc"))
    )
 
@@ -38,21 +35,6 @@
     (if (and (boundp 'magit-blame-mode) magit-blame-mode)
         (magit-blame-quit)
       (call-interactively 'magit-blame)))
-
-  (defun pbl--org-task-capture ()
-    "Capture a task with a default org template."
-    (interactive)
-    (org-capture nil "a"))
-
-  (defun pbl--org-habit-capture ()
-    "Capture a habit with a default org template."
-    (interactive)
-    (org-capture nil "h"))
-
-  (defun pbl--org-open-custom-agenda ()
-    "Open my custom made org mode agenda view."
-    (interactive)
-    (org-agenda nil "c"))
 
   (defun pbl--open-writing-file-for-today ()
     ""

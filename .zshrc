@@ -12,8 +12,7 @@ if [ "$TMUX" = "" ];
   # Either check for sessions and attach to an existing tmux session
   # Or open a new session
   # Don't run this
-  then tmux list-sessions &> /dev/null && tmux -2 attach || tmux -2;
-  #then tmux -2;
+  then tmux list-sessions &> /dev/null && tmux -u2 attach || tmux -u2;
 fi
 
 #

@@ -45,7 +45,7 @@ if !filereadable(zenburn_vim)
   echo "Installing zenburn..."
   echo ""
   silent !mkdir -p ~/.vim/colors
-  silent !wget http://slinky.imukuppi.org/zenburn/zenburn.vim
+  silent !wget https://raw.githubusercontent.com/jnurmine/Zenburn/master/colors/zenburn.vim
   silent !mv zenburn.vim ~/.vim/colors/zenburn.vim
 endif
 " don't forget to change tmux's settings to 256 colors

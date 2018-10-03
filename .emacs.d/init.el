@@ -38,7 +38,7 @@
   (add-hook 'go-mode-hook
             (lambda ()
               (subword-mode)
-              (linum-mode 1)
+              (display-line-numbers-mode 1)
               (go-set-project)
               (company-mode t)
               (setq tab-width 4)
@@ -112,7 +112,6 @@
 (require 'init-magit)
 (require 'init-powerline)
 (require 'init-zenburn-theme)
-(require 'linum-off)
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js-mode))
@@ -142,59 +141,59 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'php-mode-hook
   (lambda ()
-    (linum-mode 1)
+    (display-line-numbers-mode 1)
     (setq c-basic-offset 2)))
 
 (add-hook 'java-mode-hook
   (lambda ()
-    (linum-mode 1)
+    (display-line-numbers-mode 1)
     (setq c-basic-offset 2)))
 
 (add-hook 'ruby-mode-hook
   (lambda ()
-    (linum-mode 1)
+    (display-line-numbers-mode 1)
     (setq c-basic-offset 2)))
 
 (add-hook 'js-mode-hook
   (lambda ()
-    (linum-mode 1)
+    (display-line-numbers-mode 1)
     (setq js-indent-level 4)))
 
 (add-hook 'web-mode-hook
   (lambda ()
-    (linum-mode 1)
+    (display-line-numbers-mode 1)
     (setq web-mode-markup-indent-offset 2)
     (setq web-mode-css-indent-offset 2)
     (setq web-mode-code-indent-offset 2)))
 
 (add-hook 'emacs-lisp-mode-hook
   (lambda ()
-    (linum-mode 1)
+    (display-line-numbers-mode 1)
     (eldoc-mode 1)
     (company-mode 1)
     (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-last-sexp)))
 
 (add-hook 'yaml-mode-hook
   (lambda ()
-    (linum-mode 1)))
+    (display-line-numbers-mode 1)))
 
 (add-hook 'nxml-mode-hook
   (lambda ()
-    (linum-mode 1)
+    (display-line-numbers-mode 1)
     (setq c-basic-offset 2)))
 
 (add-hook 'python-mode-hook
   (lambda ()
-    (linum-mode 1)
+    (display-line-numbers-mode 1)
     (setq python-indent 4)))
 
 (add-hook 'terraform-mode-hook
   (lambda ()
-    (linum-mode 1)))
+    (display-line-numbers-mode 1)))
 
 (add-hook 'sh-mode-hook
   (lambda ()
-    (linum-mode 1)))
+    (display-line-numbers-mode 1)))
 
 (toggle-frame-maximized)
 

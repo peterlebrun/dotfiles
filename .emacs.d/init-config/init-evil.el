@@ -8,24 +8,26 @@
    "," (lambda () (interactive) (ansi-term (getenv "SHELL")))
    ":" 'eval-expression
    "/" 'rgrep
-   "-" 'helm-find-files
+   "|" 'split-window-right
+   "-" 'split-window-below
+   "0" 'delete-window
    "a" 'pbl--insert-file-contents-from-helm-search
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
-   "d" 'kill-buffer
    "D" 'pbl--open-writing-file-for-today
-   "e" 'split-window-right
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
    "g" 'magit-status
    "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
+   "k" 'kill-buffer
    "l" 'load-file
    "m" 'next-buffer
 	 "n" 'previous-buffer
+   "o" 'other-window
    "r" 'toggle-frame-maximized
-   "w" 'split-window-below
-   "x" 'helm-M-x
    "t" 'pbl--wunderline-add-todo
+   "w" 'helm-find-files
+   "x" 'helm-M-x
    "z" (lambda() (interactive) (find-file "~/.zshrc"))
    )
 

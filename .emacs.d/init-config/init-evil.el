@@ -53,7 +53,7 @@
   (defun pbl--wunderline-add-todo ()
     "Add todo to wunderlist using wunderline app"
     (interactive)
-    (shell-command (concat "wunderline add " (read-from-minibuffer "Enter todo: "))))
+    (shell-command (concat "wunderline add \"" (read-from-minibuffer "Enter todo: ") "\"")))
   )
 
 (use-package evil

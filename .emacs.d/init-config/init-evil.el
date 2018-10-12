@@ -17,7 +17,6 @@
    "D" 'pbl--open-writing-file-for-today
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
-   "g" 'magit-status
    "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
    "k" 'kill-buffer
    "l" 'load-file

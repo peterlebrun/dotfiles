@@ -102,6 +102,11 @@
 (use-package web-mode :ensure t)
 (use-package terraform-mode :ensure t)
 
+(use-package magit
+  :ensure t
+  :config
+  (setq magit-push-always-verify nil))
+
 (set-face-attribute 'default nil :font "Hack 20") ;; set font to hack, size 20
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
@@ -109,7 +114,6 @@
 (require 'init-company)
 (require 'init-evil)
 (require 'init-exec-path-from-shell)
-(require 'init-magit)
 (require 'init-powerline)
 (require 'init-zenburn-theme)
 

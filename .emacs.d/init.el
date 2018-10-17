@@ -162,7 +162,7 @@
 (add-hook 'js-mode-hook
   (lambda ()
     (display-line-numbers-mode 1)
-    (setq js-indent-level 2)))
+    (setq js-indent-level 4)))
 
 (add-hook 'web-mode-hook
   (lambda ()

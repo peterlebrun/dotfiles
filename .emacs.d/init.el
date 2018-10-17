@@ -118,6 +118,7 @@
 (require 'init-zenburn-theme)
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
@@ -161,7 +162,7 @@
 (add-hook 'js-mode-hook
   (lambda ()
     (display-line-numbers-mode 1)
-    (setq js-indent-level 4)))
+    (setq js-indent-level 2)))
 
 (add-hook 'web-mode-hook
   (lambda ()

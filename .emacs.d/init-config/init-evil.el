@@ -5,6 +5,7 @@
   "Configure evil leader mode."
   (evil-leader/set-leader ",")
   (evil-leader/set-key
+   "RET" 'pbl--yarn-test
    "," (lambda () (interactive) (ansi-term (getenv "SHELL")))
    ":" 'eval-expression
    "/" 'rgrep
@@ -53,7 +54,13 @@
     "Add todo to wunderlist using wunderline app"
     (interactive)
     (shell-command (concat "wunderline add \"" (read-from-minibuffer "Enter todo: ") "\"")))
-  )
+
+  (defun pbl--yarn-test ()
+    "Run current file in node"
+    (interactive)
+    (let ((test-output-buffer "*yarn-test*"))
+      (shell-command "yarn test" test-output-buffer)
+      (pop-to-buffer test-output-buffer))))
 
 (use-package evil
              :ensure t

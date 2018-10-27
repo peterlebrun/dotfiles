@@ -56,7 +56,7 @@
     (shell-command (concat "wunderline add \"" (read-from-minibuffer "Enter todo: ") "\"")))
 
   (defun pbl--yarn-test ()
-    "Run current file in node"
+    "Run yarn test for current yarn package"
     (interactive)
     (let ((test-output-buffer "*yarn-test*"))
       (shell-command "yarn test" test-output-buffer)

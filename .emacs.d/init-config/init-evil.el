@@ -26,7 +26,7 @@
    "o" 'other-window
    "r" 'toggle-frame-maximized
    "t" 'pbl--wunderline-add-todo
-   "w" 'helm-find-files
+   "w" 'pbl--yarn-webpack
    "x" 'helm-M-x
    "z" (lambda() (interactive) (find-file "~/.zshrc"))
    )
@@ -60,7 +60,14 @@
     (interactive)
     (let ((test-output-buffer "*yarn-test*"))
       (shell-command "yarn test" test-output-buffer)
-      (pop-to-buffer test-output-buffer))))
+      (pop-to-buffer test-output-buffer)))
+
+  (defun pbl--yarn-webpack ()
+    "Run current file in node"
+    (interactive)
+    (let ((webpack-output-buffer "*yarn-webpack*"))
+      (shell-command "yarn webpack" webpack-output-buffer)
+      (pop-to-buffer webpack-output-buffer))))
 
 (use-package evil
              :ensure t

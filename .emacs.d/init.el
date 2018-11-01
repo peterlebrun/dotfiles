@@ -107,14 +107,13 @@
   :config
   (setq magit-push-always-verify nil))
 
-(set-face-attribute 'default nil :font "Hack 20") ;; set font to hack, size 20
+(set-face-attribute 'default nil :font "Hack 21") ;; set font to hack, size 20
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.  Listed alphabetically
 (require 'init-company)
 (require 'init-evil)
 (require 'init-exec-path-from-shell)
-(require 'init-powerline)
 (require 'init-zenburn-theme)
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))

@@ -215,4 +215,8 @@ function update_ref() {
     echo "Tag:\t \e[32m$tag"
     return
 }
-export PATH="/usr/local/opt/node@10/bin:$PATH"
+export PATH="/usr/local/opt/node@8/bin:$PATH"
+alias cm="cd ~/dev/code/cargurus-eng/cg-main/"
+alias cs="cd ~/dev/code/cargurus-eng/cg-main/cargurus-site-static/"
+alias cb="cd ~/dev/code/cargurus-eng/cg-main/cargurus-build/local/devbox-push/"
+alias gm="git fetch origin && git reset --hard origin/master"

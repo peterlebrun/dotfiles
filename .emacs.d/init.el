@@ -132,8 +132,9 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.bzl\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.bazel\\'" . python-mode))
-(add-to-list 'auto-mode-alist '("BUILD" . python-mode))
-(add-to-list 'auto-mode-alist '("WORKSPACE" . python-mode))
+(add-to-list 'auto-mode-alist '("^BUILD.bazel$" . python-mode))
+(add-to-list 'auto-mode-alist '("^BUILD$" . python-mode))
+(add-to-list 'auto-mode-alist '("^WORKSPACE$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.tf\\'" . terraform-mode))
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
 

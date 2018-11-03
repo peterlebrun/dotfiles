@@ -21,7 +21,7 @@
    "F" 'helm-projectile-switch-project
    "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
    "k" 'kill-buffer
-   "l" 'load-file
+   "l" (lambda() (interactive) (load-file (buffer-file-name)))
    "m" 'next-buffer
 	 "n" 'previous-buffer
    "o" 'other-window

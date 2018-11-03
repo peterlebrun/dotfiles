@@ -16,6 +16,7 @@
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
    "D" 'pbl--open-writing-file-for-today
+   "e" '(lambda() (interactive) (find-file "~/.emacs.d/init-config/init-evil.el"))
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
    "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))

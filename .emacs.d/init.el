@@ -101,6 +101,7 @@
 (use-package puppet-mode :ensure t)
 (use-package web-mode :ensure t)
 (use-package terraform-mode :ensure t)
+(use-package dockerfile-mode :ensure t)
 
 (use-package magit
   :ensure t
@@ -137,6 +138,7 @@
 (add-to-list 'auto-mode-alist '("^WORKSPACE$" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.tf\\'" . terraform-mode))
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("Dockerfile\\'". dockerfile-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -200,6 +202,11 @@
   (lambda ()
     (display-line-numbers-mode 1)))
 
+(add-hook 'dockerfile-mode-hook
+  (lambda ()
+    (display-line-numbers-mode 1)
+    (setq c-basic-offset 2)))
+
 (toggle-frame-maximized)
 
 ;; Don't edit these
@@ -210,7 +217,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
+    (dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -1,6 +1,11 @@
 ;;; init-evil.el --- Evil mode configuration
 ;;; Commentary:
 ;;; Code:
+(defun pbl--config-evil ()
+  "Configure evil mode."
+  (dolist (mode '(ewl-mode))
+    (add-to-list 'evil-emacs-state-modes mode)))
+
 (defun pbl--config-evil-leader ()
   "Configure evil leader mode."
   (evil-leader/set-leader ",")
@@ -73,6 +78,7 @@
 (use-package evil
              :ensure t
              :config
+             (add-hook 'evil-mode-hook 'pbl--config-evil)
              (evil-mode 1)
 
              (use-package evil-leader

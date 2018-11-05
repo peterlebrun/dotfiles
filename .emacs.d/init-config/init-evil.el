@@ -4,7 +4,12 @@
 (defun pbl--config-evil ()
   "Configure evil mode."
   (dolist (mode '(ewl-mode))
-    (add-to-list 'evil-emacs-state-modes mode)))
+    (add-to-list 'evil-emacs-state-modes mode))
+
+  (evil-add-hjkl-bindings ewl-mode-map 'emacs
+    (kbd "/") 'evil-search-forward
+    (kbd "n") 'evil-search-next
+    (kbd "N") 'evil-search-previous))
 
 (defun pbl--config-evil-leader ()
   "Configure evil leader mode."

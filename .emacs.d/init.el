@@ -102,11 +102,24 @@
 (use-package web-mode :ensure t)
 (use-package terraform-mode :ensure t)
 (use-package dockerfile-mode :ensure t)
+(use-package rjsx-mode :ensure t)
 
 (use-package magit
   :ensure t
   :config
   (setq magit-push-always-verify nil))
+
+;(use-package flycheck
+  ;:ensure t
+  ;:init (global-flycheck-mode))
+
+;(use-package flycheck-yamllint
+  ;:ensure t
+  ;:defer t
+  ;:init
+  ;(progn
+    ;(eval-after-load 'flycheck
+      ;'(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
 
 (set-face-attribute 'default nil :font "Hack 21") ;; set font to hack, size 20
 
@@ -117,15 +130,17 @@
 (require 'init-exec-path-from-shell)
 (require 'init-zenburn-theme)
 
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.ftl\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yamllint\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode))
 (add-to-list 'auto-mode-alist '("\\.java\\'" . java-mode))
 (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
@@ -154,12 +169,17 @@
 (add-hook 'java-mode-hook
   (lambda ()
     (display-line-numbers-mode 1)
-    (setq c-basic-offset 2)))
+    (setq c-basic-offset 4)))
 
 (add-hook 'ruby-mode-hook
   (lambda ()
     (display-line-numbers-mode 1)
     (setq c-basic-offset 2)))
+
+(add-hook 'rjsx-mode-hook
+  (lambda ()
+    (display-line-numbers-mode 1)
+    (setq js-indent-level 4)))
 
 (add-hook 'js-mode-hook
   (lambda ()
@@ -217,7 +237,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
+    (flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

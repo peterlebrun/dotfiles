@@ -64,7 +64,8 @@
   (defun pbl--wunderline-add-todo ()
     "Add todo to wunderlist using wunderline app"
     (interactive)
-    (shell-command (concat "wunderline add \"" (read-from-minibuffer "Enter todo: ") "\"")))
+    (if (fboundp 'ewl-add-task-to-inbox) (ewl-add-task-to-inbox)
+      (shell-command (concat "wunderline add \"" (read-from-minibuffer "Enter todo: ") "\""))))
 
   (defun pbl--yarn-test ()
     "Run yarn test for current yarn package"

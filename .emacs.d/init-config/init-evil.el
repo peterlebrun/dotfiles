@@ -1,6 +1,7 @@
 ;;; init-evil.el --- Evil mode configuration
 ;;; Commentary:
 ;;; Code:
+(load-file "~/dev/code/peterlebrun/emacs-wunderlist/emacs-wunderlist.el")
 (defun pbl--config-evil ()
   "Configure evil mode."
   (dolist (mode '(ewl-mode))
@@ -35,6 +36,7 @@
    "m" 'next-buffer
 	 "n" 'previous-buffer
    "o" 'other-window
+   "p" 'pbl--ewl-display-priorities
    "r" 'toggle-frame-maximized
    "t" 'pbl--wunderline-add-todo
    "w" 'pbl--yarn-webpack
@@ -66,6 +68,11 @@
     (interactive)
     (if (fboundp 'ewl-add-task-to-inbox) (ewl-add-task-to-inbox)
       (shell-command (concat "wunderline add \"" (read-from-minibuffer "Enter todo: ") "\""))))
+
+  (defun pbl--ewl-display-priorities ()
+    "If function is defined, use it"
+    (interactive)
+    (if (fboundp 'ewl-display-priorities) (ewl-display-priorities)))
 
   (defun pbl--yarn-test ()
     "Run yarn test for current yarn package"

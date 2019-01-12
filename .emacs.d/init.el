@@ -2,6 +2,7 @@
 ;;; package -- summary
 ;;; Code:
 (require 'package)
+(setq inhibit-startup-message t)
 
 (add-to-list
  'package-archives
@@ -103,6 +104,7 @@
 (use-package terraform-mode :ensure t)
 (use-package dockerfile-mode :ensure t)
 (use-package rjsx-mode :ensure t)
+(use-package elm-mode :ensure t)
 
 (use-package magit
   :ensure t
@@ -139,7 +141,7 @@
     ;(eval-after-load 'flycheck
       ;'(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
 
-(set-face-attribute 'default nil :font "Hack 21") ;; set font to hack, size 20
+(set-face-attribute 'default nil :font "FuraCode Nerd Font Mono 21")
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.  Listed alphabetically
@@ -172,6 +174,7 @@
 (add-to-list 'auto-mode-alist '("\\.tf\\'" . terraform-mode))
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("Dockerfile\\'". dockerfile-mode))
+(add-to-list 'auto-mode-alist '("\\.elm\\'" . elm-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)

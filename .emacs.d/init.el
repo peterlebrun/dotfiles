@@ -142,7 +142,6 @@
       ;'(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
 
 (set-face-attribute 'default nil :font "FuraCode Nerd Font 21")
-;;(set-face-attribute 'default nil :font "Hack 21")
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.  Listed alphabetically

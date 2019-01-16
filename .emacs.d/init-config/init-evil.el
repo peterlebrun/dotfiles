@@ -30,13 +30,13 @@
    "e" '(lambda() (interactive) (find-file "~/.emacs.d/init-config/init-evil.el"))
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
+   "g" 'pbl--display-gtd
    "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
    "k" 'kill-buffer
    "l" (lambda() (interactive) (load-file (buffer-file-name)))
    "m" 'next-buffer
 	 "n" 'previous-buffer
    "o" 'other-window
-   "p" 'pbl--ewl-display-priorities
    "r" 'toggle-frame-maximized
    "t" 'pbl--wunderline-add-todo
    "w" 'pbl--yarn-webpack
@@ -69,10 +69,10 @@
     (if (fboundp 'ewl-add-task-to-inbox) (ewl-add-task-to-inbox)
       (shell-command (concat "wunderline add \"" (read-from-minibuffer "Enter todo: ") "\""))))
 
-  (defun pbl--ewl-display-priorities ()
+  (defun pbl--display-gtd ()
     "If function is defined, use it"
     (interactive)
-    (if (fboundp 'ewl-display-priorities) (ewl-display-priorities)))
+    (if (fboundp 'ewl-display-inbox) (ewl-display-inbox)))
 
   (defun pbl--yarn-test ()
     "Run yarn test for current yarn package"

@@ -3,8 +3,8 @@
 ;;; Code:
 (require 'package)
 (setq inhibit-startup-message t)
-;;(set-language-environment "UTF-8")
-;;(set-default-coding-systems 'utf-8)
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
 
 (add-to-list
  'package-archives

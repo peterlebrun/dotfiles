@@ -3,6 +3,8 @@
 ;;; Code:
 (require 'package)
 (setq inhibit-startup-message t)
+;;(set-language-environment "UTF-8")
+;;(set-default-coding-systems 'utf-8)
 
 (add-to-list
  'package-archives
@@ -129,18 +131,6 @@
   (setq org-brain-visualize-default-choices 'all)
   (setq org-brain-title-max-length 12))
 
-;(use-package flycheck
-  ;:ensure t
-  ;:init (global-flycheck-mode))
-
-;(use-package flycheck-yamllint
-  ;:ensure t
-  ;:defer t
-  ;:init
-  ;(progn
-    ;(eval-after-load 'flycheck
-      ;'(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
-
 (set-face-attribute 'default nil :font "FuraCode Nerd Font 21")
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
@@ -258,7 +248,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
+    (unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

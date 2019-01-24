@@ -32,10 +32,10 @@
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
    "D" 'pbl--open-writing-file-for-today
-   "e" '(lambda() (interactive) (find-file "~/.emacs.d/init-config/init-evil.el"))
+   "e" (lambda() (interactive) (find-file "~/.emacs.d/init-config/init-evil.el"))
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
-   "g" 'pbl--display-gtd
+   "g" (lambda() (interactive) (ewl-display-inbox))
    "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
    "k" 'kill-buffer
    "l" (lambda() (interactive) (load-file (buffer-file-name)))
@@ -43,8 +43,8 @@
 	 "n" 'previous-buffer
    "o" 'other-window
    "r" 'toggle-frame-maximized
-   "t" 'pbl--wunderline-add-todo
-   "w" 'pbl--yarn-webpack
+   "t" (lambda() (interactive) (ewl-add-task-to-inbox))
+   "w" (lambda() (interactive) (find-file "~/dev/code/peterlebrun/emacs-wunderlist/emacs-wunderlist.el"))
    "x" 'helm-M-x
    "z" (lambda() (interactive) (find-file "~/.zshrc"))
    )
@@ -59,39 +59,19 @@
   (defun pbl--open-writing-file-for-today ()
     ""
     (interactive)
-    (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
-           (filename (concat "~/writings/" timestamp ".txt")))
-      (find-file filename)))
+    (find-file (concat "~/writings/" (format-time-string "%Y%m%d-%H%M%S") ".txt")))
 
   (defun pbl--insert-file-contents-from-helm-search ()
     "Use helm to find a file whose contents will be entered into current buffer"
     (interactive)
     (insert-file-contents (helm-read-file-name "")))
 
-  (defun pbl--wunderline-add-todo ()
-    "Add todo to wunderlist using wunderline app"
-    (interactive)
-    (if (fboundp 'ewl-add-task-to-inbox) (ewl-add-task-to-inbox)
-      (shell-command (concat "wunderline add \"" (read-from-minibuffer "Enter todo: ") "\""))))
-
-  (defun pbl--display-gtd ()
-    "If function is defined, use it"
-    (interactive)
-    (if (fboundp 'ewl-display-inbox) (ewl-display-inbox)))
-
   (defun pbl--yarn-test ()
     "Run yarn test for current yarn package"
     (interactive)
     (let ((test-output-buffer "*yarn-test*"))
       (shell-command "yarn test" test-output-buffer)
-      (pop-to-buffer test-output-buffer)))
-
-  (defun pbl--yarn-webpack ()
-    "Run current file in node"
-    (interactive)
-    (let ((webpack-output-buffer "*yarn-webpack*"))
-      (shell-command "yarn webpack" webpack-output-buffer)
-      (pop-to-buffer webpack-output-buffer))))
+      (pop-to-buffer test-output-buffer))))
 
 (use-package evil
              :ensure t

@@ -17,12 +17,15 @@
     (kbd "n") 'evil-search-next
     (kbd "N") 'evil-search-previous))
 
+;; Provide named methods instead of lambda expressions
+;; so that mode-map (see leader ?) displays names
+;; instead of ??
 (defun pbl--config-evil-leader ()
   "Configure evil leader mode."
   (evil-leader/set-leader ",")
   (evil-leader/set-key
    "RET" 'pbl--yarn-test
-   "," (lambda () (interactive) (ansi-term (getenv "SHELL")))
+   "," 'pbl--open-shell
    ":" 'eval-expression
    "/" 'rgrep
    "|" 'split-window-right
@@ -32,22 +35,54 @@
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
    "D" 'pbl--open-writing-file-for-today
-   "e" (lambda() (interactive) (find-file "~/.emacs.d/init-config/init-evil.el"))
+   "e" 'pbl--open-evil-config
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
-   "g" (lambda() (interactive) (ewl-display-inbox))
-   "i" (lambda() (interactive) (find-file "~/.emacs.d/init.el"))
+   "g" 'pbl--ewl-display-inbox
+   "i" 'pbl--open-init-config
    "k" 'kill-buffer
-   "l" (lambda() (interactive) (load-file (buffer-file-name)))
+   "l" 'pbl--load-current-file
    "m" 'next-buffer
 	 "n" 'previous-buffer
    "o" 'other-window
    "r" 'toggle-frame-maximized
-   "t" (lambda() (interactive) (ewl-add-task-to-inbox))
-   "w" (lambda() (interactive) (find-file "~/dev/code/peterlebrun/emacs-wunderlist/emacs-wunderlist.el"))
+   "t" 'pbl--ewl-add-task-to-inbox
+   "w" 'pbl--open-emacs-wunderlist
    "x" 'helm-M-x
-   "z" (lambda() (interactive) (find-file "~/.zshrc"))
+   "z" 'pbl--open-zshrc
    )
+
+  (defun pbl--ewl-display-inbox ()
+    "Provide interactive method to display gtd inbox."
+    (interactive) (ewl-display-inbox))
+
+  (defun pbl--ewl-add-task-to-inbox ()
+    "Provide interactive method to add task to gtd inbox."
+    (interactive) (ewl-add-task-to-inbox))
+
+  (defun pbl--open-shell ()
+    "Open shell."
+   (interactive) (ansi-term (getenv "SHELL")))
+
+  (defun pbl--open-evil-config ()
+    "Open evil config."
+   (interactive) (find-file "~/.emacs.d/init-config/init-evil.el"))
+
+  (defun pbl--open-init-config ()
+    "Open init config."
+   (interactive) (find-file "~/.emacs.d/init.el"))
+
+  (defun pbl--open-emacs-wunderlist ()
+    "Open emacs wunderlist for editing."
+   (interactive) (find-file "~/dev/code/peterlebrun/emacs-wunderlist/emacs-wunderlist.el"))
+
+  (defun pbl--open-zshrc ()
+    "Open .zshrc."
+    (interactive) (find-file "~/.zshrc"))
+
+  (defun pbl--load-current-file ()
+    "Load current file."
+    (interactive) (load-file (buffer-file-name)))
 
   (defun pbl--magit-blame-toggle ()
     "Toggle magit-blame-mode on and off interactively."

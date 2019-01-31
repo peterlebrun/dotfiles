@@ -26,7 +26,6 @@
   (evil-leader/set-key
    "RET" 'pbl--yarn-test
    "," 'pbl--open-shell
-   ":" 'eval-expression
    "/" 'rgrep
    "|" 'split-window-right
    "-" 'split-window-below

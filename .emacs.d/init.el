@@ -62,6 +62,8 @@
 (use-package go-eldoc
   :after go-mode)
 
+(use-package rust-mode :ensure t)
+
 ;(use-package gotest
 ;  :after go-mode)
 
@@ -165,6 +167,7 @@
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("Dockerfile\\'". dockerfile-mode))
 (add-to-list 'auto-mode-alist '("\\.elm\\'" . elm-mode))
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -196,6 +199,11 @@
   (lambda ()
     (display-line-numbers-mode 1)
     (setq js-indent-level 4)))
+
+(add-hook 'rust-mode-hook
+  (lambda ()
+    (display-line-numbers-mode 1)
+    (setq c-basic-offset 4)))
 
 (add-hook 'web-mode-hook
   (lambda ()
@@ -248,7 +256,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
+    (rust-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

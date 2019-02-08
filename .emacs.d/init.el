@@ -204,6 +204,7 @@
   (lambda ()
     (display-line-numbers-mode 1)
     (setq c-basic-offset 4)))
+(setq rust-format-on-save t)
 
 (add-hook 'web-mode-hook
   (lambda ()

@@ -6,6 +6,8 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 
+(custom-set-variables '(epg-gpg-program "/usr/local/bin/gpg2"))
+
 (add-to-list
  'package-archives
  '("melpa" . "https://melpa.org/packages/"))

@@ -33,12 +33,13 @@
    "a" 'pbl--insert-file-contents-from-helm-search
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
+   "c" 'pbl--open-init-config
    "D" 'pbl--open-writing-file-for-today
    "e" 'pbl--open-evil-config
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
-   "g" 'pbl--ewl-display-inbox
-   "i" 'pbl--open-init-config
+   "g" 'pbl--ewl-add-to-groceries-list
+   "i" 'pbl--ewl-display-inbox
    "k" 'kill-buffer
    "l" 'pbl--load-current-file
    "m" 'next-buffer
@@ -58,6 +59,10 @@
   (defun pbl--ewl-add-task-to-inbox ()
     "Provide interactive method to add task to gtd inbox."
     (interactive) (ewl-add-task-to-inbox))
+
+  (defun pbl--ewl-add-to-groceries-list ()
+    "Provide interactive method to add task to gtd inbox."
+    (interactive) (ewl-add-to-groceries-list))
 
   (defun pbl--open-shell ()
     "Open shell."

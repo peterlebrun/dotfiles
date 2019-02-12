@@ -42,6 +42,12 @@
 (require 'bind-key)
 (use-package rainbow-delimiters :ensure t)
 
+(load-library "~/auth.el.gpg") ;; Poor man's .authinfo for now
+
+;; I really wish this package got into melpa...
+(add-to-list 'load-path "~/dev/code/peterlebrun/spotify.el/")
+(require 'spotify)
+
 (use-package go-mode
   :ensure t
   :mode "\\.go\\'"

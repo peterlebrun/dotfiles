@@ -46,6 +46,8 @@
 
 ;; I really wish this package got into melpa...
 (add-to-list 'load-path "~/dev/code/peterlebrun/spotify.el/")
+;; @TODO: This is going to cause problems if emacs starts
+;; without a network connection
 (require 'spotify)
 
 (use-package go-mode

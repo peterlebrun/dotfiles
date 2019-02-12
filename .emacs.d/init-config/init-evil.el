@@ -4,7 +4,7 @@
 (load-file "~/dev/code/peterlebrun/emacs-wunderlist/emacs-wunderlist.el")
 (defun pbl--config-evil ()
   "Configure evil mode."
-  (dolist (mode '(ewl-task-mode ewl-notes-mode))
+  (dolist (mode '(ewl-task-mode ewl-notes-mode spotify-playlist-search-mode spotify-track-search-mode))
     (add-to-list 'evil-emacs-state-modes mode))
 
   (evil-add-hjkl-bindings ewl-task-mode-map 'emacs
@@ -13,6 +13,16 @@
     (kbd "N") 'evil-search-previous)
 
   (evil-add-hjkl-bindings ewl-notes-mode-map 'emacs
+    (kbd "/") 'evil-search-forward
+    (kbd "n") 'evil-search-next
+    (kbd "N") 'evil-search-previous)
+
+  (evil-add-hjkl-bindings spotify-playlist-search-mode-map 'emacs
+    (kbd "/") 'evil-search-forward
+    (kbd "n") 'evil-search-next
+    (kbd "N") 'evil-search-previous)
+
+  (evil-add-hjkl-bindings spotify-track-search-mode-map 'emacs
     (kbd "/") 'evil-search-forward
     (kbd "n") 'evil-search-next
     (kbd "N") 'evil-search-previous))
@@ -47,6 +57,7 @@
    "o" 'other-window
    "r" 'toggle-frame-maximized
    "t" 'pbl--ewl-add-task-to-inbox
+   "s" 'pbl--spotify-my-playlist
    "w" 'pbl--open-emacs-wunderlist
    "x" 'helm-M-x
    "z" 'pbl--open-zshrc
@@ -59,6 +70,10 @@
   (defun pbl--ewl-add-task-to-inbox ()
     "Provide interactive method to add task to gtd inbox."
     (interactive) (ewl-add-task-to-inbox))
+
+  (defun pbl--spotify-my-playlist ()
+    "Provide interactive method to bring up spotify menu."
+    (interactive) (spotify-my-playlists))
 
   (defun pbl--ewl-add-to-groceries-list ()
     "Provide interactive method to add task to gtd inbox."

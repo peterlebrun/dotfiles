@@ -57,7 +57,14 @@
    "o" 'other-window
    "r" 'toggle-frame-maximized
    "t" 'pbl--ewl-add-task-to-inbox
-   "s" 'pbl--spotify-my-playlist
+   ;; leader s for spotify
+   "sl" 'pbl--spotify-my-playlists ;; l for list
+   "sp" 'pbl--spotify-toggle-play
+   "sr" 'pbl--spotify-toggle-repeat
+   "ss" 'pbl--spotify-toggle-shuffle
+   "sn" 'pbl--spotify-next-track
+   "sb" 'pbl--spotify-previous-track ;; b for before
+   "sg" 'spotify-track-search ;; g for google, (already interactive)
    "w" 'pbl--open-emacs-wunderlist
    "x" 'helm-M-x
    "z" 'pbl--open-zshrc
@@ -71,13 +78,33 @@
     "Provide interactive method to add task to gtd inbox."
     (interactive) (ewl-add-task-to-inbox))
 
-  (defun pbl--spotify-my-playlist ()
-    "Provide interactive method to bring up spotify menu."
-    (interactive) (spotify-my-playlists))
-
   (defun pbl--ewl-add-to-groceries-list ()
     "Provide interactive method to add task to gtd inbox."
     (interactive) (ewl-add-to-groceries-list))
+
+  (defun pbl--spotify-my-playlists ()
+    "Provide interactive method to list spotify playlists."
+    (interactive) (spotify-my-playlists))
+
+  (defun pbl--spotify-toggle-play ()
+    "Provide interactive method to list spotify playlists."
+    (interactive) (spotify-toggle-play))
+
+  (defun pbl--spotify-toggle-repeat ()
+    "Provide interactive method to list spotify playlists."
+    (interactive) (spotify-toggle-repeat))
+
+  (defun pbl--spotify-toggle-shuffle ()
+    "Provide interactive method to list spotify playlists."
+    (interactive) (spotify-toggle-shuffle))
+
+  (defun pbl--spotify-next-track ()
+    "Provide interactive method to list spotify playlists."
+    (interactive) (spotify-next-track))
+
+  (defun pbl--spotify-previous-track ()
+    "Provide interactive method to list spotify playlists."
+    (interactive) (spotify-previous-track))
 
   (defun pbl--open-shell ()
     "Open shell."

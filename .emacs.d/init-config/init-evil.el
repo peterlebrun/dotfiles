@@ -1,7 +1,6 @@
 ;;; init-evil.el --- Evil mode configuration
 ;;; Commentary:
 ;;; Code:
-(load-file "~/dev/code/peterlebrun/emacs-wunderlist/emacs-wunderlist.el")
 (defun pbl--config-evil ()
   "Configure evil mode."
   (dolist (mode '(ewl-task-mode ewl-notes-mode spotify-playlist-search-mode spotify-track-search-mode))

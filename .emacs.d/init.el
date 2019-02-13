@@ -5,6 +5,7 @@
 (setq inhibit-startup-message t)
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
+(setq pbl-package-root "~/dev/code/peterlebrun/")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -41,14 +42,6 @@
 (require 'diminish)
 (require 'bind-key)
 (use-package rainbow-delimiters :ensure t)
-
-(load-library "~/.auth.el.gpg") ;; Poor man's .authinfo for now
-
-;; I really wish this package got into melpa...
-(add-to-list 'load-path "~/dev/code/peterlebrun/spotify.el/")
-;; @TODO: This is going to cause problems if emacs starts
-;; without a network connection
-(require 'spotify)
 
 (use-package go-mode
   :ensure t
@@ -151,11 +144,16 @@
 
 (set-face-attribute 'default nil :font "FuraCode Nerd Font 21")
 
+
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
-;; Additional configs to load.  Listed alphabetically
+;; Additional configs to load.
+(require 'init-auth) ;; Needs to happen before basically everything
+(require 'init-emacs-wunderlist) ;; Needs to happen before init-evil
+
 (require 'init-company)
 (require 'init-evil)
 (require 'init-exec-path-from-shell)
+(require 'init-spotify)
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)
 

@@ -185,6 +185,8 @@
 (add-to-list 'auto-mode-alist '("\\.elm\\'" . elm-mode))
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 (add-to-list 'auto-mode-alist '("\\.clj\\'" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.cljs\\'" . clojurescript-mode))
+(add-to-list 'auto-mode-alist '("\\.edn\\'" . clojurescript-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -240,6 +242,7 @@
     (display-line-numbers-mode 1)
     (eldoc-mode 1)
     (company-mode 1)
+    (toggle-debug-on-error)
     (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-last-sexp)))
 
 (add-hook 'yaml-mode-hook

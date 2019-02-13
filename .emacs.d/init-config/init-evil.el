@@ -128,7 +128,10 @@
 
   (defun pbl--load-current-file ()
     "Load current file."
-    (interactive) (load-file (buffer-file-name)))
+    (interactive)
+    (if (and buffer-file-name (member "el" (split-string (buffer-file-name) "\\." t)))
+        (load-file (buffer-file-name))
+      (message "Not editing emacs lisp file.")))
 
   (defun pbl--magit-blame-toggle ()
     "Toggle magit-blame-mode on and off interactively."

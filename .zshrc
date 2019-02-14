@@ -221,3 +221,4 @@ alias cs="cd ~/dev/code/cargurus-eng/cg-main/cargurus-site-static/"
 alias cb="cd ~/dev/code/cargurus-eng/cg-main/cargurus-build/local/devbox-push/"
 alias gm="git fetch origin && git reset --hard origin/master"
 export JAVA_HOME=$(/usr/libexec/java_home)
+alias demo="cd ~/dev/code/scratch/hmr/webpack-dev-server/examples/cli/hmr && yarn dev"

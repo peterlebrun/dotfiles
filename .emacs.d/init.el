@@ -3,9 +3,13 @@
 ;;; Code:
 (require 'package)
 (setq inhibit-startup-message t)
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
+
+(setq-default default-buffer-file-coding-system 'utf-8-unix)
+(set-default-coding-systems 'utf-8-unix)
+(prefer-coding-system 'utf-8-unix)
+
 (setq pbl-package-root "~/dev/code/peterlebrun/")
+(setq create-lockfiles nil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

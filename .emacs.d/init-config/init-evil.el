@@ -47,7 +47,7 @@
    "e" 'pbl--open-evil-config
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
-   "g" 'pbl--ewl-add-to-groceries-list
+   "g" 'magit-status
    "i" 'pbl--ewl-display-inbox
    "k" 'kill-buffer
    "l" 'pbl--load-current-file
@@ -64,6 +64,7 @@
    "sn" 'pbl--spotify-next-track
    "sb" 'pbl--spotify-previous-track ;; b for before
    "sg" 'spotify-track-search ;; g for google, (already interactive)
+   "v" 'pbl--ewl-add-to-groceries-list ;; v for vittles
    "w" 'pbl--open-emacs-wunderlist
    "x" 'helm-M-x
    "z" 'pbl--open-zshrc

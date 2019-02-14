@@ -126,11 +126,6 @@
 (use-package elm-mode :ensure t)
 (use-package clojure-mode :ensure t)
 
-(use-package magit
-  :ensure t
-  :config
-  (setq magit-push-always-verify nil))
-
 (use-package org-brain :ensure t
   :init
   (setq org-brain-path "~/org-brain")
@@ -151,12 +146,14 @@
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
+
 (require 'init-auth) ;; Needs to happen before basically everything
-(require 'init-emacs-wunderlist) ;; Needs to happen before init-evil
 
 (require 'init-company)
 (require 'init-evil)
+(require 'init-emacs-wunderlist)
 (require 'init-exec-path-from-shell)
+(require 'init-magit)
 (require 'init-spotify)
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)

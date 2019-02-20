@@ -222,3 +222,4 @@ alias cb="cd ~/dev/code/cargurus-eng/cg-main/cargurus-build/local/devbox-push/"
 alias gm="git fetch origin && git reset --hard origin/master"
 export JAVA_HOME=$(/usr/libexec/java_home)
 alias demo="cd ~/dev/code/scratch/hmr/webpack-dev-server/examples/cli/hmr && yarn dev"
+alias builddeps="pushd ~/dev/code/platform/bazel_rules/ && bazel run //cmd/maven -- --verbose --output ~/dev/code/cargurus-eng/cg-main/dependencies.bzl ~/dev/code/cargurus-eng/cg-main/dependencies.yml && popd && echo \"\n\e[31m@NOTE: Don't forget to fix netlib_all in dependencies.bzl\e[39m\""

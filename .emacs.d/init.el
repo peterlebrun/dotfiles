@@ -51,49 +51,14 @@
   :ensure t
   :mode "\\.go\\'"
   :config
-  (setq gofmt-command "goimports")
-  (add-hook 'before-save-hook 'gofmt-before-save)
   (add-hook 'go-mode-hook
             (lambda ()
               (subword-mode)
               (display-line-numbers-mode 1)
               (go-set-project)
-              (company-mode t)
-              (setq tab-width 4)
-              (setq indent-tabs-mode 1)))
-  :bind
-  ("M-." . godoc-at-point)
-  ("C-x r" . go-rename)
-  ("C-x C-k" . go-test-current-test)
-  ("C-x t" . go-test-current-test)
-  ("C-x f" . go-test-current-file)
-  ("C-x b" . go-test-current-benchmark)
-  ("C-x p" . go-test-current-project)
-  ("C-x x" . go-run))
-
-(use-package go-projectile
-  :ensure t)
-
-(use-package go-eldoc
-  :after go-mode)
+              (company-mode t))))
 
 (use-package rust-mode :ensure t)
-
-;(use-package gotest
-;  :after go-mode)
-
-;(use-package go-gopath
-;  :after go-mode)
-
-(use-package go-rename
-  :after go-mode)
-
-(use-package go-guru
-  :ensure t
-  :after go-mode
-  :config
-  (set-face-attribute 'go-guru-hl-identifier-face nil
-                      :inherit 'isearch))
 
 (use-package company-go
   :ensure t

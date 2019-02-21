@@ -207,7 +207,6 @@
     (display-line-numbers-mode 1)
     (eldoc-mode 1)
     (company-mode 1)
-    (toggle-debug-on-error)
     (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-last-sexp)))
 
 (add-hook 'yaml-mode-hook

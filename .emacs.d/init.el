@@ -8,7 +8,7 @@
 (set-default-coding-systems 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
 
-(setq pbl-package-root "~/dev/code/peterlebrun/")
+(setq pbl-package-root "~/dev/code/github.com/peterlebrun/")
 (setq create-lockfiles nil)
 
 (custom-set-variables

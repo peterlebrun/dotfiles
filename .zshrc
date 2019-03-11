@@ -83,12 +83,6 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-alias z='vim ~/.zshrc'
-alias zs='. ~/.zshrc'
-alias t='vim ~/.tmux.conf'
-alias v='vim ~/.vimrc'
-alias gfm='git fetch origin && git reset --hard origin/master'
-
 # Not used.  Left for reference
 # Function to clear ctrlp cache if it exists, then pull/rebase
 # This requires that you are in the highest level directory of each repo
@@ -100,7 +94,7 @@ function gpull() {
   # grep -q . : returns true if it finds any characters, false otherwise
   # rm: remove the cache file
   # notice the use of the && as a conditional here
-  find ~/cache/ctrlp/ -maxdepth 1 -name '*'$d'.txt' 2>/dev/null | grep -q . && rm ~/cache/ctrlp/*$d.txt
+  find $HOME/cache/ctrlp/ -maxdepth 1 -name '*'$d'.txt' 2>/dev/null | grep -q . && rm $HOME/cache/ctrlp/*$d.txt
   git pull --rebase
 }
 
@@ -124,7 +118,7 @@ function get_diff() {
   b=`printf "${PWD##*/}"`;
   # Get the name of the current git branch
   c=`git branch | awk -F " " '/^\*/ { print $2}'`
-  git diff --full-index HEAD~1..HEAD > ~/dev/util/diffs/"$a$dash$b$dash$c".diff
+  git diff --full-index HEAD~1..HEAD > $HOME/dev/util/diffs/"$a$dash$b$dash$c".diff
 };
 
 # Not used.  Left for reference.
@@ -147,8 +141,6 @@ user=username:TOKEN
 echo $user
 # pass in parameters as key:value
 }
-#alias realsync='perl ~/dev/util/realsync/realsync'
-#alias sync-php='realsync ~/dev/code/php | tee -a ~/dev/util/logs/php.log'
 
 autoload bashcompinit
 bashcompinit
@@ -216,12 +208,8 @@ function update_ref() {
     return
 }
 export PATH="/usr/local/opt/node@10/bin:$PATH"
-alias cm="cd ~/dev/code/cargurus-eng/cg-main/"
-alias cs="cd ~/dev/code/cargurus-eng/cg-main/cargurus-site-static/"
-alias cb="cd ~/dev/code/cargurus-eng/cg-main/cargurus-build/local/devbox-push/"
-alias gm="git fetch origin && git reset --hard origin/master"
 export JAVA_HOME=$(/usr/libexec/java_home)
-alias demo="cd ~/dev/code/scratch/hmr/webpack-dev-server/examples/cli/hmr && yarn dev"
-alias builddeps="pushd ~/dev/code/platform/bazel_rules/ && bazel run //cmd/maven -- --verbose --output ~/dev/code/cargurus-eng/cg-main/dependencies.bzl ~/dev/code/cargurus-eng/cg-main/dependencies.yml && popd && echo \"\n\e[31m@NOTE: Don't forget to fix netlib_all in dependencies.bzl\e[39m\""
-alias deploybazel="cd ~/dev/code/cargurus-eng/cg-main && bazel build //cargurus-site:Cars && ./go-to-war.sh bazel-bin/cargurus-site"
-alias deploymaven="cd ~/dev/code/cargurus-eng/cg-main && ./go-to-war.sh cargurus-site/target"
+
+if [ -f $HOME/private.sh ]; then
+    source $HOME/private.sh
+fi

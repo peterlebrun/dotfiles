@@ -140,10 +140,11 @@
         (magit-blame-quit)
       (call-interactively 'magit-blame)))
 
+  ; Switching this to org file
   (defun pbl--open-writing-file-for-today ()
     ""
     (interactive)
-    (find-file (concat "~/writings/" (format-time-string "%Y%m%d-%H%M%S") ".txt")))
+    (find-file (concat "~/writings/" (format-time-string "%Y%m%d-%H%M%S") ".org")))
 
   (defun pbl--insert-file-contents-from-helm-search ()
     "Use helm to find a file whose contents will be entered into current buffer"

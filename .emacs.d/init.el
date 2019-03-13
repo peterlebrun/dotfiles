@@ -122,6 +122,7 @@
 (require 'init-spotify)
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)
+(require 'init-org)
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))

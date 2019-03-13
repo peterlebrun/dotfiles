@@ -238,6 +238,7 @@
     (display-line-numbers-mode 1)
     (setq c-basic-offset 2)))
 
+(global-visual-line-mode 1)
 (toggle-frame-maximized)
 
 ;; Don't edit these

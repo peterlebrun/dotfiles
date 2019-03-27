@@ -120,7 +120,7 @@
 
   (defun pbl--open-emacs-wunderlist ()
     "Open emacs wunderlist for editing."
-   (interactive) (find-file "~/dev/code/peterlebrun/emacs-wunderlist/emacs-wunderlist.el"))
+   (interactive) (find-file (concat pbl-package-root "/emacs-wunderlist/emacs-wunderlist.el")))
 
   (defun pbl--open-zshrc ()
     "Open .zshrc."

@@ -55,7 +55,6 @@
 	 "n" 'previous-buffer
    "o" 'other-window
    "r" 'toggle-frame-maximized
-   "t" 'pbl--ewl-add-task-to-inbox
    ;; leader s for spotify
    "sl" 'pbl--spotify-my-playlists ;; l for list
    "sp" 'pbl--spotify-toggle-play
@@ -64,6 +63,7 @@
    "sn" 'pbl--spotify-next-track
    "sb" 'pbl--spotify-previous-track ;; b for before
    "sg" 'spotify-track-search ;; g for google, (already interactive)
+   "t" 'pbl--ewl-add-task-to-inbox
    "v" 'pbl--ewl-add-to-groceries-list ;; v for vittles
    "w" 'pbl--open-emacs-wunderlist
    "x" 'helm-M-x
@@ -144,7 +144,13 @@
   (defun pbl--open-writing-file-for-today ()
     ""
     (interactive)
-    (find-file (concat "~/writings/" (format-time-string "%Y%m%d-%H%M%S") ".org")))
+    (find-file (concat "~/writings/" (format-time-string "%Y%m%d-%H%M%S") ".org"))
+    (insert "* ")
+    (insert (format-time-string "%Y%m%d:%H%M"))
+    (insert "
+** Gratitude List
+   -
+** Freewheeling Thoughts"))
 
   (defun pbl--insert-file-contents-from-helm-search ()
     "Use helm to find a file whose contents will be entered into current buffer"

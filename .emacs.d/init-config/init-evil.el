@@ -48,6 +48,7 @@
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
    "g" 'magit-status
+   "h" 'pbl--open-orgfile
    "i" 'pbl--ewl-display-inbox
    "k" 'kill-buffer
    "l" 'pbl--load-current-file
@@ -117,6 +118,10 @@
   (defun pbl--open-init-config ()
     "Open init config."
    (interactive) (find-file "~/.emacs.d/init.el"))
+
+  (defun pbl--open-orgfile ()
+    "Open evil config."
+   (interactive) (find-file "~/Dropbox/org/org.org"))
 
   (defun pbl--open-emacs-wunderlist ()
     "Open emacs wunderlist for editing."

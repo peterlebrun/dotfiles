@@ -39,6 +39,7 @@
    "|" 'split-window-right
    "-" 'split-window-below
    "0" 'delete-window
+   "1" (lambda () (interactive) (foobar))
    "a" 'pbl--insert-file-contents-from-helm-search
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle

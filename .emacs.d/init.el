@@ -9,8 +9,6 @@
 (prefer-coding-system 'utf-8-unix)
 
 ;; Visual presentation of window
-(toggle-scroll-bar -1)
-(menu-bar-mode -1)
 (tool-bar-mode -1)
 (global-visual-line-mode 1)
 (toggle-frame-maximized)

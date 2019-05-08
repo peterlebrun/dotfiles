@@ -8,6 +8,13 @@
 (set-default-coding-systems 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
 
+;; Visual presentation of window
+(toggle-scroll-bar -1)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(global-visual-line-mode 1)
+(toggle-frame-maximized)
+
 (setq pbl-package-root "~/eng/github.com/peterlebrun/")
 (setq create-lockfiles nil)
 
@@ -238,9 +245,6 @@
   (lambda ()
     (display-line-numbers-mode 1)
     (setq c-basic-offset 2)))
-
-(global-visual-line-mode 1)
-(toggle-frame-maximized)
 
 ;; Don't edit these
 

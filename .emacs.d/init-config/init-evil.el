@@ -65,6 +65,7 @@
    "sn" 'pbl--spotify-next-track
    "sb" 'pbl--spotify-previous-track ;; b for before
    "sg" 'spotify-track-search ;; g for google, (already interactive)
+   ;"t" 'pbl--ewl-add-task-to-inbox
    "t" 'pbl--ewl-add-task-to-inbox
    "v" 'pbl--ewl-add-to-groceries-list ;; v for vittles
    "w" 'pbl--open-emacs-wunderlist

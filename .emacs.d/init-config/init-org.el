@@ -41,29 +41,13 @@
          ((tags "PRIORITY=\"A\""
                 ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
                  (org-agenda-overriding-header "High priority unfinished tasks:")))
-          (agenda "" ((org-agenda-ndays-to-span 1)))
-                      ;(org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))))
+          (agenda "" ((org-agenda-ndays-to-span 1)
+                      (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))))
           (alltodo ""
                    ((org-agenda-skip-function
                      '(or (air--org-skip-subtree-if-habit)
                           (air--org-skip-subtree-if-priority ?A)
                           (org-agenda-skip-if nil '(scheduled deadline))))))))))
-
-;(setq org-agenda-custom-commands
-;      '(("d" "Daily agenda and all TODOs"
-;         ((tags "PRIORITY=\"A\""
-;                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-;                 (org-agenda-overriding-header "High-priority unfinished tasks:")))
-;          (agenda "" ((org-agenda-ndays 1)))
-;          (alltodo ""
-;                   ((org-agenda-skip-function '(or (air--org-skip-subtree-if-habit)
-;                                                   (air--org-skip-subtree-if-priority ?A)
-;                                                   (org-agenda-skip-if nil '(scheduled deadline))))
-;                    (org-agenda-overriding-header "ALL normal priority tasks:"))))
-;         ((org-agenda-compact-blocks t)))))
-
-
-
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.

@@ -124,7 +124,6 @@
 (require 'init-emacs-wunderlist)
 (require 'init-exec-path-from-shell)
 (require 'init-magit)
-(require 'init-spotify)
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)
 (require 'init-org)

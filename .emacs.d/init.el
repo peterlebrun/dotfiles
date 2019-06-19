@@ -117,11 +117,8 @@
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
 
-;(require 'init-auth) ;; Needs to happen before basically everything
-
 (require 'init-company)
 (require 'init-evil)
-;(require 'init-emacs-wunderlist)
 (require 'init-exec-path-from-shell)
 (require 'init-magit)
 (require 'init-zenburn-theme)

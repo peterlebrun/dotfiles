@@ -213,3 +213,5 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 if [ -f $HOME/private.sh ]; then
     source $HOME/private.sh
 fi
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"

@@ -39,7 +39,6 @@
    "|" 'split-window-right
    "-" 'split-window-below
    "0" 'delete-window
-   "1" (lambda () (interactive) (foobar))
    "a" 'pbl--insert-file-contents-from-helm-search
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
@@ -57,58 +56,10 @@
 	 "n" 'previous-buffer
    "o" 'other-window
    "r" 'toggle-frame-maximized
-   ;; leader s for spotify
-   "sl" 'pbl--spotify-my-playlists ;; l for list
-   "sp" 'pbl--spotify-toggle-play
-   "sr" 'pbl--spotify-toggle-repeat
-   "ss" 'pbl--spotify-toggle-shuffle
-   "sn" 'pbl--spotify-next-track
-   "sb" 'pbl--spotify-previous-track ;; b for before
-   "sg" 'spotify-track-search ;; g for google, (already interactive)
-   ;"t" 'pbl--ewl-add-task-to-inbox
    "t" 'pbl--ewl-add-task-to-inbox
-   "v" 'pbl--ewl-add-to-groceries-list ;; v for vittles
-   "w" 'pbl--open-emacs-wunderlist
    "x" 'helm-M-x
    "z" 'pbl--open-zshrc
    )
-
-  (defun pbl--ewl-display-inbox ()
-    "Provide interactive method to display gtd inbox."
-    (interactive) (ewl-display-inbox))
-
-  (defun pbl--ewl-add-task-to-inbox ()
-    "Provide interactive method to add task to gtd inbox."
-    (interactive) (ewl-add-task-to-inbox))
-
-  (defun pbl--ewl-add-to-groceries-list ()
-    "Provide interactive method to add task to gtd inbox."
-    (interactive) (ewl-add-to-groceries-list))
-
-  (defun pbl--spotify-my-playlists ()
-    "Provide interactive method to list spotify playlists."
-    (interactive) (spotify-my-playlists))
-
-  (defun pbl--spotify-toggle-play ()
-    "Provide interactive method to list spotify playlists."
-    (interactive) (spotify-toggle-play))
-
-  (defun pbl--spotify-toggle-repeat ()
-    "Provide interactive method to list spotify playlists."
-    (interactive) (spotify-toggle-repeat))
-
-  (defun pbl--spotify-toggle-shuffle ()
-    "Provide interactive method to list spotify playlists."
-    (interactive) (spotify-toggle-shuffle))
-
-  (defun pbl--spotify-next-track ()
-    "Provide interactive method to list spotify playlists."
-    (interactive) (spotify-next-track))
-
-  (defun pbl--spotify-previous-track ()
-    "Provide interactive method to list spotify playlists."
-    (interactive) (spotify-previous-track))
-
   (defun pbl--open-shell ()
     "Open shell."
    (interactive) (ansi-term (getenv "SHELL")))
@@ -124,10 +75,6 @@
   (defun pbl--open-orgfile ()
     "Open evil config."
    (interactive) (find-file "~/Dropbox/org/org.org"))
-
-  (defun pbl--open-emacs-wunderlist ()
-    "Open emacs wunderlist for editing."
-   (interactive) (find-file (concat pbl-package-root "/emacs-wunderlist/emacs-wunderlist.el")))
 
   (defun pbl--open-zshrc ()
     "Open .zshrc."

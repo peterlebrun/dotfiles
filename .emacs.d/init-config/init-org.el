@@ -47,7 +47,11 @@
                    ((org-agenda-skip-function
                      '(or (air--org-skip-subtree-if-habit)
                           (air--org-skip-subtree-if-priority ?A)
-                          (org-agenda-skip-if nil '(scheduled deadline))))))))))
+                          (org-agenda-skip-if nil '(scheduled deadline))
+                          (org-agenda-skip-entry-if 'regexp ":maybe:")
+                          (org-agenda-skip-entry-if 'regexp ":tocall:")
+                          (org-agenda-skip-entry-if 'regexp ":guitar:")
+                          (org-agenda-skip-entry-if 'regexp ":toread:")))))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.

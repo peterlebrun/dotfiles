@@ -55,7 +55,7 @@
                           (org-agenda-skip-entry-if 'regexp ":tocall:")
                           (org-agenda-skip-entry-if 'regexp ":guitar:")
                           (org-agenda-skip-entry-if 'regexp ":toread:")))))
-          (tags ":inbox:" ((org-agenda-overriding-header "Inbox")))))))
+          (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "Inbox")))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.

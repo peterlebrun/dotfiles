@@ -48,10 +48,15 @@
                      '(or (air--org-skip-subtree-if-habit)
                           (air--org-skip-subtree-if-priority ?A)
                           (org-agenda-skip-if nil '(scheduled deadline))
+                          (org-agenda-skip-entry-if 'regexp ":inbox:")
                           (org-agenda-skip-entry-if 'regexp ":maybe:")
                           (org-agenda-skip-entry-if 'regexp ":tocall:")
                           (org-agenda-skip-entry-if 'regexp ":guitar:")
-                          (org-agenda-skip-entry-if 'regexp ":toread:")))))))))
+                          (org-agenda-skip-entry-if 'regexp ":toread:")))))
+          (tags ":inbox:" ((org-agenda-overriding-header "Inbox"))) ))))
+          ;(alltodo ""
+          ;         ((org-agenda-skip-function
+          ;           (org-agenda-skip-if 'notregexp ":inbox:"))))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.

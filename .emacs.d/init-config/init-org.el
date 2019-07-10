@@ -2,7 +2,7 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 ;;file to save todo items
-(setq org-agenda-files (quote ("~/Dropbox/org-todo/todo.org")))
+(setq org-agenda-files (quote ("~/Dropbox/org-todo")))
 
 ;;set priority range from A to C with default A
 (setq org-highest-priority ?A)
@@ -20,7 +20,9 @@
 ;;capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
-      '(("t" "todo" entry (file+headline "~/Dropbox/org-todo/todo.org" "Tasks")
+      '(("i" "inbox" entry (file+headline "~/Dropbox/org-todo/inbox.org" "Inbox")
+         "* TODO %?")
+        ("t" "todo" entry (file+headline "~/Dropbox/org-todo/todo.org" "Tasks")
          "* TODO %?")))
 
 (add-hook 'org-agenda-mode-hook

@@ -39,17 +39,19 @@
    "|" 'split-window-right
    "-" 'split-window-below
    "0" 'delete-window
-   "a" 'pbl--insert-file-contents-from-helm-search
+   ;"a" 'pbl--insert-file-contents-from-helm-search
+   "a" 'pbl--org-agenda-custom
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
    "c" 'pbl--open-init-config
-   "D" 'pbl--open-writing-file-for-today
+   "d" 'pbl--open-writing-file-for-today
    "e" 'pbl--open-evil-config
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
    "g" 'magit-status
    "h" 'pbl--open-orgfile
-   "i" 'pbl--ewl-display-inbox
+   "i" 'pbl--org-add-to-inbox
+   "j" 'pbl--insert-file-contents-from-helm-search
    "k" 'kill-buffer
    "l" 'pbl--load-current-file
    "m" 'next-buffer
@@ -111,6 +113,16 @@
     "Use helm to find a file whose contents will be entered into current buffer"
     (interactive)
     (insert-file-contents (helm-read-file-name "")))
+
+  (defun pbl--org-agenda-custom ()
+    "Open custom agenda composite view."
+    (interactive)
+    (org-agenda nil "c"))
+
+  (defun pbl--org-add-to-inbox ()
+    "Add task to inbox"
+    (interactive)
+    (org-capture nil "i"))
 
   (defun pbl--yarn-test ()
     "Run yarn test for current yarn package"

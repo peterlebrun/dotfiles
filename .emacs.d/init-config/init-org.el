@@ -49,29 +49,41 @@
 (setq org-agenda-span (quote week))
 
 (setq org-agenda-custom-commands
-      '(("c" "Simple composite view"
-         ((tags-todo "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "High priority tasks:")))
-          (agenda "" ((org-agenda-ndays-to-span 1)
-                      (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))))
+      '(("c" "daily view"
+         ((agenda "" ((org-agenda-ndays-to-span 1)
+                      (org-agenda-skip-function
+                       '(or (org-agenda-skip-entry-if 'todo 'done)))))
+          (tags-todo "PRIORITY=\"A\""
+                     ((org-agenda-skip-function
+                       '(or (org-agenda-skip-entry-if 'todo 'done)
+                            (org-agenda-skip-if nil '(scheduled deadline))))
+                      (org-agenda-overriding-header "High priority tasks")))
           (tags-todo "CATEGORY=\"tasks\""
                    ((org-agenda-skip-function
                      '(or (air--org-skip-subtree-if-habit)
                           (air--org-skip-subtree-if-priority ?A)
-                          (org-agenda-skip-if nil '(scheduled deadline))))))
-          (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "inbox")))))))
+                          (org-agenda-skip-if nil '(scheduled deadline))))
+                    (org-agenda-overriding-header "Unscheduled tasks")))))
+         ("d" "dream view"
+          ((tags-todo "CATEGORY=\"goals\"" ((org-agenda-overriding-header "goals")))
+           (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "inbox")))
+           (tags-todo "CATEGORY=\"projects\"" ((org-agenda-overriding-header "projects")))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.
 
 PRIORITY may be one of the characters ?A, ?B, or ?C."
-  (let ((subtree-end (save-excursion (org-end-of-subtree t)))
-        (pri-value (* 1000 (- org-lowest-priority)))
-        (pri-current (org-get-priority (thing-at-point 'line t))))
-    (if (= pri-value pri-current)
+  "Skip an agenda entry if it has a STYLE property equal to \"habit\"."
+  (let ((subtree-end (save-excursion (org-end-of-subtree t))))
+    (if (string= (org-entry-get nil "PRIORITY") "A")
         subtree-end
       nil)))
+  ;(let ((subtree-end (save-excursion (org-end-of-subtree t)))
+  ;      (pri-value (* 1000 (- org-lowest-priority)))
+  ;      (pri-current (org-get-priority (thing-at-point 'line t))))
+  ;  (if (= pri-value pri-current)
+  ;      subtree-end
+  ;    nil)))
 
 (defun air--org-skip-subtree-if-habit ()
   "Skip an agenda entry if it has a STYLE property equal to \"habit\"."

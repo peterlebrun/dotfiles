@@ -2,8 +2,18 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 ;;file to save todo items
-(setq org-agenda-files '("~/Dropbox/org-todo"))
+(setq org-directory "~/Dropbox/org-todo")
+(setq org-agenda-files (list (expand-file-name "inbox.org" org-directory)
+                             (expand-file-name "social.org" org-directory)
+                             (expand-file-name "projects.org" org-directory)
+                             (expand-file-name "tasks.org" org-directory)))
+
 (setq org-archive-location "~/Dropbox/org-todo/archive.org::")
+
+(setq org-refile-targets `((,(expand-file-name "tasks.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "social.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "projects.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "backlog.org" org-directory) :maxlevel . 1)))
 
 ;;set priority range from A to C with default A
 (setq org-highest-priority ?A)
@@ -21,9 +31,7 @@
 ;;capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
-      '(("i" "inbox" entry (file+headline "~/Dropbox/org-todo/inbox.org" "Inbox")
-         "* TODO %?")
-        ("t" "todo" entry (file+headline "~/Dropbox/org-todo/todo.org" "Tasks")
+      '(("i" "inbox" entry (file+headline "~/Dropbox/org-todo/inbox.org" "inbox")
          "* TODO %?")))
 
 (setq org-agenda-window-setup (quote current-window))
@@ -44,7 +52,8 @@
                 ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
                  (org-agenda-overriding-header "High priority tasks:")))
           (agenda "" ((org-agenda-ndays-to-span 1)
-                      (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))))))))
+                      (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))))
+          (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "inbox")))))))
           ;; Leaving these commented out to try for now
           ;(alltodo ""
           ;         ((org-agenda-skip-function
@@ -56,7 +65,6 @@
           ;                (org-agenda-skip-entry-if 'regexp ":tocall:")
           ;                (org-agenda-skip-entry-if 'regexp ":guitar:")
           ;                (org-agenda-skip-entry-if 'regexp ":toread:")))))
-          ;(tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "Inbox")))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.

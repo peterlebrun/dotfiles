@@ -13,6 +13,8 @@
 (setq org-refile-targets `((,(expand-file-name "tasks.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "social.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "projects.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "ideas.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "goals.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "backlog.org" org-directory) :maxlevel . 1)))
 
 ;;set priority range from A to C with default A

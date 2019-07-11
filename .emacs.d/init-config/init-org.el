@@ -55,18 +55,12 @@
                  (org-agenda-overriding-header "High priority tasks:")))
           (agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))))
+          (tags-todo "CATEGORY=\"tasks\""
+                   ((org-agenda-skip-function
+                     '(or (air--org-skip-subtree-if-habit)
+                          (air--org-skip-subtree-if-priority ?A)
+                          (org-agenda-skip-if nil '(scheduled deadline))))))
           (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "inbox")))))))
-          ;; Leaving these commented out to try for now
-          ;(alltodo ""
-          ;         ((org-agenda-skip-function
-          ;           '(or (air--org-skip-subtree-if-habit)
-          ;                (air--org-skip-subtree-if-priority ?A)
-          ;                (org-agenda-skip-if nil '(scheduled deadline))
-          ;                (org-agenda-skip-entry-if 'regexp ":inbox:")
-          ;                (org-agenda-skip-entry-if 'regexp ":maybe:")
-          ;                (org-agenda-skip-entry-if 'regexp ":tocall:")
-          ;                (org-agenda-skip-entry-if 'regexp ":guitar:")
-          ;                (org-agenda-skip-entry-if 'regexp ":toread:")))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.

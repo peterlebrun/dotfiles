@@ -25,14 +25,13 @@
         ("t" "todo" entry (file+headline "~/Dropbox/org-todo/todo.org" "Tasks")
          "* TODO %?")))
 
+(setq org-agenda-window-setup (quote current-window))
 (add-hook 'org-agenda-mode-hook
           (lambda ()
+            (setq org-habit-graph-column 50)
             (define-key org-agenda-mode-map (kbd "j") 'org-agenda-next-item)
             (define-key org-agenda-mode-map (kbd "k") 'org-agenda-previous-item)))
 
-;; org-mode agenda options
-;; open agenda in current window
-(setq org-agenda-window-setup (quote current-window))
 ;; warn me of any deadlines in the next 7 days
 (setq org-deadline-warning-days 7)
 ;; show me tasks scheduled or due in next week

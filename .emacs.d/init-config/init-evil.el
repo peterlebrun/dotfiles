@@ -99,10 +99,11 @@
     ""
     (interactive)
     (find-file (concat "~/writings/" (format-time-string "%Y%m%d-%H%M%S") ".org"))
-    (insert "* ")
-    (insert (format-time-string "%Y%m%d:%H%M"))
+    (insert (concat "* " (format-time-string "%Y%m%d:%H%M")))
     (insert "
 ** Gratitude List
+   -
+** What do I want to accomplish today?
    -
 ** Freewheeling Thoughts"))
 

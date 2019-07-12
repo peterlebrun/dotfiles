@@ -5,16 +5,20 @@
 (setq org-directory "~/Dropbox/org-todo")
 (setq org-agenda-files (list (expand-file-name "inbox.org" org-directory)
                              (expand-file-name "social.org" org-directory)
-                             (expand-file-name "projects.org" org-directory)
-                             (expand-file-name "tasks.org" org-directory)))
+                             (expand-file-name "project.org" org-directory)
+                             (expand-file-name "task.org" org-directory)
+                             (expand-file-name "calendar.org" org-directory)
+                             (expand-file-name "anniversary.org" org-directory)))
 
 (setq org-archive-location "~/Dropbox/org-todo/archive.org::")
 
-(setq org-refile-targets `((,(expand-file-name "tasks.org" org-directory) :maxlevel . 1)
+(setq org-refile-targets `((,(expand-file-name "task.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "social.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "projects.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "ideas.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "goals.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "project.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "idea.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "goal.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "calendar.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "anniversary.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "backlog.org" org-directory) :maxlevel . 1)))
 
 ;;set priority range from A to C with default A
@@ -58,16 +62,16 @@
                        '(or (org-agenda-skip-entry-if 'todo 'done)
                             (org-agenda-skip-if nil '(scheduled deadline))))
                       (org-agenda-overriding-header "High priority tasks")))
-          (tags-todo "CATEGORY=\"tasks\""
+          (tags-todo "CATEGORY=\"task\""
                    ((org-agenda-skip-function
                      '(or (air--org-skip-subtree-if-habit)
                           (air--org-skip-subtree-if-priority ?A)
                           (org-agenda-skip-if nil '(scheduled deadline))))
                     (org-agenda-overriding-header "Unscheduled tasks")))))
          ("d" "dream view"
-          ((tags-todo "CATEGORY=\"goals\"" ((org-agenda-overriding-header "goals")))
+          ((tags-todo "CATEGORY=\"goal\"" ((org-agenda-overriding-header "goals")))
            (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "inbox")))
-           (tags-todo "CATEGORY=\"projects\"" ((org-agenda-overriding-header "projects")))))))
+           (tags-todo "CATEGORY=\"project\"" ((org-agenda-overriding-header "projects")))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.

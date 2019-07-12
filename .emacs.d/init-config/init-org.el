@@ -62,7 +62,7 @@
                        '(or (org-agenda-skip-entry-if 'todo 'done)
                             (org-agenda-skip-if nil '(scheduled deadline))))
                       (org-agenda-overriding-header "High priority tasks")))
-          (tags-todo "CATEGORY=\"task\""
+          (tags-todo "CATEGORY=\"task\"|CATEGORY=\"project-task\""
                    ((org-agenda-skip-function
                      '(or (air--org-skip-subtree-if-habit)
                           (air--org-skip-subtree-if-priority ?A)

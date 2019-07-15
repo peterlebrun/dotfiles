@@ -28,6 +28,8 @@
 (setq org-lowest-priority ?C)
 (setq org-default-priority ?B)
 
+(setq org-todo-keywords '((sequence "TODO" "IN PROGRESS(!)" "|" "DONE(!)" "CANCELED(!)")))
+
 ;;set colours for priorities
 (setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
                            (?B . (:foreground "LightSteelBlue"))

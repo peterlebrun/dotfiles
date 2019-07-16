@@ -20,7 +20,7 @@
                            (,(expand-file-name "calendar.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "anniversary.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "thought.org" org-directory) :maxlevel . 1)
-
+                           (,(expand-file-name "read.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "backlog.org" org-directory) :maxlevel . 1)))
 
 ;;set priority range from A to C with default A

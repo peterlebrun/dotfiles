@@ -28,6 +28,7 @@
 (setq org-lowest-priority ?C)
 (setq org-default-priority ?B)
 (setq org-catch-invisible-edits t)
+(setq org-M-RET-may-split-line nil)
 
 (setq org-todo-keywords '((sequence "TODO" "IN PROGRESS(!)" "|" "DONE(!)" "CANCELED(!)")))
 

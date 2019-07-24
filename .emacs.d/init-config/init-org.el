@@ -1,5 +1,6 @@
 ;; set key for agenda
 (global-set-key (kbd "C-c a") 'org-agenda)
+(add-hook 'auto-save-hook 'org-save-all-org-buffers)
 
 ;;file to save todo items
 (setq org-directory "~/Dropbox/org-todo")
@@ -68,16 +69,22 @@
                        '(or (org-agenda-skip-entry-if 'todo 'done)
                             (org-agenda-skip-if nil '(scheduled deadline))))
                       (org-agenda-overriding-header "High priority tasks")))
-          (tags-todo "CATEGORY=\"task\"|CATEGORY=\"project-task\""
-                   ((org-agenda-skip-function
-                     '(or (air--org-skip-subtree-if-habit)
-                          (air--org-skip-subtree-if-priority ?A)
-                          (org-agenda-skip-if nil '(scheduled deadline))))
-                    (org-agenda-overriding-header "Unscheduled tasks")))))
-         ("d" "dream view"
-          ((tags-todo "CATEGORY=\"goal\"" ((org-agenda-overriding-header "goals")))
-           (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "inbox")))
-           (tags-todo "CATEGORY=\"project\"" ((org-agenda-overriding-header "projects")))))))
+          (tags-todo "CATEGORY=\"task\""
+                     ((org-agenda-skip-function
+                       '(or (air--org-skip-subtree-if-habit)
+                            (air--org-skip-subtree-if-priority ?A)
+                            (org-agenda-skip-if nil '(scheduled deadline))))
+                      (org-agenda-overriding-header "Unscheduled tasks")))
+          (tags-todo "CATEGORY=\"project-task\""
+                     ((org-agenda-skip-function
+                       '(or (air--org-skip-subtree-if-habit)
+                            (air--org-skip-subtree-if-priority ?A)
+                            (org-agenda-skip-if nil '(scheduled deadline))))
+                      (org-agenda-overriding-header "Project tasks")))))
+        ("d" "dream view"
+         ((tags-todo "CATEGORY=\"goal\"" ((org-agenda-overriding-header "goals")))
+          (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "inbox")))
+          (tags-todo "CATEGORY=\"project\"" ((org-agenda-overriding-header "projects")))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.

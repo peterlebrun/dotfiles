@@ -1,6 +1,5 @@
 ;; set key for agenda
 (global-set-key (kbd "C-c a") 'org-agenda)
-(add-hook 'auto-save-hook 'org-save-all-org-buffers)
 
 ;;file to save todo items
 (setq org-directory "~/Dropbox/org-todo")
@@ -31,7 +30,7 @@
 (setq org-catch-invisible-edits t)
 (setq org-M-RET-may-split-line nil)
 
-(setq org-todo-keywords '((sequence "TODO" "IN PROGRESS(!)" "|" "DONE(!)" "CANCELED(!)")))
+(setq org-todo-keywords '((sequence "TODO" "NEXT(!)" "IN PROGRESS(!)" "|" "DONE(!)" "CANCELED(!)")))
 
 ;;set colours for priorities
 (setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
@@ -75,7 +74,7 @@
                             (air--org-skip-subtree-if-priority ?A)
                             (org-agenda-skip-if nil '(scheduled deadline))))
                       (org-agenda-overriding-header "Unscheduled tasks")))
-          (tags-todo "CATEGORY=\"project-task\""
+          (tags-todo "CATEGORY=\"project-task\"+TODO=\"NEXT\""
                      ((org-agenda-skip-function
                        '(or (air--org-skip-subtree-if-habit)
                             (air--org-skip-subtree-if-priority ?A)
@@ -95,12 +94,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
     (if (string= (org-entry-get nil "PRIORITY") "A")
         subtree-end
       nil)))
-  ;(let ((subtree-end (save-excursion (org-end-of-subtree t)))
-  ;      (pri-value (* 1000 (- org-lowest-priority)))
-  ;      (pri-current (org-get-priority (thing-at-point 'line t))))
-  ;  (if (= pri-value pri-current)
-  ;      subtree-end
-  ;    nil)))
 
 (defun air--org-skip-subtree-if-habit ()
   "Skip an agenda entry if it has a STYLE property equal to \"habit\"."

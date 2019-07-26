@@ -80,7 +80,8 @@
                        '(or (air--org-skip-subtree-if-habit)
                             (air--org-skip-subtree-if-priority ?A)
                             (org-agenda-skip-if nil '(scheduled deadline))))
-                      (org-agenda-overriding-header "Open Projects")))))
+                      (org-agenda-overriding-header "Open Projects")
+                      (org-agenda-prefix-format "  %c: %b")))))
         ("d" "dream view"
          ((tags-todo "CATEGORY=\"goal\"" ((org-agenda-overriding-header "goals")))
           (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "inbox")))

@@ -29,6 +29,7 @@
 (setq org-default-priority ?B)
 (setq org-catch-invisible-edits t)
 (setq org-M-RET-may-split-line nil)
+(setq org-return-follows-link t)
 
 (setq org-todo-keywords '((sequence "TODO" "NEXT(!)" "IN PROGRESS(!)" "|" "DONE(!)" "CANCELED(!)")))
 

@@ -1,6 +1,17 @@
 ;; set key for agenda
 (global-set-key (kbd "C-c a") 'org-agenda)
 
+(setq org-modules '(org-w3m
+                    org-bbdb
+                    org-habit
+                    org-bibtex
+                    org-docview
+                    org-gnus
+                    org-info
+                    org-irc
+                    org-mhe
+                    org-rmail))
+
 ;;file to save todo items
 (setq org-directory "~/Dropbox/org-todo")
 (setq org-agenda-files (list (expand-file-name "inbox.org" org-directory)

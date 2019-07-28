@@ -49,16 +49,12 @@
                            (?B . (:foreground "LightSteelBlue"))
                            (?C . (:foreground "OliveDrab"))))
 
-;;open agenda in current window
-(setq org-agenda-window-setup (quote current-window))
-
 ;;capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
       '(("i" "inbox" entry (file+headline "~/Dropbox/org-todo/inbox.org" "inbox")
          "* TODO %?")))
 
-(setq org-agenda-window-setup (quote current-window))
 (add-hook 'org-agenda-mode-hook
           (lambda ()
             (setq org-habit-graph-column 50)
@@ -92,7 +88,7 @@
                             (air--org-skip-subtree-if-priority ?A)
                             (org-agenda-skip-if nil '(scheduled deadline))))
                       (org-agenda-overriding-header "Open Projects")
-                      (org-agenda-prefix-format "  %c: %b")))))
+                      (org-agenda-prefix-format "  %b")))))
         ("d" "dream view"
          ((tags-todo "CATEGORY=\"goal\"" ((org-agenda-overriding-header "goals")))
           (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "inbox")))

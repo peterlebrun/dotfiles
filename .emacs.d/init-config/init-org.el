@@ -42,6 +42,7 @@
 (setq org-M-RET-may-split-line nil)
 (setq org-return-follows-link t)
 (setq org-agenda-start-on-weekday nil)
+(setq org-agenda-time-leading-zero t)
 
 (setq org-todo-keywords '((sequence "TODO" "NEXT(!)" "IN PROGRESS(!)" "|" "DONE(!)" "CANCELED(!)")))
 

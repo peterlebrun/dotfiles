@@ -90,7 +90,7 @@
                             (air--org-skip-subtree-if-priority ?A)
                             (org-agenda-skip-if nil '(scheduled deadline))))
                       (org-agenda-overriding-header "Unscheduled tasks")))
-          (tags-todo "CATEGORY=\"project-task\"+TODO=\"NEXT\""
+          (tags-todo "CATEGORY=\"project-task\"+TODO=\"NEXT\"|CATEGORY=\"project-task\"+TODO=\"IN PROGRESS\""
                      ((org-agenda-skip-function
                        '(or (air--org-skip-subtree-if-habit)
                             (air--org-skip-subtree-if-priority ?A)

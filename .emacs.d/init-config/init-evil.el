@@ -45,7 +45,7 @@
    "B" 'pbl--magit-blame-toggle
    "c" 'pbl--open-init-config
    "d" 'pbl--open-writing-file-for-today
-   "e" 'pbl--open-evil-config
+   "e" 'pbl--open-org-config ;re-using keybinding for evil config
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
    "g" 'magit-status
@@ -66,9 +66,9 @@
     "Open shell."
    (interactive) (ansi-term (getenv "SHELL")))
 
-  (defun pbl--open-evil-config ()
-    "Open evil config."
-   (interactive) (find-file "~/.emacs.d/init-config/init-evil.el"))
+  (defun pbl--open-org-config ()
+    "Open org config."
+   (interactive) (find-file "~/.emacs.d/init-config/init-org.el"))
 
   (defun pbl--open-init-config ()
     "Open init config."

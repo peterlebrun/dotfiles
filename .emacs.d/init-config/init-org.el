@@ -96,27 +96,25 @@
 
 (setq org-agenda-custom-commands
       '(("c" "daily view"
-         ((agenda "" ((org-agenda-ndays-to-span 1)
-                      (org-agenda-skip-function
-                       '(or (org-agenda-skip-entry-if 'todo 'done)))))
-          (tags-todo "PRIORITY=\"A\""
+         ((tags-todo "PRIORITY=\"A\""
                      ((org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)
                             (org-agenda-skip-if nil '(scheduled deadline))))
                       (org-agenda-overriding-header "High priority tasks")))
+          (agenda "" ((org-agenda-ndays-to-span 1)
+                      (org-agenda-skip-function
+                       '(or (org-agenda-skip-entry-if 'todo 'done)))))
+          (tags-todo "active+CATEGORY=\"project\"+TODO=\"TODO\""
+                     ((org-agenda-skip-function
+                       '(or (air--org-skip-subtree-if-habit)))
+                      (org-agenda-overriding-header "Active Projects: Next Steps")
+                      (org-agenda-prefix-format "  %b")))
           (tags-todo "CATEGORY=\"task\""
                      ((org-agenda-skip-function
                        '(or (air--org-skip-subtree-if-habit)
                             (air--org-skip-subtree-if-priority ?A)
                             (org-agenda-skip-if nil '(scheduled deadline))))
-                      (org-agenda-overriding-header "Unscheduled tasks")))
-          (tags-todo "CATEGORY=\"project-task\"+TODO=\"NEXT\"|CATEGORY=\"project-task\"+TODO=\"IN PROGRESS\""
-                     ((org-agenda-skip-function
-                       '(or (air--org-skip-subtree-if-habit)
-                            (air--org-skip-subtree-if-priority ?A)
-                            (org-agenda-skip-if nil '(scheduled deadline))))
-                      (org-agenda-overriding-header "Open Projects")
-                      (org-agenda-prefix-format "  %b")))))
+                      (org-agenda-overriding-header "Unscheduled tasks")))))
         ("d" "dream view"
          ((tags-todo "CATEGORY=\"goal\"" ((org-agenda-overriding-header "goals")))
           (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "inbox")))

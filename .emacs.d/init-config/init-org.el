@@ -51,7 +51,6 @@
                              "......" "----------------"))
 (setq org-enforce-todo-dependencies t)
 (setq org-enforce-todo-checkbox-dependencies t)
-(setq org-agenda-dim-blocked-tasks 'invisible)
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where
@@ -60,7 +59,7 @@
 ; sequence 1: task states
 ; sequence 2: project states
 (setq org-todo-keywords
-      '((sequence "TODO" "NEXT(!)" "|" "DONE(!)" "CANCELED(!)")
+      '((sequence "TODO" "|" "DONE(!)" "CANCELED(!)")
         (sequence "NOT STARTED" "IN PROGRESS(!)" "|" "COMPLETE(!)")))
 
 ;;set colours for priorities
@@ -71,7 +70,6 @@
 (setq org-todo-keyword-faces
       '(("TODO" . org-warning)
         ("NOT STARTED" . org-warning)
-        ("NEXT" . "yellow")
         ("IN PROGRESS" . "yellow")
         ("CANCELED" . (:foreground "LightSteelBlue" :weight bold))
         ("DONE" . (:foreground "LightSteelBlue" :weight bold))
@@ -100,7 +98,8 @@
                      ((org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)
                             (org-agenda-skip-if nil '(scheduled deadline))))
-                      (org-agenda-overriding-header "High priority tasks")))
+                      (org-agenda-overriding-header "High priority tasks")
+                      (org-agenda-dim-blocked-tasks 't)))
           (agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)))))
@@ -108,7 +107,8 @@
                      ((org-agenda-skip-function
                        '(or (air--org-skip-subtree-if-habit)))
                       (org-agenda-overriding-header "Active Projects: Next Steps")
-                      (org-agenda-prefix-format "  %b")))
+                      (org-agenda-prefix-format "  %b")
+                      (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "CATEGORY=\"task\""
                      ((org-agenda-skip-function
                        '(or (air--org-skip-subtree-if-habit)

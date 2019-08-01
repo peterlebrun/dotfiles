@@ -50,7 +50,15 @@
                              (2000 1800 1600 1400 1200 1000 0800)
                              "......" "----------------"))
 
-(setq org-todo-keywords '((sequence "TODO" "NEXT(!)" "IN PROGRESS(!)" "|" "DONE(!)" "CANCELED(!)")))
+; Open question 20190801: if I have the same state in both subsequences,
+; will that cause problems? Motivation: I was getting issues where
+; it seemed like I was jumping between sequences when both had a state
+; called "IN PROGRESS"
+; sequence 1: task states
+; sequence 2: project states
+(setq org-todo-keywords
+      '((sequence "TODO" "NEXT(!)" "|" "DONE(!)" "CANCELED(!)")
+        (sequence "NOT STARTED" "IN PROGRESS" "|" "COMPLETE")))
 
 ;;set colours for priorities
 (setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))

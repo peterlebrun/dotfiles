@@ -49,6 +49,9 @@
 (setq org-agenda-time-grid '((daily today require-timed)
                              (2000 1800 1600 1400 1200 1000 0800)
                              "......" "----------------"))
+(setq org-enforce-todo-dependencies t)
+(setq org-enforce-todo-checkbox-dependencies t)
+(setq org-agenda-dim-blocked-tasks 'invisible)
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where

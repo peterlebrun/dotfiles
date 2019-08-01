@@ -58,7 +58,7 @@
 ; sequence 2: project states
 (setq org-todo-keywords
       '((sequence "TODO" "NEXT(!)" "|" "DONE(!)" "CANCELED(!)")
-        (sequence "NOT STARTED" "IN PROGRESS" "|" "COMPLETE")))
+        (sequence "NOT STARTED" "IN PROGRESS(!)" "|" "COMPLETE(!)")))
 
 ;;set colours for priorities
 (setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))

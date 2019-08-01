@@ -65,6 +65,15 @@
                            (?B . (:foreground "LightSteelBlue"))
                            (?C . (:foreground "OliveDrab"))))
 
+(setq org-todo-keyword-faces
+      '(("TODO" . org-warning)
+        ("NOT STARTED" . org-warning)
+        ("NEXT" . "yellow")
+        ("IN PROGRESS" . "yellow")
+        ("CANCELED" . (:foreground "LightSteelBlue" :weight bold))
+        ("DONE" . (:foreground "LightSteelBlue" :weight bold))
+        ("COMPLETE" . (:foreground "LightSteelBlue" :weight bold))))
+
 ;;capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates

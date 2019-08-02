@@ -53,6 +53,7 @@
 (setq org-enforce-todo-checkbox-dependencies t)
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)
+(setq org-habit-show-habits-only-for-today nil)
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where

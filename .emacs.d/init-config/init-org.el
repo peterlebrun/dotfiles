@@ -51,6 +51,7 @@
                              "......" "----------------"))
 (setq org-enforce-todo-dependencies t)
 (setq org-enforce-todo-checkbox-dependencies t)
+(setq org-log-done 'note)
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where
@@ -59,8 +60,8 @@
 ; sequence 1: task states
 ; sequence 2: project states
 (setq org-todo-keywords
-      '((sequence "TODO" "|" "DONE(!)" "CANCELED(!)")
-        (sequence "NOT STARTED" "IN PROGRESS(!)" "|" "COMPLETE(!)")))
+      '((sequence "TODO" "|" "DONE" "CANCELED")
+        (sequence "NOT STARTED" "IN PROGRESS(!)" "|" "COMPLETE")))
 
 ;;set colours for priorities
 (setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))

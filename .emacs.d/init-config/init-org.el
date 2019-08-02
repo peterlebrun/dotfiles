@@ -92,7 +92,7 @@
 ;; warn me of any deadlines in the next 7 days
 (setq org-deadline-warning-days 7)
 ;; show me tasks scheduled or due in next week
-(setq org-agenda-span (quote week))
+(setq org-agenda-span 2)
 
 (setq org-agenda-custom-commands
       '(("c" "daily view"
@@ -112,13 +112,13 @@
           (tags-todo "active+CATEGORY=\"project\"+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects: Next Steps")
                       (org-agenda-prefix-format "  %b")
-                      (org-agenda-dim-blocked-tasks 'invisible)))
-          (tags-todo "CATEGORY=\"task\""
-                     ((org-agenda-skip-function
-                       '(or (air--org-skip-subtree-if-habit)
-                            (air--org-skip-subtree-if-priority ?A)
-                            (org-agenda-skip-if nil '(scheduled deadline))))
-                      (org-agenda-overriding-header "Unscheduled tasks")))))
+                      (org-agenda-dim-blocked-tasks 'invisible)))))
+          ;(tags-todo "CATEGORY=\"task\""
+          ;           ((org-agenda-skip-function
+          ;             '(or (air--org-skip-subtree-if-habit)
+          ;                  (air--org-skip-subtree-if-priority ?A)
+          ;                  (org-agenda-skip-if nil '(scheduled deadline))))
+          ;            (org-agenda-overriding-header "Unscheduled tasks")))))
         ("d" "dream view"
          ((tags-todo "CATEGORY=\"goal\"" ((org-agenda-overriding-header "goals")))
           (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "inbox")))

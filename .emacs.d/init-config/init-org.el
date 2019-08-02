@@ -100,13 +100,15 @@
                             (org-agenda-skip-if nil '(scheduled deadline))))
                       (org-agenda-overriding-header "High priority tasks")
                       (org-agenda-dim-blocked-tasks 't)))
+          (tags-todo "category=\"read\"+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Next To Read")
+                      (org-agenda-files (list (expand-file-name "read.org" org-directory)))
+                      (org-agenda-max-entries 1)))
           (agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)))))
           (tags-todo "active+CATEGORY=\"project\"+TODO=\"TODO\""
-                     ((org-agenda-skip-function
-                       '(or (air--org-skip-subtree-if-habit)))
-                      (org-agenda-overriding-header "Active Projects: Next Steps")
+                     ((org-agenda-overriding-header "Active Projects: Next Steps")
                       (org-agenda-prefix-format "  %b")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "CATEGORY=\"task\""

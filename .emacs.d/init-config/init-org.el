@@ -97,7 +97,7 @@
 ;; warn me of any deadlines in the next 7 days
 (setq org-deadline-warning-days 7)
 ;; show me tasks scheduled or due in next week
-(setq org-agenda-span 'week)
+(setq org-agenda-span 'day)
 
 (setq org-agenda-custom-commands
       '(("c" "daily view"

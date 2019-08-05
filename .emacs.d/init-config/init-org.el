@@ -19,7 +19,9 @@
                              (expand-file-name "project.org" org-directory)
                              (expand-file-name "task.org" org-directory)
                              (expand-file-name "calendar.org" org-directory)
-                             (expand-file-name "anniversary.org" org-directory)))
+                             (expand-file-name "anniversary.org" org-directory)
+                             (expand-file-name "book.org" org-directory)
+                             (expand-file-name "class.org" org-directory)))
 
 (setq org-archive-location "~/Dropbox/org-todo/archive.org::")
 
@@ -31,7 +33,9 @@
                            (,(expand-file-name "calendar.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "anniversary.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "thought.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "read.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "book.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "bookmark.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "class.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "backlog.org" org-directory) :maxlevel . 1)))
 
 ;;set priority range from A to C with default A
@@ -103,14 +107,14 @@
                             (org-agenda-skip-if nil '(scheduled deadline))))
                       (org-agenda-overriding-header "High priority tasks")
                       (org-agenda-dim-blocked-tasks 't)))
-          (tags-todo "category=\"read\"+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Next To Read")
-                      (org-agenda-files (list (expand-file-name "read.org" org-directory)))
+          (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Bookmarks To Read")
+                      (org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
                       (org-agenda-max-entries 1)))
           (agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)))))
-          (tags-todo "active+CATEGORY=\"project\"+TODO=\"TODO\""
+          (tags-todo "active+TODO=\"TODO\",project+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects: Next Steps")
                       (org-agenda-prefix-format "  %b")
                       (org-agenda-dim-blocked-tasks 'invisible)))))

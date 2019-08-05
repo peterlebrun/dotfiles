@@ -59,6 +59,7 @@
    "o" 'other-window
    "r" 'toggle-frame-maximized
    "t" 'pbl--ewl-add-task-to-inbox
+   ;"w" 'narrow-or-widen
    "x" 'helm-M-x
    "z" 'pbl--open-zshrc
    )

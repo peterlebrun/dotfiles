@@ -98,6 +98,7 @@
 (setq org-deadline-warning-days 7)
 ;; show me tasks scheduled or due in next week
 (setq org-agenda-span 'day)
+(setq org-agenda-hide-tags-regexp "active\\|project")
 
 (setq org-agenda-custom-commands
       '(("c" "daily view"

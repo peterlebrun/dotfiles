@@ -61,7 +61,6 @@
 (setq org-log-into-drawer t)
 (setq org-habit-show-habits-only-for-today t)
 (setq org-agenda-window-setup 'current-window)
-(setq org-agenda-restore-windows-after-quit t)
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where

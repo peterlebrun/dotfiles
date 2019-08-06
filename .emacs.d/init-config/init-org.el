@@ -21,6 +21,7 @@
                              (expand-file-name "calendar.org" org-directory)
                              (expand-file-name "anniversary.org" org-directory)
                              (expand-file-name "book.org" org-directory)
+                             (expand-file-name "habit.org" org-directory)
                              (expand-file-name "class.org" org-directory)))
 
 (setq org-archive-location "~/Dropbox/org-todo/archive.org::")
@@ -36,6 +37,7 @@
                            (,(expand-file-name "book.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "bookmark.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "class.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "habit.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "backlog.org" org-directory) :maxlevel . 1)))
 
 ;;set priority range from A to C with default A
@@ -129,7 +131,12 @@
           (tags-todo "CATEGORY=\"task\""
                      ((org-agenda-skip-function
                        '(org-agenda-skip-if nil '(scheduled deadline)))
-                      (org-agenda-overriding-header "tasks")))))))
+                      (org-agenda-overriding-header "tasks")))))
+        ("h" "habit view"
+         ((agenda "" ((org-agenda-ndays-to-span 1)
+                      (org-agenda-skip-function
+                       '(or (pbl--org-skip-subtree-if-not-habit)))
+                      (org-agenda-overriding-header "Daily Habits")))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.
@@ -141,10 +148,10 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
         subtree-end
       nil)))
 
-(defun air--org-skip-subtree-if-habit ()
-  "Skip an agenda entry if it has a STYLE property equal to \"habit\"."
+(defun pbl--org-skip-subtree-if-not-habit ()
+  "Skip an agenda entry if it does not have a STYLE property equal to \"habit\"."
   (let ((subtree-end (save-excursion (org-end-of-subtree t))))
-    (if (string= (org-entry-get nil "STYLE") "habit")
+    (if (not (string= (org-entry-get nil "STYLE") "habit"))
         subtree-end
       nil)))
 

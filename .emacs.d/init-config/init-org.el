@@ -58,6 +58,8 @@
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)
 (setq org-habit-show-habits-only-for-today t)
+(setq org-agenda-window-setup 'current-window)
+(setq org-agenda-restore-windows-after-quit t)
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where
@@ -101,7 +103,7 @@
 (setq org-agenda-hide-tags-regexp "active\\|project")
 
 (setq org-agenda-custom-commands
-      '(("c" "daily view"
+      '(("c" "custom daily view"
          ((tags-todo "PRIORITY=\"A\""
                      ((org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)
@@ -119,22 +121,21 @@
                      ((org-agenda-overriding-header "Active Projects: Next Steps")
                       (org-agenda-prefix-format "  %b")
                       (org-agenda-dim-blocked-tasks 'invisible)))))
-          ;(tags-todo "CATEGORY=\"task\""
-          ;           ((org-agenda-skip-function
-          ;             '(or (air--org-skip-subtree-if-habit)
-          ;                  (air--org-skip-subtree-if-priority ?A)
-          ;                  (org-agenda-skip-if nil '(scheduled deadline))))
-          ;            (org-agenda-overriding-header "Unscheduled tasks")))))
-        ("d" "dream view"
-         ((tags-todo "CATEGORY=\"goal\"" ((org-agenda-overriding-header "goals")))
-          (tags-todo "CATEGORY=\"inbox\"" ((org-agenda-overriding-header "inbox")))
-          (tags-todo "CATEGORY=\"project\"" ((org-agenda-overriding-header "projects")))))))
+        ("i" "inbox view"
+         ((tags-todo "CATEGORY=\"inbox\""
+                     ((org-agenda-skip-function
+                       '(org-agenda-skip-if nil '(scheduled deadline)))
+                      (org-agenda-overriding-header "inbox")))
+          (tags-todo "CATEGORY=\"task\""
+                     ((org-agenda-skip-function
+                       '(org-agenda-skip-if nil '(scheduled deadline)))
+                      (org-agenda-overriding-header "tasks")))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.
 
 PRIORITY may be one of the characters ?A, ?B, or ?C."
-  "Skip an agenda entry if it has a STYLE property equal to \"habit\"."
+  "Skip an agenda entry if it has a STYLE property equal to \"priority\"."
   (let ((subtree-end (save-excursion (org-end-of-subtree t))))
     (if (string= (org-entry-get nil "PRIORITY") "A")
         subtree-end

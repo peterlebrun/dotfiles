@@ -40,7 +40,9 @@
    "-" 'split-window-below
    "0" 'delete-window
    ;"a" 'pbl--insert-file-contents-from-helm-search
-   "a" 'pbl--org-agenda-custom
+   "aa" 'pbl--org-agenda
+   "ah" 'pbl--org-agenda-habit
+   "ai" 'pbl--org-agenda-inbox
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
    "c" 'pbl--open-init-config
@@ -76,7 +78,7 @@
    (interactive) (find-file "~/.emacs.d/init.el"))
 
   (defun pbl--open-orgfile ()
-    "Open evil config."
+    "Open org file."
    (interactive) (find-file "~/Dropbox/org/org.org"))
 
   (defun pbl--open-zshrc ()
@@ -115,10 +117,20 @@
     (interactive)
     (insert-file-contents (helm-read-file-name "")))
 
-  (defun pbl--org-agenda-custom ()
+  (defun pbl--org-agenda ()
     "Open custom agenda composite view."
     (interactive)
     (org-agenda nil "c"))
+
+  (defun pbl--org-agenda-habit ()
+    "Open custom agenda composite view."
+    (interactive)
+    (org-agenda nil "h"))
+
+  (defun pbl--org-agenda-inbox ()
+    "Open custom agenda composite view."
+    (interactive)
+    (org-agenda nil "i"))
 
   (defun pbl--org-add-to-inbox ()
     "Add task to inbox"

@@ -52,7 +52,8 @@
    "F" 'helm-projectile-switch-project
    "g" 'magit-status
    "h" 'pbl--open-orgfile
-   "i" 'pbl--org-add-to-inbox
+   "ii" 'pbl--org-capture-inbox
+   "ih" 'pbl--org-capture-habit
    "j" 'pbl--insert-file-contents-from-helm-search
    "k" 'kill-buffer
    "l" 'pbl--load-current-file
@@ -132,10 +133,15 @@
     (interactive)
     (org-agenda nil "i"))
 
-  (defun pbl--org-add-to-inbox ()
+  (defun pbl--org-capture-inbox ()
     "Add task to inbox"
     (interactive)
     (org-capture nil "i"))
+
+  (defun pbl--org-capture-habit ()
+    "Add task to inbox"
+    (interactive)
+    (org-capture nil "h"))
 
   (defun pbl--yarn-test ()
     "Run yarn test for current yarn package"

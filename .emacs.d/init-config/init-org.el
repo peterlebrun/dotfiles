@@ -89,7 +89,14 @@
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
       '(("i" "inbox" entry (file+headline "~/Dropbox/org-todo/inbox.org" "inbox")
-         "* TODO %?")))
+         "* TODO %?")
+        ("h" "habit" entry (file+headline "~/Dropbox/org-todo/habit.org" "habits")
+         "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")))
+      ; Task for today
+      ;'(("t" "task" entry
+      ;   ))
+      ; Project template
+      ;'(("p" "project" entry (
 
 (add-hook 'org-agenda-mode-hook
           (lambda ()

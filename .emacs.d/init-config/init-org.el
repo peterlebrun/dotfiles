@@ -73,6 +73,9 @@
       '((sequence "TODO" "|" "DONE" "CANCELED")
         (sequence "NOT STARTED" "IN PROGRESS(!)" "|" "COMPLETE")))
 
+; Just kinda funsies
+(add-to-list 'org-structure-template-alist (list "p" ":PROPERTIES:\n?\n:END:"))
+
 ;;set colours for priorities
 (setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
                            (?B . (:foreground "LightSteelBlue"))

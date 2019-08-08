@@ -48,8 +48,9 @@
    "ch" 'pbl--org-capture-habit
    "ct" 'pbl--org-capture-task
    "d" 'pbl--open-writing-file-for-today
-   "eo" 'pbl--open-org-config ;re-using keybinding for evil config
-   "ei" 'pbl--open-init-config ;re-using keybinding for evil config
+   "eo" 'pbl--open-org-config  ; emacs config for org
+   "ee" 'pbl--open-evil-config ; emacs config for evil
+   "ei" 'pbl--open-init-config ; emacs config for init
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
    "g" 'magit-status
@@ -73,6 +74,10 @@
   (defun pbl--open-org-config ()
     "Open org config."
    (interactive) (find-file "~/.emacs.d/init-config/init-org.el"))
+
+  (defun pbl--open-evil-config ()
+    "Open evil config."
+   (interactive) (find-file "~/.emacs.d/init-config/init-evil.el"))
 
   (defun pbl--open-init-config ()
     "Open init config."

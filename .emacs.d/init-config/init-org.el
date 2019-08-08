@@ -61,6 +61,7 @@
 (setq org-log-into-drawer t)
 (setq org-habit-show-habits-only-for-today t)
 (setq org-agenda-window-setup 'current-window)
+(setq org-export-initial-scope 'subtree)
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where
@@ -93,7 +94,7 @@
         ("h" "habit" entry (file+headline "~/Dropbox/org-todo/habit.org" "habits")
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
         ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
-         "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>")
+         "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
         ("b" "bookmark" entry (file+headline "~/Dropbox/org-todo/bookmark.org" "bookmark")
          "* TODO %?")))
       ; Project template

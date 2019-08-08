@@ -20,6 +20,7 @@
    "ai" 'pbl--org-agenda-inbox
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
+   "cb" 'pbl--org-capture-bookmark
    "ci" 'pbl--org-capture-inbox
    "ch" 'pbl--org-capture-habit
    "ct" 'pbl--org-capture-task
@@ -107,6 +108,11 @@
     "Open custom agenda inbox view"
     (interactive)
     (org-agenda nil "i"))
+
+  (defun pbl--org-capture-inbox ()
+    "Capture new bookmark to read"
+    (interactive)
+    (org-capture nil "b"))
 
   (defun pbl--org-capture-inbox ()
     "Capture new entry in inbox"

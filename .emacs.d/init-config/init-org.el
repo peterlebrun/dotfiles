@@ -93,7 +93,9 @@
         ("h" "habit" entry (file+headline "~/Dropbox/org-todo/habit.org" "habits")
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
         ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
-         "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>")))
+         "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>")
+        ("b" "bookmark" entry (file+headline "~/Dropbox/org-todo/bookmark.org" "bookmark")
+         "* TODO %?")))
       ; Project template
       ;'(("p" "project" entry (
 
@@ -111,28 +113,24 @@
 
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
-         ((tags-todo "PRIORITY=\"A\""
-                     ((org-agenda-skip-function
-                       '(or (org-agenda-skip-entry-if 'todo 'done)
-                            (org-agenda-skip-if nil '(scheduled deadline))))
-                      (org-agenda-overriding-header "High priority tasks")
-                      (org-agenda-dim-blocked-tasks 't)))
-          (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Bookmarks To Read")
+         ((tags-todo "category=\"bookmark\"+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Bookmarks")
                       (org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
-                      (org-agenda-max-entries 1)))
+                      (org-agenda-max-entries 1)
+                      (org-agenda-prefix-format "  ")))
           (agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)
-                            (pbl--org-skip-subtree-if-habit)))))
+                            (pbl--org-skip-subtree-if-habit)))
+                      (org-agenda-overriding-header "Today's Scheduled Tasks")))
           (tags-todo "active+TODO=\"TODO\",project+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Projects: Next Steps")
+                     ((org-agenda-overriding-header "Active Projects")
                       (org-agenda-prefix-format "  %b")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)))
-                      (org-agenda-overriding-header "Daily Habits")))))
+                      (org-agenda-overriding-header "Daily Checklist")))))
         ("i" "inbox view"
          ((tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-skip-function

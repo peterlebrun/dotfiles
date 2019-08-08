@@ -92,7 +92,7 @@
          "* TODO %?")
         ("h" "habit" entry (file+headline "~/Dropbox/org-todo/habit.org" "habits")
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
-        ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "inbox")
+        ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>")))
       ; Project template
       ;'(("p" "project" entry (

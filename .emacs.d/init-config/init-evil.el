@@ -41,19 +41,19 @@
    "0" 'delete-window
    ;"a" 'pbl--insert-file-contents-from-helm-search
    "aa" 'pbl--org-agenda
-   "ah" 'pbl--org-agenda-habit
    "ai" 'pbl--org-agenda-inbox
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
-   "c" 'pbl--open-init-config
+   "ci" 'pbl--org-capture-inbox
+   "ch" 'pbl--org-capture-habit
+   "ct" 'pbl--org-capture-task
    "d" 'pbl--open-writing-file-for-today
-   "e" 'pbl--open-org-config ;re-using keybinding for evil config
+   "eo" 'pbl--open-org-config ;re-using keybinding for evil config
+   "ei" 'pbl--open-init-config ;re-using keybinding for evil config
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
    "g" 'magit-status
    "h" 'pbl--open-orgfile
-   "ii" 'pbl--org-capture-inbox
-   "ih" 'pbl--org-capture-habit
    "j" 'pbl--insert-file-contents-from-helm-search
    "k" 'kill-buffer
    "l" 'pbl--load-current-file
@@ -123,25 +123,25 @@
     (interactive)
     (org-agenda nil "c"))
 
-  (defun pbl--org-agenda-habit ()
-    "Open custom agenda composite view."
-    (interactive)
-    (org-agenda nil "h"))
-
   (defun pbl--org-agenda-inbox ()
-    "Open custom agenda composite view."
+    "Open custom agenda inbox view"
     (interactive)
     (org-agenda nil "i"))
 
   (defun pbl--org-capture-inbox ()
-    "Add task to inbox"
+    "Capture new entry in inbox"
     (interactive)
     (org-capture nil "i"))
 
   (defun pbl--org-capture-habit ()
-    "Add task to inbox"
+    "Capture new habit"
     (interactive)
     (org-capture nil "h"))
+
+  (defun pbl--org-capture-task ()
+    "Capture new task, scheduled for today"
+    (interactive)
+    (org-capture nil "t"))
 
   (defun pbl--yarn-test ()
     "Run yarn test for current yarn package"

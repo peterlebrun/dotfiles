@@ -91,10 +91,9 @@
       '(("i" "inbox" entry (file+headline "~/Dropbox/org-todo/inbox.org" "inbox")
          "* TODO %?")
         ("h" "habit" entry (file+headline "~/Dropbox/org-todo/habit.org" "habits")
-         "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")))
-      ; Task for today
-      ;'(("t" "task" entry
-      ;   ))
+         "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
+        ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "inbox")
+         "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>")))
       ; Project template
       ;'(("p" "project" entry (
 
@@ -124,11 +123,16 @@
                       (org-agenda-max-entries 1)))
           (agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function
-                       '(or (org-agenda-skip-entry-if 'todo 'done)))))
+                       '(or (org-agenda-skip-entry-if 'todo 'done)
+                            (pbl--org-skip-subtree-if-habit)))))
           (tags-todo "active+TODO=\"TODO\",project+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects: Next Steps")
                       (org-agenda-prefix-format "  %b")
-                      (org-agenda-dim-blocked-tasks 'invisible)))))
+                      (org-agenda-dim-blocked-tasks 'invisible)))
+          (agenda "" ((org-agenda-ndays-to-span 1)
+                      (org-agenda-skip-function
+                       '(or (pbl--org-skip-subtree-if-not-habit)))
+                      (org-agenda-overriding-header "Daily Habits")))))
         ("i" "inbox view"
          ((tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-skip-function
@@ -137,12 +141,7 @@
           (tags-todo "CATEGORY=\"task\""
                      ((org-agenda-skip-function
                        '(org-agenda-skip-if nil '(scheduled deadline)))
-                      (org-agenda-overriding-header "tasks")))))
-        ("h" "habit view"
-         ((agenda "" ((org-agenda-ndays-to-span 1)
-                      (org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)))
-                      (org-agenda-overriding-header "Daily Habits")))))))
+                      (org-agenda-overriding-header "tasks")))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.
@@ -151,6 +150,13 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   "Skip an agenda entry if it has a STYLE property equal to \"priority\"."
   (let ((subtree-end (save-excursion (org-end-of-subtree t))))
     (if (string= (org-entry-get nil "PRIORITY") "A")
+        subtree-end
+      nil)))
+
+(defun pbl--org-skip-subtree-if-habit ()
+  "Skip an agenda entry if it does not have a STYLE property equal to \"habit\"."
+  (let ((subtree-end (save-excursion (org-end-of-subtree t))))
+    (if (string= (org-entry-get nil "STYLE") "habit")
         subtree-end
       nil)))
 

@@ -146,8 +146,11 @@
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)))
-                      (org-agenda-overriding-header "Daily Checklist")))))
+                       '(or (pbl--org-skip-subtree-if-not-habit)
+                            (org-agenda-skip-entry-if 'notregexp ":growth:\\|:productivity:")
+                            ))
+                      (org-agenda-overriding-header "Growth Habits")
+                      (org-agenda-hide-tags-regexp ".")))))
         ("i" "inbox view"
          ((tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-skip-function
@@ -156,7 +159,29 @@
           (tags-todo "CATEGORY=\"task\""
                      ((org-agenda-skip-function
                        '(org-agenda-skip-if nil '(scheduled deadline)))
-                      (org-agenda-overriding-header "tasks")))))))
+                      (org-agenda-overriding-header "tasks")))))
+        ("h" "habit view"
+         ((agenda ""
+                     ((org-agenda-skip-function
+                       (or
+                        '(org-agenda-skip-entry-if 'notregexp ":am:")
+                        '(pbl--org-skip-subtree-if-not-habit)))
+                      (org-agenda-overriding-header "Morning")
+                      (org-agenda-hide-tags-regexp ".")))
+          (agenda ""
+                     ((org-agenda-skip-function
+                       (or
+                        '(org-agenda-skip-entry-if 'notregexp ":pm:")
+                        '(pbl--org-skip-subtree-if-not-habit)))
+                      (org-agenda-overriding-header "Evening")
+                      (org-agenda-hide-tags-regexp ".")))
+          (agenda ""
+                     ((org-agenda-skip-function
+                       (or
+                        '(org-agenda-skip-entry-if 'notregexp ":grooming:")
+                        '(pbl--org-skip-subtree-if-not-habit)))
+                      (org-agenda-overriding-header "Grooming")
+                      (org-agenda-hide-tags-regexp ".")))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.

@@ -17,6 +17,7 @@
    "0" 'delete-window
    ;"a" 'pbl--insert-file-contents-from-helm-search
    "aa" 'pbl--org-agenda
+   "aa" 'pbl--org-agenda-habit
    "ai" 'pbl--org-agenda-inbox
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
@@ -104,6 +105,11 @@
     "Open custom agenda composite view."
     (interactive)
     (org-agenda nil "c"))
+
+  (defun pbl--org-agenda-habit ()
+    "Open custom agenda habit view"
+    (interactive)
+    (org-agenda nil "h"))
 
   (defun pbl--org-agenda-inbox ()
     "Open custom agenda inbox view"

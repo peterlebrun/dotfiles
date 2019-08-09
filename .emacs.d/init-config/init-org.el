@@ -20,9 +20,7 @@
                              (expand-file-name "task.org" org-directory)
                              (expand-file-name "calendar.org" org-directory)
                              (expand-file-name "anniversary.org" org-directory)
-                             (expand-file-name "book.org" org-directory)
-                             (expand-file-name "habit.org" org-directory)
-                             (expand-file-name "class.org" org-directory)))
+                             (expand-file-name "habit.org" org-directory)))
 
 (setq org-archive-location "~/Dropbox/org-todo/archive.org::")
 
@@ -34,9 +32,7 @@
                            (,(expand-file-name "calendar.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "anniversary.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "thought.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "book.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "bookmark.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "class.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "habit.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "backlog.org" org-directory) :maxlevel . 1)))
 
@@ -118,7 +114,7 @@
 (setq org-deadline-warning-days 7)
 ;; show me tasks scheduled or due in next week
 (setq org-agenda-span 'day)
-(setq org-agenda-hide-tags-regexp "active\\|project")
+(setq org-agenda-hide-tags-regexp "active\\|project\\|book\\|work\\|home\\|class")
 
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
@@ -132,8 +128,20 @@
                        '(or (org-agenda-skip-entry-if 'todo 'done)
                             (pbl--org-skip-subtree-if-habit)))
                       (org-agenda-overriding-header "Today's Scheduled Tasks")))
-          (tags-todo "active+TODO=\"TODO\",project+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Projects")
+          (tags-todo "active+work+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Active Work Projects")
+                      (org-agenda-prefix-format "  %b")
+                      (org-agenda-dim-blocked-tasks 'invisible)))
+          (tags-todo "active+home+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Active Home Projects")
+                      (org-agenda-prefix-format "  %b")
+                      (org-agenda-dim-blocked-tasks 'invisible)))
+          (tags-todo "active+book+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Active Books")
+                      (org-agenda-prefix-format "  %b")
+                      (org-agenda-dim-blocked-tasks 'invisible)))
+          (tags-todo "active+class+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Active Classes")
                       (org-agenda-prefix-format "  %b")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (agenda "" ((org-agenda-ndays-to-span 1)

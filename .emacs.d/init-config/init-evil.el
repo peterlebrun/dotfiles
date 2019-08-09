@@ -24,6 +24,7 @@
    "ci" 'pbl--org-capture-inbox
    "ch" 'pbl--org-capture-habit
    "ct" 'pbl--org-capture-task
+   "cp" 'pbl--org-capture-project
    "d" 'pbl--open-writing-file-for-today
    "eo" 'pbl--open-org-config  ; emacs config for org
    "ee" 'pbl--open-evil-config ; emacs config for evil
@@ -128,6 +129,11 @@
     "Capture new task, scheduled for today"
     (interactive)
     (org-capture nil "t"))
+
+  (defun pbl--org-capture-project ()
+    "Capture new project"
+    (interactive)
+    (org-capture nil "p"))
 
   (defun pbl--yarn-test ()
     "Run yarn test for current yarn package"

@@ -75,6 +75,11 @@
 
 ; Just kinda funsies
 (add-to-list 'org-structure-template-alist (list "p" ":PROPERTIES:\n?\n:END:"))
+(add-to-list 'org-structure-template-alist
+             (list "sp" (concat "*** NOT STARTED ?\n"
+                                "    :PROPERTIES:\n"
+                                "    :ORDERED:  t\n"
+                                "    :END:")))
 
 ;;set colours for priorities
 (setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
@@ -98,10 +103,10 @@
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
         ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
-        ("b" "bookmark" entry (file+headline "~/Dropbox/org-todo/bookmark.org" "bookmark")
-         "* TODO %?")))
-      ; Project template
-      ;'(("p" "project" entry (
+        ("b" "bookmark" entry (file+headline "~/Dropbox/org-todo/bookmark.org" "bookmarks")
+         "* TODO %?")
+        ("p" "project" entry (file+headline "~/Dropbox/org-todo/project.org" "projects")
+         "* NOT STARTED %?\n:PROPERTIES:\n:ORDERED:  t\n:END:")))
 
 (add-hook 'org-agenda-mode-hook
           (lambda ()

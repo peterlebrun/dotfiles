@@ -17,7 +17,7 @@
    "0" 'delete-window
    ;"a" 'pbl--insert-file-contents-from-helm-search
    "aa" 'pbl--org-agenda
-   "aa" 'pbl--org-agenda-habit
+   "ah" 'pbl--org-agenda-habit
    "ai" 'pbl--org-agenda-inbox
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle

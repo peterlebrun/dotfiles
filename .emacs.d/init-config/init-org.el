@@ -147,8 +147,13 @@
           (agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":growth:\\|:productivity:")
-                            ))
+                            (org-agenda-skip-entry-if 'notregexp ":productivity:")))
+                      (org-agenda-overriding-header "Productivity Habits")
+                      (org-agenda-hide-tags-regexp ".")))
+          (agenda "" ((org-agenda-ndays-to-span 1)
+                      (org-agenda-skip-function
+                       '(or (pbl--org-skip-subtree-if-not-habit)
+                            (org-agenda-skip-entry-if 'notregexp ":growth:")))
                       (org-agenda-overriding-header "Growth Habits")
                       (org-agenda-hide-tags-regexp ".")))))
         ("i" "inbox view"

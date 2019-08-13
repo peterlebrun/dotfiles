@@ -58,6 +58,7 @@
 (setq org-habit-show-habits-only-for-today t)
 (setq org-agenda-window-setup 'current-window)
 (setq org-export-initial-scope 'subtree)
+(setq org-default-notes-file (concat org-directory "notes.org"))
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where

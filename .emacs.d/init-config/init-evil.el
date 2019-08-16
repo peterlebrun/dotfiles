@@ -116,7 +116,7 @@
     (interactive)
     (org-agenda nil "i"))
 
-  (defun pbl--org-capture-inbox ()
+  (defun pbl--org-capture-bookmark ()
     "Capture new bookmark to read"
     (interactive)
     (org-capture nil "b"))

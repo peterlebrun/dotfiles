@@ -186,12 +186,12 @@
 (add-hook 'rjsx-mode-hook
   (lambda ()
     (display-line-numbers-mode 1)
-    (setq js-indent-level 4)))
+    (setq js-indent-level 2)))
 
 (add-hook 'js-mode-hook
   (lambda ()
     (display-line-numbers-mode 1)
-    (setq js-indent-level 4)))
+    (setq js-indent-level 2)))
 
 (add-hook 'rust-mode-hook
   (lambda ()

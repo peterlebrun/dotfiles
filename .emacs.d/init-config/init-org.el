@@ -172,14 +172,14 @@
                        (or
                         '(org-agenda-skip-entry-if 'notregexp ":am:")
                         '(pbl--org-skip-subtree-if-not-habit)))
-                      (org-agenda-overriding-header "Morning")
+                      (org-agenda-overriding-header "Morning Routine")
                       (org-agenda-hide-tags-regexp ".")))
           (agenda ""
                      ((org-agenda-skip-function
                        (or
                         '(org-agenda-skip-entry-if 'notregexp ":pm:")
                         '(pbl--org-skip-subtree-if-not-habit)))
-                      (org-agenda-overriding-header "Evening")
+                      (org-agenda-overriding-header "Evening Routine")
                       (org-agenda-hide-tags-regexp ".")))
           (agenda ""
                      ((org-agenda-skip-function

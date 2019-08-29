@@ -20,6 +20,7 @@
                              (expand-file-name "task.org" org-directory)
                              (expand-file-name "calendar.org" org-directory)
                              (expand-file-name "anniversary.org" org-directory)
+                             (expand-file-name "bookmark.org" org-directory)
                              (expand-file-name "habit.org" org-directory)))
 
 (setq org-archive-location "~/Dropbox/org-todo/archive.org::")
@@ -121,7 +122,6 @@
       '(("c" "custom daily view"
          ((tags-todo "category=\"bookmark\"+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Bookmarks")
-                      (org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
                       (org-agenda-max-entries 1)
                       (org-agenda-prefix-format "  ")))
           (agenda "" ((org-agenda-ndays-to-span 1)

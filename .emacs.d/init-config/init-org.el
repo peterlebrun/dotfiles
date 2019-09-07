@@ -161,6 +161,12 @@
           (agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)
+                            (org-agenda-skip-entry-if 'notregexp ":learning:")))
+                      (org-agenda-overriding-header "Learning Habits")
+                      (org-agenda-hide-tags-regexp ".")))
+          (agenda "" ((org-agenda-ndays-to-span 1)
+                      (org-agenda-skip-function
+                       '(or (pbl--org-skip-subtree-if-not-habit)
                             (org-agenda-skip-entry-if 'notregexp ":healing:")))
                       (org-agenda-overriding-header "Healing Habits")
                       (org-agenda-hide-tags-regexp ".")))))

@@ -19,7 +19,6 @@
                              (expand-file-name "project.org" org-directory)
                              (expand-file-name "task.org" org-directory)
                              (expand-file-name "calendar.org" org-directory)
-                             (expand-file-name "anniversary.org" org-directory)
                              (expand-file-name "bookmark.org" org-directory)
                              (expand-file-name "habit.org" org-directory)))
 
@@ -31,7 +30,6 @@
                            (,(expand-file-name "idea.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "goal.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "calendar.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "anniversary.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "thought.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "bookmark.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "habit.org" org-directory) :maxlevel . 1)

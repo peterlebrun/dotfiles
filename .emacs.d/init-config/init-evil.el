@@ -43,8 +43,8 @@
    "r" 'toggle-frame-maximized
    "w" 'pbl--narrow-or-widen-dwim
    "x" 'helm-M-x
-   "z" 'pbl--open-zshrc
-   )
+   "z" 'pbl--open-zshrc)
+
   (defun pbl--open-shell ()
     "Open shell."
    (interactive) (ansi-term (getenv "SHELL")))

@@ -59,6 +59,7 @@
 (setq org-export-initial-scope 'subtree)
 (setq org-default-notes-file (concat org-directory "notes.org"))
 (setq org-agenda-diary-file (expand-file-name "diary.org" org-directory))
+(setq org-stuck-projects '("+active+LEVEL=2/-COMPLETE" ("TODO")))
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where

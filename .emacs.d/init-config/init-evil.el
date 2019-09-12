@@ -19,6 +19,7 @@
    "aa" 'pbl--org-agenda
    "ah" 'pbl--org-agenda-habit
    "ai" 'pbl--org-agenda-inbox
+   "as" 'pbl--org-agenda-stuck
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
    "cb" 'pbl--org-capture-bookmark
@@ -115,6 +116,11 @@
     "Open custom agenda inbox view"
     (interactive)
     (org-agenda nil "i"))
+
+  (defun pbl--org-agenda-stuck ()
+    "Open custom agenda stuck projects view"
+    (interactive)
+    (org-agenda nil "#"))
 
   (defun pbl--org-capture-bookmark ()
     "Capture new bookmark to read"

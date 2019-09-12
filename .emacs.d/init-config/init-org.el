@@ -120,34 +120,11 @@
 
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
-         ((tags-todo "category=\"bookmark\"+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Bookmarks")
-                      (org-agenda-max-entries 1)
-                      (org-agenda-prefix-format "  ")))
-          (agenda "" ((org-agenda-ndays-to-span 1)
+         ((agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)
                             (pbl--org-skip-subtree-if-habit)))
                       (org-agenda-overriding-header "Today's Scheduled Tasks")))
-          (tags-todo "active+work+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Work Projects")
-                      (org-agenda-prefix-format "  %b")
-                      (org-agenda-dim-blocked-tasks 'invisible)))
-          (tags-todo "active+home+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Home Projects")
-                      (org-agenda-prefix-format "  %b")
-                      (org-agenda-dim-blocked-tasks 'invisible)))
-          (tags-todo "active+book+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Books")
-                      (org-agenda-prefix-format "  %b")
-                      (org-agenda-dim-blocked-tasks 'invisible)))
-          (tags-todo "active+class+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Classes")
-                      (org-agenda-prefix-format "  %b")
-                      (org-agenda-dim-blocked-tasks 'invisible)))
-          (stuck ""
-                     ((org-agenda-overriding-header "Stuck Projects")
-                      (org-agenda-prefix-format "  %b")))
           (agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)
@@ -171,7 +148,30 @@
                        '(or (pbl--org-skip-subtree-if-not-habit)
                             (org-agenda-skip-entry-if 'notregexp ":healing:")))
                       (org-agenda-overriding-header "Healing Habits")
-                      (org-agenda-hide-tags-regexp ".")))))
+                      (org-agenda-hide-tags-regexp ".")))
+          (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Bookmarks")
+                      (org-agenda-max-entries 1)
+                      (org-agenda-prefix-format "  ")))
+          (tags-todo "active+work+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Active Work Projects")
+                      (org-agenda-prefix-format "  %b")
+                      (org-agenda-dim-blocked-tasks 'invisible)))
+          (tags-todo "active+home+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Active Home Projects")
+                      (org-agenda-prefix-format "  %b")
+                      (org-agenda-dim-blocked-tasks 'invisible)))
+          (tags-todo "active+book+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Active Books")
+                      (org-agenda-prefix-format "  %b")
+                      (org-agenda-dim-blocked-tasks 'invisible)))
+          (tags-todo "active+class+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Active Classes")
+                      (org-agenda-prefix-format "  %b")
+                      (org-agenda-dim-blocked-tasks 'invisible)))
+          (stuck ""
+                     ((org-agenda-overriding-header "Stuck Projects")
+                      (org-agenda-prefix-format "  %b")))))
         ("i" "inbox view"
          ((tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-skip-function

@@ -115,36 +115,32 @@
 ;; warn me of any deadlines in the next 7 days
 (setq org-deadline-warning-days 7)
 ;; show me tasks scheduled or due in next week
-(setq org-agenda-span '5)
+(setq org-agenda-span 'day)
 (setq org-agenda-hide-tags-regexp "active\\|project\\|book\\|work\\|home\\|class")
 
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
-         ((agenda "" ((org-agenda-ndays-to-span 1)
+         ((agenda "" ((org-agenda-span 5)
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)
                             (pbl--org-skip-subtree-if-habit)))
                       (org-agenda-overriding-header "Today's Scheduled Tasks")))
-          (agenda "" ((org-agenda-ndays-to-span 1)
-                      (org-agenda-skip-function
+          (agenda "" ((org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)
                             (org-agenda-skip-entry-if 'notregexp ":productivity:")))
                       (org-agenda-overriding-header "Productivity Habits")
                       (org-agenda-hide-tags-regexp ".")))
-          (agenda "" ((org-agenda-ndays-to-span 1)
-                      (org-agenda-skip-function
+          (agenda "" ((org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)
                             (org-agenda-skip-entry-if 'notregexp ":growth:")))
                       (org-agenda-overriding-header "Growth Habits")
                       (org-agenda-hide-tags-regexp ".")))
-          (agenda "" ((org-agenda-ndays-to-span 1)
-                      (org-agenda-skip-function
+          (agenda "" ((org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)
                             (org-agenda-skip-entry-if 'notregexp ":learning:")))
                       (org-agenda-overriding-header "Learning Habits")
                       (org-agenda-hide-tags-regexp ".")))
-          (agenda "" ((org-agenda-ndays-to-span 1)
-                      (org-agenda-skip-function
+          (agenda "" ((org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)
                             (org-agenda-skip-entry-if 'notregexp ":healing:")))
                       (org-agenda-overriding-header "Healing Habits")

@@ -145,6 +145,9 @@
                      ((org-agenda-overriding-header "Active Classes")
                       (org-agenda-prefix-format "  %b")
                       (org-agenda-dim-blocked-tasks 'invisible)))
+          (stuck ""
+                     ((org-agenda-overriding-header "Stuck Projects")
+                      (org-agenda-prefix-format "  %b")))
           (agenda "" ((org-agenda-ndays-to-span 1)
                       (org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)

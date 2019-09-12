@@ -150,11 +150,11 @@
                       (org-agenda-max-entries 1)
                       (org-agenda-prefix-format "  ")))
           (tags-todo "active+work+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Work Projects")
+                     ((org-agenda-overriding-header "Active Projects: Home")
                       (org-agenda-prefix-format "  %b")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "active+home+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Home Projects")
+                     ((org-agenda-overriding-header "Active Projects: Work")
                       (org-agenda-prefix-format "  %b")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "active+book+TODO=\"TODO\""

@@ -108,7 +108,7 @@
 
 (add-hook 'org-agenda-mode-hook
           (lambda ()
-            (setq org-habit-graph-column 50)
+            (setq org-habit-graph-column 53)
             (define-key org-agenda-mode-map (kbd "j") 'org-agenda-next-item)
             (define-key org-agenda-mode-map (kbd "k") 'org-agenda-previous-item)))
 

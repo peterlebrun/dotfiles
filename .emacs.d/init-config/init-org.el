@@ -44,12 +44,6 @@
 (setq org-return-follows-link t)
 (setq org-agenda-start-on-weekday nil)
 (setq org-agenda-time-leading-zero t)
-; Notice that we are setting ORG-AGENDA-TIME-GRID to its default value
-; Except we've reversed the times to display
-; I think this is just a weird bug, not sure
-(setq org-agenda-time-grid '((daily today require-timed)
-                             (2000 1800 1600 1400 1200 1000 0800)
-                             "......" "----------------"))
 (setq org-enforce-todo-dependencies t)
 (setq org-enforce-todo-checkbox-dependencies t)
 (setq org-log-done 'time)

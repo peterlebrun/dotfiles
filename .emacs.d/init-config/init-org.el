@@ -115,7 +115,7 @@
 ;; warn me of any deadlines in the next 7 days
 (setq org-deadline-warning-days 7)
 ;; show me tasks scheduled or due in next week
-(setq org-agenda-span '3)
+(setq org-agenda-span '5)
 (setq org-agenda-hide-tags-regexp "active\\|project\\|book\\|work\\|home\\|class")
 
 (setq org-agenda-custom-commands

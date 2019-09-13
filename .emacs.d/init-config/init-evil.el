@@ -89,13 +89,8 @@
     ""
     (interactive)
     (find-file (concat "~/writings/" (format-time-string "%Y%m%d-%H%M%S") ".org"))
-    (insert (concat "* " (format-time-string "%Y%m%d:%H%M")))
-    (insert "
-** Gratitude List
-   -
-** What do I want to accomplish today?
-   -
-** Freewheeling Thoughts"))
+    (insert (concat "* " (format-time-string "%Y%m%d:%H%M\n")
+                    "** Freewheeling Thoughts")))
 
   (defun pbl--insert-file-contents-from-helm-search ()
     "Use helm to find a file whose contents will be entered into current buffer"

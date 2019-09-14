@@ -140,6 +140,11 @@
                             (org-agenda-skip-entry-if 'notregexp ":healing:")))
                       (org-agenda-overriding-header "Healing Habits")
                       (org-agenda-hide-tags-regexp ".")))
+          (agenda "" ((org-agenda-skip-function
+                       '(or (pbl--org-skip-subtree-if-not-habit)
+                            (org-agenda-skip-entry-if 'notregexp ":social:")))
+                      (org-agenda-overriding-header "Social Habits")
+                      (org-agenda-hide-tags-regexp ".")))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Bookmarks")
                       (org-agenda-max-entries 1)

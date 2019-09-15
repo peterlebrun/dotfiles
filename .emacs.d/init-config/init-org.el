@@ -123,27 +123,27 @@
           (agenda "" ((org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)
                             (org-agenda-skip-entry-if 'notregexp ":productivity:")))
-                      (org-agenda-overriding-header "Productivity Habits")
+                      (org-agenda-overriding-header "Habits: Productivity")
                       (org-agenda-hide-tags-regexp ".")))
           (agenda "" ((org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)
                             (org-agenda-skip-entry-if 'notregexp ":growth:")))
-                      (org-agenda-overriding-header "Growth Habits")
+                      (org-agenda-overriding-header "Habits: Growth")
                       (org-agenda-hide-tags-regexp ".")))
           (agenda "" ((org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)
                             (org-agenda-skip-entry-if 'notregexp ":learning:")))
-                      (org-agenda-overriding-header "Learning Habits")
+                      (org-agenda-overriding-header "Habits: Learning")
                       (org-agenda-hide-tags-regexp ".")))
           (agenda "" ((org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)
                             (org-agenda-skip-entry-if 'notregexp ":healing:")))
-                      (org-agenda-overriding-header "Healing Habits")
+                      (org-agenda-overriding-header "Habits: Healing")
                       (org-agenda-hide-tags-regexp ".")))
           (agenda "" ((org-agenda-skip-function
                        '(or (pbl--org-skip-subtree-if-not-habit)
                             (org-agenda-skip-entry-if 'notregexp ":social:")))
-                      (org-agenda-overriding-header "Social Habits")
+                      (org-agenda-overriding-header "Habits: Social")
                       (org-agenda-hide-tags-regexp ".")))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Bookmarks")

@@ -55,6 +55,8 @@
 (setq org-agenda-diary-file (expand-file-name "diary.org" org-directory))
 (setq org-stuck-projects '("+active+LEVEL=2/-COMPLETE" ("TODO")))
 (setq org-agenda-use-time-grid nil) ; I don't find this useful
+;; Note 20190916: This would make good blog post
+(defun pbl-format-project-prefix () (cadr (org-get-outline-path)))
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where
@@ -156,23 +158,24 @@
                       (org-agenda-prefix-format "  ")))
           (tags-todo "active+work+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects: Home")
-                      (org-agenda-prefix-format "  %b")
+                      ;(org-agenda-prefix-format "  %b")
+                      (org-agenda-prefix-format "  %(pbl-format-project-prefix): ")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "active+home+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects: Work")
-                      (org-agenda-prefix-format "  %b")
+                      (org-agenda-prefix-format "  %(pbl-format-project-prefix): ")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "active+book+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Books")
-                      (org-agenda-prefix-format "  %b")
+                      (org-agenda-prefix-format "  %(pbl-format-project-prefix): ")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "active+class+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Classes")
-                      (org-agenda-prefix-format "  %b")
+                      (org-agenda-prefix-format "  %(pbl-format-project-prefix): ")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (stuck ""
                      ((org-agenda-overriding-header "Stuck Projects")
-                      (org-agenda-prefix-format "  %b")))))
+                      (org-agenda-prefix-format "  %(pbl-format-project-prefix): ")))))
         ("i" "inbox view"
          ((tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-skip-function

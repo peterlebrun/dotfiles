@@ -189,21 +189,24 @@
                         '(org-agenda-skip-entry-if 'notregexp ":am:")
                         '(pbl--org-skip-subtree-if-not-habit)))
                       (org-agenda-overriding-header "Morning Routine")
-                      (org-agenda-hide-tags-regexp ".")))
+                      (org-agenda-hide-tags-regexp ".")
+                      (org-agenda-prefix-format "  ")))
           (agenda ""
                      ((org-agenda-skip-function
                        (or
                         '(org-agenda-skip-entry-if 'notregexp ":pm:")
                         '(pbl--org-skip-subtree-if-not-habit)))
                       (org-agenda-overriding-header "Evening Routine")
-                      (org-agenda-hide-tags-regexp ".")))
+                      (org-agenda-hide-tags-regexp ".")
+                      (org-agenda-prefix-format "  ")))
           (agenda ""
                      ((org-agenda-skip-function
                        (or
                         '(org-agenda-skip-entry-if 'notregexp ":grooming:")
                         '(pbl--org-skip-subtree-if-not-habit)))
                       (org-agenda-overriding-header "Grooming")
-                      (org-agenda-hide-tags-regexp ".")))))))
+                      (org-agenda-hide-tags-regexp ".")
+                      (org-agenda-prefix-format "  ")))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.

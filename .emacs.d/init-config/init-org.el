@@ -175,7 +175,7 @@
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (stuck ""
                      ((org-agenda-overriding-header "Stuck Projects")
-                      (org-agenda-prefix-format "  %(pbl-format-project-prefix): ")))))
+                      (org-agenda-prefix-format "  ")))))
         ("i" "inbox view"
          ((tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-skip-function

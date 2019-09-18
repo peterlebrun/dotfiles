@@ -105,7 +105,9 @@
         ("b" "bookmark" entry (file+headline "~/Dropbox/org-todo/bookmark.org" "bookmarks")
          "* TODO %?")
         ("p" "project" entry (file+headline "~/Dropbox/org-todo/project.org" "projects")
-         "* NOT STARTED %?\n:PROPERTIES:\n:ORDERED:  t\n:END:")))
+         "* NOT STARTED %?\n:PROPERTIES:\n:ORDERED:  t\n:END:")
+        ("w" "writing" entry (file+olp+datetree "~/Dropbox/org/writing.org" "writings")
+         "* %T\n%?")))
 
 (add-hook 'org-agenda-mode-hook
           (lambda ()

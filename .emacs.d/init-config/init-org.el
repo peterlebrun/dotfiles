@@ -56,7 +56,11 @@
 (setq org-stuck-projects '("+active+LEVEL=2/-COMPLETE" ("TODO")))
 (setq org-agenda-use-time-grid nil) ; I don't find this useful
 ;; Note 20190916: This would make good blog post
-(defun pbl-format-project-prefix () (cadr (org-get-outline-path)))
+(defun pbl-format-project-prefix ()
+  (let ((outline-list (org-get-outline-path)))
+    (concat
+     (cadr outline-list)
+     (if (> (length outline-list) 2) "→...→" ""))))
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where

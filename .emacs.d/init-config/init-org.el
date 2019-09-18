@@ -157,12 +157,11 @@
                       (org-agenda-max-entries 1)
                       (org-agenda-prefix-format "  ")))
           (tags-todo "active+work+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Projects: Home")
-                      ;(org-agenda-prefix-format "  %b")
+                     ((org-agenda-overriding-header "Active Projects: Work")
                       (org-agenda-prefix-format "  %(pbl-format-project-prefix): ")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "active+home+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Projects: Work")
+                     ((org-agenda-overriding-header "Active Projects: Home")
                       (org-agenda-prefix-format "  %(pbl-format-project-prefix): ")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "active+book+TODO=\"TODO\""

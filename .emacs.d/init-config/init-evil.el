@@ -27,7 +27,13 @@
    "ch" 'pbl--org-capture-habit
    "ct" 'pbl--org-capture-task
    "cp" 'pbl--org-capture-project
-   "cw" 'pbl--org-capture-writing
+   "ca" 'pbl--org-capture-am-writing
+   "cf" 'pbl--org-capture-freewrite
+   "co" 'pbl--org-capture-thought
+   "cd" 'pbl--org-capture-daily-review
+   "cw" 'pbl--org-capture-weekly-review
+   "cg" 'pbl--org-capture-gratitude-list
+   "cl" 'pbl--org-capture-random-list
    "d" 'pbl--open-writing-file-for-today
    "eo" 'pbl--open-org-config  ; emacs config for org
    "ee" 'pbl--open-evil-config ; emacs config for evil
@@ -143,10 +149,40 @@
     (interactive)
     (org-capture nil "p"))
 
-  (defun pbl--org-capture-writing ()
+  (defun pbl--org-capture-am-writing ()
+    "Capture new project"
+    (interactive)
+    (org-capture nil "a"))
+
+  (defun pbl--org-capture-freewrite ()
+    "Capture new project"
+    (interactive)
+    (org-capture nil "f"))
+
+  (defun pbl--org-capture-thought ()
+    "Capture new project"
+    (interactive)
+    (org-capture nil "o"))
+
+  (defun pbl--org-capture-daily-review ()
+    "Capture new project"
+    (interactive)
+    (org-capture nil "d"))
+
+  (defun pbl--org-capture-weekly-review ()
     "Capture new project"
     (interactive)
     (org-capture nil "w"))
+
+  (defun pbl--org-capture-gratitude-list ()
+    "Capture new project"
+    (interactive)
+    (org-capture nil "g"))
+
+  (defun pbl--org-capture-random-list ()
+    "Capture new project"
+    (interactive)
+    (org-capture nil "l"))
 
   (defun pbl--yarn-test ()
     "Run yarn test for current yarn package"

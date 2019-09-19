@@ -61,6 +61,7 @@
     (concat
      (cadr outline-list)
      (if (> (length outline-list) 2) "→...→" ""))))
+(setq org-confirm-elisp-link-not-regexp "org-capture.*")
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where
@@ -106,8 +107,13 @@
          "* TODO %?")
         ("p" "project" entry (file+headline "~/Dropbox/org-todo/project.org" "projects")
          "* NOT STARTED %?\n:PROPERTIES:\n:ORDERED:  t\n:END:")
-        ("w" "writing" entry (file+olp+datetree "~/Dropbox/org/writing.org" "writings")
-         "* %T\n%?")))
+        ;; Daily captures below
+        ("w" "writing" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
+         "* am writing\n%?")
+        ("g" "gratitude-list" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
+         "* gratitude list\n-%?")
+        ("l" "random-list" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
+         "* random list:%?\n-")))
 
 (add-hook 'org-agenda-mode-hook
           (lambda ()

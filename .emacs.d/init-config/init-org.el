@@ -123,7 +123,9 @@
         ("w" "weekly-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U weekly-review\n-%?")
         ("o" "thought" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
-         "* %U thought\n-%?")))
+         "* %U thought\n-%?")
+        ("c" "appointment" entry (file+headline "~/Dropbox/org-todo/calendar.org" "calendar")
+         "* TODO %?\nDEADLINE: <%<%Y-%m-%d %a>>")))
 
 (add-hook 'org-agenda-mode-hook
           (lambda ()

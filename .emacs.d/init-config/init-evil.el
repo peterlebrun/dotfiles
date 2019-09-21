@@ -27,7 +27,6 @@
    "ch" 'pbl--org-capture-habit
    "ct" 'pbl--org-capture-task
    "cp" 'pbl--org-capture-project
-   "ca" 'pbl--org-capture-am-writing
    "cf" 'pbl--org-capture-freewrite
    "co" 'pbl--org-capture-thought
    "cd" 'pbl--org-capture-daily-review
@@ -149,11 +148,6 @@
     "Capture new project"
     (interactive)
     (org-capture nil "p"))
-
-  (defun pbl--org-capture-am-writing ()
-    "Capture new project"
-    (interactive)
-    (org-capture nil "a"))
 
   (defun pbl--org-capture-freewrite ()
     "Capture new project"

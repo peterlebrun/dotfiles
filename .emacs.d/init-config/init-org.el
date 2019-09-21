@@ -110,8 +110,6 @@
         ("p" "project" entry (file+headline "~/Dropbox/org-todo/project.org" "projects")
          "* NOT STARTED %?\n:PROPERTIES:\n:ORDERED:  t\n:END:")
         ;; Daily captures below
-        ("a" "am-writing" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
-         "* %U am writing\n%?")
         ("g" "gratitude-list" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U gratitude list\n-%?")
         ("l" "random-list" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")

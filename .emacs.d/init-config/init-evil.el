@@ -34,7 +34,7 @@
    "cw" 'pbl--org-capture-weekly-review
    "cg" 'pbl--org-capture-gratitude-list
    "cl" 'pbl--org-capture-random-list
-   "cl" 'pbl--org-capture-calendar
+   "cc" 'pbl--org-capture-calendar
    "d" 'pbl--open-writing-file-for-today
    "eo" 'pbl--open-org-config  ; emacs config for org
    "ee" 'pbl--open-evil-config ; emacs config for evil

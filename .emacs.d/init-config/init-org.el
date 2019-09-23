@@ -129,7 +129,8 @@
           (lambda ()
             (setq org-habit-graph-column 53)
             (define-key org-agenda-mode-map (kbd "j") 'org-agenda-next-item)
-            (define-key org-agenda-mode-map (kbd "k") 'org-agenda-previous-item)))
+            (define-key org-agenda-mode-map (kbd "k") 'org-agenda-previous-item)
+            (define-key org-agenda-mode-map (kbd "RET") 'org-agenda-open-link)))
 
 ;; warn me of any deadlines in the next 7 days
 (setq org-deadline-warning-days 7)

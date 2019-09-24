@@ -145,36 +145,6 @@
                        '(or (org-agenda-skip-entry-if 'todo 'done)
                             (pbl--org-skip-subtree-if-habit)))
                       (org-agenda-overriding-header "Today's Scheduled Tasks")))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":productivity:")))
-                      (org-agenda-overriding-header "Habits: Productivity")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":growth:")))
-                      (org-agenda-overriding-header "Habits: Growth")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":learning:")))
-                      (org-agenda-overriding-header "Habits: Learning")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":healing:")))
-                      (org-agenda-overriding-header "Habits: Healing")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":social:")))
-                      (org-agenda-overriding-header "Habits: Social")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Bookmarks")
                       (org-agenda-max-entries 1)
@@ -214,6 +184,36 @@
                         '(org-agenda-skip-entry-if 'notregexp ":am:")
                         '(pbl--org-skip-subtree-if-not-habit)))
                       (org-agenda-overriding-header "Morning Routine")
+                      (org-agenda-hide-tags-regexp ".")
+                      (org-agenda-prefix-format "  ")))
+          (agenda "" ((org-agenda-skip-function
+                       '(or (pbl--org-skip-subtree-if-not-habit)
+                            (org-agenda-skip-entry-if 'notregexp ":productivity:")))
+                      (org-agenda-overriding-header "Habits: Productivity")
+                      (org-agenda-hide-tags-regexp ".")
+                      (org-agenda-prefix-format "  ")))
+          (agenda "" ((org-agenda-skip-function
+                       '(or (pbl--org-skip-subtree-if-not-habit)
+                            (org-agenda-skip-entry-if 'notregexp ":growth:")))
+                      (org-agenda-overriding-header "Habits: Growth")
+                      (org-agenda-hide-tags-regexp ".")
+                      (org-agenda-prefix-format "  ")))
+          (agenda "" ((org-agenda-skip-function
+                       '(or (pbl--org-skip-subtree-if-not-habit)
+                            (org-agenda-skip-entry-if 'notregexp ":learning:")))
+                      (org-agenda-overriding-header "Habits: Learning")
+                      (org-agenda-hide-tags-regexp ".")
+                      (org-agenda-prefix-format "  ")))
+          (agenda "" ((org-agenda-skip-function
+                       '(or (pbl--org-skip-subtree-if-not-habit)
+                            (org-agenda-skip-entry-if 'notregexp ":healing:")))
+                      (org-agenda-overriding-header "Habits: Healing")
+                      (org-agenda-hide-tags-regexp ".")
+                      (org-agenda-prefix-format "  ")))
+          (agenda "" ((org-agenda-skip-function
+                       '(or (pbl--org-skip-subtree-if-not-habit)
+                            (org-agenda-skip-entry-if 'notregexp ":social:")))
+                      (org-agenda-overriding-header "Habits: Social")
                       (org-agenda-hide-tags-regexp ".")
                       (org-agenda-prefix-format "  ")))
           (agenda ""

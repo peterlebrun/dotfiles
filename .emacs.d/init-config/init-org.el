@@ -138,7 +138,21 @@
 - [ ] Were we thinking of ourselves most of the time?  Or were we thinking of what we could do for others, of what we could pack into the stream of life?
   +")
         ("w" "weekly-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
-         "* %U weekly-review\n-%?")
+         "* %U weekly-review
+- My goals for this week were
+  + %?
+- I have accomplished
+  +
+- I have not accomplished (because...)
+  +
+- I would like to acknowledge myself for
+  +
+- During this week's coaching session I would like to focus on
+  +
+- Appointments this coming week
+  +
+- This week I want to accomplish the following
+  +")
         ("o" "thought" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U thought\n-%?")
         ("c" "appointment" entry (file+headline "~/Dropbox/org-todo/calendar.org" "calendar")

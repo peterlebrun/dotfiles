@@ -120,9 +120,13 @@
          "* %U daily-review
 - [ ] Determine tomorrow's most important task
 - [ ] Assign tasks for tomorrow
-- [ ] Review tomorrow's meetings
+- [ ] Review tomorrow's calendar
+- [ ] What do I want to accomplish tomorrow?
+  + %?
+  +
+  +
 - [ ] Were we resentful, selfish, dishonest or afraid?
-  +%?
+  +
 - [ ] Do we owe an apology?
   +
 - [ ] Have we kept something to ourselves which should be discussed with another person at once?

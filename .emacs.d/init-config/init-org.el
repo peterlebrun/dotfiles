@@ -117,7 +117,22 @@
         ("f" "freewrite" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U freewriting:%?\n")
         ("d" "daily-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
-         "* %U daily-review\n-%?")
+         "* %U daily-review
+- [ ] Determine tomorrow's most important task
+- [ ] Assign tasks for tomorrow
+- [ ] Review tomorrow's meetings
+- [ ] Were we resentful, selfish, dishonest or afraid?
+  +%?
+- [ ] Do we owe an apology?
+  +
+- [ ] Have we kept something to ourselves which should be discussed with another person at once?
+  +
+- [ ] Were we kind and loving toward all?
+  +
+- [ ] What could we have done better?
+  +
+- [ ] Were we thinking of ourselves most of the time?  Or were we thinking of what we could do for others, of what we could pack into the stream of life?
+  +")
         ("w" "weekly-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U weekly-review\n-%?")
         ("o" "thought" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
@@ -184,6 +199,12 @@
                         '(org-agenda-skip-entry-if 'notregexp ":am:")
                         '(pbl--org-skip-subtree-if-not-habit)))
                       (org-agenda-overriding-header "Morning Routine")
+                      (org-agenda-hide-tags-regexp ".")
+                      (org-agenda-prefix-format "  ")))
+          (agenda "" ((org-agenda-skip-function
+                       '(or (pbl--org-skip-subtree-if-not-habit)
+                            (org-agenda-skip-entry-if 'notregexp ":food:")))
+                      (org-agenda-overriding-header "Habits: Food")
                       (org-agenda-hide-tags-regexp ".")
                       (org-agenda-prefix-format "  ")))
           (agenda "" ((org-agenda-skip-function

@@ -140,15 +140,16 @@
   +
 - Do I owe an apology?
   +
-- Have I kept something to myself which should be discussed with another person
-  at once?
+- Have I kept something to myself which should be discussed with another
+  person at once?
   +
 - Was I kind and loving toward all?
   +
 - What could I have done better?
   +
-- Was I thinking of ourselves most of the time?  Or was I thinking of what I
-  could do for others, of what I could pack into the stream of life?
+- Was I thinking of ourselves most of the time?  Or was I thinking of
+  what I could do for others, of what I could pack into the stream of
+  life?
   +")
         ("w" "weekly-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U weekly-review

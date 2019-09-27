@@ -119,27 +119,37 @@
         ("d" "daily-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U daily-review
 - productivity ::
-- mood ::
-- anxiety ::
-- energy ::
-- Today I wanted to accomplish
   + %?
+- mood ::
+  +
+- anxiety ::
+  +
+- energy ::
+  +
+- Today I wanted to accomplish
+  +
 - [ ] Determine tomorrow's most important task
+  +
 - [ ] Assign tasks for tomorrow
+  +
 - [ ] Review tomorrow's calendar
-- How did I feel about my productivity?
-- How did I feel about my mood?
-- How did I feel about my anxiety?
-- How did I feel about my energy?
+  +
 - What do I want to accomplish tomorrow?
+  +
 - Was I resentful, selfish, self-seeking, dishonest or afraid?
+  +
 - Do I owe an apology?
+  +
 - Have I kept something to myself which should be discussed with another person
-  At once?
+  at once?
+  +
 - Was I kind and loving toward all?
+  +
 - What could I have done better?
+  +
 - Was I thinking of ourselves most of the time?  Or was I thinking of what I
-  could do for others, of what I could pack into the stream of life?")
+  could do for others, of what I could pack into the stream of life?
+  +")
         ("w" "weekly-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U weekly-review
 - My goals for this week were

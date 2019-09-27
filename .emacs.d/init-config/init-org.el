@@ -118,11 +118,13 @@
          "* %U freewriting:%?\n")
         ("d" "daily-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U daily-review
+- Today I wanted to accomplish
+  + %?
 - [ ] Determine tomorrow's most important task
 - [ ] Assign tasks for tomorrow
 - [ ] Review tomorrow's calendar
 - [ ] What do I want to accomplish tomorrow?
-  + %?
+  +
   +
   +
 - [ ] Were we resentful, selfish, dishonest or afraid?

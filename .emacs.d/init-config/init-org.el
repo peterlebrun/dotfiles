@@ -132,7 +132,7 @@
 - How did I feel about my anxiety?
 - How did I feel about my energy?
 - What do I want to accomplish tomorrow?
-- Was I resentful, selfish, dishonest or afraid?
+- Was I resentful, selfish, self-seeking, dishonest or afraid?
 - Do I owe an apology?
 - Have I kept something to myself which should be discussed with another person
   At once?

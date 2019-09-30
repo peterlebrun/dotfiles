@@ -250,9 +250,8 @@
           (stuck ""
                      ((org-agenda-overriding-header "Stuck Projects")
                       (org-agenda-block-separator nil)
-                      (org-agenda-prefix-format "  ")))))
-        ("i" "inbox view"
-         ((tags-todo "CATEGORY=\"inbox\""
+                      (org-agenda-prefix-format "  ")))
+          (tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-skip-function
                        '(org-agenda-skip-if nil '(scheduled deadline)))
                       (org-agenda-overriding-header "inbox")))

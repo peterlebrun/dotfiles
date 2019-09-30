@@ -170,7 +170,13 @@
         ("o" "thought" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U thought\n-%?")
         ("c" "appointment" entry (file+headline "~/Dropbox/org-todo/calendar.org" "calendar")
-         "* TODO %?\nDEADLINE: <%<%Y-%m-%d %a>>")))
+         "* TODO %?\nDEADLINE: <%<%Y-%m-%d %a>>")
+        ("m" "most-important-task" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
+         "* TODO %?:mit:\nSCHEDULED: <%<%Y-%m-%d %a>>")
+        ("j" "daily-goals" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
+         "* TODO %?:dailygoal:\nSCHEDULED: <%<%Y-%m-%d %a>>")
+        ("k" "weekly-goals" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
+         "* TODO %?:weeklygoal:\nDEADLINE: <%<%Y-%m-%d %a>>")))
 
 (add-hook 'org-agenda-mode-hook
           (lambda ()

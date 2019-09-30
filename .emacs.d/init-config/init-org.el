@@ -185,15 +185,6 @@
 (setq org-agenda-span 'day)
 (setq org-agenda-hide-tags-regexp "active\\|project\\|book\\|work\\|home\\|class")
 
-                     ;((org-agenda-skip-function
-                     ;  (or
-                     ;   '(org-agenda-skip-entry-if 'notregexp ":am:")
-                     ;   '(pbl--org-skip-subtree-if-not-habit)))
-                     ; (org-agenda-overriding-header "Morning")
-                     ; (org-agenda-hide-tags-regexp ".")
-                     ; (org-agenda-prefix-format "  ")
-                     ; (org-agenda-block-separator nil)))
-
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
          ((agenda "" ((org-agenda-span 1)

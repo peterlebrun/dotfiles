@@ -128,12 +128,9 @@
   +
 - Today I wanted to accomplish
   +
-- [ ] Determine tomorrow's most important task
-  +
-- [ ] Assign tasks for tomorrow
-  +
+- [[elisp:(org-capture nil \"m\")][Determine Tomorrow's Most Important Task]]
+- [[elisp:(org-capture nil \"j\")][Set Daily Goals]]
 - [ ] Review tomorrow's calendar
-  +
 - What do I want to accomplish tomorrow?
   +
 - Was I resentful, selfish, self-seeking, dishonest or afraid?
@@ -165,8 +162,7 @@
   +
 - Appointments this coming week
   +
-- This week I want to accomplish the following
-  +")
+- [[elisp:(org-capture nil \"k\")][Set Weekly Goals]]")
         ("o" "thought" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U thought\n-%?")
         ("c" "appointment" entry (file+headline "~/Dropbox/org-todo/calendar.org" "calendar")

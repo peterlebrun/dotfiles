@@ -104,7 +104,7 @@
         ("h" "habit" entry (file+headline "~/Dropbox/org-todo/habit.org" "habits")
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
         ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
-         "* TODO %?\nSCHEDULED: ")
+         "* TODO %?\nSCHEDULED: %t")
         ("b" "bookmark" entry (file+headline "~/Dropbox/org-todo/bookmark.org" "bookmarks")
          "* TODO %?")
         ("p" "project" entry (file+headline "~/Dropbox/org-todo/project.org" "projects")
@@ -235,17 +235,21 @@
           (tags-todo "active+home+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects: Home")
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")
+                      (org-agenda-block-separator nil)
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "active+book+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Books")
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")
+                      (org-agenda-block-separator nil)
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "active+class+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Classes")
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")
+                      (org-agenda-block-separator nil)
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (stuck ""
                      ((org-agenda-overriding-header "Stuck Projects")
+                      (org-agenda-block-separator nil)
                       (org-agenda-prefix-format "  ")))))
         ("i" "inbox view"
          ((tags-todo "CATEGORY=\"inbox\""

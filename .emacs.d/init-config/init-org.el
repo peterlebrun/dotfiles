@@ -185,9 +185,48 @@
 (setq org-agenda-span 'day)
 (setq org-agenda-hide-tags-regexp "active\\|project\\|book\\|work\\|home\\|class")
 
+                     ;((org-agenda-skip-function
+                     ;  (or
+                     ;   '(org-agenda-skip-entry-if 'notregexp ":am:")
+                     ;   '(pbl--org-skip-subtree-if-not-habit)))
+                     ; (org-agenda-overriding-header "Morning")
+                     ; (org-agenda-hide-tags-regexp ".")
+                     ; (org-agenda-prefix-format "  ")
+                     ; (org-agenda-block-separator nil)))
+
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
-         ((agenda "" ((org-agenda-span 5)
+         ((agenda "" ((org-agenda-span 1)
+                      (org-agenda-skip-function
+                       '(or (org-agenda-skip-entry-if 'todo 'done)
+                            (pbl--org-skip-subtree-if-habit)
+                            (org-agenda-skip-subtree-if 'notregexp ":mit:")))
+                      (org-agenda-files (list (expand-file-name "goal.org" org-directory)))
+                      (org-agenda-block-separator nil)
+                      (org-agenda-prefix-format "  ")
+                      (org-agenda-hide-tags-regexp ".")
+                      (org-agenda-overriding-header "Today's Most Important Task")))
+          (agenda "" ((org-agenda-span 1)
+                      (org-agenda-skip-function
+                       '(or (org-agenda-skip-entry-if 'todo 'done)
+                            (pbl--org-skip-subtree-if-habit)
+                            (org-agenda-skip-subtree-if 'notregexp ":dailygoal:")))
+                      (org-agenda-block-separator nil)
+                      (org-agenda-prefix-format "  ")
+                      (org-agenda-hide-tags-regexp ".")
+                      (org-agenda-files (list (expand-file-name "goal.org" org-directory)))
+                      (org-agenda-overriding-header "Daily Goals")))
+          (agenda "" ((org-agenda-span 1)
+                      (org-agenda-skip-function
+                       '(or (org-agenda-skip-entry-if 'todo 'done)
+                            (pbl--org-skip-subtree-if-habit)
+                            (org-agenda-skip-subtree-if 'notregexp ":weeklygoal:")))
+                      (org-agenda-block-separator nil)
+                      (org-agenda-prefix-format "  ")
+                      (org-agenda-hide-tags-regexp ".")
+                      (org-agenda-files (list (expand-file-name "goal.org" org-directory)))
+                      (org-agenda-overriding-header "Weekly Goals")))
+          (agenda "" ((org-agenda-span 5)
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)
                             (pbl--org-skip-subtree-if-habit)))

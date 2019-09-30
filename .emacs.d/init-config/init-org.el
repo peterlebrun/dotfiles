@@ -104,7 +104,7 @@
         ("h" "habit" entry (file+headline "~/Dropbox/org-todo/habit.org" "habits")
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
         ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
-         "* TODO %?\nSCHEDULED: %t")
+         "* TODO %?\nSCHEDULED: ")
         ("b" "bookmark" entry (file+headline "~/Dropbox/org-todo/bookmark.org" "bookmarks")
          "* TODO %?")
         ("p" "project" entry (file+headline "~/Dropbox/org-todo/project.org" "projects")
@@ -172,11 +172,11 @@
         ("c" "appointment" entry (file+headline "~/Dropbox/org-todo/calendar.org" "calendar")
          "* TODO %?\nDEADLINE: %t")
         ("m" "most-important-task" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
-         "* TODO %?:mit:\nSCHEDULED: %t")
+         "* TODO %?:mit:\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
         ("j" "daily-goals" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
-         "* TODO %?:dailygoal:\nSCHEDULED: %t")
+         "* TODO %?:dailygoal:\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
         ("k" "weekly-goals" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
-         "* TODO %?:weeklygoal:\nDEADLINE: %t")))
+         "* TODO %?:weeklygoal:\nDEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")))
 
 (add-hook 'org-agenda-mode-hook
           (lambda ()

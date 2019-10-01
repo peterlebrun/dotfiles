@@ -118,8 +118,10 @@
          "* %U freewriting:%?\n")
         ("d" "daily-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U daily-review
-- productivity ::
+- what is my mission?
   + %?
+- productivity ::
+  +
 - mood ::
   +
 - anxiety ::
@@ -145,7 +147,8 @@
 - Was I thinking of ourselves most of the time?  Or was I thinking of
   what I could do for others, of what I could pack into the stream of
   life?
-  +")
+  +
+- cathartic freewriting")
         ("w" "weekly-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U weekly-review
 - My goals for this week were

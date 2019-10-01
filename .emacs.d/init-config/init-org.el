@@ -259,12 +259,11 @@
                       (org-agenda-overriding-header "tasks")))))
         ("h" "habit view"
          ((agenda ""
-                     ((org-agenda-compact-blocks t)
-                      (org-agenda-prefix-format "  %T\t")
-                      (org-agenda-files (list
-                                         (expand-file-name "habit.org" org-directory)))
-                      (org-agenda-sorting-strategy '(tag-up))
-                      (org-agenda-hide-tags-regexp ".")))))))
+                  ((org-agenda-compact-blocks t)
+                   (org-agenda-prefix-format " %12T\t")
+                   (org-agenda-files (list (expand-file-name "habit.org" org-directory)))
+                   (org-agenda-sorting-strategy '(tag-up))
+                   (org-agenda-hide-tags-regexp ".")))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.

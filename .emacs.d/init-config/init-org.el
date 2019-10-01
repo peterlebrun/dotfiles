@@ -260,7 +260,7 @@
         ("h" "habit view"
          ((agenda ""
                   ((org-agenda-compact-blocks t)
-                   (org-agenda-prefix-format " %12T\t")
+                   (org-agenda-prefix-format " %-12T ")
                    (org-agenda-files (list (expand-file-name "habit.org" org-directory)))
                    (org-agenda-sorting-strategy '(tag-up))
                    (org-agenda-hide-tags-regexp ".")))))))

@@ -61,8 +61,8 @@
     (concat
      "  "
      (cadr outline-list)
-     (if (> (length outline-list) 2) " → ..." "")
-     " → ")))
+     (if (> (length outline-list) 2) " ..." "")
+     " ")))
 (setq org-confirm-elisp-link-not-regexp "org-capture.*")
 
 ; Open question 20190801: if I have the same state in both subsequences,
@@ -228,21 +228,21 @@
                       (org-agenda-prefix-format "  ")))
           (tags-todo "active+work+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects: Work")
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")
+                      (org-agenda-prefix-format "%-30(pbl-format-project-prefix)")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "active+home+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects: Home")
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")
+                      (org-agenda-prefix-format "%-30(pbl-format-project-prefix)")
                       (org-agenda-block-separator nil)
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "active+book+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Books")
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")
+                      (org-agenda-prefix-format "%-30(pbl-format-project-prefix)")
                       (org-agenda-block-separator nil)
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "active+class+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Classes")
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")
+                      (org-agenda-prefix-format "%-30(pbl-format-project-prefix)")
                       (org-agenda-block-separator nil)
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (stuck ""

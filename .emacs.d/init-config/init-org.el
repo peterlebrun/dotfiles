@@ -131,8 +131,6 @@
 - [[elisp:(org-capture nil \"m\")][Determine Tomorrow's Most Important Task]]
 - [[elisp:(org-capture nil \"j\")][Set Daily Goals]]
 - [ ] Review tomorrow's calendar
-- What do I want to accomplish tomorrow?
-  +
 - Was I resentful, selfish, self-seeking, dishonest or afraid?
   +
 - Do I owe an apology?

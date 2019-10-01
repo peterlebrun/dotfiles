@@ -283,13 +283,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
         subtree-end
       nil)))
 
-(defun pbl--org-skip-subtree-if-not-habit ()
-  "Skip an agenda entry if it does not have a STYLE property equal to \"habit\"."
-  (let ((subtree-end (save-excursion (org-end-of-subtree t))))
-    (if (not (string= (org-entry-get nil "STYLE") "habit"))
-        subtree-end
-      nil)))
-
 ;; don't show tasks as scheduled if they are already shown as a deadline
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
 ;; don't give a warning color to tasks with impending deadlines

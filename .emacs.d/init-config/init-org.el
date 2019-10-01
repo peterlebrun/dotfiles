@@ -259,95 +259,12 @@
                       (org-agenda-overriding-header "tasks")))))
         ("h" "habit view"
          ((agenda ""
-                     ((org-agenda-skip-function
-                       (or
-                        '(org-agenda-skip-entry-if 'notregexp ":am:")
-                        '(pbl--org-skip-subtree-if-not-habit)))
-                      (org-agenda-overriding-header "Morning")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")
-                      (org-agenda-block-separator nil)))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":food:")))
-                      (org-agenda-overriding-header "Food")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")
-                      (org-agenda-block-separator nil)))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":meditation:")))
-                      (org-agenda-overriding-header "Meditation")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")
-                      (org-agenda-block-separator nil)))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":prayers:")))
-                      (org-agenda-overriding-header "Prayers")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")
-                      (org-agenda-block-separator nil)))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":exercise:")))
-                      (org-agenda-overriding-header "Exercise")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")
-                      (org-agenda-block-separator nil)))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":reading:")))
-                      (org-agenda-overriding-header "Reading")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")
-                      (org-agenda-block-separator nil)))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":writing:")))
-                      (org-agenda-overriding-header "Writing")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")
-                      (org-agenda-block-separator nil)))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":productivity:")))
-                      (org-agenda-overriding-header "Productivity")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")
-                      (org-agenda-block-separator nil)))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":learning:")))
-                      (org-agenda-overriding-header "Learning")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")
-                      (org-agenda-block-separator nil)))
-          (agenda "" ((org-agenda-skip-function
-                       '(or (pbl--org-skip-subtree-if-not-habit)
-                            (org-agenda-skip-entry-if 'notregexp ":social:")))
-                      (org-agenda-overriding-header "Social")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")
-                      (org-agenda-block-separator nil)))
-          (agenda ""
-                     ((org-agenda-skip-function
-                       (or
-                        '(org-agenda-skip-entry-if 'notregexp ":pm:")
-                        '(pbl--org-skip-subtree-if-not-habit)))
-                      (org-agenda-overriding-header "Evening")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")
-                      (org-agenda-block-separator nil)))
-          (agenda ""
-                     ((org-agenda-skip-function
-                       (or
-                        '(org-agenda-skip-entry-if 'notregexp ":grooming:")
-                        '(pbl--org-skip-subtree-if-not-habit)))
-                      (org-agenda-overriding-header "Grooming")
-                      (org-agenda-hide-tags-regexp ".")
-                      (org-agenda-prefix-format "  ")
-                      (org-agenda-block-separator nil)))))))
+                     ((org-agenda-compact-blocks t)
+                      (org-agenda-prefix-format "  %T\t")
+                      (org-agenda-files (list
+                                         (expand-file-name "habit.org" org-directory)))
+                      (org-agenda-sorting-strategy '(tag-up))
+                      (org-agenda-hide-tags-regexp ".")))))))
 
 (defun air--org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.

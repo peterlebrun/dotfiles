@@ -116,6 +116,21 @@
          "* %U random list:%?\n-")
         ("f" "freewrite" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U freewriting:%?\n")
+        ("a" "morning-writing" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
+         "* %U morning writing
+- what is my mission?
+  + %?
+- what are today's three goals?
+  +
+- gratitude list
+  +
+- one game idea
+  +
+- ten opportunities
+  1.
+- ten problems to solve
+  1.
+- morning freewriting")
         ("d" "daily-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U daily-review
 - what is my mission?

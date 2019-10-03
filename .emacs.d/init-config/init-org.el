@@ -201,7 +201,7 @@
 (setq org-deadline-warning-days 7)
 ;; show me tasks scheduled or due in next week
 (setq org-agenda-span 'day)
-(setq org-agenda-hide-tags-regexp "active\\|project\\|book\\|work\\|home\\|class")
+(setq org-agenda-hide-tags-regexp "active\\|project\\|book\\|work\\|home\\|class\\|paused")
 
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
@@ -267,6 +267,11 @@
                      ((org-agenda-overriding-header "Stuck Projects")
                       (org-agenda-block-separator nil)
                       (org-agenda-prefix-format "  ")))
+          (tags-todo "paused+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Paused Projects")
+                      (org-agenda-prefix-format "%-30(pbl-format-project-prefix)")
+                      (org-agenda-block-separator nil)
+                      (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-skip-function
                        '(org-agenda-skip-if nil '(scheduled deadline)))

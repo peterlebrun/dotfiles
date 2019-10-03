@@ -186,7 +186,13 @@
         ("m" "most-important-task" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
          "* TODO %?:mit:\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
         ("j" "daily-goals" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
-         "* TODO %?:dailygoal:\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
+         "
+* TODO %?                                             :dailygoal:
+SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
+* TODO                                                :dailygoal:
+SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
+* TODO                                                :dailygoal:
+SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
         ("k" "weekly-goals" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
          "* TODO %?:weeklygoal:\nDEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")))
 

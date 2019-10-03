@@ -145,8 +145,8 @@
   +
 - Today I wanted to accomplish
   +
-- [[elisp:(org-capture nil \"m\")][Determine Tomorrow's Most Important Task]]
-- [[elisp:(org-capture nil \"j\")][Set Daily Goals]]
+- [ ] [[elisp:(org-capture nil \"m\")][Determine Tomorrow's Most Important Task]]
+- [ ] [[elisp:(org-capture nil \"j\")][Set Daily Goals]]
 - [ ] Review tomorrow's calendar
 - Was I resentful, selfish, self-seeking, dishonest or afraid?
   +

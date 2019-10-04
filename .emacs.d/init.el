@@ -66,6 +66,7 @@
 
 (use-package rust-mode :ensure t)
 
+(use-package typescript-mode :ensure t)
 (use-package company-go
   :ensure t
   :after go-mode
@@ -126,6 +127,8 @@
 (require 'init-telephone-line)
 (require 'init-org)
 
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
@@ -193,6 +196,11 @@
   (lambda ()
     (display-line-numbers-mode 1)
     (setq js-indent-level 2)))
+
+(add-hook 'typescript-mode-hook
+  (lambda ()
+    (display-line-numbers-mode 1)
+    (setq typescript-indent-level 4)))
 
 (add-hook 'rust-mode-hook
   (lambda ()

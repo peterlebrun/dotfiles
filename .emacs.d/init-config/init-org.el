@@ -114,7 +114,7 @@
          "* %U freewriting:%?\n")
         ("a" "morning-writing" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U morning writing
-- what is my mission?
+- what are my five life goals??
   + %?
 - what are today's three goals?
   +

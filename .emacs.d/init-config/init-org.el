@@ -126,6 +126,8 @@
   1.
 - ten problems to solve
   1.
+- ten ways I can provide value
+  1.
 - morning freewriting")
         ("d" "daily-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U daily-review

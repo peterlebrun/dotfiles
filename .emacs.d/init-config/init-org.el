@@ -129,7 +129,7 @@
 - morning freewriting")
         ("d" "daily-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U daily-review
-- what is my mission?
+- what are my five life goals??
   + %?
 - productivity ::
   +

@@ -255,16 +255,6 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                    (org-agenda-sorting-strategy '(tag-up))
                    (org-agenda-hide-tags-regexp ".")))))))
 
-(defun air--org-skip-subtree-if-priority (priority)
-  "Skip an agenda subtree if it has a priority of PRIORITY.
-
-PRIORITY may be one of the characters ?A, ?B, or ?C."
-  "Skip an agenda entry if it has a STYLE property equal to \"priority\"."
-  (let ((subtree-end (save-excursion (org-end-of-subtree t))))
-    (if (string= (org-entry-get nil "PRIORITY") "A")
-        subtree-end
-      nil)))
-
 (defun pbl--org-skip-subtree-if-habit ()
   "Skip an agenda entry if it does not have a STYLE property equal to \"habit\"."
   (let ((subtree-end (save-excursion (org-end-of-subtree t))))

@@ -248,32 +248,17 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                      ((org-agenda-overriding-header "Bookmarks")
                       (org-agenda-max-entries 1)
                       (org-agenda-prefix-format "  ")))
-          (tags-todo "active+work+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Projects: Work")
-                      (org-agenda-prefix-format "%-30(pbl-format-project-prefix)")
-                      (org-agenda-dim-blocked-tasks 'invisible)))
-          (tags-todo "active+home+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Projects: Home")
-                      (org-agenda-prefix-format "%-30(pbl-format-project-prefix)")
-                      (org-agenda-block-separator nil)
-                      (org-agenda-dim-blocked-tasks 'invisible)))
-          (tags-todo "active+book+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Books")
-                      (org-agenda-prefix-format "%-30(pbl-format-project-prefix)")
-                      (org-agenda-block-separator nil)
-                      (org-agenda-dim-blocked-tasks 'invisible)))
-          (tags-todo "active+class+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Classes")
-                      (org-agenda-prefix-format "%-30(pbl-format-project-prefix)")
-                      (org-agenda-block-separator nil)
+          (tags-todo "active+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Active Projects: Next Steps")
+                      (org-agenda-prefix-format "%-10T %-30(pbl-format-project-prefix)")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (stuck ""
                      ((org-agenda-overriding-header "Stuck Projects")
                       (org-agenda-block-separator nil)
-                      (org-agenda-prefix-format "  ")))
+                      (org-agenda-prefix-format " %-30(concat \"stuck\")")))
           (tags-todo "paused+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Paused Projects")
-                      (org-agenda-prefix-format "%-30(pbl-format-project-prefix)")
+                      (org-agenda-prefix-format "%-10(concat \"paused\") %-30(pbl-format-project-prefix)")
                       (org-agenda-block-separator nil)
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "CATEGORY=\"inbox\""

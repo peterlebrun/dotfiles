@@ -226,7 +226,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                       (org-agenda-max-entries 1)
                       (org-agenda-prefix-format "  ")))
           (tags-todo "active+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Active Projects: Next Steps")
+                     ((org-agenda-overriding-header "Active Projects")
                       (org-agenda-prefix-format "  %-6T %-30(pbl-format-project-prefix)")
                       (org-agenda-sorting-strategy '(tag-up))
                       (org-agenda-dim-blocked-tasks 'invisible)))

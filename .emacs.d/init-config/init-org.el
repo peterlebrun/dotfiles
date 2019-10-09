@@ -185,14 +185,14 @@
          "* TODO %?:mit:\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
         ("j" "daily-goals" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
          "
-* TODO %?                                             :dailygoal:
+* TODO %?                                                 :daily:
 SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
-* TODO                                                :dailygoal:
+* TODO                                                    :daily:
 SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
-* TODO                                                :dailygoal:
+* TODO                                                    :daily:
 SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
         ("k" "weekly-goals" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
-         "* TODO %?:weeklygoal:\nDEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")))
+         "* TODO %?:weekly:\nDEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")))
 
 (add-hook 'org-agenda-mode-hook
           (lambda ()

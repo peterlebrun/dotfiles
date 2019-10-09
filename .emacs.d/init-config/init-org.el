@@ -210,7 +210,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
          ((agenda "" ((org-agenda-span 1)
-                      (org-agenda-prefix-format " %-12T ")
+                      (org-agenda-prefix-format " %-7T ")
                       (org-agenda-files (list (expand-file-name "goal.org" org-directory)))
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)))

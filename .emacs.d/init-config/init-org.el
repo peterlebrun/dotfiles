@@ -210,7 +210,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
          ((agenda "" ((org-agenda-span 1)
-                      (org-agenda-prefix-format " %-7T ")
+                      (org-agenda-prefix-format "  %-7T ")
                       (org-agenda-files (list (expand-file-name "goal.org" org-directory)))
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)))
@@ -227,18 +227,18 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                       (org-agenda-prefix-format "  ")))
           (tags-todo "active+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects: Next Steps")
-                      (org-agenda-prefix-format "%-10T %-30(pbl-format-project-prefix)")
+                      (org-agenda-prefix-format "  %-6T %-30(pbl-format-project-prefix)")
                       (org-agenda-sorting-strategy '(tag-up))
+                      (org-agenda-dim-blocked-tasks 'invisible)))
+          (tags-todo "paused+TODO=\"TODO\""
+                     ((org-agenda-overriding-header "Paused Projects")
+                      (org-agenda-prefix-format "  %-6T %-30(pbl-format-project-prefix)")
+                      (org-agenda-block-separator nil)
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (stuck ""
                      ((org-agenda-overriding-header "Stuck Projects")
                       (org-agenda-block-separator nil)
-                      (org-agenda-prefix-format " %-30(concat \"stuck\")")))
-          (tags-todo "paused+TODO=\"TODO\""
-                     ((org-agenda-overriding-header "Paused Projects")
-                      (org-agenda-prefix-format "%-10(concat \"paused\") %-30(pbl-format-project-prefix)")
-                      (org-agenda-block-separator nil)
-                      (org-agenda-dim-blocked-tasks 'invisible)))
+                      (org-agenda-prefix-format "  %-6(concat \"stuck\")")))
           (tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-skip-function
                        '(org-agenda-skip-if nil '(scheduled deadline)))

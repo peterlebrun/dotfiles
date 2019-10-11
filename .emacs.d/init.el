@@ -25,7 +25,7 @@
  '(epg-gpg-program "/usr/local/bin/gpg2")
  '(package-selected-packages
    (quote
-    (telephone-line spotify clojure-mode rust-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
+    (w3m w3 telephone-line spotify clojure-mode rust-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
 
 (add-to-list
  'package-archives
@@ -113,8 +113,9 @@
   (setq org-brain-visualize-default-choices 'all)
   (setq org-brain-title-max-length 12))
 
-(set-face-attribute 'default nil :font "FuraCode Nerd Font 18")
+(use-package w3m :ensure t)
 
+(set-face-attribute 'default nil :font "FuraCode Nerd Font 18")
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.

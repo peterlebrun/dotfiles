@@ -113,8 +113,6 @@
   (setq org-brain-visualize-default-choices 'all)
   (setq org-brain-title-max-length 12))
 
-(use-package w3m :ensure t)
-
 (set-face-attribute 'default nil :font "FuraCode Nerd Font 18")
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
@@ -127,6 +125,10 @@
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)
 (require 'init-org)
+
+; Make sure this is loaded _after init-exec-path-from-shell
+; because w3m-command relies on the path values
+(use-package w3m :ensure t)
 
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))

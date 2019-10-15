@@ -45,11 +45,10 @@
    "j" 'pbl--insert-file-contents-from-helm-search
    "k" 'kill-buffer
    "l" 'pbl--load-current-file
-   "m" 'next-buffer
-	 "n" 'previous-buffer
+	 "nl" 'pbl--narrow-to-line
    "o" 'other-window
    "r" 'toggle-frame-maximized
-   "w" 'pbl--narrow-or-widen-dwim
+   "w" 'widen
    "x" 'helm-M-x
    "z" 'pbl--open-zshrc)
 
@@ -192,6 +191,7 @@
       (pop-to-buffer test-output-buffer)))
 
   ; Taken from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
+  ; NOTE: This is no longer (and never was) used.  Leaving for reference.
   (defun pbl--narrow-or-widen-dwim (p)
   "Widen if buffer is narrowed, narrow-dwim otherwise.
 Dwim means: region, org-src-block, org-subtree, or
@@ -217,6 +217,11 @@ is already narrowed."
         ((derived-mode-p 'latex-mode)
          (LaTeX-narrow-to-environment))
         (t (narrow-to-defun))))
+
+  (defun pbl--narrow-to-line ()
+    "Narrow buffer to current line"
+    (interactive)
+    (narrow-to-region (line-beginning-position) (line-end-position)))
   )
 
 (use-package evil

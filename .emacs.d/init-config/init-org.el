@@ -113,70 +113,11 @@
         ("f" "freewrite" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U freewriting:%?\n")
         ("a" "morning-writing" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
-         "* %U morning writing
-- what are my five life goals??
-  + %?
-- what are today's three goals?
-  +
-- gratitude list
-  +
-- one game idea
-  +
-- ten opportunities
-  1.
-- ten problems to solve
-  1.
-- ten ways I can provide value
-  1.
-- morning freewriting")
+         (file "~/Dropbox/org-todo/templates/morning-writing.org"))
         ("d" "daily-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
-         "* %U daily-review
-- what are my five life goals??
-  + %?
-- productivity ::
-  +
-- mood ::
-  +
-- anxiety ::
-  +
-- energy ::
-  +
-- Today I wanted to accomplish
-  +
-- [ ] [[elisp:(org-capture nil \"m\")][Determine Tomorrow's Most Important Task]]
-- [ ] [[elisp:(org-capture nil \"j\")][Set Daily Goals]]
-- [ ] Review tomorrow's calendar
-- Was I resentful, selfish, self-seeking, dishonest or afraid?
-  +
-- Do I owe an apology?
-  +
-- Have I kept something to myself which should be discussed with another
-  person at once?
-  +
-- Was I kind and loving toward all?
-  +
-- What could I have done better?
-  +
-- Was I thinking of ourselves most of the time?  Or was I thinking of
-  what I could do for others, of what I could pack into the stream of
-  life?
-  +
-- cathartic freewriting")
+         (file "~/Dropbox/org-todo/templates/daily-review.org"))
         ("w" "weekly-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
-         "* %U weekly-review
-- My goals for this week were
-  + %?
-- I have accomplished
-  +
-- I have not accomplished (because...)
-  +
-- I would like to acknowledge myself for
-  +
-- During this week's coaching session I would like to focus on
-  +
-- Appointments this coming week
-  +
-- [[elisp:(org-capture nil \"k\")][Set Weekly Goals]]")
+         (file "~/Dropbox/org-todo/templates/weekly-review.org"))
         ("o" "thought" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U thought\n-%?")
         ("c" "appointment" entry (file+headline "~/Dropbox/org-todo/calendar.org" "calendar")

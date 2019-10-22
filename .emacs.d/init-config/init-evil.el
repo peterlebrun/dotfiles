@@ -42,6 +42,7 @@
    "k" 'kill-buffer
    "l" 'pbl--load-current-file
 	 "nl" 'pbl--narrow-to-line
+	 "nn" 'pbl--narrow-to-next-line
    "o" 'other-window
    "r" 'toggle-frame-maximized
    "w" 'widen
@@ -213,6 +214,16 @@ is already narrowed."
     "Narrow buffer to current line"
     (interactive)
     (narrow-to-region (line-beginning-position) (line-end-position)))
+
+  (defun pbl--narrow-to-next-line ()
+    "Keep buffer narrowed but move to next line"
+    (interactive)
+    (if (buffer-narrowed-p)
+        (progn
+          (widen)
+          (forward-line)
+          (narrow-to-region (line-beginning-position) (line-end-position)))
+      (message "Buffer not currently narrowed.")))
   )
 
 (use-package evil

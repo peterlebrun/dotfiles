@@ -18,7 +18,6 @@
    ;"a" 'pbl--insert-file-contents-from-helm-search
    "aa" 'pbl--org-agenda
    "ah" 'pbl--org-agenda-habit
-   "ai" 'pbl--org-agenda-inbox
    "as" 'pbl--org-agenda-stuck
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
@@ -31,8 +30,6 @@
    "co" 'pbl--org-capture-thought
    "cd" 'pbl--org-capture-daily-review
    "cw" 'pbl--org-capture-weekly-review
-   "cg" 'pbl--org-capture-gratitude-list
-   "cl" 'pbl--org-capture-random-list
    "cc" 'pbl--org-capture-calendar
    "d" 'pbl--open-writing-file-for-today
    "eo" 'pbl--open-org-config  ; emacs config for org
@@ -41,7 +38,6 @@
    "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
    "g" 'magit-status
-   "h" 'pbl--open-orgfile
    "j" 'pbl--insert-file-contents-from-helm-search
    "k" 'kill-buffer
    "l" 'pbl--load-current-file
@@ -112,11 +108,6 @@
     "Open custom agenda habit view"
     (interactive)
     (org-agenda nil "h"))
-
-  (defun pbl--org-agenda-inbox ()
-    "Open custom agenda inbox view"
-    (interactive)
-    (org-agenda nil "i"))
 
   (defun pbl--org-agenda-stuck ()
     "Open custom agenda stuck projects view"

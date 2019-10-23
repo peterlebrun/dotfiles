@@ -216,13 +216,18 @@ is already narrowed."
     (narrow-to-region (line-beginning-position) (line-end-position)))
 
   (defun pbl--narrow-to-next-line ()
-    "Keep buffer narrowed but move to next line"
+    "Keep buffer narrowed but move to next line.  At last line, widen and move to buffer start."
     (interactive)
     (if (buffer-narrowed-p)
         (progn
           (widen)
-          (forward-line)
-          (narrow-to-region (line-beginning-position) (line-end-position)))
+          (if (< (+ 1 (line-end-position)) (point-max))
+              (progn
+                (forward-line)
+                (narrow-to-region (line-beginning-position) (line-end-position)))
+            (progn
+              (goto-char (point-min))
+              (message "Reached end of buffer."))))
       (message "Buffer not currently narrowed.")))
   )
 

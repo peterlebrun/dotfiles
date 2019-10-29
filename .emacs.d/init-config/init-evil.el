@@ -15,6 +15,7 @@
    "|" 'split-window-right
    "-" 'split-window-below
    "0" 'delete-window
+   "1" 'delete-other-windows
    ;"a" 'pbl--insert-file-contents-from-helm-search
    "aa" 'pbl--org-agenda
    "ah" 'pbl--org-agenda-habit

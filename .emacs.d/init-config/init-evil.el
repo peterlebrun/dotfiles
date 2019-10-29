@@ -45,7 +45,7 @@
 	 "nn" 'pbl--narrow-to-next-line
    "o" 'other-window
    "r" 'toggle-frame-maximized
-   "w" 'widen
+   "w" 'pbl--widen-and-move-point
    "x" 'helm-M-x
    "z" 'pbl--open-zshrc)
 
@@ -229,6 +229,12 @@ is already narrowed."
               (goto-char (point-min))
               (message "Reached end of buffer."))))
       (message "Buffer not currently narrowed.")))
+
+  (defun pbl--widen-and-move-point ()
+    "Widen buffer and move point to start of buffer"
+    (interactive)
+    (widen)
+    (goto-char (point-min)))
   )
 
 (use-package evil

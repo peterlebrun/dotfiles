@@ -215,3 +215,5 @@ if [ -f $HOME/private.sh ]; then
 fi
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export DOTFILES="$HOME/eng/github.com/peterlebrun/dotfiles"
+export HTML2ORG="$HOME/eng/github.com/peterlebrun/html2org"

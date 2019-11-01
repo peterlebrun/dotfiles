@@ -43,7 +43,6 @@
 (setq org-agenda-window-setup 'current-window)
 (setq org-export-initial-scope 'subtree)
 (setq org-default-notes-file (concat org-directory "notes.org"))
-(setq org-agenda-diary-file (expand-file-name "diary.org" org-directory))
 (setq org-stuck-projects '("+active+LEVEL=2/-COMPLETE" ("TODO")))
 (setq org-agenda-use-time-grid nil) ; I don't find this useful
 ;; Note 20190916: This would make good blog post

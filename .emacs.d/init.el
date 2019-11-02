@@ -125,6 +125,7 @@
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)
 (require 'init-org)
+(require 'init-wiki2org)
 
 ; Make sure this is loaded _after init-exec-path-from-shell
 ; because w3m-command relies on the path values

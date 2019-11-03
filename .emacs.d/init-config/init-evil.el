@@ -46,6 +46,7 @@
 	 "nn" 'pbl--narrow-to-next-line
    "o" 'other-window
    "r" 'toggle-frame-maximized
+   "v" 'w2o-save-wikipedia-to-project
    "w" 'pbl--widen-and-move-point
    "x" 'helm-M-x
    "z" 'pbl--open-zshrc)

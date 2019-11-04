@@ -136,7 +136,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 (setq org-deadline-warning-days 7)
 ;; show me tasks scheduled or due in next week
 (setq org-agenda-span 'day)
-(setq org-agenda-hide-tags-regexp "active\\|project\\|book\\|work\\|home\\|class\\|paused")
+(setq org-agenda-hide-tags-regexp ".")
 
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
@@ -145,7 +145,6 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                       (org-agenda-files (list (expand-file-name "goal.org" org-directory)))
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)))
-                      (org-agenda-hide-tags-regexp ".")
                       (org-agenda-overriding-header "Goals")))
           (agenda "" ((org-agenda-span 5)
                       (org-agenda-skip-function
@@ -161,7 +160,6 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                   ((org-agenda-prefix-format " %-12T ")
                    (org-agenda-files (list (expand-file-name "habit.org" org-directory)))i
                    (org-agenda-sorting-strategy '(tag-up))
-                   (org-agenda-hide-tags-regexp ".")
                    (org-agenda-overriding-header "Habits")))
           (tags-todo "active+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects")

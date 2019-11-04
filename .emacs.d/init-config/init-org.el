@@ -157,6 +157,12 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                       (org-agenda-max-entries 1)
                       (org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
                       (org-agenda-prefix-format "  ")))
+          (agenda ""
+                  ((org-agenda-compact-blocks t)
+                   (org-agenda-prefix-format " %-12T ")
+                   (org-agenda-files (list (expand-file-name "habit.org" org-directory)))i
+                   (org-agenda-sorting-strategy '(tag-up))
+                   (org-agenda-hide-tags-regexp ".")))
           (tags-todo "active+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects")
                       (org-agenda-prefix-format "  %-6T %-30(pbl-format-project-prefix)")
@@ -183,14 +189,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                      ((org-agenda-skip-function
                        '(org-agenda-skip-if nil '(scheduled deadline)))
                       (org-agenda-files (list (expand-file-name "task.org" org-directory)))
-                      (org-agenda-overriding-header "tasks")))))
-        ("h" "habit view"
-         ((agenda ""
-                  ((org-agenda-compact-blocks t)
-                   (org-agenda-prefix-format " %-12T ")
-                   (org-agenda-files (list (expand-file-name "habit.org" org-directory)))
-                   (org-agenda-sorting-strategy '(tag-up))
-                   (org-agenda-hide-tags-regexp ".")))))))
+                      (org-agenda-overriding-header "tasks")))))))
 
 (defun pbl--org-skip-subtree-if-habit ()
   "Skip an agenda entry if it does not have a STYLE property equal to \"habit\"."

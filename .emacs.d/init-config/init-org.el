@@ -179,10 +179,8 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                       (org-agenda-block-separator nil)
                       (org-agenda-files (list (expand-file-name "project.org" org-directory)))
                       (org-agenda-prefix-format "  %-6(concat \"stuck\")")))
-          (tags-todo "CATEGORY=\"inbox\""
-                     ((org-agenda-skip-function
-                       '(org-agenda-skip-if nil '(scheduled deadline)))
-                      (org-agenda-files (list (expand-file-name "inbox.org" org-directory)))
+          (tags-todo "CATEGORY=\"inbox\"+TODO=\"TODO\""
+                     ((org-agenda-files (list (expand-file-name "inbox.org" org-directory)))
                       (org-agenda-overriding-header "inbox")))
           (tags-todo "CATEGORY=\"task\""
                      ((org-agenda-skip-function

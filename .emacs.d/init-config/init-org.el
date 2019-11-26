@@ -20,6 +20,7 @@
 (setq org-refile-targets `((,(expand-file-name "task.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "project.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "idea.org" org-directory) :maxlevel . 1)
+                           (,(expand-file-name "inbox.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "goal.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "thought.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "bookmark.org" org-directory) :maxlevel . 1)

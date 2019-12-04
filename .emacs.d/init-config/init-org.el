@@ -56,6 +56,19 @@
      " ")))
 (setq org-confirm-elisp-link-not-regexp "org-capture.*")
 
+(defun org-summary-todo (n-done n-not-done)
+  "Switch (sub)project to COMPLETE when all subtasks are done, to IN PROGRESS otherwise."
+  (let (org-log-done org-log-states)   ; turn off logging
+    (if (= n-done 0) (org-todo "NOT STARTED")
+      (if (> n-not-done 0) (org-todo "IN PROGRESS")
+        (progn
+          (org-todo "COMPLETE")
+          (org-set-tags-to (seq-remove
+                            (lambda (e) (string= e "active"))
+                            (org-get-tags))))))))
+
+(add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where
 ; it seemed like I was jumping between sequences when both had a state

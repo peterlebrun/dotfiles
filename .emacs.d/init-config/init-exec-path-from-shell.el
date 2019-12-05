@@ -4,6 +4,4 @@
   :config
   (exec-path-from-shell-initialize))
 
-(setq exec-path (cons "/usr/local/bin/w3m" exec-path))
-
 (provide 'init-exec-path-from-shell)

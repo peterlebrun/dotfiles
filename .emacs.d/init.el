@@ -129,10 +129,6 @@
 (require 'init-org)
 (require 'init-wiki2org)
 
-; Make sure this is loaded _after init-exec-path-from-shell
-; because w3m-command relies on the path values
-(use-package w3m :ensure t)
-
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
@@ -170,6 +166,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (toggle-scroll-bar nil)
+(setq split-height-threshold 1) ;default to split windows horizontally
 
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)

@@ -208,7 +208,9 @@ function update_ref() {
     return
 }
 export PATH="/usr/local/opt/node@10/bin:$PATH"
-export JAVA_HOME=$(/usr/libexec/java_home)
+if [ -f /usr/libexec/java_home ]; then
+    export JAVA_HOME=$(/usr/libexec/java_home)
+fi
 
 if [ -f $HOME/private.sh ]; then
     source $HOME/private.sh
@@ -236,4 +238,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-

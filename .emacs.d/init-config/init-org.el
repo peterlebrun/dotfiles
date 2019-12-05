@@ -47,18 +47,25 @@
 (setq org-stuck-projects '("+active+LEVEL=2/-COMPLETE" ("TODO")))
 (setq org-agenda-use-time-grid nil) ; I don't find this useful
 
+(setq pbl-org-agenda-project-name-size 22)
+(setq pbl-org-agenda-sparkline-size 10)
+(setq pbl-org-agenda-sparkline-start "[")
+(setq pbl-org-agenda-sparkline-body ?=) ;used as a character
+(setq pbl-org-agenda-sparkline-end "]")
 ;; Note 20190916: This would make a good blog post
 (defun pbl-format-project-prefix ()
   "Format project prefix to show parent heading"
-  (let ((outline-list (org-get-outline-path))
-        (sparkline (pbl-get-sparkline (pbl-get-stats-cookie))))
+  (let* ((project-name (cadr (org-get-outline-path)))
+	 (sparkline (pbl-get-sparkline (pbl-get-stats-cookie)))
+	 (project-name-size pbl-org-agenda-project-name-size)
+	 (project-name-length (length project-name))
+	 (num-spaces (- project-name-size project-name-length)))
     (concat
+     (if (< num-spaces 0)
+	 (substring project-name 0 project-name-size)
+       (concat project-name (make-string num-spaces ?\ )))
      " "
-     (cadr outline-list)
-     (if (> (length outline-list) 2) " ..." "")
-     " "
-     sparkline
-     " ")))
+     sparkline)))
 
 (defun pbl-get-stats-cookie ()
   "Get stats cookie of parent heading of current todo task"
@@ -78,14 +85,16 @@
   (if (char-equal (string-to-char (substring stats 0 1)) ?[)
       (let* ((stats-int (replace-regexp-in-string "\\[\\|\\]\\|%" "" stats))
 	     (stats-float (/ (float (string-to-number stats-int)) 100))
-	     (sparkline-size 10)
-	     (num-bars (truncate (* stats-float 10)))
+	     (sparkline-size pbl-org-agenda-sparkline-size)
+	     (num-bars (truncate (* stats-float sparkline-size)))
 	     (num-spaces (- sparkline-size num-bars)))
 	(concat
-	 "["
-	 (make-string num-bars ?-)
+	 pbl-org-agenda-sparkline-start
+	 (make-string num-bars pbl-org-agenda-sparkline-body)
 	 (make-string num-spaces ?\ )
-	 "] "
+	 pbl-org-agenda-sparkline-end
+	 " "
+	 (if (< (string-to-number stats-int) 10) " ")
 	 stats-int
 	 "%"))
     ""))
@@ -214,13 +223,13 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                    (org-agenda-overriding-header "Habits")))
           (tags-todo "active+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects")
-                      (org-agenda-prefix-format "  %-5T %-30(pbl-format-project-prefix) %-5(pbl-get-project-progress)")
+                      (org-agenda-prefix-format "%-5T  %(pbl-format-project-prefix)  ")
                       (org-agenda-sorting-strategy '(tag-up))
                       (org-agenda-files (list (expand-file-name "project.org" org-directory)))
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "paused+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Paused Projects")
-                      (org-agenda-prefix-format "  %-5T %-30(pbl-format-project-prefix)")
+                      (org-agenda-prefix-format "%-5T  %(pbl-format-project-prefix)  ")
                       (org-agenda-block-separator nil)
                       (org-agenda-files (list (expand-file-name "project.org" org-directory)))
                       (org-agenda-dim-blocked-tasks 'invisible)))

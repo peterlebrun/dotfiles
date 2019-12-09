@@ -48,10 +48,10 @@
 (setq org-agenda-use-time-grid nil) ; I don't find this useful
 
 (setq pbl-org-agenda-project-name-size 22)
-(setq pbl-org-agenda-sparkline-size 10)
-(setq pbl-org-agenda-sparkline-start "[")
-(setq pbl-org-agenda-sparkline-body ?=) ;used as a character
-(setq pbl-org-agenda-sparkline-end "]")
+(setq pbl-org-agenda-sparkline-size 8)
+(setq pbl-org-agenda-sparkline-start "|")
+(setq pbl-org-agenda-sparkline-body ?·) ;used as a character
+;(setq pbl-org-agenda-sparkline-end "]")
 ;; Note 20190916: This would make a good blog post
 (defun pbl-format-project-prefix ()
   "Format project prefix to show parent heading"
@@ -92,8 +92,8 @@
 	 pbl-org-agenda-sparkline-start
 	 (make-string num-bars pbl-org-agenda-sparkline-body)
 	 (make-string num-spaces ?\ )
-	 pbl-org-agenda-sparkline-end
-	 " "
+	 ;pbl-org-agenda-sparkline-end
+	 ;" "
 	 (if (< (string-to-number stats-int) 10) " ")
 	 stats-int
 	 "%"))

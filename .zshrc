@@ -220,6 +220,7 @@ export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export DOTFILES="$HOME/eng/github.com/peterlebrun/dotfiles"
 export HTML2ORG="$HOME/eng/github.com/peterlebrun/html2org"
 export PCLISP="$HOME/eng/github.com/peterlebrun/practical-common-lisp"
+export QUANTECON="$HOME/eng/github.com/peterlebrun/quantecon"
 
 # added by Snowflake SnowSQL installer v1.0
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH

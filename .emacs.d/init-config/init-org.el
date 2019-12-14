@@ -1,6 +1,12 @@
 ;; set key for agenda
 (global-set-key (kbd "C-c a") 'org-agenda)
 
+;; Not sure if I should be setting these but eff it, YOLO
+(set-face-attribute 'org-agenda-structure nil :foreground "white" :weight 'bold)
+(set-face-attribute 'org-agenda-date nil :foreground "LightGray" :weight 'ultra-light)
+(set-face-attribute 'org-agenda-date-weekend nil :foreground "LightGray" :weight 'ultra-light)
+(set-face-attribute 'org-agenda-date-today nil :foreground "LightGray" :weight 'ultra-light :slant 'normal)
+
 (setq org-modules '(org-w3m
                     org-bbdb
                     org-habit

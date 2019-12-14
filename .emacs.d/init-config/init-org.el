@@ -211,7 +211,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
          ((agenda "" ((org-agenda-span 1)
-                      (org-agenda-prefix-format "%-7T ")
+                      (org-agenda-prefix-format "")
                       (org-agenda-files (list (expand-file-name "goal.org" org-directory)))
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)))
@@ -219,7 +219,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
           (agenda "" ((org-agenda-span 5)
                       (org-agenda-skip-function
                        '(org-agenda-skip-entry-if 'todo 'done))
-                      (org-agenda-prefix-format "%-12:c%?-12t% s")
+                      (org-agenda-prefix-format "")
                       (org-agenda-files (list (expand-file-name "task.org" org-directory)
                                               (expand-file-name "project.org" org-directory)))
                       (org-agenda-block-separator nil)
@@ -230,7 +230,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                       (org-agenda-max-entries 1)
                       (org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
                       (org-agenda-prefix-format "")))
-          (agenda "" ((org-agenda-prefix-format "%-12T ")
+          (agenda "" ((org-agenda-prefix-format "")
                       (org-agenda-files (list (expand-file-name "habit.org" org-directory)))i
                       (org-agenda-span 1)
                       (org-agenda-sorting-strategy '(tag-up))

@@ -198,7 +198,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
          ((agenda "" ((org-agenda-span 1)
-                      (org-agenda-prefix-format "  %-7T ")
+                      (org-agenda-prefix-format "%-7T ")
                       (org-agenda-files (list (expand-file-name "goal.org" org-directory)))
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)))
@@ -206,6 +206,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
           (agenda "" ((org-agenda-span 5)
                       (org-agenda-skip-function
                        '(org-agenda-skip-entry-if 'todo 'done))
+                      (org-agenda-prefix-format "%-12:c%?-12t% s")
                       (org-agenda-files (list (expand-file-name "task.org" org-directory)
                                               (expand-file-name "project.org" org-directory)))
                       (org-agenda-overriding-header "Today's Scheduled Tasks")))
@@ -213,21 +214,21 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                      ((org-agenda-overriding-header "Bookmarks")
                       (org-agenda-max-entries 1)
                       (org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
-                      (org-agenda-prefix-format "  ")))
+                      (org-agenda-prefix-format "")))
           (agenda ""
-                  ((org-agenda-prefix-format " %-12T ")
+                  ((org-agenda-prefix-format "%-12T ")
                    (org-agenda-files (list (expand-file-name "habit.org" org-directory)))i
                    (org-agenda-sorting-strategy '(tag-up))
                    (org-agenda-overriding-header "Habits")))
           (tags-todo "active+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Active Projects")
-                      (org-agenda-prefix-format " %-5T  %(pbl-format-project-prefix)  ")
+                      (org-agenda-prefix-format "%-5T  %(pbl-format-project-prefix)  ")
                       (org-agenda-sorting-strategy '(tag-up))
                       (org-agenda-files (list (expand-file-name "project.org" org-directory)))
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "paused+TODO=\"TODO\""
                      ((org-agenda-overriding-header "Paused Projects")
-                      (org-agenda-prefix-format " %-5T  %(pbl-format-project-prefix)  ")
+                      (org-agenda-prefix-format "%-5T  %(pbl-format-project-prefix)  ")
                       (org-agenda-block-separator nil)
                       (org-agenda-files (list (expand-file-name "project.org" org-directory)))
                       (org-agenda-dim-blocked-tasks 'invisible)))
@@ -235,14 +236,16 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                      ((org-agenda-overriding-header "Stuck Projects")
                       (org-agenda-block-separator nil)
                       (org-agenda-files (list (expand-file-name "project.org" org-directory)))
-                      (org-agenda-prefix-format " %-5(concat \"stuck\")  ")))
+                      (org-agenda-prefix-format "%-5(concat \"stuck\")  ")))
           (tags-todo "CATEGORY=\"inbox\"+TODO=\"TODO\""
                      ((org-agenda-files (list (expand-file-name "inbox.org" org-directory)))
+                      (org-agenda-prefix-format "")
                       (org-agenda-overriding-header "inbox")))
           (tags-todo "CATEGORY=\"task\""
                      ((org-agenda-skip-function
                        '(org-agenda-skip-if nil '(scheduled deadline)))
                       (org-agenda-files (list (expand-file-name "task.org" org-directory)))
+                      (org-agenda-prefix-format "")
                       (org-agenda-overriding-header "tasks")))))))
 
 (defun pbl--org-skip-subtree-if-habit ()

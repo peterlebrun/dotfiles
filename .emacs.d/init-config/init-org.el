@@ -223,7 +223,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                        '(org-agenda-skip-entry-if 'todo 'done))
                       (org-agenda-files (list (expand-file-name "task.org" org-directory)
                                               (expand-file-name "project.org" org-directory)))
-                      (org-agenda-overriding-header (pbl-right-pad-header "TODAY'S AGENDA" ))))
+                      (org-agenda-overriding-header (pbl-right-pad-header "TODAY'S AGENDA"))))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
                      ((org-agenda-overriding-header (pbl-right-pad-header "BOOKMARKS"))
                       (org-agenda-max-entries 1)

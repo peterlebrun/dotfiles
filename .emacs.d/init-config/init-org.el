@@ -190,76 +190,65 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 
 (add-hook 'org-agenda-mode-hook
           (lambda ()
-            (setq org-habit-graph-column 40)
+            (setq org-habit-graph-column 45)
             (define-key org-agenda-mode-map (kbd "j") 'org-agenda-next-item)
             (define-key org-agenda-mode-map (kbd "k") 'org-agenda-previous-item)
             (define-key org-agenda-mode-map (kbd "RET") 'org-agenda-open-link)))
 
 (setq org-deadline-warning-days 3) ; warn me of any deadlines in the next 5 days
 (setq org-agenda-hide-tags-regexp ".")
-(setq pbl-header-length 67)
-(setq pbl-header-char ?-)
+(setq pbl-header-length 73)
+(setq pbl-header-pad ?-)
 
-(defun pbl-make-nice-header (tag &optional add-newline)
+(defun pbl-right-pad-header (tag &optional skip-newline)
   "Make a header that has a certain length"
   (concat
-   (if add-newline "\n")
-   (upcase tag)
+   (if (not skip-newline) "\n")
+   tag
    " "
-   (make-string (- pbl-header-length (length tag)) pbl-header-char)))
+   (make-string (- pbl-header-length (length tag)) pbl-header-pad)))
+
+(setq org-agenda-block-separator nil)
+(setq org-agenda-prefix-format "")
 
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
          ((agenda "" ((org-agenda-span 1)
-                      (org-agenda-prefix-format "")
                       (org-agenda-files (list (expand-file-name "goal.org" org-directory)))
                       (org-agenda-skip-function
                        '(or (org-agenda-skip-entry-if 'todo 'done)))
-                      (org-agenda-overriding-header (pbl-make-nice-header "GOALS"))))
+                      (org-agenda-overriding-header (pbl-right-pad-header "GOALS" t))))
           (agenda "" ((org-agenda-span 5)
                       (org-agenda-skip-function
                        '(org-agenda-skip-entry-if 'todo 'done))
-                      (org-agenda-prefix-format "")
                       (org-agenda-files (list (expand-file-name "task.org" org-directory)
                                               (expand-file-name "project.org" org-directory)))
-                      (org-agenda-block-separator nil)
-                      (org-agenda-overriding-header (pbl-make-nice-header "TODAY'S AGENDA" t))))
+                      (org-agenda-overriding-header (pbl-right-pad-header "TODAY'S AGENDA" ))))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
-                     ((org-agenda-block-separator nil)
-                      (org-agenda-overriding-header (pbl-make-nice-header "BOOKMARKS" t))
+                     ((org-agenda-overriding-header (pbl-right-pad-header "BOOKMARKS"))
                       (org-agenda-max-entries 1)
-                      (org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
-                      (org-agenda-prefix-format "")))
-          (agenda "" ((org-agenda-prefix-format "")
-                      (org-agenda-files (list (expand-file-name "habit.org" org-directory)))i
+                      (org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))))
+          (agenda "" ((org-agenda-files (list (expand-file-name "habit.org" org-directory)))i
                       (org-agenda-span 1)
                       (org-agenda-sorting-strategy '(tag-up))
-                      (org-agenda-block-separator nil)
-                      (org-agenda-overriding-header (pbl-make-nice-header "HABITS" t))))
+                      (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
           (tags-todo "active+TODO=\"TODO\""
-                     ((org-agenda-block-separator nil)
-                      (org-agenda-overriding-header (pbl-make-nice-header "ACTIVE PROJECTS" t))
+                     ((org-agenda-overriding-header (pbl-right-pad-header "ACTIVE PROJECTS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)  ")
                       (org-agenda-sorting-strategy '(tag-up))
                       (org-agenda-files (list (expand-file-name "project.org" org-directory)))
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (stuck ""
-                     ((org-agenda-block-separator nil)
-                      (org-agenda-overriding-header (pbl-make-nice-header "STUCK PROJECTS" t))
-                      (org-agenda-files (list (expand-file-name "project.org" org-directory)))
-                      (org-agenda-prefix-format "")))
+                     ((org-agenda-overriding-header (pbl-right-pad-header "STUCK PROJECTS"))
+                      (org-agenda-files (list (expand-file-name "project.org" org-directory)))))
           (tags-todo "CATEGORY=\"inbox\"+TODO=\"TODO\""
                      ((org-agenda-files (list (expand-file-name "inbox.org" org-directory)))
-                      (org-agenda-prefix-format "")
-                      (org-agenda-block-separator nil)
-                      (org-agenda-overriding-header (pbl-make-nice-header "INBOX" t))))
+                      (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))
           (tags-todo "CATEGORY=\"task\""
                      ((org-agenda-skip-function
                        '(org-agenda-skip-if nil '(scheduled deadline)))
                       (org-agenda-files (list (expand-file-name "task.org" org-directory)))
-                      (org-agenda-prefix-format "")
-                      (org-agenda-overriding-header (pbl-make-nice-header "tasks" t))
-                      (org-agenda-block-separator nil)))))))
+                      (org-agenda-overriding-header (pbl-right-pad-header "TASKS"))))))))
 
 (defun pbl--org-skip-subtree-if-habit ()
   "Skip an agenda entry if it does not have a STYLE property equal to \"habit\"."

@@ -215,7 +215,8 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
    " "
    (make-string (- pbl-header-length (length tag)) pbl-header-pad)))
 
-(setq org-agenda-block-separator "")
+; Defaults that will be overriden if necessary
+(setq org-agenda-block-separator nil)
 (setq org-agenda-prefix-format "")
 (setq org-agenda-span 1)
 (setq org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
@@ -228,7 +229,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                       (org-agenda-overriding-header (pbl-right-pad-header "GOALS"))))
           (agenda "" ((org-agenda-files (list (expand-file-name "task.org" org-directory)
                                               (expand-file-name "project.org" org-directory)))
-                      (org-agenda-span 5)
+                      (org-agenda-span 4)
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
                      ((org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
@@ -246,8 +247,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                       (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))
           (tags-todo "CATEGORY=\"task\""
                      ((org-agenda-files (list (expand-file-name "task.org" org-directory)))
-                      (org-agenda-skip-function
-                       '(org-agenda-skip-if nil '(scheduled deadline)))
+                      (org-agenda-skip-function '(org-agenda-skip-if nil '(scheduled deadline)))
                       (org-agenda-overriding-header (pbl-right-pad-header "TASKS"))))))))
 
 ;; don't show tasks as scheduled if they are already shown as a deadline

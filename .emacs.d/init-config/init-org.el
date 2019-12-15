@@ -2,10 +2,10 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 ;; Not sure if I should be setting these but eff it, YOLO
-(set-face-attribute 'org-agenda-structure nil :foreground "white" :weight 'bold :underline t)
-(set-face-attribute 'org-agenda-date nil :foreground "Gray" :weight 'ultra-light :underline nil)
-(set-face-attribute 'org-agenda-date-weekend nil :foreground "Gray" :weight 'ultra-light)
-(set-face-attribute 'org-agenda-date-today nil :foreground "Gray" :weight 'ultra-light :slant 'normal)
+(set-face-attribute 'org-agenda-structure nil :foreground "LightGray" :weight 'normal)
+(set-face-attribute 'org-agenda-date nil :foreground "DarkGray" :weight 'ultra-light)
+(set-face-attribute 'org-agenda-date-weekend nil :foreground "DarkGray" :weight 'ultra-light)
+(set-face-attribute 'org-agenda-date-today nil :foreground "DarkGray" :weight 'ultra-light :slant 'normal)
 (set-face-attribute 'org-scheduled nil :foreground "white" :weight 'ultra-light)
 (set-face-attribute 'org-scheduled-today nil :foreground "white" :weight 'ultra-light)
 (set-face-attribute 'org-todo nil :foreground "white" :weight 'ultra-light)
@@ -216,8 +216,8 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
    (make-string (- pbl-header-length (length tag)) pbl-header-pad)))
 
 ; Defaults that will be overriden if necessary
-(setq org-agenda-block-separator nil)
-(setq org-agenda-prefix-format "")
+(setq org-agenda-overriding-header "")
+(setq org-agenda-prefix-format " ")
 (setq org-agenda-span 1)
 (setq org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
 
@@ -226,29 +226,29 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
          ((agenda "" ((org-agenda-files (list (expand-file-name "goal.org" org-directory)))
-                      (org-agenda-overriding-header (pbl-right-pad-header "GOALS"))))
+                      (org-agenda-overriding-header "GOALS")))
           (agenda "" ((org-agenda-files (list (expand-file-name "task.org" org-directory)
                                               (expand-file-name "project.org" org-directory)))
                       (org-agenda-span 4)
-                      (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
+                      (org-agenda-block-separator "AGENDA")))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
                      ((org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
                       (org-agenda-max-entries 1)
-                      (org-agenda-overriding-header (pbl-right-pad-header "BOOKMARKS"))))
+                      (org-agenda-block-separator "BOOKMARKS")))
           (agenda "" ((org-agenda-files (list (expand-file-name "habit.org" org-directory)))
-                      (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
+                      (org-agenda-block-separator "HABITS")))
           (tags-todo "active+TODO=\"TODO\""
                      ((org-agenda-files (list (expand-file-name "project.org" org-directory)))
-                      (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)  ")
+                      (org-agenda-block-separator "PROJECTS")
+                      (org-agenda-prefix-format " %(pbl-format-project-prefix)  ")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-files (list (expand-file-name "inbox.org" org-directory)))
-                      (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))
+                      (org-agenda-block-separator "INBOX")))
           (tags-todo "CATEGORY=\"task\""
                      ((org-agenda-files (list (expand-file-name "task.org" org-directory)))
                       (org-agenda-skip-function '(org-agenda-skip-if nil '(scheduled deadline)))
-                      (org-agenda-overriding-header (pbl-right-pad-header "TASKS"))))))))
+                      (org-agenda-block-separator "TASKS")))))))
 
 ;; don't show tasks as scheduled if they are already shown as a deadline
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)

@@ -231,10 +231,6 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                                               (expand-file-name "project.org" org-directory)))
                       (org-agenda-span 4)
                       (org-agenda-overriding-header "AGENDA")))
-          (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
-                     ((org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
-                      (org-agenda-max-entries 1)
-                      (org-agenda-block-separator "BOOKMARKS")))
           (agenda "" ((org-agenda-files (list (expand-file-name "habit.org" org-directory)))
                       (org-agenda-block-separator "HABITS")))
           (tags-todo "active+TODO=\"TODO\""
@@ -242,13 +238,17 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                       (org-agenda-block-separator "PROJECTS")
                       (org-agenda-prefix-format " %(pbl-format-project-prefix)  ")
                       (org-agenda-dim-blocked-tasks 'invisible)))
-          (tags-todo "CATEGORY=\"inbox\""
-                     ((org-agenda-files (list (expand-file-name "inbox.org" org-directory)))
-                      (org-agenda-block-separator "INBOX")))
+          (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
+                     ((org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
+                      (org-agenda-max-entries 1)
+                      (org-agenda-block-separator "BOOKMARKS")))
           (tags-todo "CATEGORY=\"task\""
                      ((org-agenda-files (list (expand-file-name "task.org" org-directory)))
                       (org-agenda-skip-function '(org-agenda-skip-if nil '(scheduled deadline)))
-                      (org-agenda-block-separator "TASKS")))))))
+                      (org-agenda-block-separator "TASKS")))
+          (tags-todo "CATEGORY=\"inbox\""
+                     ((org-agenda-files (list (expand-file-name "inbox.org" org-directory)))
+                      (org-agenda-block-separator "INBOX")))))))
 
 ;; don't show tasks as scheduled if they are already shown as a deadline
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)

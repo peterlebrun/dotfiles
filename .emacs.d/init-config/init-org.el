@@ -2,10 +2,15 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 ;; Not sure if I should be setting these but eff it, YOLO
-(set-face-attribute 'org-agenda-structure nil :foreground "white" :weight 'bold)
-(set-face-attribute 'org-agenda-date nil :foreground "LightGray" :weight 'ultra-light)
-(set-face-attribute 'org-agenda-date-weekend nil :foreground "LightGray" :weight 'ultra-light)
-(set-face-attribute 'org-agenda-date-today nil :foreground "LightGray" :weight 'ultra-light :slant 'normal)
+(set-face-attribute 'org-agenda-structure nil :foreground "white" :weight 'bold :underline t)
+(set-face-attribute 'org-agenda-date nil :foreground "Gray" :weight 'ultra-light :underline nil)
+(set-face-attribute 'org-agenda-date-weekend nil :foreground "Gray" :weight 'ultra-light)
+(set-face-attribute 'org-agenda-date-today nil :foreground "Gray" :weight 'ultra-light :slant 'normal)
+(set-face-attribute 'org-scheduled nil :foreground "white" :weight 'ultra-light)
+(set-face-attribute 'org-scheduled-today nil :foreground "white" :weight 'ultra-light)
+(set-face-attribute 'org-todo nil :foreground "white" :weight 'ultra-light)
+(set-face-attribute 'org-upcoming-deadline nil :foreground "white" :weight 'ultra-light)
+(set-face-attribute 'org-warning nil :foreground "white" :weight 'ultra-light)
 
 (setq org-modules '(org-w3m
                     org-bbdb
@@ -56,6 +61,7 @@
 (setq pbl-org-agenda-project-name-size 22)
 (setq pbl-org-agenda-sparkline-size 15)
 (setq pbl-org-agenda-sparkline-start "|")
+(setq pbl-org-agenda-sparkline-end "]")
 (setq pbl-org-agenda-sparkline-body ?·) ;used as a character
 
 ;; Note 20190916: This would make a good blog post
@@ -98,6 +104,8 @@
          pbl-org-agenda-sparkline-start
          (make-string num-bars pbl-org-agenda-sparkline-body)
          (make-string num-spaces ?\ )
+         pbl-org-agenda-sparkline-end
+         " "
          (if (< (string-to-number stats-int) 10) " ")
          stats-int
          "%"))
@@ -142,11 +150,11 @@
                            (?C . (:foreground "OliveDrab"))))
 
 (setq org-todo-keyword-faces
-      '(("TODO" . org-warning)
+      '(("TODO" . (:foreground "LightGreen" :weight 'ultra-light))
         ("NOT STARTED" . org-warning)
         ("IN PROGRESS" . "yellow")
         ("CANCELED" . (:foreground "LightSteelBlue" :weight bold))
-        ("DONE" . (:foreground "LightSteelBlue" :weight bold))
+        ("DONE" . (:foreground "#8C5353" :weight 'ultra-light))
         ("COMPLETE" . (:foreground "LightSteelBlue" :weight bold))))
 
 ;;capture todo items using C-c c t
@@ -198,17 +206,16 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 (setq org-deadline-warning-days 3) ; warn me of any deadlines in the next 5 days
 (setq org-agenda-hide-tags-regexp ".")
 (setq pbl-header-length 73)
-(setq pbl-header-pad ?-)
+(setq pbl-header-pad ?\ )
 
-(defun pbl-right-pad-header (tag &optional skip-newline)
+(defun pbl-right-pad-header (tag)
   "Make a header that has a certain length"
   (concat
-   (if (not skip-newline) "\n")
    tag
    " "
    (make-string (- pbl-header-length (length tag)) pbl-header-pad)))
 
-(setq org-agenda-block-separator nil)
+(setq org-agenda-block-separator "")
 (setq org-agenda-prefix-format "")
 (setq org-agenda-span 1)
 (setq org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
@@ -218,7 +225,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
          ((agenda "" ((org-agenda-files (list (expand-file-name "goal.org" org-directory)))
-                      (org-agenda-overriding-header (pbl-right-pad-header "GOALS" t))))
+                      (org-agenda-overriding-header (pbl-right-pad-header "GOALS"))))
           (agenda "" ((org-agenda-files (list (expand-file-name "task.org" org-directory)
                                               (expand-file-name "project.org" org-directory)))
                       (org-agenda-span 5)

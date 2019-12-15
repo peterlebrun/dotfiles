@@ -210,52 +210,38 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 
 (setq org-agenda-block-separator nil)
 (setq org-agenda-prefix-format "")
+(setq org-agenda-span 1)
+(setq org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
 
+; @TODO: Replace org-agenda-files with macro expansion?
+; @TODO: Generate "org-agenda-custom-commands" via macro expansion that hides empty blocks
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
-         ((agenda "" ((org-agenda-span 1)
-                      (org-agenda-files (list (expand-file-name "goal.org" org-directory)))
-                      (org-agenda-skip-function
-                       '(or (org-agenda-skip-entry-if 'todo 'done)))
+         ((agenda "" ((org-agenda-files (list (expand-file-name "goal.org" org-directory)))
                       (org-agenda-overriding-header (pbl-right-pad-header "GOALS" t))))
-          (agenda "" ((org-agenda-span 5)
-                      (org-agenda-skip-function
-                       '(org-agenda-skip-entry-if 'todo 'done))
-                      (org-agenda-files (list (expand-file-name "task.org" org-directory)
+          (agenda "" ((org-agenda-files (list (expand-file-name "task.org" org-directory)
                                               (expand-file-name "project.org" org-directory)))
-                      (org-agenda-overriding-header (pbl-right-pad-header "TODAY'S AGENDA"))))
+                      (org-agenda-span 5)
+                      (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
-                     ((org-agenda-overriding-header (pbl-right-pad-header "BOOKMARKS"))
+                     ((org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
                       (org-agenda-max-entries 1)
-                      (org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))))
-          (agenda "" ((org-agenda-files (list (expand-file-name "habit.org" org-directory)))i
-                      (org-agenda-span 1)
-                      (org-agenda-sorting-strategy '(tag-up))
+                      (org-agenda-overriding-header (pbl-right-pad-header "BOOKMARKS"))))
+          (agenda "" ((org-agenda-files (list (expand-file-name "habit.org" org-directory)))
                       (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
           (tags-todo "active+TODO=\"TODO\""
-                     ((org-agenda-overriding-header (pbl-right-pad-header "ACTIVE PROJECTS"))
+                     ((org-agenda-files (list (expand-file-name "project.org" org-directory)))
+                      (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)  ")
-                      (org-agenda-sorting-strategy '(tag-up))
-                      (org-agenda-files (list (expand-file-name "project.org" org-directory)))
                       (org-agenda-dim-blocked-tasks 'invisible)))
-          (stuck ""
-                     ((org-agenda-overriding-header (pbl-right-pad-header "STUCK PROJECTS"))
-                      (org-agenda-files (list (expand-file-name "project.org" org-directory)))))
-          (tags-todo "CATEGORY=\"inbox\"+TODO=\"TODO\""
+          (tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-files (list (expand-file-name "inbox.org" org-directory)))
                       (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))
           (tags-todo "CATEGORY=\"task\""
-                     ((org-agenda-skip-function
+                     ((org-agenda-files (list (expand-file-name "task.org" org-directory)))
+                      (org-agenda-skip-function
                        '(org-agenda-skip-if nil '(scheduled deadline)))
-                      (org-agenda-files (list (expand-file-name "task.org" org-directory)))
                       (org-agenda-overriding-header (pbl-right-pad-header "TASKS"))))))))
-
-(defun pbl--org-skip-subtree-if-habit ()
-  "Skip an agenda entry if it does not have a STYLE property equal to \"habit\"."
-  (let ((subtree-end (save-excursion (org-end-of-subtree t))))
-    (if (string= (org-entry-get nil "STYLE") "habit")
-        subtree-end
-      nil)))
 
 ;; don't show tasks as scheduled if they are already shown as a deadline
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
@@ -264,14 +250,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 (setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
 ;; don't show tasks that are scheduled or have deadlines in the
 ;; normal todo list
-(setq org-agenda-todo-ignore-deadlines (quote all))
-(setq org-agenda-todo-ignore-scheduled (quote all))
-;; sort tasks in order of when they are due and then by priority
-(setq org-agenda-sorting-strategy
-      (quote
-       ((agenda deadline-up priority-down)
-        (todo priority-down category-keep)
-        (tags priority-down category-keep)
-        (search category-keep))))
+(setq org-agenda-todo-ignore-deadlines 'all)
+(setq org-agenda-todo-ignore-scheduled 'all)
 
 (provide 'init-org)

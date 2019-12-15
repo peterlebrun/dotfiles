@@ -225,12 +225,12 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 ; @TODO: Generate "org-agenda-custom-commands" via macro expansion that hides empty blocks
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
-         ((agenda "" ((org-agenda-files (list (expand-file-name "goal.org" org-directory)))
-                      (org-agenda-overriding-header "GOALS")))
+         (;(agenda "" ((org-agenda-files (list (expand-file-name "goal.org" org-directory)))
+          ;            (org-agenda-overriding-header "GOALS")))
           (agenda "" ((org-agenda-files (list (expand-file-name "task.org" org-directory)
                                               (expand-file-name "project.org" org-directory)))
                       (org-agenda-span 4)
-                      (org-agenda-block-separator "AGENDA")))
+                      (org-agenda-overriding-header "AGENDA")))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
                      ((org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
                       (org-agenda-max-entries 1)

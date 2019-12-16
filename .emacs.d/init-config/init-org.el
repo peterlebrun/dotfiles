@@ -221,6 +221,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 (setq org-agenda-prefix-format "")
 (setq org-agenda-span 1)
 (setq org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+(setq org-agenda-add-newline-before-block-separator nil)
 
 (defun pbl-org-agenda-files (&rest files)
   (loop for f in files collect (expand-file-name (concat f ".org") org-directory)))
@@ -264,7 +265,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 (setq org-agenda-todo-ignore-scheduled 'all)
 
 ; overwrite function - exactly the same as "org-agenda.el"
-; except I remove the newline before org-agenda-block-separator
+; except I add conditional on whether to add newline before block-separator
 (defun org-agenda-prepare (&optional name)
   (let ((filter-alist (when org-agenda-persistent-filter
 			(with-current-buffer
@@ -278,6 +279,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 	  (put 'org-agenda-tag-filter :preset-filter nil)
 	  (put 'org-agenda-category-filter :preset-filter nil)
 	  (put 'org-agenda-regexp-filter :preset-filter nil)
+	  (put 'org-agenda-effort-filter :preset-filter nil)
 	  ;; Popup existing buffer
 	  (org-agenda-prepare-window (get-buffer org-agenda-buffer-name)
 				     filter-alist)
@@ -299,7 +301,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 	    (goto-char (point-max))
 	    (unless (or (bobp) org-agenda-compact-blocks
 			(not org-agenda-block-separator))
-	      (insert ""
+	      (insert (if org-agenda-add-newline-before-block-separator "\n" "")
 		      (if (stringp org-agenda-block-separator)
 			  org-agenda-block-separator
 			(make-string (window-width) org-agenda-block-separator))

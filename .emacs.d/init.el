@@ -18,6 +18,7 @@
 
 (setq pbl-package-root "~/eng/github.com/peterlebrun/")
 (setq create-lockfiles nil)
+(setq vc-follow-symlinks t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

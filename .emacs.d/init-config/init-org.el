@@ -205,7 +205,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 
 (setq org-deadline-warning-days 3) ; warn me of any deadlines in the next 5 days
 (setq org-agenda-hide-tags-regexp ".")
-(setq pbl-header-length 73)
+(setq pbl-header-length 72)
 (setq pbl-header-pad ?\ )
 
 (defun pbl-right-pad-header (tag)

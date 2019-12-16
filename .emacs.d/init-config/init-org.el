@@ -222,33 +222,35 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 (setq org-agenda-span 1)
 (setq org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
 
+(defun pbl-org-agenda-files (&rest files)
+  (loop for f in files collect (expand-file-name (concat f ".org") org-directory)))
+
 ; @TODO: Replace org-agenda-files with macro expansion?
 ; @TODO: Generate "org-agenda-custom-commands" via macro expansion that hides empty blocks
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
-         ((agenda "" ((org-agenda-files (list (expand-file-name "goal.org" org-directory)))
-                      (org-agenda-overriding-header (pbl-right-pad-header "GOALS"))))
-          (agenda "" ((org-agenda-files (list (expand-file-name "task.org" org-directory)
-                                              (expand-file-name "project.org" org-directory)))
+         (;(agenda "" ((org-agenda-files (pbl-org-agenda-files "goal"))
+          ;            (org-agenda-overriding-header (pbl-right-pad-header "GOALS"))))
+          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project"))
                       (org-agenda-span 4)
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
-          (agenda "" ((org-agenda-files (list (expand-file-name "habit.org" org-directory)))
+          (agenda "" ((org-agenda-files (pbl-org-agenda-files "habit"))
                       (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
           (tags-todo "active+TODO=\"TODO\""
-                     ((org-agenda-files (list (expand-file-name "project.org" org-directory)))
+                     ((org-agenda-files (pbl-org-agenda-files "project"))
                       (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)  ")
                       (org-agenda-dim-blocked-tasks 'invisible)))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
-                     ((org-agenda-files (list (expand-file-name "bookmark.org" org-directory)))
+                     ((org-agenda-files (pbl-org-agenda-files "bookmark"))
                       (org-agenda-max-entries 1)
                       (org-agenda-overriding-header (pbl-right-pad-header "BOOKMARKS"))))
           (tags-todo "CATEGORY=\"task\""
-                     ((org-agenda-files (list (expand-file-name "task.org" org-directory)))
+                     ((org-agenda-files (pbl-org-agenda-files "task"))
                       (org-agenda-skip-function '(org-agenda-skip-if nil '(scheduled deadline)))
                       (org-agenda-overriding-header (pbl-right-pad-header "TASKS"))))
           (tags-todo "CATEGORY=\"inbox\""
-                     ((org-agenda-files (list (expand-file-name "inbox.org" org-directory)))
+                     ((org-agenda-files (pbl-org-agenda-files "inbox"))
                       (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))))
 
 ;; don't show tasks as scheduled if they are already shown as a deadline

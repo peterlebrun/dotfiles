@@ -100,6 +100,11 @@
     (interactive)
     (insert-file-contents (helm-read-file-name "")))
 
+  (defun pbl--org-agenda ()
+    "Open custom agenda composite view."
+    (interactive)
+    (org-agenda nil "c"))
+
   ; Kind of half assed but it's the right half
   (defun pbl--org-capture-bookmark ()
     "Capture new bookmark to read"

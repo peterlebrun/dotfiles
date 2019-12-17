@@ -144,11 +144,6 @@
                                 "    :ORDERED:  t\n"
                                 "    :END:")))
 
-;;set colours for priorities
-(setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
-                           (?B . (:foreground "LightSteelBlue"))
-                           (?C . (:foreground "OliveDrab"))))
-
 (setq org-todo-keyword-faces
       '(("TODO" . (:foreground "LightGreen" :weight 'ultra-light))
         ("NOT STARTED" . org-warning)

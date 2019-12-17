@@ -117,10 +117,15 @@
     (interactive)
     (org-agenda nil "#"))
 
+  ; Kind of half ass but it's the right half
   (defun pbl--org-capture-bookmark ()
     "Capture new bookmark to read"
     (interactive)
-    (org-capture nil "b"))
+    (let ((url (read-from-minibuffer "Enter URL to bookmark: ")))
+      (with-current-buffer (find-file-noselect "~/Dropbox/org-todo/bookmark.org")
+        (goto-char (point-max))
+        (insert (concat "** TODO " url))
+        (save-buffer))))
 
   (defun pbl--org-capture-inbox ()
     "Capture new entry in inbox"

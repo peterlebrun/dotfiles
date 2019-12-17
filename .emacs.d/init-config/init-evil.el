@@ -18,8 +18,6 @@
    "1" 'delete-other-windows
    ;"a" 'pbl--insert-file-contents-from-helm-search
    "aa" 'pbl--org-agenda
-   "ah" 'pbl--org-agenda-habit
-   "as" 'pbl--org-agenda-stuck
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
    "cb" 'pbl--org-capture-bookmark
@@ -32,6 +30,7 @@
    "cd" 'pbl--org-capture-daily-review
    "cw" 'pbl--org-capture-weekly-review
    "cc" 'pbl--org-capture-calendar
+   "cv" 'w2o-save-wikipedia-to-project
    "d" 'pbl--open-writing-file-for-today
    "eo" 'pbl--open-org-config  ; emacs config for org
    "ee" 'pbl--open-evil-config ; emacs config for evil
@@ -46,7 +45,6 @@
 	 "nn" 'pbl--narrow-to-next-line
    "o" 'other-window
    "r" 'toggle-frame-maximized
-   "v" 'w2o-save-wikipedia-to-project
    "w" 'pbl--widen-and-move-point
    "x" 'helm-M-x
    "z" 'pbl--open-zshrc)
@@ -102,26 +100,11 @@
     (interactive)
     (insert-file-contents (helm-read-file-name "")))
 
-  (defun pbl--org-agenda ()
-    "Open custom agenda composite view."
-    (interactive)
-    (org-agenda nil "c"))
-
-  (defun pbl--org-agenda-habit ()
-    "Open custom agenda habit view"
-    (interactive)
-    (org-agenda nil "h"))
-
-  (defun pbl--org-agenda-stuck ()
-    "Open custom agenda stuck projects view"
-    (interactive)
-    (org-agenda nil "#"))
-
-  ; Kind of half ass but it's the right half
+  ; Kind of half assed but it's the right half
   (defun pbl--org-capture-bookmark ()
     "Capture new bookmark to read"
     (interactive)
-    (let ((url (read-from-minibuffer "Enter URL to bookmark: ")))
+    (let ((url (read-from-minibuffer "URL: ")))
       (with-current-buffer (find-file-noselect "~/Dropbox/org-todo/bookmark.org")
         (goto-char (point-max))
         (insert (concat "** TODO " url))
@@ -152,11 +135,6 @@
     (interactive)
     (org-capture nil "f"))
 
-  (defun pbl--org-capture-thought ()
-    "Capture new project"
-    (interactive)
-    (org-capture nil "o"))
-
   (defun pbl--org-capture-daily-review ()
     "Capture new project"
     (interactive)
@@ -166,16 +144,6 @@
     "Capture new project"
     (interactive)
     (org-capture nil "w"))
-
-  (defun pbl--org-capture-gratitude-list ()
-    "Capture new project"
-    (interactive)
-    (org-capture nil "g"))
-
-  (defun pbl--org-capture-random-list ()
-    "Capture new project"
-    (interactive)
-    (org-capture nil "l"))
 
   (defun pbl--org-capture-calendar ()
     "Capture new project"
@@ -258,4 +226,3 @@ is already narrowed."
              (use-package evil-indent-textobject :ensure t))
 
 (provide 'init-evil)
-;;; init-evil.el ends here

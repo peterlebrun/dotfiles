@@ -166,8 +166,6 @@
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
         ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
          "* TODO %?\nSCHEDULED: %t")
-        ("b" "bookmark" entry (file+headline "~/Dropbox/org-todo/bookmark.org" "bookmarks")
-         "* TODO %?")
         ("p" "project" entry (file+headline "~/Dropbox/org-todo/project.org" "projects")
          "* NOT STARTED %?\n:PROPERTIES:\n:ORDERED:  t\n:END:")
         ;; Daily captures below
@@ -179,8 +177,6 @@
          (file "~/Dropbox/org-todo/templates/daily-review.org"))
         ("w" "weekly-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          (file "~/Dropbox/org-todo/templates/weekly-review.org"))
-        ("o" "thought" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
-         "* %U thought\n-%?")
         ("c" "appointment" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
          "* TODO %?\nDEADLINE: %t")
         ("m" "most-important-task" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
@@ -257,10 +253,6 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 ;; don't give a warning color to tasks with impending deadlines
 ;; if they are scheduled to be done
 (setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
-;; don't show tasks that are scheduled or have deadlines in the
-;; normal todo list
-(setq org-agenda-todo-ignore-deadlines 'all)
-(setq org-agenda-todo-ignore-scheduled 'all)
 
 ; overwrite function - exactly the same as "org-agenda.el"
 ; except I add conditional on whether to add newline before block-separator

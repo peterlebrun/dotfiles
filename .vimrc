@@ -97,7 +97,7 @@ let g:ctrlp_user_command = "find %s -type f " .
   "-not -iname '*.swp' " .
   "| sort -d | awk '{print length, $0 }' | sort -nr | awk '{print $2}'"
 
-let g:ctrlp_cache_dir = $HOME.'/dev/util/cache/ctrlp'
+let g:ctrlp_cache_dir = $HOME.'/eng/tmp/cache/ctrlp'
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
 let g:ctrlp_clear_cache_on_exit=0

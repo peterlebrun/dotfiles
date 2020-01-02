@@ -58,11 +58,14 @@
 (setq org-stuck-projects '("+active+LEVEL=2/-COMPLETE" ("TODO")))
 (setq org-agenda-use-time-grid nil) ; I don't find this useful
 
-(setq pbl-org-agenda-project-name-size 22)
-(setq pbl-org-agenda-sparkline-size 15)
+(setq pbl-org-agenda-project-name-size 21)
+(setq pbl-org-agenda-sparkline-size 13)
 (setq pbl-org-agenda-sparkline-start "|")
 (setq pbl-org-agenda-sparkline-end "]")
-(setq pbl-org-agenda-sparkline-body ?·) ;used as a character
+;(setq pbl-org-agenda-sparkline-body ?·) ;used as a character
+(setq pbl-org-agenda-sparkline-body ?>) ;used as a character
+(setq pbl-org-agenda-sparkline-divisor "|")
+(setq pbl-pad-val-size 3)
 
 ;; Note 20190916: This would make a good blog post
 (defun pbl-format-project-prefix ()
@@ -74,10 +77,11 @@
 	 (num-spaces (- project-name-size project-name-length)))
     (concat
      (if (< num-spaces 0)
-	 (substring project-name 0 project-name-size)
+         (substring project-name 0 project-name-size)
        (concat project-name (make-string num-spaces ?\ )))
      " "
-     sparkline)))
+     sparkline
+     " ")))
 
 (defun pbl-get-stats-cookie ()
   "Get stats cookie of parent heading of current todo task"
@@ -90,12 +94,22 @@
            (cookie (nth (- header-length 2) split-header)))
       (substring-no-properties cookie))))
 
+(defun pbl-pad-val (val total-size)
+  "Pad val up to TOTAL-SIZE."
+  (let* ((val-string (number-to-string val))
+         (num-spaces (- total-size (length val-string)))
+         (spaces (make-string num-spaces ?\ )))
+      (concat spaces val-string)))
+
 ;; Note 20191205: This would make a great blog post
 (defun pbl-get-sparkline (stats)
   "Display sparkline showing progress from STATS, or nothing if STATS is not well-formed"
   (if (char-equal (string-to-char (substring stats 0 1)) ?\[)
       (let* ((stats-int (replace-regexp-in-string "\\[\\|\\]\\|%" "" stats))
-             (stats-float (/ (float (string-to-number stats-int)) 100))
+             (vals (split-string stats-int "/"))
+             (numerator (string-to-number (car vals)))
+             (denominator (string-to-number (cadr vals)))
+             (stats-float (/ (float numerator) denominator))
              (sparkline-size pbl-org-agenda-sparkline-size)
              (num-bars (truncate (* stats-float sparkline-size)))
              (num-spaces (- sparkline-size num-bars)))
@@ -105,10 +119,9 @@
          (make-string num-spaces ?\ )
          pbl-org-agenda-sparkline-end
          " "
-         (if (< (string-to-number stats-int) 10) "  "
-           (if (< (string-to-number stats-int) 100) " "))
-         stats-int
-         "%"))
+         (pbl-pad-val numerator pbl-pad-val-size)
+         pbl-org-agenda-sparkline-divisor
+         (pbl-pad-val denominator pbl-pad-val-size)))
     ""))
 
 (setq org-confirm-elisp-link-not-regexp "org-capture.*")
@@ -246,9 +259,10 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
 ; @TODO: Generate "org-agenda-custom-commands" via macro expansion that hides empty blocks
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
-         ((tags-todo "annual"
+         ((tags-todo "high+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "GOALS"))))
+                      (org-agenda-overriding-header (pbl-right-pad-header "HIGH PRIORITY 2020 GOALS"))
+                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
           (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project"))
                       (org-agenda-span 4)
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
@@ -257,7 +271,11 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
           (tags-todo "active+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "project"))
                       (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)  ")))
+                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
+          (tags-todo "low+next+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "goal"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "LOW PRIORITY 2020 GOALS"))
+                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "bookmark"))
                       (org-agenda-max-entries 1)

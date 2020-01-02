@@ -113,7 +113,7 @@
 (setq org-confirm-elisp-link-not-regexp "org-capture.*")
 
 (defun org-summary-todo (n-done n-not-done)
-  "Switch (sub)project to COMPLETE when all subtasks are done, to IN PROGRESS otherwise."
+  "Switch project to COMPLETE when all subtasks are done, to IN PROGRESS otherwise."
   (let (org-log-done org-log-states)   ; turn off logging
     (if (= n-done 0) (org-todo "NOT STARTED")
       (if (> n-not-done 0) (org-todo "IN PROGRESS")
@@ -124,6 +124,31 @@
                             (org-get-tags))))))))
 
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+
+(defun pbl-get-parent-header ()
+  (save-excursion
+    (org-up-heading-safe)
+    (substring-no-properties
+     (org-get-heading t t t t))))
+
+; @TODO This really needs to be improved but it's a good start
+(defun pbl-org-state-change-hook ()
+  "When in a project, remove 'next' tag from current task and add it to next task"
+  (when (string= org-state "DONE")
+  (let ((tags (org-get-tags))
+        (current-project (pbl-get-parent-header)))
+    (when (member "next" tags)
+      ; Remove "next" tag from current item
+      (org-set-tags-to ())
+
+      ; Add "next" tag to next item
+      ; Move forward until we get to the next heading
+      (forward-line)
+      (while (not (org-at-heading-p)) (forward-line))
+      (if (string= current-project (pbl-get-parent-header))
+          (org-set-tags-to '("next")))))))
+
+(add-hook 'org-after-todo-state-change-hook 'pbl-org-state-change-hook)
 
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where
@@ -228,11 +253,10 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
           (agenda "" ((org-agenda-files (pbl-org-agenda-files "habit"))
                       (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
-          (tags-todo "active++TODO=\"TODO\""
+          (tags-todo "active+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "project"))
                       (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)  ")
-                      (org-agenda-dim-blocked-tasks 'invisible)))
+                      (org-agenda-prefix-format "%(pbl-format-project-prefix)  ")))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "bookmark"))
                       (org-agenda-max-entries 1)

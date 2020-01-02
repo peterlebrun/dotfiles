@@ -81,15 +81,14 @@
 
 (defun pbl-get-stats-cookie ()
   "Get stats cookie of parent heading of current todo task"
-  (let* ((current-position (point))
-         (header (progn
-                   (org-up-heading-safe)
-                   (thing-at-point 'line)))
-         (split-header (split-string header))
-         (header-length (safe-length split-header))
-         (cookie (nth (- header-length 2) split-header)))
-    (goto-char current-position)
-    (substring-no-properties cookie)))
+  (save-excursion
+    (let* ((header (progn
+                     (org-up-heading-safe)
+                     (thing-at-point 'line)))
+           (split-header (split-string header))
+           (header-length (safe-length split-header))
+           (cookie (nth (- header-length 2) split-header)))
+      (substring-no-properties cookie))))
 
 ;; Note 20191205: This would make a great blog post
 (defun pbl-get-sparkline (stats)
@@ -229,7 +228,7 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
           (agenda "" ((org-agenda-files (pbl-org-agenda-files "habit"))
                       (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
-          (tags-todo "active+TODO=\"TODO\""
+          (tags-todo "active++TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "project"))
                       (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)  ")

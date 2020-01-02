@@ -105,7 +105,8 @@
          (make-string num-spaces ?\ )
          pbl-org-agenda-sparkline-end
          " "
-         (if (< (string-to-number stats-int) 10) " ")
+         (if (< (string-to-number stats-int) 10) "  "
+           (if (< (string-to-number stats-int) 100) " "))
          stats-int
          "%"))
     ""))

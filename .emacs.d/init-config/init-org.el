@@ -59,7 +59,7 @@
 (setq org-agenda-use-time-grid nil) ; I don't find this useful
 
 (setq pbl-org-agenda-project-name-size 21)
-(setq pbl-org-agenda-sparkline-size 13)
+(setq pbl-org-agenda-sparkline-size 15)
 (setq pbl-org-agenda-sparkline-start "|")
 (setq pbl-org-agenda-sparkline-end "|")
 (setq pbl-org-agenda-sparkline-body ?·) ;used as a character
@@ -79,7 +79,7 @@
        (concat project-name (make-string num-spaces ?\ )))
      " "
      sparkline
-     " ")))
+     "  ")))
 
 (defun pbl-get-stats-cookie ()
   "Get stats cookie of parent heading of current todo task"

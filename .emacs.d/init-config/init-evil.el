@@ -18,6 +18,7 @@
    "1" 'delete-other-windows
    ;"a" 'pbl--insert-file-contents-from-helm-search
    "aa" 'pbl--org-agenda
+   "ag" 'pbl--org-agenda-goals
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
    "cb" 'pbl--org-capture-bookmark
@@ -104,6 +105,11 @@
     "Open custom agenda composite view."
     (interactive)
     (org-agenda nil "c"))
+
+  (defun pbl--org-agenda-goals ()
+    "Open goals agenda view."
+    (interactive)
+    (org-agenda nil "g"))
 
   ; Kind of half assed but it's the right half
   (defun pbl--org-capture-bookmark ()

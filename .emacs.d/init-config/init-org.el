@@ -280,7 +280,12 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                       (org-agenda-overriding-header (pbl-right-pad-header "TASKS"))))
           (tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-files (pbl-org-agenda-files "inbox"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))))
+                      (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))
+        ("g" "goals view"
+         ((tags-todo "next+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "goal"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "2020 GOALS"))
+                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))))))
 
 ;; don't show tasks as scheduled if they are already shown as a deadline
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)

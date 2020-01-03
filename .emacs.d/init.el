@@ -130,9 +130,7 @@
 (require 'init-org)
 (require 'init-wiki2org)
 
-(setq initial-buffer-choice (lambda ()
-                              (split-window-below)
-                              (org-agenda nil "c")))
+(setq initial-buffer-choice (org-agenda nil "c"))
 
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))

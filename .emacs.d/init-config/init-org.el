@@ -61,10 +61,8 @@
 (setq pbl-org-agenda-project-name-size 21)
 (setq pbl-org-agenda-sparkline-size 13)
 (setq pbl-org-agenda-sparkline-start "|")
-(setq pbl-org-agenda-sparkline-end "]")
-;(setq pbl-org-agenda-sparkline-body ?·) ;used as a character
-(setq pbl-org-agenda-sparkline-body ?>) ;used as a character
-(setq pbl-org-agenda-sparkline-divisor "|")
+(setq pbl-org-agenda-sparkline-end "|")
+(setq pbl-org-agenda-sparkline-body ?·) ;used as a character
 (setq pbl-pad-val-size 3)
 
 ;; Note 20190916: This would make a good blog post
@@ -114,13 +112,11 @@
              (num-bars (truncate (* stats-float sparkline-size)))
              (num-spaces (- sparkline-size num-bars)))
         (concat
+         (pbl-pad-val numerator pbl-pad-val-size)
          pbl-org-agenda-sparkline-start
          (make-string num-bars pbl-org-agenda-sparkline-body)
          (make-string num-spaces ?\ )
          pbl-org-agenda-sparkline-end
-         " "
-         (pbl-pad-val numerator pbl-pad-val-size)
-         pbl-org-agenda-sparkline-divisor
          (pbl-pad-val denominator pbl-pad-val-size)))
     ""))
 

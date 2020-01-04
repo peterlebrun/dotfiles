@@ -241,6 +241,11 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
    " "
    (make-string (- pbl-header-length (length tag)) pbl-header-pad)))
 
+; @TODO: Display bar chart showing days remaining
+(defun pbl-org-agenda-display-deadline ()
+  ""
+  (org-entry-get nil "DEADLINE"))
+
 ; Defaults that will be overriden if necessary
 (setq org-agenda-block-separator "")
 (setq org-agenda-prefix-format "")
@@ -259,6 +264,11 @@ SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
                      ((org-agenda-files (pbl-org-agenda-files "goal"))
                       (org-agenda-overriding-header (pbl-right-pad-header "HIGH PRIORITY 2020 GOALS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
+          (tags-todo "st+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "goal"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "SHORT TERM GOALS"))
+                      (org-agenda-prefix-format "%(pbl-org-agenda-display-deadline) ")
+                      (org-agenda-sorting-strategy '(deadline-up))))
           (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "goal" "habit"))
                       (org-agenda-span 4)
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))

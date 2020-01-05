@@ -47,8 +47,6 @@
 (setq org-return-follows-link t)
 (setq org-agenda-start-on-weekday nil)
 (setq org-agenda-time-leading-zero t)
-(setq org-enforce-todo-dependencies t)
-(setq org-enforce-todo-checkbox-dependencies t)
 (setq org-log-done 'time)
 (setq org-log-into-drawer t)
 (setq org-habit-show-habits-only-for-today t)

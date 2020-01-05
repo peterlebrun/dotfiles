@@ -256,7 +256,7 @@
                       (org-agenda-overriding-header (pbl-right-pad-header "SHORT TERM GOALS"))
                       (org-agenda-prefix-format "%(pbl-org-agenda-display-deadline) ")
                       (org-agenda-sorting-strategy '(deadline-up))))
-          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit"))
+          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit" "goal"))
                       (org-agenda-span 4)
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
           (tags-todo "active+next+TODO=\"TODO\""

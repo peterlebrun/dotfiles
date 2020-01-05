@@ -280,9 +280,17 @@
                      ((org-agenda-files (pbl-org-agenda-files "inbox"))
                       (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))
         ("g" "goals view"
-         ((tags-todo "next+TODO=\"TODO\""
+         ((tags-todo "high+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "2020 GOALS"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "HIGH PRIORITY 2020 GOALS"))
+                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
+          (tags-todo "low+next+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "goal"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "LOW PRIORITY 2020 GOALS"))
+                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
+          (tags-todo "paused+next+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "goal"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "PAUSED 2020 GOALS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))))))
 
 ;; don't show tasks as scheduled if they are already shown as a deadline

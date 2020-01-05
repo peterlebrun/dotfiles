@@ -289,6 +289,11 @@
                      ((org-agenda-files (pbl-org-agenda-files "goal"))
                       (org-agenda-overriding-header (pbl-right-pad-header "LOW PRIORITY 2020 GOALS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
+          (tags-todo "st+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "goal" "task"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "SHORT TERM GOALS"))
+                      (org-agenda-prefix-format "%(pbl-org-agenda-display-deadline) ")
+                      (org-agenda-sorting-strategy '(deadline-up))))
           (tags-todo "paused+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal"))
                       (org-agenda-overriding-header (pbl-right-pad-header "PAUSED 2020 GOALS"))

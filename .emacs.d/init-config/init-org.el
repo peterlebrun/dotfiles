@@ -207,19 +207,7 @@
         ("w" "weekly-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          (file "~/Dropbox/org-todo/templates/weekly-review.org"))
         ("c" "appointment" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
-         "* TODO %?\nDEADLINE: %t")
-        ("m" "most-important-task" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
-         "* TODO %?:mit:\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
-        ("j" "daily-goals" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
-         "
-* TODO %?                                                 :daily:
-SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
-* TODO                                                    :daily:
-SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))
-* TODO                                                    :daily:
-SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
-        ("k" "weekly-goals" entry (file+headline "~/Dropbox/org-todo/goal.org" "goals")
-         "* TODO %?:weekly:\nDEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")))
+         "* TODO %?\nDEADLINE: %t")))
 
 (add-hook 'org-agenda-mode-hook
           (lambda ()

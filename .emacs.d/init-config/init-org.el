@@ -57,6 +57,7 @@
 (setq org-default-notes-file (concat org-directory "notes.org"))
 (setq org-stuck-projects '("+active+LEVEL=2/-COMPLETE" ("TODO")))
 (setq org-agenda-use-time-grid nil) ; I don't find this useful
+(setq org-tags-exclude-from-inheritance '("next"))
 
 (setq pbl-org-agenda-project-name-size 21)
 (setq pbl-org-agenda-sparkline-size 15)
@@ -257,7 +258,7 @@
                       (org-agenda-overriding-header (pbl-right-pad-header "SHORT TERM GOALS"))
                       (org-agenda-prefix-format "%(pbl-org-agenda-display-deadline) ")
                       (org-agenda-sorting-strategy '(deadline-up))))
-          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "goal" "habit"))
+          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit"))
                       (org-agenda-span 4)
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
           (tags-todo "active+next+TODO=\"TODO\""

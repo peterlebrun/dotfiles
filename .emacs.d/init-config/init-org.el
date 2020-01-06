@@ -78,7 +78,7 @@
        (concat project-name (make-string num-spaces ?\ )))
      " "
      sparkline
-     "  ")))
+     " ")))
 
 (defun pbl-get-stats-cookie ()
   "Get stats cookie of parent heading of current todo task"

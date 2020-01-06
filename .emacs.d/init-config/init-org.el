@@ -9,8 +9,8 @@
 (set-face-attribute 'org-scheduled nil :foreground "white" :weight 'ultra-light)
 (set-face-attribute 'org-scheduled-today nil :foreground "white" :weight 'ultra-light)
 (set-face-attribute 'org-todo nil :foreground "white" :weight 'ultra-light)
-(set-face-attribute 'org-upcoming-deadline nil :foreground "white" :weight 'ultra-light)
-(set-face-attribute 'org-warning nil :foreground "white" :weight 'ultra-light)
+(set-face-attribute 'org-upcoming-deadline nil :foreground "white")
+(set-face-attribute 'org-warning nil :foreground "white")
 
 (setq org-modules '(org-w3m
                     org-bbdb
@@ -215,7 +215,7 @@
             (define-key org-agenda-mode-map (kbd "k") 'org-agenda-previous-item)
             (define-key org-agenda-mode-map (kbd "RET") 'org-agenda-open-link)))
 
-(setq org-deadline-warning-days 3) ; warn me of any deadlines in the next 5 days
+(setq org-deadline-warning-days 0) ; warn me of any deadlines in the next 5 days
 (setq org-agenda-hide-tags-regexp ".")
 (setq pbl-header-length 72)
 (setq pbl-header-pad ?\ )
@@ -228,10 +228,27 @@
    " "
    (make-string (- pbl-header-length (length tag)) pbl-header-pad)))
 
+;(setq pbl-todays-date (
 ; @TODO: Display bar chart showing days remaining
 (defun pbl-org-agenda-display-deadline ()
   ""
-  (org-entry-get nil "DEADLINE"))
+  (let* ((deadline (org-entry-get nil "DEADLINE"))
+         (days-remaining (org-time-stamp-to-now deadline))
+         (date-parts (split-string deadline "-"))
+         (month (nth 1 date-parts))
+         (day-parts (split-string (nth 2 date-parts)))
+         (day (nth 0 day-parts))
+         (num-dots (if (> days-remaining 1) (min 20 (/ days-remaining 2))
+                     (if (>= days-remaining 0) 1
+                       (if (< days-remaining 0) 2))))
+         (num-spaces (max (- 20 num-dots) 0)))
+    (concat month "/" day
+            (make-string (+ num-spaces 1) ?\ )
+            (if (> days-remaining 1) (make-string num-dots pbl-org-agenda-sparkline-body))
+            (if (= days-remaining 1) (make-string 1 pbl-org-agenda-sparkline-body))
+            (if (= days-remaining 0) (make-string 1 ?\!))
+            (if (< days-remaining 0) (make-string 2 ?\!))
+            "|")))
 
 ; Defaults that will be overriden if necessary
 (setq org-agenda-block-separator "")

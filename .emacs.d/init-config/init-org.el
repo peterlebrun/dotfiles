@@ -235,7 +235,6 @@
 (setq pbl-org-agenda-deadline-sparkline-start "|")
 (setq pbl-org-agenda-deadline-sparkline-end "|")
 (setq pbl-org-agenda-deadline-sparkline-date-separator "/")
-; @TODO: Display bar chart showing days remaining
 (defun pbl-org-agenda-display-deadline ()
   ""
   (let* ((deadline (org-entry-get nil "DEADLINE"))

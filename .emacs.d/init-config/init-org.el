@@ -55,7 +55,7 @@
 (setq org-default-notes-file (concat org-directory "notes.org"))
 (setq org-stuck-projects '("+active+LEVEL=2/-COMPLETE" ("TODO")))
 (setq org-agenda-use-time-grid nil) ; I don't find this useful
-(setq org-tags-exclude-from-inheritance '("next"))
+(setq org-tags-exclude-from-inheritance '("next" "st"))
 
 (setq pbl-org-agenda-project-name-size 21)
 (setq pbl-org-agenda-sparkline-size 15)

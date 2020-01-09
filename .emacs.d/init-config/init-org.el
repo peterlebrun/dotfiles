@@ -235,42 +235,42 @@
 (setq pbl-org-agenda-deadline-sparkline-start "|")
 (setq pbl-org-agenda-deadline-sparkline-end "|")
 (setq pbl-org-agenda-deadline-sparkline-date-separator "/")
-(defun pbl-org-agenda-display-deadline ()
-  ""
-  (let* ((deadline (org-entry-get nil "DEADLINE"))
-         (days-remaining (org-time-stamp-to-now deadline))
-         (date-parts (split-string deadline "-"))
-         (month (nth 1 date-parts))
-         (day-parts (split-string (nth 2 date-parts)))
-         (day (nth 0 day-parts))
-         (num-bars (-
-                    (/ days-remaining 7)
-                    (if (= (% days-remaining 7) 0) 1 0)))
-         (num-dots (if (> num-bars 0) 7
-                     (if (> days-remaining 0) days-remaining)))
-         (num-others (if (>= days-remaining 0) 1
-                       (if (< days-remaining 0) 2))))
-    (concat
-     (pbl-pad-val (int-to-string days-remaining) 2)
-     pbl-org-agenda-deadline-sparkline-start
-     (pbl-pad-val
-      (concat
-       (if (> num-bars 0)
-           (make-string num-bars pbl-org-agenda-deadline-sparkline-bar))
-       (if (> days-remaining 1)
-           (make-string num-dots pbl-org-agenda-deadline-sparkline-dot))
-       (if (= days-remaining 1)
-           (make-string 1 pbl-org-agenda-deadline-sparkline-dot))
-       (if (= days-remaining 0)
-           (make-string 1 pbl-org-agenda-deadline-sparkline-overdue))
-       (if (< days-remaining 0)
-           (make-string 2 pbl-org-agenda-deadline-sparkline-overdue))
-      pbl-org-agenda-deadline-sparkline-end)
-      pbl-org-agenda-deadline-sparkline-size)
-     month
-     pbl-org-agenda-deadline-sparkline-date-separator
-     day
-     " ")))
+(defun pbl-org-agenda-display-deadline-sparkline ()
+  "Display sparkline from deadline information"
+  (let ((deadline (org-entry-get nil "DEADLINE")))
+    (when deadline
+      (let* ((days-remaining (org-time-stamp-to-now deadline))
+	     (date-parts (split-string deadline "-"))
+	     (month (nth 1 date-parts))
+	     (day-parts (split-string (nth 2 date-parts)))
+	     (day (nth 0 day-parts))
+	     (num-bars (-
+			(/ days-remaining 7)
+			(if (= (% days-remaining 7) 0) 1 0)))
+	     (num-dots (if (> num-bars 0) 7
+			 (if (> days-remaining 0) days-remaining)))
+	     (num-others (if (>= days-remaining 0) 1
+			   (if (< days-remaining 0) 2))))
+	(concat
+	 (pbl-pad-val (int-to-string days-remaining) 2)
+	 pbl-org-agenda-deadline-sparkline-start
+	 (pbl-pad-val
+	  (concat
+	   (if (> num-bars 0)
+	       (make-string num-bars pbl-org-agenda-deadline-sparkline-bar))
+	   (if (> days-remaining 1)
+	       (make-string num-dots pbl-org-agenda-deadline-sparkline-dot))
+	   (if (= days-remaining 1)
+	       (make-string 1 pbl-org-agenda-deadline-sparkline-dot))
+	   (if (= days-remaining 0)
+	       (make-string 1 pbl-org-agenda-deadline-sparkline-overdue))
+	   (if (< days-remaining 0)
+	       (make-string 2 pbl-org-agenda-deadline-sparkline-overdue)) pbl-org-agenda-deadline-sparkline-end)
+	  pbl-org-agenda-deadline-sparkline-size)
+	 month
+	 pbl-org-agenda-deadline-sparkline-date-separator
+	 day
+	 " ")))))
 
 ; Defaults that will be overriden if necessary
 (setq org-agenda-block-separator "")
@@ -293,7 +293,7 @@
           (tags-todo "st+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal" "task"))
                       (org-agenda-overriding-header (pbl-right-pad-header "SHORT TERM GOALS"))
-                      (org-agenda-prefix-format "%(pbl-org-agenda-display-deadline)")
+                      (org-agenda-prefix-format "%(pbl-org-agenda-display-deadline-sparkline)")
                       (org-agenda-sorting-strategy '(deadline-up))))
           (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit" "goal"))
                       (org-agenda-span 4)

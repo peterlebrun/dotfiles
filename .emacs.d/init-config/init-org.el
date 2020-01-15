@@ -280,7 +280,6 @@
 (defun pbl-org-agenda-files (&rest files)
   (loop for f in files collect (expand-file-name (concat f ".org") org-directory)))
 
-; @TODO: Replace org-agenda-files with macro expansion?
 ; @TODO: Generate "org-agenda-custom-commands" via macro expansion that hides empty blocks
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"

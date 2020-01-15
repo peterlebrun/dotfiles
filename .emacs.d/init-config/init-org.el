@@ -289,6 +289,7 @@
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
           (tags-todo "st+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal" "task"))
+                      (org-agenda-skip-function '(org-agenda-skip-if nil '(notdeadline)))
                       (org-agenda-overriding-header (pbl-right-pad-header "SHORT TERM GOALS"))
                       (org-agenda-prefix-format "%(pbl-org-agenda-display-deadline-sparkline)")
                       (org-agenda-sorting-strategy '(deadline-up))))

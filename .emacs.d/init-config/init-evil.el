@@ -122,9 +122,13 @@
         (save-buffer))))
 
   (defun pbl--org-capture-inbox ()
-    "Capture new entry in inbox"
+    "Capture new inbox task"
     (interactive)
-    (org-capture nil "i"))
+    (let ((task (read-from-minibuffer "TODO: ")))
+      (with-current-buffer (find-file-noselect "~/Dropbox/org-todo/inbox.org")
+        (goto-char (point-max))
+        (insert (concat "** TODO " task))
+        (save-buffer))))
 
   (defun pbl--org-capture-habit ()
     "Capture new habit"

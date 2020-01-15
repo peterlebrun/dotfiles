@@ -188,9 +188,7 @@
 ;;capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
-      '(("i" "inbox" entry (file+headline "~/Dropbox/org-todo/inbox.org" "inbox")
-         "* TODO %?")
-        ("h" "habit" entry (file+headline "~/Dropbox/org-todo/habit.org" "habits")
+      '(("h" "habit" entry (file+headline "~/Dropbox/org-todo/habit.org" "habits")
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
         ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
          "* TODO %?\nSCHEDULED: %t")

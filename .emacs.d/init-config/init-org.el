@@ -94,7 +94,7 @@
 (defun pbl-pad-val (val total-size)
   "Pad val up to TOTAL-SIZE."
   (let* ((val-string (if (numberp val) (number-to-string val) val))
-         (num-spaces (- total-size (length val-string)))
+         (num-spaces (max 0 (- total-size (length val-string))))
          (spaces (make-string num-spaces ?\ )))
       (concat spaces val-string)))
 

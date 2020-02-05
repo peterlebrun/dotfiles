@@ -250,7 +250,11 @@
                          (if (> days-remaining 0) days-remaining)))
              (num-others (if (>= days-remaining 0) 1
                            (if (< days-remaining 0) 2))))
-        (concat (pbl-pad-val (int-to-string days-remaining) 2)
+        (concat (pbl-pad-val
+                 (if (<= days-remaining -10)
+                     "!!"
+                   (int-to-string days-remaining))
+                 2)
                 pbl-org-agenda-deadline-sparkline-start
                 (pbl-pad-val
                  (concat

@@ -289,7 +289,7 @@
       '(("c" "custom daily view"
          ((tags-todo "high+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "HIGH PRIORITY 2020 GOALS"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "HIGH PRIORITY GOALS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
           (tags-todo "st+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal" "task"))
@@ -306,7 +306,11 @@
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
           (tags-todo "low+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "LOW PRIORITY 2020 GOALS"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "LOW PRIORITY GOALS"))
+                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
+          (tags-todo "count+next+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "goal"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "COUNTING GOALS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
           (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "bookmark"))
@@ -322,11 +326,11 @@
         ("g" "goals view"
          ((tags-todo "high+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "HIGH PRIORITY 2020 GOALS"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "HIGH PRIORITY GOALS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
           (tags-todo "low+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "LOW PRIORITY 2020 GOALS"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "LOW PRIORITY GOALS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
           (tags-todo "st+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal" "task"))
@@ -335,7 +339,7 @@
                       (org-agenda-sorting-strategy '(deadline-up))))
           (tags-todo "paused+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "PAUSED 2020 GOALS"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "PAUSED GOALS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))))))
 
 ;; don't show tasks as scheduled if they are already shown as a deadline

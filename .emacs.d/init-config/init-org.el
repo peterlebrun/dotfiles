@@ -287,9 +287,12 @@
 ; @TODO: Generate "org-agenda-custom-commands" via macro expansion that hides empty blocks
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
-         ((tags-todo "high+next+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "HIGH PRIORITY GOALS"))
+         ((agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit" "goal"))
+                      (org-agenda-span 4)
+                      (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
+          (tags-todo "active+next+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "project"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
           (tags-todo "st+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal" "task"))
@@ -297,12 +300,9 @@
                       (org-agenda-overriding-header (pbl-right-pad-header "SHORT TERM GOALS"))
                       (org-agenda-prefix-format "%(pbl-org-agenda-display-deadline-sparkline)")
                       (org-agenda-sorting-strategy '(deadline-up))))
-          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit" "goal"))
-                      (org-agenda-span 4)
-                      (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
-          (tags-todo "active+next+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "project"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
+          (tags-todo "high+next+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "goal"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "HIGH PRIORITY GOALS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
           (tags-todo "low+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal"))

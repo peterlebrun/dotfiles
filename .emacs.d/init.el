@@ -28,7 +28,7 @@
  '(epg-gpg-program "/usr/local/bin/gpg2")
  '(package-selected-packages
    (quote
-    (w3m w3 telephone-line spotify clojure-mode rust-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
+    (prettier-js w3m w3 telephone-line spotify clojure-mode rust-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
 
 (add-to-list
  'package-archives
@@ -69,6 +69,7 @@
 
 (use-package rust-mode :ensure t)
 
+(use-package prettier-js :ensure t)
 (use-package typescript-mode :ensure t)
 (use-package company-go
   :ensure t
@@ -196,12 +197,14 @@
 (add-hook 'rjsx-mode-hook
   (lambda ()
     (display-line-numbers-mode 1)
-    (setq js-indent-level 4)))
+    (setq js-indent-level 4)
+    (prettier-js-mode)))
 
 (add-hook 'js-mode-hook
   (lambda ()
     (display-line-numbers-mode 1)
-    (setq js-indent-level 4)))
+    (setq js-indent-level 2)
+    (prettier-js-mode)))
 
 (add-hook 'typescript-mode-hook
   (lambda ()

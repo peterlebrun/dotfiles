@@ -28,7 +28,7 @@
  '(epg-gpg-program "/usr/local/bin/gpg2")
  '(package-selected-packages
    (quote
-    (prettier-js w3m w3 telephone-line spotify clojure-mode rust-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
+    (prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
 
 (add-to-list
  'package-archives
@@ -67,16 +67,7 @@
               (go-set-project)
               (company-mode t))))
 
-(use-package rust-mode :ensure t)
-
 (use-package prettier-js :ensure t)
-(use-package typescript-mode :ensure t)
-(use-package company-go
-  :ensure t
-  :after go-mode
-  :config
-  (add-to-list 'company-backends 'company-go))
-
 (use-package rg :ensure t)
 (use-package helm :ensure t :diminish helm-mode
   :config
@@ -99,8 +90,6 @@
 (use-package terraform-mode :ensure t)
 (use-package dockerfile-mode :ensure t)
 (use-package rjsx-mode :ensure t)
-(use-package elm-mode :ensure t)
-(use-package clojure-mode :ensure t)
 
 (use-package org-brain :ensure t
   :init
@@ -133,8 +122,6 @@
 
 (setq initial-buffer-choice (org-agenda nil "c"))
 
-(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
@@ -161,11 +148,6 @@
 (add-to-list 'auto-mode-alist '("\\.tf\\'" . terraform-mode))
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("Dockerfile\\'". dockerfile-mode))
-(add-to-list 'auto-mode-alist '("\\.elm\\'" . elm-mode))
-(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
-(add-to-list 'auto-mode-alist '("\\.clj\\'" . clojure-mode))
-(add-to-list 'auto-mode-alist '("\\.cljs\\'" . clojurescript-mode))
-(add-to-list 'auto-mode-alist '("\\.edn\\'" . clojurescript-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -205,17 +187,6 @@
     (display-line-numbers-mode 1)
     (setq js-indent-level 2)
     (prettier-js-mode)))
-
-(add-hook 'typescript-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)
-    (setq typescript-indent-level 4)))
-
-(add-hook 'rust-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)
-    (setq c-basic-offset 4)))
-(setq rust-format-on-save t)
 
 (add-hook 'web-mode-hook
   (lambda ()

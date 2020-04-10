@@ -28,7 +28,7 @@
  '(epg-gpg-program "/usr/local/bin/gpg2")
  '(package-selected-packages
    (quote
-    (prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
+    (visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
 
 (add-to-list
  'package-archives
@@ -55,7 +55,8 @@
 (require 'diminish)
 (require 'bind-key)
 (use-package rainbow-delimiters :ensure t)
-
+(use-package visual-fill-column :ensure t)
+(use-package writeroom-mode :ensure t)
 (use-package go-mode
   :ensure t
   :mode "\\.go\\'"

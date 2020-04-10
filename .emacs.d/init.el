@@ -119,7 +119,6 @@
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)
 (require 'init-org)
-(require 'init-wiki2org)
 
 (setq initial-buffer-choice (org-agenda nil "c"))
 

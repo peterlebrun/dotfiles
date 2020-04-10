@@ -193,7 +193,7 @@
         ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
          "* TODO %?\nSCHEDULED: %t")
         ("p" "project" entry (file+headline "~/Dropbox/org-todo/project.org" "projects")
-         "* NOT STARTED %?\n:PROPERTIES:\n:ORDERED:  t\n:END:")
+         "* NOT STARTED %?\n** TODO :next:")
         ;; Daily captures below
         ("f" "freewrite" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          "* %U freewriting:%?\n")

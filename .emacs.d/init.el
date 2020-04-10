@@ -119,6 +119,7 @@
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)
 (require 'init-org)
+(require 'init-hugo.el)
 
 (setq initial-buffer-choice (org-agenda nil "c"))
 

@@ -55,8 +55,6 @@
 (require 'diminish)
 (require 'bind-key)
 (use-package rainbow-delimiters :ensure t)
-(use-package visual-fill-column :ensure t)
-(use-package writeroom-mode :ensure t)
 (use-package go-mode
   :ensure t
   :mode "\\.go\\'"
@@ -120,6 +118,7 @@
 (require 'init-telephone-line)
 (require 'init-org)
 (require 'init-hugo.el)
+(require 'init-writeroom-mode)
 
 (setq initial-buffer-choice (org-agenda nil "c"))
 

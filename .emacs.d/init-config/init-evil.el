@@ -44,9 +44,10 @@
    "l" 'pbl--load-current-file
 	 "nl" 'pbl--narrow-to-line
 	 "nn" 'pbl--narrow-to-next-line
+   "nw" 'pbl--widen-and-move-point
    "o" 'other-window
    "r" 'toggle-frame-maximized
-   "w" 'pbl--widen-and-move-point
+   "w" 'pbl--toggle-writeroom-mode
    "x" 'helm-M-x
    "z" 'pbl--open-zshrc)
 
@@ -225,6 +226,13 @@ is already narrowed."
     (interactive)
     (widen)
     (goto-char (point-min)))
+
+  (defun pbl--toggle-writeroom-mode ()
+    "Widen buffer and move point to start of buffer"
+    (interactive)
+    (if writeroom-mode
+        (writeroom-mode 0)
+      (writeroom-mode t)))
   )
 
 (use-package evil

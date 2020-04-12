@@ -192,6 +192,12 @@
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
         ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
          "* TODO %?\nSCHEDULED: %t")
+        ("j" "daily-goals" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
+         "* TODO %?                                             :dailygoal:
+SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
+        ("k" "weekly-goals" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
+         "* TODO %?                                             :weeklygoal:
+DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
         ("p" "project" entry (file+headline "~/Dropbox/org-todo/project.org" "projects")
          "* NOT STARTED %?\n** TODO :next:")
         ;; Daily captures below
@@ -287,15 +293,18 @@
 ; @TODO: Generate "org-agenda-custom-commands" via macro expansion that hides empty blocks
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
-         ((agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit" "goal"))
-                      (org-agenda-span 4)
-                      (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
-          (tags-todo "st+TODO=\"TODO\""
+         ((tags-todo "st+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal" "task"))
                       (org-agenda-skip-function '(org-agenda-skip-if nil '(notdeadline)))
                       (org-agenda-overriding-header (pbl-right-pad-header "SHORT TERM GOALS"))
                       (org-agenda-prefix-format "%(pbl-org-agenda-display-deadline-sparkline)")
                       (org-agenda-sorting-strategy '(deadline-up))))
+          (tags-todo "dailygoal|weeklygoal+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "task"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "TODAY'S PRIORITIES"))))
+          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit" "goal"))
+                      (org-agenda-span 4)
+                      (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
           (tags-todo "active+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "project"))
                       (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))

@@ -234,6 +234,10 @@
             (display-line-numbers-mode 1)
             (auto-fill-mode)))
 
+(add-hook 'writeroom-mode-hook
+          (lambda ()
+            (display-line-numbers-mode 0)))
+
 ;; Don't edit these
 
 (custom-set-faces

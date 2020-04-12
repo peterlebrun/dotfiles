@@ -31,6 +31,8 @@
    "cd" 'pbl--org-capture-daily-review
    "cw" 'pbl--org-capture-weekly-review
    "cc" 'pbl--org-capture-calendar
+   "cj" 'pbl--org-capture-daily-goal
+   "ck" 'pbl--org-capture-weekly-goal
    "cv" 'w2o-save-wikipedia-to-project
    "d" 'pbl--open-writing-file-for-today
    "eo" 'pbl--open-org-config  ; emacs config for org
@@ -165,6 +167,16 @@
     "Capture new project"
     (interactive)
     (org-capture nil "c"))
+
+  (defun pbl--org-capture-daily-goal ()
+    "Capture daily goal"
+    (interactive)
+    (org-capture nil "j"))
+
+  (defun pbl--org-capture-weekly-goal ()
+    "Capture weekly goal"
+    (interactive)
+    (org-capture nil "k"))
 
   (defun pbl--yarn-test ()
     "Run yarn test for current yarn package"

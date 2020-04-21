@@ -193,10 +193,10 @@
         ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
          "* TODO %?\nSCHEDULED: %t")
         ("j" "daily-goals" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
-         "* TODO %?                                             :dailygoal:
+         "* TODO %?                                             :st:dailygoal:
 SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
         ("k" "weekly-goals" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
-         "* TODO %?                                             :weeklygoal:
+         "* TODO %?                                             :st:weeklygoal:
 DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
         ("p" "project" entry (file+headline "~/Dropbox/org-todo/project.org" "projects")
          "* NOT STARTED %?\n** TODO :next:")
@@ -296,12 +296,9 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
          ((tags-todo "st+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal" "task"))
                       (org-agenda-skip-function '(org-agenda-skip-if nil '(notdeadline)))
-                      (org-agenda-overriding-header (pbl-right-pad-header "SHORT TERM GOALS"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "PRIORITIES"))
                       (org-agenda-prefix-format "%(pbl-org-agenda-display-deadline-sparkline)")
                       (org-agenda-sorting-strategy '(deadline-up))))
-          (tags-todo "dailygoal|weeklygoal+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "task"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "TODAY'S PRIORITIES"))))
           (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit" "goal"))
                       (org-agenda-span 4)
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))

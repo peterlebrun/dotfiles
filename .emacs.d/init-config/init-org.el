@@ -193,10 +193,10 @@
         ("t" "task" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
          "* TODO %?\nSCHEDULED: %t")
         ("j" "daily-goals" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
-         "* TODO %?                                             :dailygoal:
-SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
+         "* TODO %?                                             :st:dailygoal:
+DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
         ("k" "weekly-goals" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
-         "* TODO %?                                             :weeklygoal:
+         "* TODO %?                                             :st:weeklygoal:
 DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
         ("p" "project" entry (file+headline "~/Dropbox/org-todo/project.org" "projects")
          "* NOT STARTED %?\n** TODO :next:")
@@ -290,9 +290,20 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
 (defun pbl-org-agenda-files (&rest files)
   (loop for f in files collect (expand-file-name (concat f ".org") org-directory)))
 
-; @TODO: Generate "org-agenda-custom-commands" via macro expansion that hides empty blocks
+(defun sl-get-padded-todo-parent (size)
+  "Return string of length SIZE containing either padded or truncated parent name."
+  (let* ((parent (cadr (org-get-outline-path)))
+         (padding (- size (length parent))))
+    (if (< padding 0) (substring parent 0 size)
+       (concat parent (make-string padding ?\ )))))
+
 (setq org-agenda-custom-commands
-      '(("c" "custom daily view"
+      '(("b" "example blog view"
+         ((tags-todo "blog+TODO=\"TODO\""
+                     ((org-agenda-files '("~/Dropbox/org-todo/blog.org"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "BLOG"))
+                      (org-agenda-prefix-format "%(sl-get-padded-todo-parent 22) ")))))
+        ("c" "custom daily view"
          ((tags-todo "st+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal" "task"))
                       (org-agenda-skip-function '(org-agenda-skip-if nil '(notdeadline)))

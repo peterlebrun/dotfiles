@@ -105,8 +105,6 @@
   (setq org-brain-visualize-default-choices 'all)
   (setq org-brain-title-max-length 12))
 
-(use-package minimap :ensure t)
-
 (set-face-attribute 'default nil :font "FuraCode Nerd Font 18")
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
@@ -121,8 +119,9 @@
 (require 'init-org)
 (require 'init-hugo.el)
 (require 'init-writeroom-mode)
+(require 'init-minimap)
 
-(setq initial-buffer-choice (org-agenda nil "c"))
+(org-agenda nil "c")
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))

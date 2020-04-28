@@ -297,12 +297,61 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
     (if (< padding 0) (substring parent 0 size)
        (concat parent (make-string padding ?\ )))))
 
+;; Note 20190916: This would make a good blog post
+(defun sl-format-project-prefix ()
+  "Format project prefix to show parent heading"
+  (let* ((project-name (cadr (org-get-outline-path)))
+         (project-name-size 20)
+         (project-name-length (length project-name))
+         (num-spaces (- project-name-size project-name-length)))
+    (concat
+     (if (< num-spaces 0)
+         (substring project-name 0 project-name-size)
+       (concat project-name (make-string num-spaces ?\ )))
+     " "
+     (sl-get-sparkline (sl-get-stats-cookie))
+     " ")))
+
+(defun sl-get-stats-cookie ()
+  "Get stats cookie of parent heading of current todo task"
+  (save-excursion
+    (let* ((header (progn
+                     (org-up-heading-safe)
+                     (thing-at-point 'line)))
+           (split-header (split-string header))
+           (header-length (safe-length split-header))
+           (cookie (nth (- header-length 2) split-header)))
+      (substring-no-properties cookie))))
+
+(defun sl-get-sparkline (stats)
+  "Display sparkline showing progress from STATS, or nothing if STATS is not well-formed"
+  (if (char-equal (string-to-char (substring stats 0 1)) ?\[)
+      (let* ((stats-int (replace-regexp-in-string "\\[\\|\\]\\|%" "" stats))
+             (vals (split-string stats-int "/"))
+             (numerator (string-to-number (car vals)))
+             (denominator (string-to-number (cadr vals)))
+             (stats-float (/ (float numerator) denominator))
+             (sparkline-size 15)
+             (num-bars (truncate (* stats-float sparkline-size)))
+             (num-spaces (- sparkline-size num-bars)))
+        (concat
+         (number-to-string numerator)
+         "|"
+         (make-string num-bars ?- )
+         (make-string num-spaces ?\ )
+         "|"
+         (number-to-string denominator)
+    ""))))
+
+(setq org-enforce-todo-dependencies t)
+
 (setq org-agenda-custom-commands
-      '(("b" "example blog view"
-         ((tags-todo "blog+TODO=\"TODO\""
-                     ((org-agenda-files '("~/Dropbox/org-todo/blog.org"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "BLOG"))
-                      (org-agenda-prefix-format "%(sl-get-padded-todo-parent 22) ")))))
+      '(("e" "example sparkline view"
+         ((tags-todo "active+TODO=\"TODO\""
+                     ((org-agenda-files '("~/Dropbox/org-todo/example-project.org"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
+                      (org-agenda-prefix-format "%(sl-format-project-prefix) ")
+                      (org-agenda-dim-blocked-tasks 'invisible)))))
         ("c" "custom daily view"
          ((tags-todo "st+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "goal" "task"))

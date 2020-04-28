@@ -181,8 +181,7 @@
   (lambda ()
     (display-line-numbers-mode 1)
     (setq js-indent-level 4)
-    (prettier-js-mode)
-    (minimap-mode)))
+    (prettier-js-mode)))
 
 (add-hook 'js-mode-hook
   (lambda ()

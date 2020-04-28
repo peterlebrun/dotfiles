@@ -38,12 +38,14 @@
    "eo" 'pbl--open-org-config  ; emacs config for org
    "ee" 'pbl--open-evil-config ; emacs config for evil
    "ei" 'pbl--open-init-config ; emacs config for init
-   "f" 'helm-projectile
+   "ff" 'helm-projectile
+   "fp" 'find-file-at-point
    "F" 'helm-projectile-switch-project
    "g" 'magit-status
    "j" 'pbl--insert-file-contents-from-helm-search
    "k" 'kill-buffer
    "l" 'pbl--load-current-file
+   "m" 'minimap-mode
 	 "nl" 'pbl--narrow-to-line
 	 "nn" 'pbl--narrow-to-next-line
    "nw" 'pbl--widen-and-move-point

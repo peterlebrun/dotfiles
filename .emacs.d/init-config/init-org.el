@@ -1,4 +1,5 @@
 ;; set key for agenda
+
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 ;; Not sure if I should be setting these but eff it, YOLO

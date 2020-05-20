@@ -38,8 +38,7 @@
    "eo" 'pbl--open-org-config  ; emacs config for org
    "ee" 'pbl--open-evil-config ; emacs config for evil
    "ei" 'pbl--open-init-config ; emacs config for init
-   "ff" 'helm-projectile
-   "fp" 'find-file-at-point
+   "f" 'helm-projectile
    "F" 'helm-projectile-switch-project
    "g" 'magit-status
    "j" 'pbl--insert-file-contents-from-helm-search
@@ -50,10 +49,28 @@
 	 "nn" 'pbl--narrow-to-next-line
    "nw" 'pbl--widen-and-move-point
    "o" 'other-window
+   "p" 'pbl--open-file-at-point
    "r" 'toggle-frame-maximized
    "w" 'pbl--toggle-writeroom-mode
    "x" 'helm-M-x
    "z" 'pbl--open-zshrc)
+
+  ;@TODO if single quote fails, try again w double quote
+  (defun pbl--open-file-at-point ()
+    "Open file in quotes underneath point"
+    (interactive)
+    (let* ((delim "'")
+           (line (thing-at-point 'line))
+           (start (progn
+                    (string-match delim line)
+                    (match-end 0)))
+           (end (string-match delim line start))
+           (filename (substring-no-properties line start end)))
+      (if (and start end)
+          (if (file-exists-p filename)
+              (find-file-at-point filename)
+            (message "File does not exist"))
+        (message "No filename at point"))))
 
   (defun pbl--open-shell ()
     "Open shell."

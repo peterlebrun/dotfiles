@@ -68,7 +68,10 @@
            (filename (substring-no-properties line start end)))
       (if (and start end)
           (if (file-exists-p filename)
-              (find-file-at-point filename)
+              (progn
+                (split-window-below -35)
+                (other-window 1)
+                (find-file-at-point filename))
             (message "File does not exist"))
         (message "No filename at point"))))
 

@@ -11,7 +11,7 @@
   (evil-leader/set-key
    "RET" 'pbl--yarn-test
    "," 'pbl--open-shell
-   "/" 'rgrep
+   "/" 'helm-rg
    "|" 'split-window-right
    "-" 'split-window-below
    "0" 'delete-window

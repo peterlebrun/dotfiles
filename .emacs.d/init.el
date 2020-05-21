@@ -11,6 +11,10 @@
 (load (expand-file-name "~/.quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
 
+(let ((private-settings (expand-file-name "~/private.el")))
+  (if (file-exists-p private-settings)
+      (load private-settings)))
+
 ;; Visual presentation of window
 (tool-bar-mode -1)
 (global-visual-line-mode 1)

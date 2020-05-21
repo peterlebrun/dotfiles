@@ -65,15 +65,21 @@
                     (string-match delim line)
                     (match-end 0)))
            (end (string-match delim line start))
-           (filename (substring-no-properties line start end)))
-      (if (and start end)
-          (if (file-exists-p filename)
-              (progn
-                (when other-window
-                  (split-window-below)
-                  (other-window 1))
-                (find-file-at-point filename))
-            (message "File does not exist"))
+           (start-char (string-to-char (substring-no-properties line start (+ start 1))))
+           (is-tilde-prefix (char-equal start-char ?\~))
+           (is-relative-path (char-equal start-char ?\.))
+           (tmp-filename (substring-no-properties line (if is-tilde-prefix (+ start 1) start) end))
+           (is-static-prefix (string-equal pbp--static-prefix (substring tmp-filename 0 (length pbp--static-prefix))))
+           (filename (if is-relative-path tmp-filename
+                       (if is-static-prefix (expand-file-name tmp-filename pbp--packages-base)))))
+      (if filename
+          (progn (if (file-exists-p filename)
+                     (progn
+                       (when other-window
+                         (split-window-below)
+                         (other-window 1))
+                       (find-file-at-point filename))
+                   (message (concat filename " does not exist"))))
         (message "No filename at point"))))
 
   (defun pbl--open-shell ()

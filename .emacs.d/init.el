@@ -75,6 +75,8 @@
   (setq helm-buffer-max-length 40)
   (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level))
 
+; per helm-projectile.el comments, helm-projectile-fuzzy-match needs to load before helm-projectile package
+(setq helm-projectile-fuzzy-match nil)
 (use-package helm-projectile :ensure t)
 (use-package projectile :ensure t
   :defer 1

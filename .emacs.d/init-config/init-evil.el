@@ -49,16 +49,16 @@
 	 "nn" 'pbl--narrow-to-next-line
    "nw" 'pbl--widen-and-move-point
    "o" 'other-window
-   "p" 'pbl--open-file-at-point
+   "pp" '(lambda () (interactive) (pbl--open-file-at-point nil))
+   "po" '(lambda () (interactive) (pbl--open-file-at-point t))
    "r" 'toggle-frame-maximized
    "w" 'pbl--toggle-writeroom-mode
    "x" 'helm-M-x
    "z" 'pbl--open-zshrc)
 
   ;@TODO if single quote fails, try again w double quote
-  (defun pbl--open-file-at-point ()
+  (defun pbl--open-file-at-point (other-window)
     "Open file in quotes underneath point"
-    (interactive)
     (let* ((delim "'")
            (line (thing-at-point 'line))
            (start (progn
@@ -69,8 +69,9 @@
       (if (and start end)
           (if (file-exists-p filename)
               (progn
-                (split-window-below -35)
-                (other-window 1)
+                (when other-window
+                  (split-window-below)
+                  (other-window 1))
                 (find-file-at-point filename))
             (message "File does not exist"))
         (message "No filename at point"))))

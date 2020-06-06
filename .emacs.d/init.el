@@ -32,7 +32,7 @@
  '(epg-gpg-program "/usr/local/bin/gpg2")
  '(package-selected-packages
    (quote
-    (helm-rg minimap visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
+    (flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
 
 (add-to-list
  'package-archives
@@ -186,21 +186,27 @@
 (add-hook 'rjsx-mode-hook
   (lambda ()
     (display-line-numbers-mode 1)
-    (setq js-indent-level 4)
-    (prettier-js-mode)))
+    (setq js-indent-level 4) ;@TODO: Can I get this from configs?
+    (prettier-js-mode)
+    (company-mode 1)
+    (eldoc-mode)
+    (flycheck-mode 1)
+    ))
 
 (add-hook 'js-mode-hook
   (lambda ()
     (display-line-numbers-mode 1)
     (setq js-indent-level 2)
-    (prettier-js-mode)))
+    (prettier-js-mode)
+    (flycheck-mode 1)))
 
 (add-hook 'web-mode-hook
   (lambda ()
     (display-line-numbers-mode 1)
     (setq web-mode-markup-indent-offset 2)
     (setq web-mode-css-indent-offset 2)
-    (setq web-mode-code-indent-offset 2)))
+    (setq web-mode-code-indent-offset 2)
+    (flycheck-mode 1)))
 
 (add-hook 'emacs-lisp-mode-hook
   (lambda ()

@@ -363,9 +363,6 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
           (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit" "goal"))
                       (org-agenda-span 4)
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
-          (tags-todo "apt+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "task"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "SET UP APARTMENT"))))
           (tags-todo "active+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "project"))
                       (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))

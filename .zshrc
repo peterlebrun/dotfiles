@@ -224,6 +224,7 @@ export QUANTECON="$HOME/eng/github.com/peterlebrun/quantecon"
 
 # added by Snowflake SnowSQL installer v1.0
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
+alias dotfiles="cd $DOTFILES"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

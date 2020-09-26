@@ -21,7 +21,6 @@
    "ag" 'pbl--org-agenda-goals
    "b" 'helm-mini
    "B" 'pbl--magit-blame-toggle
-   "cb" 'pbl--org-capture-bookmark
    "ci" 'pbl--org-capture-inbox
    "ch" 'pbl--org-capture-habit
    "ct" 'pbl--org-capture-task
@@ -144,6 +143,7 @@
     (org-agenda nil "g"))
 
   ; Kind of half assed but it's the right half
+  ; No longer used but just leaving it bc I was pleased w/ it
   (defun pbl--org-capture-bookmark ()
     "Capture new bookmark to read"
     (interactive)

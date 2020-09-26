@@ -33,9 +33,7 @@
                            (,(expand-file-name "project.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "idea.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "inbox.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "goal.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "thought.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "bookmark.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "habit.org" org-directory) :maxlevel . 1)
                            (,(expand-file-name "backlog.org" org-directory) :maxlevel . 1)))
 
@@ -210,8 +208,10 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
          (file "~/Dropbox/org-todo/templates/daily-review.org"))
         ("w" "weekly-review" entry (file+olp+datetree "~/Dropbox/org/pensieve.org" "pensieve")
          (file "~/Dropbox/org-todo/templates/weekly-review.org"))
-        ("c" "appointment" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
-         "* TODO %?\nDEADLINE: %t")))
+        ("r" "waiting-on" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
+         "* TODO %? :waiting:")
+        ("c" "commitment" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
+         "* TODO %? :commitment:\nDEADLINE: %t")))
 
 (add-hook 'org-agenda-mode-hook
           (lambda ()
@@ -354,60 +354,29 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
                       (org-agenda-prefix-format "%(sl-format-project-prefix) ")
                       (org-agenda-dim-blocked-tasks 'invisible)))))
         ("c" "custom daily view"
-         ((tags-todo "st+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "goal" "task"))
-                      (org-agenda-skip-function '(org-agenda-skip-if nil '(notdeadline)))
-                      (org-agenda-overriding-header (pbl-right-pad-header "PRIORITIES"))
-                      (org-agenda-prefix-format "%(pbl-org-agenda-display-deadline-sparkline)")
-                      (org-agenda-sorting-strategy '(deadline-up))))
-          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit" "goal"))
+         ((tags-todo "frog+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "task"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "FROGS"))))
+          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit"))
                       (org-agenda-span 4)
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
+          (tags-todo "commitment+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "task"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "COMMITMENTS"))))
+          (tags-todo "waiting+TODO=\"TODO\""
+                     ((org-agenda-files (pbl-org-agenda-files "task"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "WAITING ON"))))
           (tags-todo "active+next+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "project"))
                       (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
-          (tags-todo "high+next+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "HIGH PRIORITY GOALS"))
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
-          (tags-todo "low+next+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "LOW PRIORITY GOALS"))
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
-          (tags-todo "count+next+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "COUNTING GOALS"))
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
-          (tags-todo "category=\"bookmark\"+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "bookmark"))
-                      (org-agenda-max-entries 1)
-                      (org-agenda-overriding-header (pbl-right-pad-header "BOOKMARKS"))))
           (tags-todo "CATEGORY=\"task\""
                      ((org-agenda-files (pbl-org-agenda-files "task"))
-                      (org-agenda-skip-function '(org-agenda-skip-if nil '(scheduled deadline)))
+                      (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline 'regexp ":"))
                       (org-agenda-overriding-header (pbl-right-pad-header "TASKS"))))
           (tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-files (pbl-org-agenda-files "inbox"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))
-        ("g" "goals view"
-         ((tags-todo "high+next+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "HIGH PRIORITY GOALS"))
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
-          (tags-todo "low+next+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "LOW PRIORITY GOALS"))
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
-          (tags-todo "st+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "goal" "task"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "SHORT TERM GOALS"))
-                      (org-agenda-prefix-format "%(pbl-org-agenda-display-deadline) ")
-                      (org-agenda-sorting-strategy '(deadline-up))))
-          (tags-todo "paused+next+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "goal"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "PAUSED GOALS"))
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))))))
+                      (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))))
 
 ;; don't show tasks as scheduled if they are already shown as a deadline
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)

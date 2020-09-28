@@ -122,7 +122,6 @@
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)
 (require 'init-org)
-(require 'init-hugo.el)
 (require 'init-writeroom-mode)
 (require 'init-minimap)
 (require 'init-helm-rg)

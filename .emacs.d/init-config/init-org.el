@@ -370,10 +370,10 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
                      ((org-agenda-files (pbl-org-agenda-files "project"))
                       (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
-          (tags-todo "CATEGORY=\"task\""
-                     ((org-agenda-files (pbl-org-agenda-files "task"))
-                      (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline 'regexp ":"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "TASKS"))))
+          ;(tags-todo "CATEGORY=\"task\""
+                     ;((org-agenda-files (pbl-org-agenda-files "task"))
+                      ;(org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline 'regexp ":"))
+                      ;(org-agenda-overriding-header (pbl-right-pad-header "TASKS"))))
           (tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-files (pbl-org-agenda-files "inbox"))
                       (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))))

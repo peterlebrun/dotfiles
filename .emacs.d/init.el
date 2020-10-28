@@ -112,7 +112,7 @@
   ; (setq org-brain-visualize-default-choices 'all)
   ; (setq org-brain-title-max-length 12))
 
-(set-face-attribute 'default nil :font "FuraCode Nerd Font 18")
+; (set-face-attribute 'default nil :font "FuraCode Nerd Font 18")
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.

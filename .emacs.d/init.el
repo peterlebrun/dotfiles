@@ -56,8 +56,10 @@
 
 (eval-when-compile
   (require 'use-package))
-(require 'diminish)
-(require 'bind-key)
+(use-package diminish :ensure t)
+(use-package bind-key :ensure t)
+; (require 'diminish)
+; (require 'bind-key)
 (use-package rainbow-delimiters :ensure t)
 (use-package go-mode
   :ensure t

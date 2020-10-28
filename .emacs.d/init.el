@@ -8,8 +8,8 @@
 (set-default-coding-systems 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
 (setq-default fill-column 80)
-(load (expand-file-name "~/.quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "sbcl")
+; (load (expand-file-name "~/.quicklisp/slime-helper.el"))
+; (setq inferior-lisp-program "sbcl")
 
 (let ((private-settings (expand-file-name "~/private.el")))
   (if (file-exists-p private-settings)

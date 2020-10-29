@@ -3,15 +3,15 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 ;; Not sure if I should be setting these but eff it, YOLO
-;(set-face-attribute 'org-agenda-structure nil :foreground "LightGray" :weight 'bold :underline t)
-;(set-face-attribute 'org-agenda-date nil :foreground "DarkGray" :weight 'ultra-light :underline nil)
-;(set-face-attribute 'org-agenda-date-weekend nil :foreground "DarkGray" :weight 'ultra-light)
-;(set-face-attribute 'org-agenda-date-today nil :foreground "DarkGray" :weight 'ultra-light :slant 'normal)
-;(set-face-attribute 'org-scheduled nil :foreground "white" :weight 'ultra-light)
-;(set-face-attribute 'org-scheduled-today nil :foreground "white" :weight 'ultra-light)
-;(set-face-attribute 'org-todo nil :foreground "white" :weight 'ultra-light)
-;(set-face-attribute 'org-upcoming-deadline nil :foreground "white")
-;(set-face-attribute 'org-warning nil :foreground "white")
+(set-face-attribute 'org-agenda-structure nil :foreground "LightGray" :weight 'bold :underline t)
+(set-face-attribute 'org-agenda-date nil :foreground "DarkGray" :weight 'ultra-light :underline nil)
+(set-face-attribute 'org-agenda-date-weekend nil :foreground "DarkGray" :weight 'ultra-light)
+(set-face-attribute 'org-agenda-date-today nil :foreground "DarkGray" :weight 'ultra-light :slant 'normal)
+(set-face-attribute 'org-scheduled nil :foreground "white" :weight 'ultra-light)
+(set-face-attribute 'org-scheduled-today nil :foreground "white" :weight 'ultra-light)
+(set-face-attribute 'org-todo nil :foreground "white" :weight 'ultra-light)
+(set-face-attribute 'org-upcoming-deadline nil :foreground "white")
+(set-face-attribute 'org-warning nil :foreground "white")
 
 (setq org-modules '(org-w3m
                     org-bbdb
@@ -289,7 +289,7 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
 (setq org-agenda-add-newline-before-block-separator nil)
 
 (defun pbl-org-agenda-files (&rest files)
-  (loop for f in files collect (expand-file-name (concat f ".org") org-directory)))
+  (cl-loop for f in files collect (expand-file-name (concat f ".org") org-directory)))
 
 (defun sl-get-padded-todo-parent (size)
   "Return string of length SIZE containing either padded or truncated parent name."

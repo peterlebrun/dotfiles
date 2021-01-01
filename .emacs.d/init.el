@@ -1,7 +1,6 @@
 ;;; Commentary:
 ;;; package -- summary
 ;;; Code:
-(require 'package)
 (setq inhibit-startup-message t)
 
 (setq-default default-buffer-file-coding-system 'utf-8-unix)
@@ -34,21 +33,8 @@
    (quote
     (flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
 
-(add-to-list
- 'package-archives
- '("melpa" . "https://melpa.org/packages/"))
-(add-to-list
- 'package-archives
- '("melpa-stable" . "https://stable.melpa.org/packages/"))
-(add-to-list
- 'package-archives
- '("marmalade" . "https://marmalade-repo.org/packages/"))
-(add-to-list
- 'package-archives
- '("gnu" . "https://elpa.gnu.org/packages/"))
-
 (setq package-enable-at-startup nil)
-(package-initialize)
+;(package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)

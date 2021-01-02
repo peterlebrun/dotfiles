@@ -45,16 +45,6 @@
 ; (require 'diminish)
 ; (require 'bind-key)
 (use-package rainbow-delimiters :ensure t)
-(use-package go-mode
-  :ensure t
-  :mode "\\.go\\'"
-  :config
-  (add-hook 'go-mode-hook
-            (lambda ()
-              (subword-mode)
-              (display-line-numbers-mode 1)
-              (go-set-project)
-              (company-mode t))))
 
 (use-package prettier-js :ensure t)
 (use-package helm :ensure t :diminish helm-mode
@@ -75,7 +65,6 @@
   (setq projectile-enable-caching t))
 (use-package let-alist :ensure t)
 (use-package yaml-mode :ensure t)
-(use-package puppet-mode :ensure t)
 (use-package web-mode :ensure t)
 (use-package terraform-mode :ensure t)
 (use-package dockerfile-mode :ensure t)
@@ -112,7 +101,6 @@
 (add-to-list 'auto-mode-alist '("\\.yamllint\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode))
 (add-to-list 'auto-mode-alist '("\\.java\\'" . java-mode))
-(add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.xml\\'" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.xsl\\'" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.xslt\\'" . nxml-mode))
@@ -147,11 +135,6 @@
   (lambda ()
     (display-line-numbers-mode 1)
     (setq c-basic-offset 4)))
-
-(add-hook 'ruby-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)
-    (setq c-basic-offset 2)))
 
 (add-hook 'rjsx-mode-hook
   (lambda ()

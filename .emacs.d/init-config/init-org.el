@@ -2,17 +2,9 @@
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 
-;; Not sure if I should be setting these but eff it, YOLO
-(set-face-attribute 'org-agenda-structure nil :foreground "LightGray" :weight 'bold :underline t)
-(set-face-attribute 'org-agenda-date nil :foreground "DarkGray" :weight 'ultra-light :underline nil)
-(set-face-attribute 'org-agenda-date-weekend nil :foreground "DarkGray" :weight 'ultra-light)
-(set-face-attribute 'org-agenda-date-today nil :foreground "DarkGray" :weight 'ultra-light :slant 'normal)
-(set-face-attribute 'org-scheduled nil :foreground "white" :weight 'ultra-light)
-(set-face-attribute 'org-scheduled-today nil :foreground "white" :weight 'ultra-light)
-(set-face-attribute 'org-todo nil :foreground "white" :weight 'ultra-light)
-(set-face-attribute 'org-upcoming-deadline nil :foreground "white")
-(set-face-attribute 'org-warning nil :foreground "white")
+(use-package org :ensure t)
 
+; load org-faces here
 (setq org-modules '(org-w3m
                     org-bbdb
                     org-habit
@@ -23,6 +15,17 @@
                     org-irc
                     org-mhe
                     org-rmail))
+
+;; Not sure if I should be setting these but eff it, YOLO
+(set-face-attribute 'org-agenda-structure nil :foreground "LightGray" :weight 'bold :underline t)
+(set-face-attribute 'org-agenda-date nil :foreground "DarkGray" :weight 'ultra-light :underline nil)
+(set-face-attribute 'org-agenda-date-weekend nil :foreground "DarkGray" :weight 'ultra-light)
+(set-face-attribute 'org-agenda-date-today nil :foreground "DarkGray" :weight 'ultra-light :slant 'normal)
+(set-face-attribute 'org-scheduled nil :foreground "white" :weight 'ultra-light)
+(set-face-attribute 'org-scheduled-today nil :foreground "white" :weight 'ultra-light)
+(set-face-attribute 'org-todo nil :foreground "white" :weight 'ultra-light)
+(set-face-attribute 'org-upcoming-deadline nil :foreground "white")
+(set-face-attribute 'org-warning nil :foreground "white")
 
 ;;file to save todo items
 (setq org-directory "~/Dropbox/org-todo")
@@ -425,7 +428,7 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
 		      (if (stringp org-agenda-block-separator)
 			  org-agenda-block-separator
 			(make-string (window-width) org-agenda-block-separator))
-		      "\n"))
+		     "\n" ))
 	    (narrow-to-region (point) (point-max)))
 	(setq org-done-keywords-for-agenda nil)
 	;; Setting any org variables that are in org-agenda-local-vars

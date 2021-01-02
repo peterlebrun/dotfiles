@@ -28,10 +28,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- ; '(epg-gpg-program "/usr/local/bin/gpg2")
  '(package-selected-packages
-   (quote
-    (flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package))))
+   '(flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
 
 (setq package-enable-at-startup nil)
 ;(package-initialize)
@@ -114,7 +112,12 @@
 (require 'init-minimap)
 (require 'init-helm-rg)
 
-(org-agenda nil "c")
+; this is such a shameful hack and I'm deeply embarrassed
+; however, it works
+(org-agenda nil "c") ; call org-agenda to load whatever deferred shenanigans are going on that overwrite my settings
+(org-agenda-quit) ; immediately quit
+(load (expand-file-name (concat user-emacs-directory "/init-config/init-org.el"))) ; re-load org configs
+(org-agenda nil "c") ; load org-agenda
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))

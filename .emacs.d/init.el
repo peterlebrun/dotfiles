@@ -1,8 +1,26 @@
 ;;; Commentary:
 ;;; package -- summary
 ;;; Code:
-(setq gc-cons-threshold 100000000)
-(setq gc-cons-percentage 0.6)
+
+;; A big contributor to startup times is garbage collection. We up the gc
+;; threshold to temporarily prevent it from running, and then reset it later
+;; using a hook.
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 0.6)
+
+;; Keep a ref to the actual file-name-handler
+(defvar default-file-name-handler-alist file-name-handler-alist)
+
+;; Set the file-name-handler to nil (because regexing is cpu intensive)
+(setq file-name-handler-alist nil)
+
+;; Reset file-name-handler-alist after initialization
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (setq gc-cons-threshold 16777216
+          gc-cons-percentage 0.1
+          file-name-handler-alist default-file-name-handler-alist)))
+
 (setq inhibit-startup-message t)
 
 (setq-default default-buffer-file-coding-system 'utf-8-unix)
@@ -17,7 +35,6 @@
       (load private-settings)))
 
 ;; Visual presentation of window
-(tool-bar-mode -1)
 (global-visual-line-mode 1)
 (toggle-frame-maximized)
 
@@ -41,12 +58,21 @@
 
 (eval-when-compile
   (require 'use-package))
-(use-package diminish :ensure t)
-(use-package bind-key :ensure t)
-(use-package rainbow-delimiters :ensure t)
 
-(use-package prettier-js :ensure t)
-(use-package helm :ensure t :diminish helm-mode
+(defvar before-use-package-time (current-time))
+(use-package esup
+  :ensure t
+  ;; To use MELPA Stable use ":pin melpa-stable",
+  :pin melpa
+  :defer 1)
+
+(use-package diminish :defer 1)
+(use-package bind-key :defer 1)
+(use-package rainbow-delimiters :defer 1)
+
+(use-package prettier-js :defer 1)
+(use-package helm :defer 1
+  :diminish helm-mode
   :config
   (helm-mode 1)
   (setq helm-buffers-fuzzy-matching t)
@@ -56,36 +82,42 @@
 
 ; per helm-projectile.el comments, helm-projectile-fuzzy-match needs to load before helm-projectile package
 (setq helm-projectile-fuzzy-match nil)
-(use-package helm-projectile :ensure t)
-(use-package projectile :ensure t
+(use-package helm-projectile :defer t)
+(use-package projectile
   :defer 1
   :config
   (projectile-global-mode)
   (setq projectile-enable-caching t))
-(use-package yaml-mode :ensure t)
-(use-package web-mode :ensure t)
-(use-package terraform-mode :ensure t)
-(use-package dockerfile-mode :ensure t)
-(use-package rjsx-mode :ensure t)
-
-(set-face-attribute 'default nil :font "Fira Code Medium 18")
+(use-package yaml-mode :defer 1)
+(use-package web-mode :defer 1)
+(use-package terraform-mode :defer 1)
+(use-package dockerfile-mode :defer 1)
+(use-package rjsx-mode :defer 1)
+(defvar after-use-package-time (current-time))
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
 
-(require 'init-company)
-(require 'init-evil)
+(defvar before-init-config-time (current-time))
 (require 'init-exec-path-from-shell)
-(require 'init-magit)
+(require 'init-evil)
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)
-(require 'init-writeroom-mode)
-(require 'init-minimap)
-(require 'init-helm-rg)
+(use-package init-company :defer 1)
+;(use-package init-magit :defer 1)
+(use-package init-writeroom-mode :defer 1)
+(use-package init-minimap :defer 1)
+(use-package init-helm-rg :defer 1)
+(defvar after-init-config-time (current-time))
+
+(defvar before-init-org-time (current-time))
 (require 'init-org)
-
+(defvar after-init-org-time (current-time))
+(defvar before-org-agenda-time (current-time))
 (org-agenda nil "c") ; load org-agenda
+(defvar after-org-agenda-time (current-time))
 
+(defvar before-mode-hooks-time (current-time))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
@@ -201,6 +233,7 @@
 (add-hook 'writeroom-mode-hook
           (lambda ()
             (display-line-numbers-mode 0)))
+(defvar after-mode-hooks-time (current-time))
 
 ; Don't edit these
 
@@ -220,10 +253,16 @@
       kept-old-versions      5) ; and how many of the old
 (put 'narrow-to-region 'disabled nil)
 
+(defun format-sec (after-time before-time)
+  (format "%.2fs." (float-time (time-subtract after-time before-time))))
+
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (message "Emacs ready in %s with %d garbage collections."
-                     (format "%.2f seconds"
-                             (float-time
-                              (time-subtract after-init-time before-init-time)))
-                     gcs-done)))
+            (message "init: %s GC: %d use-package: %s init-config-ex-org: %s init-org: %s org-agenda: %s mode hooks:%s"
+                     (format-sec after-init-time before-init-time)
+                     gcs-done
+                     (format-sec after-use-package-time before-use-package-time)
+                     (format-sec after-init-config-time before-init-config-time)
+                     (format-sec after-init-org-time before-init-org-time)
+                     (format-sec after-org-agenda-time before-org-agenda-time)
+                     (format-sec after-mode-hooks-time before-mode-hooks-time))))

@@ -1,6 +1,8 @@
 ;;; Commentary:
 ;;; package -- summary
 ;;; Code:
+(setq gc-cons-threshold 100000000)
+(setq gc-cons-percentage 0.6)
 (setq inhibit-startup-message t)
 
 (setq-default default-buffer-file-coding-system 'utf-8-unix)
@@ -10,9 +12,9 @@
 ; (load (expand-file-name "~/.quicklisp/slime-helper.el"))
 ; (setq inferior-lisp-program "sbcl")
 
-(let ((private-settings (expand-file-name "~/private.el")))
-  (if (file-exists-p private-settings)
-      (load private-settings)))
+;(let ((private-settings (expand-file-name "~/private.el")))
+  ;(if (file-exists-p private-settings)
+      ;(load private-settings)))
 
 ;; Visual presentation of window
 (tool-bar-mode -1)
@@ -29,21 +31,18 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
-
-(setq package-enable-at-startup nil)
-;(package-initialize)
+   '(let-alist flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
+(setq package-enable-at-startup nil)
+
 (eval-when-compile
   (require 'use-package))
 (use-package diminish :ensure t)
 (use-package bind-key :ensure t)
-; (require 'diminish)
-; (require 'bind-key)
 (use-package rainbow-delimiters :ensure t)
 
 (use-package prettier-js :ensure t)
@@ -63,7 +62,6 @@
   :config
   (projectile-global-mode)
   (setq projectile-enable-caching t))
-(use-package let-alist :ensure t)
 (use-package yaml-mode :ensure t)
 (use-package web-mode :ensure t)
 (use-package terraform-mode :ensure t)
@@ -204,7 +202,7 @@
           (lambda ()
             (display-line-numbers-mode 0)))
 
-;; Don't edit these
+; Don't edit these
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -221,3 +219,11 @@
       kept-new-versions      20 ; how many of the newest versions to keep
       kept-old-versions      5) ; and how many of the old
 (put 'narrow-to-region 'disabled nil)
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs ready in %s with %d garbage collections."
+                     (format "%.2f seconds"
+                             (float-time
+                              (time-subtract after-init-time before-init-time)))
+                     gcs-done)))

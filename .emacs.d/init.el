@@ -29,7 +29,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode org-brain org-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
+   '(flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
 
 (setq package-enable-at-startup nil)
 ;(package-initialize)
@@ -81,21 +81,6 @@
 (use-package dockerfile-mode :ensure t)
 (use-package rjsx-mode :ensure t)
 
-; (use-package org-brain :ensure t
-  ; :init
-  ; (setq org-brain-path "~/org-brain")
-  ; ;; For Evil users
-  ; (with-eval-after-load 'evil
-    ; (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
-  ; :config
-  ; (setq org-id-track-globally t)
-  ; (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
-  ; ;(push '("b" "Brain" plain (function org-brain-goto-end)
-          ; ;"* %i%?" :empty-lines 1)
-        ; ;org-capture-templates)
-  ; (setq org-brain-visualize-default-choices 'all)
-  ; (setq org-brain-title-max-length 12))
-
 (set-face-attribute 'default nil :font "Fira Code Medium 18")
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
@@ -107,16 +92,11 @@
 (require 'init-magit)
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)
-(require 'init-org)
 (require 'init-writeroom-mode)
 (require 'init-minimap)
 (require 'init-helm-rg)
+(require 'init-org)
 
-; this is such a shameful hack and I'm deeply embarrassed
-; however, it works
-(org-agenda nil "c") ; call org-agenda to load whatever deferred shenanigans are going on that overwrite my settings
-(org-agenda-quit) ; immediately quit
-(load (expand-file-name (concat user-emacs-directory "/init-config/init-org.el"))) ; re-load org configs
 (org-agenda nil "c") ; load org-agenda
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))

@@ -4,7 +4,6 @@
 
 (use-package org :ensure t)
 
-; load org-faces here
 (setq org-modules '(org-w3m
                     org-bbdb
                     org-habit
@@ -16,6 +15,7 @@
                     org-mhe
                     org-rmail))
 
+; Adjusting face attributes requires that org-faces have loaded (these come from `(use-package org ...)
 ;; Not sure if I should be setting these but eff it, YOLO
 (set-face-attribute 'org-agenda-structure nil :foreground "LightGray" :weight 'bold :underline t)
 (set-face-attribute 'org-agenda-date nil :foreground "DarkGray" :weight 'ultra-light :underline nil)
@@ -58,6 +58,11 @@
 (setq org-stuck-projects '("+active+LEVEL=2/-COMPLETE" ("TODO")))
 (setq org-agenda-use-time-grid nil) ; I don't find this useful
 (setq org-tags-exclude-from-inheritance '("next" "st"))
+;; don't show tasks as scheduled if they are already shown as a deadline
+(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
+;; don't give a warning color to tasks with impending deadlines
+;; if they are scheduled to be done
+(setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
 
 (setq pbl-org-agenda-project-name-size 21)
 (setq pbl-org-agenda-sparkline-size 15)
@@ -381,11 +386,10 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
                      ((org-agenda-files (pbl-org-agenda-files "inbox"))
                       (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))))
 
-;; don't show tasks as scheduled if they are already shown as a deadline
-(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
-;; don't give a warning color to tasks with impending deadlines
-;; if they are scheduled to be done
-(setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
+; Call this here because there is something deferred that is overwriting my settings.
+; So we load (including the deferred piece), immediately quit, then proceed with the rest of the loading
+(org-agenda nil "c")
+(org-agenda-quit)
 
 ; overwrite function - exactly the same as "org-agenda.el"
 ; except I add conditional on whether to add newline before block-separator

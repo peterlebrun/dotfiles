@@ -5,6 +5,7 @@
 ;; A big contributor to startup times is garbage collection. We up the gc
 ;; threshold to temporarily prevent it from running, and then reset it later
 ;; using a hook.
+(pbl--profile "init-header")
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6)
 
@@ -55,16 +56,11 @@
   (package-install 'use-package))
 
 (setq package-enable-at-startup nil)
+(pbl--profile "init-header")
 
+(pbl--profile "use-package")
 (eval-when-compile
   (require 'use-package))
-
-(defvar before-use-package-time (current-time))
-(use-package esup
-  :ensure t
-  ;; To use MELPA Stable use ":pin melpa-stable",
-  :pin melpa
-  :defer 1)
 
 (use-package diminish :defer 1)
 (use-package bind-key :defer 1)
@@ -93,12 +89,12 @@
 (use-package terraform-mode :defer 1)
 (use-package dockerfile-mode :defer 1)
 (use-package rjsx-mode :defer 1)
-(defvar after-use-package-time (current-time))
+(pbl--profile "use-package")
 
+(pbl--profile "init-config")
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
 
-(defvar before-init-config-time (current-time))
 (require 'init-exec-path-from-shell)
 (require 'init-evil)
 (require 'init-zenburn-theme)
@@ -108,16 +104,16 @@
 (use-package init-writeroom-mode :defer 1)
 (use-package init-minimap :defer 1)
 (use-package init-helm-rg :defer 1)
-(defvar after-init-config-time (current-time))
+(pbl--profile "init-config")
 
-(defvar before-init-org-time (current-time))
+(pbl--profile "init-org")
 (require 'init-org)
-(defvar after-init-org-time (current-time))
-(defvar before-org-agenda-time (current-time))
+(pbl--profile "init-org")
+(pbl--profile "org-agenda")
 (org-agenda nil "c") ; load org-agenda
-(defvar after-org-agenda-time (current-time))
+(pbl--profile "org-agenda")
 
-(defvar before-mode-hooks-time (current-time))
+(pbl--profile "mode-hooks")
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
@@ -233,7 +229,7 @@
 (add-hook 'writeroom-mode-hook
           (lambda ()
             (display-line-numbers-mode 0)))
-(defvar after-mode-hooks-time (current-time))
+(pbl--profile "mode-hooks")
 
 ; Don't edit these
 
@@ -253,16 +249,53 @@
       kept-old-versions      5) ; and how many of the old
 (put 'narrow-to-region 'disabled nil)
 
+(defvar pbl--init-profile-buffer-name "*init-profile*")
+(defvar pbl--init-profile-header-line "Init Profiler")
+(defvar pbl--right-pad-size 15)
+
 (defun format-sec (after-time before-time)
-  (format "%.2fs." (float-time (time-subtract after-time before-time))))
+  (format "%.2fs" (float-time (time-subtract after-time before-time))))
+
+(defun pbl--right-pad-val (val &optional total-size)
+  "Pad val up to TOTAL-SIZE."
+  (let* ((val-string (if (numberp val) (number-to-string val) val))
+         (cols (if total-size total-size pbl--right-pad-size))
+         (num-spaces (max 0 (- cols (length val-string))))
+         (spaces (make-string num-spaces ?\ )))
+      (concat val-string spaces)))
+
+(defun pbl--display-init-profile-results ()
+  "Parse and display list in window"
+  (with-current-buffer (pbl--prepare-init-profile-buffer pbl--init-profile-buffer-name)
+    (setq buffer-read-only nil)
+    (setq header-line-format pbl--init-profile-header-line)
+    (pbl--display-init-profile-data)
+    (setq buffer-read-only t)
+    (pop-to-buffer (current-buffer))))
+
+(defun pbl--display-init-profile-data () ""
+       (mapcar (lambda (elem)
+                 (let* ((key (car elem))
+                        (ts (cdr elem))
+                        (before (car ts))
+                        (after (cadr ts)))
+                   (insert (concat (pbl--right-pad-val key) (format-sec after before) "\n"))))
+               pbl--profile-times)
+       (insert (concat (pbl--right-pad-val "total init") (format-sec after-init-time before-init-time) "\n"))
+       (insert (concat (pbl--right-pad-val "gc") (format "%d" gcs-done))))
+
+;;@TODO: Add "q" to exit buffer
+(defun pbl--prepare-init-profile-buffer (buffer-name &optional mode-cb)
+  "Create consistent buffer object for displaying list items"
+  (let ((buf (get-buffer-create buffer-name)))
+    (with-current-buffer buf
+      (setq buffer-read-only nil)
+      (erase-buffer)
+      (kill-all-local-variables)
+      (when mode-cb (funcall mode-cb))
+      (setq buffer-read-only t))
+    buf))
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (message "init: %s GC: %d use-package: %s init-config-ex-org: %s init-org: %s org-agenda: %s mode hooks:%s"
-                     (format-sec after-init-time before-init-time)
-                     gcs-done
-                     (format-sec after-use-package-time before-use-package-time)
-                     (format-sec after-init-config-time before-init-config-time)
-                     (format-sec after-init-org-time before-init-org-time)
-                     (format-sec after-org-agenda-time before-org-agenda-time)
-                     (format-sec after-mode-hooks-time before-mode-hooks-time))))
+            (pbl--display-init-profile-results)))

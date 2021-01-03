@@ -1,5 +1,14 @@
-;; -*- lexical-binding: t -*-
+(defun pbl--profile (key)
+  (when (not (boundp 'pbl--profile-times)) (setq pbl--profile-times ()))
+  (let* ((c-time (current-time))
+         (cur-cons (if (boundp 'pbl--profile-times)
+                       (alist-get key pbl--profile-times nil nil 'equal)
+                     nil)))
+    (if cur-cons
+        (setf (alist-get key pbl--profile-times nil nil 'equal) (append cur-cons `(,c-time)))
+      (setf (alist-get key pbl--profile-times nil nil 'equal) `(,c-time)))))
 
+(pbl--profile "early-init")
 ;; Defer garbage collection further back in the startup process
 (setq gc-cons-threshold most-positive-fixnum)
 (setq gc-cons-percentage 0.6)
@@ -34,3 +43,5 @@
 ;; in this file and can conflict with later config (particularly where the
 ;; cursor color is concerned).
 (advice-add #'x-apply-session-resources :override #'ignore)
+
+(pbl--profile "early-init")

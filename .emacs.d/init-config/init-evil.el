@@ -50,6 +50,7 @@
    "o" 'other-window
    "pp" '(lambda () (interactive) (pbl--open-file-at-point nil))
    "po" '(lambda () (interactive) (pbl--open-file-at-point t))
+   "q" 'kill-buffer-and-window
    "r" 'toggle-frame-maximized
    "w" 'pbl--toggle-writeroom-mode
    "x" 'helm-M-x

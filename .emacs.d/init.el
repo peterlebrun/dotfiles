@@ -49,7 +49,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(let-alist flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
+   '(org-faces let-alist flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -95,15 +95,31 @@
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
 
+(pbl--profile "init-exec-path-from-shell")
 (require 'init-exec-path-from-shell)
+(pbl--profile "init-exec-path-from-shell")
+(pbl--profile "init-evil")
 (require 'init-evil)
+(pbl--profile "init-evil")
+(pbl--profile "init-zenburn-theme")
 (require 'init-zenburn-theme)
+(pbl--profile "init-zenburn-theme")
+(pbl--profile "init-telephone-line")
 (require 'init-telephone-line)
+(pbl--profile "init-telephone-line")
+(pbl--profile "init-company")
 (use-package init-company :defer 1)
+(pbl--profile "init-company")
 ;(use-package init-magit :defer 1)
+(pbl--profile "init-writeroom-mode")
 (use-package init-writeroom-mode :defer 1)
+(pbl--profile "init-writeroom-mode")
+(pbl--profile "init-minimap")
 (use-package init-minimap :defer 1)
+(pbl--profile "init-minimap")
+(pbl--profile "init-helm-rg")
 (use-package init-helm-rg :defer 1)
+(pbl--profile "init-helm-rg")
 (pbl--profile "init-config-ex-org")
 
 (pbl--profile "init-org")
@@ -251,10 +267,7 @@
 
 (defvar pbl--init-profile-buffer-name "*init-profile*")
 (defvar pbl--init-profile-header-line "Init Profiler")
-(defvar pbl--right-pad-size 20)
-
-(defun format-sec (after-time before-time)
-  (format "%.2fs" (float-time (time-subtract after-time before-time))))
+(defvar pbl--right-pad-size 30)
 
 (defun pbl--right-pad-val (val &optional total-size)
   "Pad val up to TOTAL-SIZE."
@@ -278,21 +291,23 @@
                  (let* ((key (car elem))
                         (ts (cdr elem))
                         (before (car ts))
-                        (after (cadr ts)))
-                   (insert (concat (pbl--right-pad-val key) (format-sec after before) "\n"))))
+                        (after (cadr ts))
+                        (duration (float-time (time-subtract after before))))
+                   (when (> duration 0.10)
+                     (insert (concat (pbl--right-pad-val key) (format "%.2fs" duration) "\n")))))
                pbl--profile-times)
-       (insert (concat (pbl--right-pad-val "total init") (format-sec after-init-time before-init-time) "\n"))
+       (insert (concat (pbl--right-pad-val "total init") (format "%.2fs" (float-time (time-subtract after-init-time before-init-time))) "\n"))
        (insert (concat (pbl--right-pad-val "gc") (format "%d" gcs-done))))
 
 ;;@TODO: Add "q" to exit buffer
-(defun pbl--prepare-init-profile-buffer (buffer-name &optional mode-cb)
+;; jk just going to bind ,q in evil-mode
+(defun pbl--prepare-init-profile-buffer (buffer-name)
   "Create consistent buffer object for displaying list items"
   (let ((buf (get-buffer-create buffer-name)))
     (with-current-buffer buf
       (setq buffer-read-only nil)
       (erase-buffer)
       (kill-all-local-variables)
-      (when mode-cb (funcall mode-cb))
       (setq buffer-read-only t))
     buf))
 

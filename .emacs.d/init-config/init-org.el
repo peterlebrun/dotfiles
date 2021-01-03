@@ -1,20 +1,18 @@
 ;; set key for agenda
 
+(pbl--profile "init-org-global-set-key")
 (global-set-key (kbd "C-c a") 'org-agenda)
+(pbl--profile "init-org-global-set-key")
 
+(pbl--profile "init-org-use-package-org")
 (use-package org :ensure t)
+(pbl--profile "init-org-use-package-org")
 
-(setq org-modules '(org-w3m
-                    org-bbdb
-                    org-habit
-                    org-bibtex
-                    org-docview
-                    org-gnus
-                    org-info
-                    org-irc
-                    org-mhe
-                    org-rmail))
+(pbl--profile "init-org-modules")
+(setq org-modules '(org-habit))
+(pbl--profile "init-org-modules")
 
+(pbl--profile "init-org-faces")
 ; Adjusting face attributes requires that org-faces have loaded (these come from `(use-package org ...)
 ;; Not sure if I should be setting these but eff it, YOLO
 (set-face-attribute 'org-agenda-structure nil :foreground "LightGray" :weight 'bold :underline t)
@@ -26,7 +24,9 @@
 (set-face-attribute 'org-todo nil :foreground "white" :weight 'ultra-light)
 (set-face-attribute 'org-upcoming-deadline nil :foreground "white")
 (set-face-attribute 'org-warning nil :foreground "white")
+(pbl--profile "init-org-faces")
 
+(pbl--profile "init-org-setq")
 ;;file to save todo items
 (setq org-directory "~/Dropbox/org-todo")
 
@@ -64,6 +64,10 @@
 ;; if they are scheduled to be done
 (setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
 
+(setq org-enforce-todo-dependencies t)
+(pbl--profile "init-org-setq")
+
+(pbl--profile "init-org-project-prefix")
 (setq pbl-org-agenda-project-name-size 21)
 (setq pbl-org-agenda-sparkline-size 15)
 (setq pbl-org-agenda-sparkline-start "|")
@@ -127,7 +131,9 @@
     ""))
 
 (setq org-confirm-elisp-link-not-regexp "org-capture.*")
+(pbl--profile "init-org-project-prefix")
 
+(pbl--profile "init-org-summary-todo")
 (defun org-summary-todo (n-done n-not-done)
   "Switch project to COMPLETE when all subtasks are done, to IN PROGRESS otherwise."
   (let (org-log-done org-log-states)   ; turn off logging
@@ -140,7 +146,9 @@
                             (org-get-tags))))))))
 
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+(pbl--profile "init-org-summary-todo")
 
+(pbl--profile "init-org-state-change-hook")
 (defun pbl-get-parent-header ()
   (save-excursion
     (org-up-heading-safe)
@@ -165,7 +173,9 @@
           (org-set-tags-to '("next")))))))
 
 (add-hook 'org-after-todo-state-change-hook 'pbl-org-state-change-hook)
+(pbl--profile "init-org-state-change-hook")
 
+(pbl--profile "init-org-todos-alists-faces")
 ; Open question 20190801: if I have the same state in both subsequences,
 ; will that cause problems? Motivation: I was getting issues where
 ; it seemed like I was jumping between sequences when both had a state
@@ -191,7 +201,9 @@
         ("CANCELED" . (:foreground "LightSteelBlue" :weight bold))
         ("DONE" . (:foreground "#8C5353" :weight 'ultra-light))
         ("COMPLETE" . (:foreground "LightSteelBlue" :weight bold))))
+(pbl--profile "init-org-todos-alists-faces")
 
+(pbl--profile "init-org-capture-templates")
 ;;capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
@@ -220,19 +232,23 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
          "* TODO %? :waiting:")
         ("c" "commitment" entry (file+headline "~/Dropbox/org-todo/task.org" "tasks")
          "* TODO %? :commitment:\nDEADLINE: %t")))
+(pbl--profile "init-org-capture-templates")
 
+(pbl--profile "init-org-agenda-mode-hook")
 (add-hook 'org-agenda-mode-hook
           (lambda ()
             (setq org-habit-graph-column 45)
             (define-key org-agenda-mode-map (kbd "j") 'org-agenda-next-item)
             (define-key org-agenda-mode-map (kbd "k") 'org-agenda-previous-item)
             (define-key org-agenda-mode-map (kbd "RET") 'org-agenda-open-link)))
+(pbl--profile "init-org-agenda-mode-hook")
 
 (setq org-deadline-warning-days 0) ; warn me of any deadlines in the next 5 days
 (setq org-agenda-hide-tags-regexp ".")
 (setq pbl-header-length 72)
 (setq pbl-header-pad ?\ )
 
+(pbl--profile "init-org-sparklines")
 (defun pbl-right-pad-header (tag)
   "Make a header that has a certain length"
   ;(pbl-propertize-string
@@ -351,9 +367,9 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
          "|"
          (number-to-string denominator)
     ""))))
+(pbl--profile "init-org-sparklines")
 
-(setq org-enforce-todo-dependencies t)
-
+(pbl--profile "init-org-create-custom-commands")
 (setq org-agenda-custom-commands
       '(("e" "example sparkline view"
          ((tags-todo "active+TODO=\"TODO\""
@@ -378,19 +394,19 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
                      ((org-agenda-files (pbl-org-agenda-files "project"))
                       (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
                       (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
-          ;(tags-todo "CATEGORY=\"task\""
-                     ;((org-agenda-files (pbl-org-agenda-files "task"))
-                      ;(org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline 'regexp ":"))
-                      ;(org-agenda-overriding-header (pbl-right-pad-header "TASKS"))))
           (tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-files (pbl-org-agenda-files "inbox"))
                       (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))))
+(pbl--profile "init-org-create-custom-commands")
 
 ; Call this here because there is something deferred that is overwriting my settings.
 ; So we load (including the deferred piece), immediately quit, then proceed with the rest of the loading
+(pbl--profile "init-org-create-kill-agenda")
 (org-agenda nil "c")
 (org-agenda-quit)
+(pbl--profile "init-org-create-kill-agenda")
 
+(pbl--profile "init-org-agenda-prepare")
 ; overwrite function - exactly the same as "org-agenda.el"
 ; except I add conditional on whether to add newline before block-separator
 (defun org-agenda-prepare (&optional name)
@@ -456,5 +472,6 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
 	(and name (not org-agenda-name)
 	     (setq-local org-agenda-name name)))
       (setq buffer-read-only nil))))
+(pbl--profile "init-org-agenda-prepare")
 
 (provide 'init-org)

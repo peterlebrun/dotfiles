@@ -91,7 +91,7 @@
 (use-package rjsx-mode :defer 1)
 (pbl--profile "use-package")
 
-(pbl--profile "init-config")
+(pbl--profile "init-config-ex-org")
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
 
@@ -104,7 +104,7 @@
 (use-package init-writeroom-mode :defer 1)
 (use-package init-minimap :defer 1)
 (use-package init-helm-rg :defer 1)
-(pbl--profile "init-config")
+(pbl--profile "init-config-ex-org")
 
 (pbl--profile "init-org")
 (require 'init-org)
@@ -251,7 +251,7 @@
 
 (defvar pbl--init-profile-buffer-name "*init-profile*")
 (defvar pbl--init-profile-header-line "Init Profiler")
-(defvar pbl--right-pad-size 15)
+(defvar pbl--right-pad-size 20)
 
 (defun format-sec (after-time before-time)
   (format "%.2fs" (float-time (time-subtract after-time before-time))))

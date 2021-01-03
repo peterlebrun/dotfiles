@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+;; @TODO: This will behave weirdly if it is called >2x with the same key, add safeguards
 (defun pbl--profile (key)
   (when (not (boundp 'pbl--profile-times)) (setq pbl--profile-times ()))
   (let* ((c-time (current-time))

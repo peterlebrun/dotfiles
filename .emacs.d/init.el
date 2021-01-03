@@ -96,7 +96,7 @@
 ;; Additional configs to load.
 
 (pbl--profile "init-exec-path-from-shell")
-(require 'init-exec-path-from-shell)
+;(require 'init-exec-path-from-shell)
 (pbl--profile "init-exec-path-from-shell")
 (pbl--profile "init-evil")
 (require 'init-evil)
@@ -293,7 +293,7 @@
                         (before (car ts))
                         (after (cadr ts))
                         (duration (float-time (time-subtract after before))))
-                   (when (> duration 0.10)
+                   (when (> duration 0.01)
                      (insert (concat (pbl--right-pad-val key) (format "%.2fs" duration) "\n")))))
                pbl--profile-times)
        (insert (concat (pbl--right-pad-val "total init") (format "%.2fs" (float-time (time-subtract after-init-time before-init-time))) "\n"))

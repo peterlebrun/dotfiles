@@ -375,13 +375,13 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
          ((tags-todo "active+TODO=\"TODO\""
                      ((org-agenda-files '("~/Dropbox/org-todo/example-project.org"))
                       (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
-                      (org-agenda-prefix-format "%(sl-format-project-prefix) ")
+                      ;(org-agenda-prefix-format "%(sl-format-project-prefix) ")
                       (org-agenda-dim-blocked-tasks 'invisible)))))
         ("c" "custom daily view"
-         ((tags-todo "frog+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "task"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "FROGS"))))
-          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "project" "habit"))
+         (;(tags-todo "frog+TODO=\"TODO\""
+          ;           ((org-agenda-files (pbl-org-agenda-files "task"))
+          ;            (org-agenda-overriding-header (pbl-right-pad-header "FROGS"))))
+          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "habit"))
                       (org-agenda-span 4)
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
           (tags-todo "commitment+TODO=\"TODO\""
@@ -390,10 +390,10 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
           (tags-todo "waiting+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "task"))
                       (org-agenda-overriding-header (pbl-right-pad-header "WAITING ON"))))
-          (tags-todo "active+next+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "project"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
-                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
+          ;(tags-todo "active+next+TODO=\"TODO\""
+                     ;((org-agenda-files (pbl-org-agenda-files "project"))
+                      ;(org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
+                      ;(org-agenda-prefix-format "%(pbl-format-project-prefix)")))
           (tags-todo "CATEGORY=\"inbox\""
                      ((org-agenda-files (pbl-org-agenda-files "inbox"))
                       (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))))
@@ -402,7 +402,7 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
 ; Call this here because there is something deferred that is overwriting my settings.
 ; So we load (including the deferred piece), immediately quit, then proceed with the rest of the loading
 (pbl--profile "init-org-create-kill-agenda")
-(org-agenda nil "c")
+(org-agenda nil "a")
 (org-agenda-quit)
 (pbl--profile "init-org-create-kill-agenda")
 

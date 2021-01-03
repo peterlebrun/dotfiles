@@ -5,6 +5,7 @@
 ;; Provide named methods instead of lambda expressions
 ;; so that mode-map (see leader ?) displays names
 ;; instead of ??
+(pbl--profile "pbl--config-evil-leader")
 (defun pbl--config-evil-leader ()
   "Configure evil leader mode."
   (evil-leader/set-leader ",")
@@ -276,7 +277,9 @@ is already narrowed."
         (writeroom-mode 0)
       (writeroom-mode t)))
   )
+(pbl--profile "pbl--config-evil-leader")
 
+(pbl--profile "init-evil-use-package")
 (use-package evil
              :ensure t
              :config
@@ -289,5 +292,6 @@ is already narrowed."
                          (pbl--config-evil-leader))
 
              (use-package evil-indent-textobject :ensure t))
+(pbl--profile "init-evil-use-package")
 
 (provide 'init-evil)

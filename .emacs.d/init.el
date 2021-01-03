@@ -5,7 +5,6 @@
 ;; A big contributor to startup times is garbage collection. We up the gc
 ;; threshold to temporarily prevent it from running, and then reset it later
 ;; using a hook.
-(pbl--profile "init-header")
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6)
 
@@ -49,16 +48,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(org-faces let-alist flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js w3m w3 telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit exec-path-from-shell evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
+   '(flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
 (setq package-enable-at-startup nil)
-(pbl--profile "init-header")
 
-(pbl--profile "use-package")
 (eval-when-compile
   (require 'use-package))
 
@@ -89,47 +86,23 @@
 (use-package terraform-mode :defer 1)
 (use-package dockerfile-mode :defer 1)
 (use-package rjsx-mode :defer 1)
-(pbl--profile "use-package")
 
-(pbl--profile "init-config-ex-org")
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
 
-(pbl--profile "init-exec-path-from-shell")
 ;(require 'init-exec-path-from-shell)
-(pbl--profile "init-exec-path-from-shell")
-(pbl--profile "init-evil")
 (require 'init-evil)
-(pbl--profile "init-evil")
-(pbl--profile "init-zenburn-theme")
 (require 'init-zenburn-theme)
-(pbl--profile "init-zenburn-theme")
-(pbl--profile "init-telephone-line")
 (require 'init-telephone-line)
-(pbl--profile "init-telephone-line")
-(pbl--profile "init-company")
 (use-package init-company :defer 1)
-(pbl--profile "init-company")
 ;(use-package init-magit :defer 1)
-(pbl--profile "init-writeroom-mode")
 (use-package init-writeroom-mode :defer 1)
-(pbl--profile "init-writeroom-mode")
-(pbl--profile "init-minimap")
 (use-package init-minimap :defer 1)
-(pbl--profile "init-minimap")
-(pbl--profile "init-helm-rg")
 (use-package init-helm-rg :defer 1)
-(pbl--profile "init-helm-rg")
-(pbl--profile "init-config-ex-org")
 
-(pbl--profile "init-org")
 (require 'init-org)
-(pbl--profile "init-org")
-(pbl--profile "org-agenda")
 (org-agenda nil "c") ; load org-agenda
-(pbl--profile "org-agenda")
 
-(pbl--profile "mode-hooks")
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
@@ -245,7 +218,6 @@
 (add-hook 'writeroom-mode-hook
           (lambda ()
             (display-line-numbers-mode 0)))
-(pbl--profile "mode-hooks")
 
 ; Don't edit these
 
@@ -293,7 +265,7 @@
                         (before (car ts))
                         (after (cadr ts))
                         (duration (float-time (time-subtract after before))))
-                   (when (> duration 0.01)
+                   (when (>= duration 0.05)
                      (insert (concat (pbl--right-pad-val key) (format "%.2fs" duration) "\n")))))
                pbl--profile-times)
        (insert (concat (pbl--right-pad-val "total init") (format "%.2fs" (float-time (time-subtract after-init-time before-init-time))) "\n"))
@@ -313,4 +285,6 @@
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (pbl--display-init-profile-results)))
+            (message "Emacs Init: %.2fs. GC: %d."
+                     (float-time (time-subtract after-init-time before-init-time))
+                     gcs-done)))

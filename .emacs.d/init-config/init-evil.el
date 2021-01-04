@@ -285,8 +285,8 @@ is already narrowed."
   (use-package evil-leader
     :config
     (global-evil-leader-mode)
-    (pbl--config-evil-leader))
+    (pbl--config-evil-leader)))
 
-  (use-package evil-indent-textobject :ensure t))
+;  (use-package evil-indent-textobject :ensure t))
 
 (provide 'init-evil)

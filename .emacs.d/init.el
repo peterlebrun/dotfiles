@@ -48,7 +48,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
+   '(org flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -90,7 +90,6 @@
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
 
-;(require 'init-exec-path-from-shell)
 (require 'init-evil)
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)

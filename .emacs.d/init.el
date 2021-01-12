@@ -49,6 +49,8 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    '(org flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
+ ;'(prettier-js-command "/usr/local/bin/prettier"))
+
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -63,7 +65,7 @@
 (use-package bind-key :defer 1)
 (use-package rainbow-delimiters :defer 1)
 
-(use-package prettier-js :defer 1)
+(use-package prettier-js :ensure t)
 (use-package helm :defer 1
   :diminish helm-mode
   :config
@@ -90,6 +92,11 @@
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
 
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
 (require 'init-evil)
 (require 'init-zenburn-theme)
 (require 'init-telephone-line)
@@ -105,6 +112,8 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . rjsx-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))

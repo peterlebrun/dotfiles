@@ -48,7 +48,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(org flycheck-mode minimap visual-fill-column writeroom-mode prettier-js telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit evil-indent-textobject evil-leader evil php-mode use-package)))
+   '(doom-modeline org flycheck-mode minimap visual-fill-column writeroom-mode prettier-js clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit evil-indent-textobject evil-leader evil php-mode use-package)))
  ;'(prettier-js-command "/usr/local/bin/prettier"))
 
 
@@ -102,7 +102,11 @@
 
 (require 'init-evil)
 (require 'init-zenburn-theme)
-(require 'init-telephone-line)
+;(require 'init-telephone-line)
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
 (use-package init-company :defer 1)
 ;(use-package init-magit :defer 1)
 (use-package init-writeroom-mode :defer 1)

@@ -55,6 +55,8 @@
 ;; don't give a warning color to tasks with impending deadlines
 ;; if they are scheduled to be done
 (setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
+(setq org-agenda-inhibit-startup t)
+(setq org-agenda-dim-blocked-tasks nil)
 
 (setq org-enforce-todo-dependencies t)
 

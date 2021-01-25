@@ -14,7 +14,8 @@
 (set-face-attribute 'org-agenda-date-today nil :foreground "DarkGray" :weight 'ultra-light :slant 'normal)
 (set-face-attribute 'org-scheduled nil :foreground "white" :weight 'ultra-light)
 (set-face-attribute 'org-scheduled-today nil :foreground "white" :weight 'ultra-light)
-(set-face-attribute 'org-todo nil :foreground "white" :weight 'ultra-light)
+(set-face-attribute 'org-todo nil :foreground "LightGreen" :weight 'ultra-light)
+(set-face-attribute 'org-done nil :foreground "#8C5353" :weight 'ultra-light)
 (set-face-attribute 'org-upcoming-deadline nil :foreground "white")
 (set-face-attribute 'org-warning nil :foreground "white")
 
@@ -176,14 +177,6 @@
                                 "    :PROPERTIES:\n"
                                 "    :ORDERED:  t\n"
                                 "    :END:")))
-
-(setq org-todo-keyword-faces
-      '(("TODO" . (:foreground "LightGreen" :weight 'ultra-light))
-        ("NOT STARTED" . org-warning)
-        ("IN PROGRESS" . "yellow")
-        ("CANCELED" . (:foreground "LightSteelBlue" :weight bold))
-        ("DONE" . (:foreground "#8C5353" :weight 'ultra-light))
-        ("COMPLETE" . (:foreground "LightSteelBlue" :weight bold))))
 
 ;;capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)

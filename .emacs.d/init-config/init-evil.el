@@ -274,18 +274,18 @@ is already narrowed."
     (interactive)
     (if writeroom-mode
         (writeroom-mode 0)
-      (writeroom-mode t)))
-  )
+      (writeroom-mode t))))
 
 (use-package evil
   :ensure t
   :config
-  (evil-mode 1)
+  (evil-mode 1))
 
-  (use-package evil-leader
-    :config
-    (global-evil-leader-mode)
-    (pbl--config-evil-leader)))
+(use-package evil-leader
+  :ensure t
+  :config
+  (global-evil-leader-mode)
+  (pbl--config-evil-leader))
 
 ;  (use-package evil-indent-textobject :ensure t))
 

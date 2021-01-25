@@ -48,7 +48,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(org flycheck-mode helm-rg minimap visual-fill-column writeroom-mode prettier-js telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
+   '(org flycheck-mode minimap visual-fill-column writeroom-mode prettier-js telephone-line spotify clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit evil-indent-textobject evil-leader evil php-mode helm-projectile helm use-package)))
  ;'(prettier-js-command "/usr/local/bin/prettier"))
 
 
@@ -66,18 +66,21 @@
 (use-package rainbow-delimiters :defer 1)
 
 (use-package prettier-js :ensure t)
-(use-package helm :defer 1
-  :diminish helm-mode
-  :config
-  (helm-mode 1)
-  (setq helm-buffers-fuzzy-matching t)
-  (setq helm-autoresize-mode t)
-  (setq helm-buffer-max-length 40)
-  (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level))
+(use-package ivy :ensure t)
+(use-package counsel :ensure t)
+(use-package counsel-projectile :ensure t)
+;;(use-package helm :defer 1
+  ;;:diminish helm-mode
+  ;;:config
+  ;;(helm-mode 1)
+  ;;(setq helm-buffers-fuzzy-matching t)
+  ;;(setq helm-autoresize-mode t)
+  ;;(setq helm-buffer-max-length 40)
+  ;;(define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level))
 
 ; per helm-projectile.el comments, helm-projectile-fuzzy-match needs to load before helm-projectile package
-(setq helm-projectile-fuzzy-match nil)
-(use-package helm-projectile :defer t)
+;(setq helm-projectile-fuzzy-match nil)
+;(use-package helm-projectile :defer t)
 (use-package projectile
   :defer 1
   :config
@@ -104,7 +107,6 @@
 ;(use-package init-magit :defer 1)
 (use-package init-writeroom-mode :defer 1)
 (use-package init-minimap :defer 1)
-(use-package init-helm-rg :defer 1)
 
 (require 'init-org)
 (org-agenda nil "c") ; load org-agenda

@@ -11,7 +11,7 @@
   (evil-leader/set-key
    "RET" 'pbl--yarn-test
    "," 'pbl--open-shell
-   "/" 'helm-rg
+   "/" 'counsel-rg
    "|" 'split-window-right
    "-" 'split-window-below
    "0" 'delete-window
@@ -19,7 +19,7 @@
    ;"a" 'pbl--insert-file-contents-from-helm-search
    "aa" 'pbl--org-agenda
    "ag" 'pbl--org-agenda-goals
-   "b" 'helm-mini
+   "b" 'ivy-switch-buffer
    "B" 'pbl--magit-blame-toggle
    "ci" 'pbl--org-capture-inbox
    "ch" 'pbl--org-capture-habit
@@ -37,8 +37,8 @@
    "eo" 'pbl--open-org-config  ; emacs config for org
    "ee" 'pbl--open-evil-config ; emacs config for evil
    "ei" 'pbl--open-init-config ; emacs config for init
-   "f" 'helm-projectile
-   "F" 'helm-projectile-switch-project
+   "f" 'counsel-projectile
+   "F" 'counsel-projectile-switch-project
    "g" 'magit-status
    "j" 'pbl--insert-file-contents-from-helm-search
    "k" 'kill-buffer
@@ -53,7 +53,7 @@
    "q" 'kill-buffer-and-window
    "r" 'toggle-frame-maximized
    "w" 'pbl--toggle-writeroom-mode
-   "x" 'helm-M-x
+   "x" 'counsel-M-x
    "z" 'pbl--open-zshrc)
 
   ;@TODO if single quote fails, try again w double quote

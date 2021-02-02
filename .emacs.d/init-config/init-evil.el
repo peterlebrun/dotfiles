@@ -44,6 +44,7 @@
    "k" 'kill-buffer
    "l" 'pbl--load-current-file
    "m" 'minimap-mode
+   "M" 'treemacs
 	 "nl" 'pbl--narrow-to-line
 	 "nn" 'pbl--narrow-to-next-line
    "nw" 'pbl--widen-and-move-point

@@ -86,11 +86,11 @@
   :config
   (projectile-global-mode)
   (setq projectile-enable-caching t))
-(use-package yaml-mode :defer 1)
-(use-package web-mode :defer 1)
-(use-package terraform-mode :defer 1)
-(use-package dockerfile-mode :defer 1)
-(use-package rjsx-mode :defer 1)
+(use-package yaml-mode :ensure t :defer 1)
+(use-package web-mode :ensure t :defer 1)
+(use-package terraform-mode :ensure t :defer 1)
+(use-package dockerfile-mode :ensure t :defer 1)
+(use-package rjsx-mode :ensure t :defer t)
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
@@ -172,8 +172,7 @@
     (prettier-js-mode)
     (company-mode 1)
     (eldoc-mode)
-    (flycheck-mode 1)
-    ))
+    (flycheck-mode 1)))
 
 (add-hook 'js-mode-hook
   (lambda ()

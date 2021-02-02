@@ -11,3 +11,6 @@
 .emacs.d/init-config/\#*
 .emacs.d/init-config/\**
 .emacs.d/init-config/*~
+.emacs.d/.cache/
+.emacs.d/.local/
+.emacs.d/transient/

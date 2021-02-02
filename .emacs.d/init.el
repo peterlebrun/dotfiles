@@ -69,18 +69,7 @@
 (use-package ivy :ensure t)
 (use-package counsel :ensure t)
 (use-package counsel-projectile :ensure t)
-;;(use-package helm :defer 1
-  ;;:diminish helm-mode
-  ;;:config
-  ;;(helm-mode 1)
-  ;;(setq helm-buffers-fuzzy-matching t)
-  ;;(setq helm-autoresize-mode t)
-  ;;(setq helm-buffer-max-length 40)
-  ;;(define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level))
 
-; per helm-projectile.el comments, helm-projectile-fuzzy-match needs to load before helm-projectile package
-;(setq helm-projectile-fuzzy-match nil)
-;(use-package helm-projectile :defer t)
 (use-package projectile
   :defer 1
   :config
@@ -102,7 +91,6 @@
 
 (require 'init-evil)
 (require 'init-zenburn-theme)
-;(require 'init-telephone-line)
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
@@ -111,6 +99,7 @@
 (use-package init-magit :defer 1)
 (use-package init-writeroom-mode :defer 1)
 (use-package init-minimap :defer 1)
+(use-package init-flycheck :defer 1)
 
 (require 'init-org)
 (org-agenda nil "c") ; load org-agenda

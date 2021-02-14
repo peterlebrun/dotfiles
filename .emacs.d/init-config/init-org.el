@@ -214,6 +214,7 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
             (setq org-habit-graph-column 45)
             (define-key org-agenda-mode-map (kbd "j") 'org-agenda-next-item)
             (define-key org-agenda-mode-map (kbd "k") 'org-agenda-previous-item)
+            (define-key org-agenda-mode-map (kbd "y") 'org-agenda-todo-yesterday)
             (define-key org-agenda-mode-map (kbd "RET") 'org-agenda-open-link)))
 
 (setq org-deadline-warning-days 0) ; warn me of any deadlines in the next 5 days

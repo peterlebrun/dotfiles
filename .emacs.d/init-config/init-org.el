@@ -342,29 +342,16 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
     ""))))
 
 (setq org-agenda-custom-commands
-      '(("e" "example sparkline view"
-         ((tags-todo "active+TODO=\"TODO\""
-                     ((org-agenda-files '("~/Dropbox/org-todo/example-project.org"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
-                      ;(org-agenda-prefix-format "%(sl-format-project-prefix) ")
-                      (org-agenda-dim-blocked-tasks 'invisible)))))
-        ;("x" "startup view"
-        ;  (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "habit"))
-        ;              (org-agenda-span 4)
-        ;              (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
-        ;  (tags-todo "commitment+TODO=\"TODO\""
-        ;             ((org-agenda-files (pbl-org-agenda-files "task"))
-        ;              (org-agenda-overriding-header (pbl-right-pad-header "COMMITMENTS"))))
-        ;  (tags-todo "waiting+TODO=\"TODO\""
-        ;             ((org-agenda-files (pbl-org-agenda-files "task"))
-        ;              (org-agenda-overriding-header (pbl-right-pad-header "WAITING ON")))))
-        ("c" "custom daily view"
+      '(("c" "custom daily view"
          (;(tags-todo "frog+TODO=\"TODO\""
           ;           ((org-agenda-files (pbl-org-agenda-files "task"))
           ;            (org-agenda-overriding-header (pbl-right-pad-header "FROGS"))))
-          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task" "habit"))
+          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task"))
                       (org-agenda-span 4)
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
+          (agenda "" ((org-agenda-files (pbl-org-agenda-files "habit"))
+                      (org-agenda-span 1)
+                      (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
           (tags-todo "commitment+TODO=\"TODO\""
                      ((org-agenda-files (pbl-org-agenda-files "task"))
                       (org-agenda-overriding-header (pbl-right-pad-header "COMMITMENTS"))))

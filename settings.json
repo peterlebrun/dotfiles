@@ -5,5 +5,17 @@
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "editor.formatOnSave": true,
-    "editor.formatOnType": true
+    "editor.formatOnType": true,
+    "vim.leader": ",",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<leader>",
+                "t"
+            ],
+            "commands": [
+                "openInTerminal"
+            ]
+        }
+    ]
 }

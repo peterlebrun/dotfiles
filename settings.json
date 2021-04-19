@@ -1,0 +1,9 @@
+{
+    "workbench.colorTheme": "Higher Contrast Zenburn",
+    "editor.fontSize": 16,
+    "editor.fontFamily": "Fira Code",
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
+}

@@ -8,12 +8,12 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME='bira'
 
 # Default to tmux on open
-if [ "$TMUX" = "" ];
+#if [ "$TMUX" = "" ];
   # Either check for sessions and attach to an existing tmux session
   # Or open a new session
   # Don't run this
-  then tmux list-sessions &> /dev/null && tmux -u2 attach || tmux -u2;
-fi
+#  then tmux list-sessions &> /dev/null && tmux -u2 attach || tmux -u2;
+#fi
 
 #
 DISABLE_AUTO_TITLE=true;

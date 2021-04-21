@@ -7,6 +7,9 @@
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
     "vim.leader": ",",
+    "vim.easymotion": true,
+    "vim.foldfix": true,
+    "vim.useSystemClipboard": true,
     "vim.normalModeKeyBindings": [
         {
             "before": [
@@ -16,9 +19,105 @@
             "commands": [
                 "openInTerminal"
             ]
-        }
-    ],
-    "vim.easymotion": true,
-    "vim.foldfix": true,
-    "vim.useSystemClipboard": true
+        },
+        {
+            "before": [
+                "<leader>",
+                ","
+            ],
+            "commands": [
+                "workbench.action.openSettingsJson"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "k"
+            ],
+            "commands": [
+                "workbench.action.closeActiveEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "|"
+            ],
+            "commands": [
+                "workbench.action.splitEditorRight"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "-"
+            ],
+            "commands": [
+                "workbench.action.splitEditorDown"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "/"
+            ],
+            "commands": [
+                "workbench.action.terminal.searchWorkspace"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f"
+            ],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "s"
+            ],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility"
+            ],
+        },
+        {
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                "workbench.view.explorer"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "p"
+            ],
+            "commands": [
+                "editor.action.openLink"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "b"
+            ],
+            "commands": [
+                "workbench.action.quickOpenPreviousRecentlyUsedEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "zzzz"
+            ],
+            "commands": [
+                "workbench.action.quickOpenTerm",
+            ]
+        },
+    ]
 }

@@ -17,5 +17,8 @@
                 "openInTerminal"
             ]
         }
-    ]
+    ],
+    "vim.easymotion": true,
+    "vim.foldfix": true,
+    "vim.useSystemClipboard": true
 }

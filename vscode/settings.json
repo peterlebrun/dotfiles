@@ -95,7 +95,7 @@
         {
             "before": [
                 "<leader>",
-                "p"
+                "Enter"
             ],
             "commands": [
                 "editor.action.revealDefinition"
@@ -107,7 +107,7 @@
                 "b"
             ],
             "commands": [
-                "workbench.action.quickOpenPreviousRecentlyUsedEditor"
+                "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
             ]
         },
         {

@@ -127,6 +127,25 @@
             "commands": [
                 "workbench.action.openSnippets"
             ]
-         }
-    ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "m"
+            ],
+            "commands": [
+                "editor.action.toggleMinimap"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "r"
+            ],
+            "commands": [
+                "workbench.action.toggleFullScreen"
+            ]
+        },
+    ],
+    "editor.minimap.enabled": false
 }

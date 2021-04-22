@@ -98,7 +98,7 @@
                 "p"
             ],
             "commands": [
-                "editor.action.openLink"
+                "editor.action.revealDefinition"
             ]
         },
         {
@@ -113,11 +113,20 @@
         {
             "before": [
                 "<leader>",
-                "zzzz"
+                "q"
             ],
             "commands": [
-                "workbench.action.quickOpenTerm",
+                "workbench.action.quickOpenView",
             ]
         },
+        {
+            "before": [
+                "<leader>",
+                "y"
+            ],
+            "commands": [
+                "workbench.action.openSnippets"
+            ]
+         }
     ]
 }

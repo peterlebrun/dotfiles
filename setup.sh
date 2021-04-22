@@ -17,6 +17,13 @@ for file in $dotfiles; do
     ln -s $PWD/$file $HOME/$file;
 done
 
-if [ ! -L "$vscode"/settings.json ]; then
-    ln -s $PWD/settings.json "$vscode"/settings.json;
-fi
+vscodedotfiles="\
+    settings.json \
+    keybindings.json \
+"
+
+for file in $vscodedotfiles; do
+    if [ ! -L "$vscode"/$file ]; then
+        ln -s $PWD/vscode/$file "$vscode"/$file;
+    fi
+done

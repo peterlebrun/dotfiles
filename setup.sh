@@ -27,3 +27,5 @@ for file in $vscodedotfiles; do
         ln -s $PWD/vscode/$file "$vscode"/$file;
     fi
 done
+
+ln -s $PWD/pl-custom.zsh-theme $HOME/.oh-my-zsh/themes/pl-custom.zsh-theme

@@ -18,7 +18,6 @@
 # Green: 00cc00
 # Background: 333333
 
-
 CRUNCH_BRACKET_COLOR="%{$fg[white]%}"
 CRUNCH_TIME_COLOR="%{$fg[yellow]%}"
 CRUNCH_DIR_COLOR="%{$fg[blue]%}"

@@ -15,6 +15,8 @@ if [ -f $HOME/private.sh ]; then
     source $HOME/private.sh
 fi
 
+STATIC="$HOME/site-stat"
+
 BRACKET_COLOR="%{$fg[white]%}"
 TIME_COLOR="%{$fg[yellow]%}"
 DIR_COLOR="%{$fg[blue]%}"
@@ -38,7 +40,11 @@ PROMPT="$BRACKET_COLOR➭ "
 function get_dir() {
     dir="${PWD/$HOME/~}"
     static="${STATIC/$HOME/~}"
-    echo "${dir/$static/static}"
+    if [ -z "${static}" ]; then
+      echo $dir
+    else
+      echo "${dir/$static/~static}"
+    fi
 }
 
 # Note that the newline is intentional

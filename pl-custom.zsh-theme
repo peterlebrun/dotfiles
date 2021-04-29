@@ -29,7 +29,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN=" $GIT_CLEAN_COLOR✓"
 ZSH_THEME_GIT_PROMPT_DIRTY=" $GIT_DIRTY_COLOR✗"
 
 # Our elements:
-TIME_="$TIME_COLOR%T %{$reset_color%}"
+TIME_="$TIME_COLOR\$(date +%Y-%m-%d\|%H:%M) %{$reset_color%}"
 DIR_="$DIR_COLOR%~ "
 PROMPT="$BRACKET_COLOR➭ "
 

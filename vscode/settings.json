@@ -1,151 +1,79 @@
 {
-    "workbench.colorTheme": "Higher Contrast Zenburn",
-    "editor.fontSize": 16,
-    "editor.fontFamily": "Fira Code",
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
-    "vim.leader": ",",
-    "vim.easymotion": true,
-    "vim.foldfix": true,
-    "vim.useSystemClipboard": true,
-    "vim.normalModeKeyBindings": [
-        {
-            "before": [
-                "<leader>",
-                "t"
-            ],
-            "commands": [
-                "openInTerminal"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                ","
-            ],
-            "commands": [
-                "workbench.action.openSettingsJson"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "k"
-            ],
-            "commands": [
-                "workbench.action.closeActiveEditor"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "|"
-            ],
-            "commands": [
-                "workbench.action.splitEditorRight"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "-"
-            ],
-            "commands": [
-                "workbench.action.splitEditorDown"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "/"
-            ],
-            "commands": [
-                "workbench.action.terminal.searchWorkspace"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f"
-            ],
-            "commands": [
-                "workbench.action.quickOpen"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "s"
-            ],
-            "commands": [
-                "workbench.action.toggleSidebarVisibility"
-            ],
-        },
-        {
-            "before": [
-                "<leader>",
-                "e"
-            ],
-            "commands": [
-                "workbench.view.explorer"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "Enter"
-            ],
-            "commands": [
-                "editor.action.revealDefinition"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "b"
-            ],
-            "commands": [
-                "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "q"
-            ],
-            "commands": [
-                "workbench.action.quickOpenView",
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "y"
-            ],
-            "commands": [
-                "workbench.action.openSnippets"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "m"
-            ],
-            "commands": [
-                "editor.action.toggleMinimap"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "r"
-            ],
-            "commands": [
-                "workbench.action.toggleFullScreen"
-            ]
-        },
-    ],
-    "editor.minimap.enabled": false
+  "workbench.colorTheme": "Higher Contrast Zenburn",
+  "editor.fontSize": 16,
+  "editor.fontFamily": "Fira Code",
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "vim.leader": ",",
+  "vim.easymotion": true,
+  "vim.foldfix": true,
+  "vim.useSystemClipboard": true,
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "t"],
+      "commands": ["openInTerminal"]
+    },
+    {
+      "before": ["<leader>", ","],
+      "commands": ["workbench.action.openSettingsJson"]
+    },
+    {
+      "before": ["<leader>", "k"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<leader>", "|"],
+      "commands": ["workbench.action.splitEditorRight"]
+    },
+    {
+      "before": ["<leader>", "-"],
+      "commands": ["workbench.action.splitEditorDown"]
+    },
+    {
+      "before": ["<leader>", "/"],
+      "commands": ["workbench.action.terminal.searchWorkspace"]
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "s"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["<leader>", "Enter"],
+      "commands": ["editor.action.revealDefinition"]
+    },
+    {
+      "before": ["<leader>", "b"],
+      "commands": [
+        "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+      ]
+    },
+    {
+      "before": ["<leader>", "q"],
+      "commands": ["workbench.action.quickOpenView"]
+    },
+    {
+      "before": ["<leader>", "y"],
+      "commands": ["workbench.action.openSnippets"]
+    },
+    {
+      "before": ["<leader>", "m"],
+      "commands": ["editor.action.toggleMinimap"]
+    },
+    {
+      "before": ["<leader>", "r"],
+      "commands": ["workbench.action.toggleFullScreen"]
+    }
+  ],
+  "editor.minimap.enabled": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

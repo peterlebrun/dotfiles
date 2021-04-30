@@ -1,5 +1,5 @@
 if [ -f $HOME/private.sh ];
-    source $HOME/private.sh
+    bass source $HOME/private.sh
 end
 
 set PATH $PATH /usr/local/opt/icu4c/bin

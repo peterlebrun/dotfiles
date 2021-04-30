@@ -15,7 +15,9 @@
 	<key>Command</key>
 	<string></string>
 	<key>Default Bookmark Guid</key>
-	<string>A277D6E1-651E-4DED-A68B-7597FE199FDB</string>
+	<string>F6D9A06C-1615-4413-918F-6C2C0A0023FA</string>
+	<key>EnableDivisionView</key>
+	<false/>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
@@ -266,7 +268,7 @@
 			<key>Custom Command</key>
 			<string>Custom Shell</string>
 			<key>Custom Directory</key>
-			<string>Yes</string>
+			<string>No</string>
 			<key>Default Bookmark</key>
 			<string>No</string>
 			<key>Description</key>
@@ -289,9 +291,9 @@
 				<integer>0</integer>
 			</dict>
 			<key>Guid</key>
-			<string>A277D6E1-651E-4DED-A68B-7597FE199FDB</string>
+			<string>F6D9A06C-1615-4413-918F-6C2C0A0023FA</string>
 			<key>Horizontal Spacing</key>
-			<real>1</real>
+			<integer>1</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
@@ -666,7 +668,7 @@
 			<key>Use Non-ASCII Font</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>1</real>
+			<integer>1</integer>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
@@ -677,9 +679,19 @@
 	</array>
 	<key>SoundForEsc</key>
 	<false/>
+	<key>SplitPaneDimmingAmount</key>
+	<real>0.59999999999999998</real>
+	<key>TabStyleWithAutomaticOption</key>
+	<integer>3</integer>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
+	<key>WindowNumber</key>
+	<true/>
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
+	<key>kCPKSelectionViewPreferredModeKey</key>
+	<integer>0</integer>
+	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
+	<false/>
 </dict>
 </plist>

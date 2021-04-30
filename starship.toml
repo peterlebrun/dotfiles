@@ -5,6 +5,8 @@ format = """$time$directory$git_branch$git_status$nodejs$memory_usage
 $character
 """
 
+command_timeout = 100
+
 [character]
 success_symbol = '[>](blue)'
 error_symbol = '[>](bold red)'
@@ -12,6 +14,7 @@ error_symbol = '[>](bold red)'
 [directory]
 truncation_length = 2
 style = 'blue'
+read_only = 'RO'
 
 [git_branch]
 format = '[$symbol](red)[$branch](green) '
@@ -25,12 +28,12 @@ format = '[$symbol($version )]($style)'
 style = 'blue'
 
 [memory_usage]
-disabled = false
+disabled = true
 format = '[${ram}(|${swap})]($style) '
 style = 'dimmed white'
 
 [time]
-disabled = false
+disabled = true
 format = '[$time]($style) '
 style = 'yellow'
-time_format = '%a-%Y%m%d-%k%M'
+time_format = '%a-%Y%m%d-%H%M'

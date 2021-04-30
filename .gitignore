@@ -14,3 +14,4 @@
 .emacs.d/.cache/
 .emacs.d/.local/
 .emacs.d/transient/
+.DS_Store

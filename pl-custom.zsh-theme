@@ -49,5 +49,4 @@ function get_dir() {
 
 # Note that the newline is intentional
 # because it forces a line break after last command output
-PROMPT="$TIME_$DIR_COLOR\$(get_dir) \$(git_prompt_info)"'
-'"$PROMPT%{$reset_color%}"
+PROMPT="$TIME_$DIR_COLOR\$(get_dir) \$(git_prompt_info)$PROMPT%{$reset_color%}"

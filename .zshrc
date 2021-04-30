@@ -10,7 +10,7 @@ export ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME='duellj'
 #ZSH_THEME='fox'
 #ZSH_THEME='half-life'
-ZSH_THEME='pl-custom'
+#ZSH_THEME='pl-custom'
 
 # Default to tmux on open
 #if [ "$TMUX" = "" ];
@@ -256,3 +256,5 @@ alias dotfiles="cd $DOTFILES"
 #fi
 #unset __conda_setup
 # <<< conda initialize <<<
+
+eval "$(starship init zsh)"

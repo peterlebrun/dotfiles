@@ -28,7 +28,13 @@ for file in $vscodedotfiles; do
     fi
 done
 
-ln -s $PWD/pl-custom.zsh-theme $HOME/.oh-my-zsh/themes/pl-custom.zsh-theme
+if [ ! -L $HOME/.oh-my-zsh/themes/pl-custom.zsh-theme ]; then
+  ln -s $PWD/pl-custom.zsh-theme $HOME/.oh-my-zsh/themes/pl-custom.zsh-theme
+fi
+
+if [ ! -L ~/.config/starship.toml ]; then
+  ln -s $PWD/starship.toml ~/.config/starship.toml
+fi
 
 # Set up iterm2
 # Specify the preferences directory

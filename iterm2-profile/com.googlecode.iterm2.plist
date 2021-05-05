@@ -15,9 +15,7 @@
 	<key>Command</key>
 	<string></string>
 	<key>Default Bookmark Guid</key>
-	<string>F6D9A06C-1615-4413-918F-6C2C0A0023FA</string>
-	<key>EnableDivisionView</key>
-	<false/>
+	<string>A277D6E1-651E-4DED-A68B-7597FE199FDB</string>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
@@ -27,6 +25,18 @@
 		<dict>
 			<key>ASCII Anti Aliased</key>
 			<true/>
+			<key>AWDS Pane Directory</key>
+			<string></string>
+			<key>AWDS Pane Option</key>
+			<string>No</string>
+			<key>AWDS Tab Directory</key>
+			<string></string>
+			<key>AWDS Tab Option</key>
+			<string>No</string>
+			<key>AWDS Window Directory</key>
+			<string></string>
+			<key>AWDS Window Option</key>
+			<string>No</string>
 			<key>Ambiguous Double Width</key>
 			<false/>
 			<key>Ansi 0 Color</key>
@@ -291,9 +301,9 @@
 				<integer>0</integer>
 			</dict>
 			<key>Guid</key>
-			<string>F6D9A06C-1615-4413-918F-6C2C0A0023FA</string>
+			<string>A277D6E1-651E-4DED-A68B-7597FE199FDB</string>
 			<key>Horizontal Spacing</key>
-			<integer>1</integer>
+			<real>1</real>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
@@ -668,30 +678,20 @@
 			<key>Use Non-ASCII Font</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<integer>1</integer>
+			<real>1</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
-			<string>/Users/plebrun/eng/github</string>
+			<string></string>
 		</dict>
 	</array>
 	<key>SoundForEsc</key>
 	<false/>
-	<key>SplitPaneDimmingAmount</key>
-	<real>0.59999999999999998</real>
-	<key>TabStyleWithAutomaticOption</key>
-	<integer>3</integer>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
-	<key>WindowNumber</key>
-	<true/>
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
-	<key>kCPKSelectionViewPreferredModeKey</key>
-	<integer>0</integer>
-	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
-	<false/>
 </dict>
 </plist>

@@ -72,6 +72,10 @@
     {
       "before": ["<leader>", "r"],
       "commands": ["workbench.action.toggleFullScreen"]
+    },
+    {
+      "before": ["<leader>", "i"],
+      "commands": ["copyFilePath"]
     }
   ],
   "editor.minimap.enabled": false,

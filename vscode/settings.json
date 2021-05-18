@@ -76,6 +76,10 @@
     {
       "before": ["<leader>", "i"],
       "commands": ["copyFilePath"]
+    },
+    {
+      "before": ["<leader>", "0"],
+      "commands": ["workbench.action.focusSideBar"]
     }
   ],
   "editor.minimap.enabled": false,

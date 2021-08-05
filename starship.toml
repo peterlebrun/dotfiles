@@ -5,8 +5,6 @@ format = """$time$directory$git_branch$git_status$nodejs$memory_usage
 $character
 """
 
-command_timeout = 100
-
 [character]
 success_symbol = '[>](blue)'
 error_symbol = '[>](bold red)'

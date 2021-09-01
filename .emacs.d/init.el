@@ -30,9 +30,9 @@
 ; (load (expand-file-name "~/.quicklisp/slime-helper.el"))
 ; (setq inferior-lisp-program "sbcl")
 
-(let ((private-settings (expand-file-name "~/private.el")))
-  (if (file-exists-p private-settings)
-      (load private-settings)))
+;(let ((private-settings (expand-file-name "~/private.el")))
+;  (if (file-exists-p private-settings)
+;      (load private-settings)))
 
 ;; Visual presentation of window
 (global-visual-line-mode 1)
@@ -96,7 +96,7 @@
   :init (doom-modeline-mode 1))
 
 (use-package init-company :defer 1)
-(use-package init-magit :defer 1)
+;(use-package init-magit :defer 1)
 (use-package init-writeroom-mode :defer 1)
 (use-package init-minimap :defer 1)
 (use-package init-flycheck :defer 1)

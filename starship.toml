@@ -15,7 +15,7 @@ style = 'blue'
 read_only = 'RO'
 
 [git_branch]
-format = '[$symbol](red)[$branch](green) '
+format = '[$symbol](bold red)[$branch](green) '
 
 [git_status]
 format = '[$all_status$ahead_behind]($style) '

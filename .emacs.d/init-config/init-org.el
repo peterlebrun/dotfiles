@@ -24,13 +24,13 @@
 
 (setq org-archive-location "~/Dropbox/org-todo/archive.org::")
 
-(setq org-refile-targets `((,(expand-file-name "task.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "project.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "idea.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "inbox.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "thought.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "habit.org" org-directory) :maxlevel . 1)
-                           (,(expand-file-name "backlog.org" org-directory) :maxlevel . 1)))
+;(setq org-refile-targets `((,(expand-file-name "task.org" org-directory) :maxlevel . 1)
+;                           (,(expand-file-name "project.org" org-directory) :maxlevel . 1)
+;                           (,(expand-file-name "idea.org" org-directory) :maxlevel . 1)
+;                           (,(expand-file-name "inbox.org" org-directory) :maxlevel . 1)
+;                           (,(expand-file-name "thought.org" org-directory) :maxlevel . 1)
+;                           (,(expand-file-name "habit.org" org-directory) :maxlevel . 1)
+;                           (,(expand-file-name "backlog.org" org-directory) :maxlevel . 1)))
 
 ;;set priority range from A to C with default A
 (setq org-highest-priority ?A)
@@ -288,6 +288,9 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
 (defun pbl-org-agenda-files (&rest files)
   (cl-loop for f in files collect (expand-file-name (concat f ".org") org-directory)))
 
+(setq org-agenda-files (pbl-org-agenda-files "task"))
+
+
 (defun sl-get-padded-todo-parent (size)
   "Return string of length SIZE containing either padded or truncated parent name."
   (let* ((parent (cadr (org-get-outline-path)))
@@ -346,25 +349,25 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
          (;(tags-todo "frog+TODO=\"TODO\""
           ;           ((org-agenda-files (pbl-org-agenda-files "task"))
           ;            (org-agenda-overriding-header (pbl-right-pad-header "FROGS"))))
-          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task"))
-                      (org-agenda-span 4)
-                      (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
-          (agenda "" ((org-agenda-files (pbl-org-agenda-files "habit"))
-                      (org-agenda-span 1)
-                      (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
+          ;(agenda "" ((org-agenda-files (pbl-org-agenda-files "task"))
+          ;            (org-agenda-span 4)
+          ;            (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
+          ;(agenda "" ((org-agenda-files (pbl-org-agenda-files "habit"))
+          ;            (org-agenda-span 1)
+          ;            (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
+          (tags-todo "-{.*}+TODO=\"TODO\""
+                      ((org-agenda-overriding-header (pbl-right-pad-header "TODO"))))
           (tags-todo "commitment+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "task"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "COMMITMENTS"))))
+                     ((org-agenda-overriding-header (pbl-right-pad-header "COMMITMENTS"))))
           (tags-todo "waiting+TODO=\"TODO\""
-                     ((org-agenda-files (pbl-org-agenda-files "task"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "WAITING ON"))))
-          ;(tags-todo "active+next+TODO=\"TODO\""
-                     ;((org-agenda-files (pbl-org-agenda-files "project"))
-                      ;(org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
-                      ;(org-agenda-prefix-format "%(pbl-format-project-prefix)")))
-          (tags-todo "CATEGORY=\"inbox\""
-                     ((org-agenda-files (pbl-org-agenda-files "inbox"))
-                      (org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))))
+                     ((org-agenda-overriding-header (pbl-right-pad-header "WAITING ON"))))
+          (tags-todo "active+next+TODO=\"TODO\""
+                     ((org-agenda-overriding-header (pbl-right-pad-header "PROJECTS"))
+                      (org-agenda-prefix-format "%(pbl-format-project-prefix)")))
+          (tags-todo "idea+TODO=\"TODO\""
+                     ((org-agenda-overriding-header (pbl-right-pad-header "IDEAS"))))
+          (tags-todo "inbox+TODO=\"TODO\""
+                     ((org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))))
 
 ; Call this here because there is something deferred that is overwriting my settings.
 ; So we load (including the deferred piece), immediately quit, then proceed with the rest of the loading

@@ -260,8 +260,8 @@ alias dotfiles="cd $DOTFILES"
 #unset __conda_setup
 # <<< conda initialize <<<
 
-bindkey '^I' autosuggest-accept
-bindkey '^M' autosuggest-execute
+bindkey '^I' autosuggest-accept #tab
+bindkey '^M' autosuggest-execute #return
 
 eval "$(starship init zsh)"
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

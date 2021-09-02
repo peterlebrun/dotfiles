@@ -75,11 +75,6 @@
   :config
   (projectile-global-mode)
   (setq projectile-enable-caching t))
-(use-package yaml-mode :ensure t :defer 1)
-(use-package web-mode :ensure t :defer 1)
-(use-package terraform-mode :ensure t :defer 1)
-(use-package dockerfile-mode :ensure t :defer 1)
-(use-package rjsx-mode :ensure t :defer t)
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
@@ -95,42 +90,12 @@
   :ensure t
   :init (doom-modeline-mode 1))
 
-(use-package init-company :defer 1)
-;(use-package init-magit :defer 1)
 (use-package init-writeroom-mode :defer 1)
 (use-package init-minimap :defer 1)
 (use-package init-flycheck :defer 1)
 
 (require 'init-org)
 (org-agenda nil "c") ; load org-agenda
-
-(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
-(add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
-(add-to-list 'auto-mode-alist '("\\.ts\\'" . rjsx-mode))
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode))
-(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
-(add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.ftl\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.el\\'" . emacs-lisp-mode))
-(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.yamllint\\'" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode))
-(add-to-list 'auto-mode-alist '("\\.java\\'" . java-mode))
-(add-to-list 'auto-mode-alist '("\\.xml\\'" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.xsl\\'" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.xslt\\'" . nxml-mode))
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.bzl\\'" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.bazel\\'" . python-mode))
-(add-to-list 'auto-mode-alist '("^BUILD.bazel$" . python-mode))
-(add-to-list 'auto-mode-alist '("^BUILD$" . python-mode))
-(add-to-list 'auto-mode-alist '("^WORKSPACE$" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.tf\\'" . terraform-mode))
-(add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
-(add-to-list 'auto-mode-alist '("Dockerfile\\'". dockerfile-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -139,44 +104,6 @@
 
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'php-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)
-    (setq c-basic-offset 2)))
-
-(add-hook 'java-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)
-    (setq c-basic-offset 4)))
-
-(add-hook 'clojure-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)
-    (setq c-basic-offset 4)))
-
-(add-hook 'rjsx-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)
-    (setq js-indent-level 4) ;@TODO: Can I get this from configs?
-    (prettier-js-mode)
-    (company-mode 1)
-    (eldoc-mode)
-    (flycheck-mode 1)))
-
-(add-hook 'js-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)
-    (setq js-indent-level 2)
-    (prettier-js-mode)
-    (flycheck-mode 1)))
-
-(add-hook 'web-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)
-    (setq web-mode-markup-indent-offset 2)
-    (setq web-mode-css-indent-offset 2)
-    (setq web-mode-code-indent-offset 2)
-    (flycheck-mode 1)))
 
 (add-hook 'emacs-lisp-mode-hook
   (lambda ()
@@ -184,33 +111,6 @@
     (eldoc-mode 1)
     (company-mode 1)
     (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-last-sexp)))
-
-(add-hook 'yaml-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)))
-
-(add-hook 'nxml-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)
-    (setq c-basic-offset 2)))
-
-(add-hook 'python-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)
-    (setq python-indent 4)))
-
-(add-hook 'terraform-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)))
-
-(add-hook 'sh-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)))
-
-(add-hook 'dockerfile-mode-hook
-  (lambda ()
-    (display-line-numbers-mode 1)
-    (setq c-basic-offset 2)))
 
 (add-hook 'text-mode-hook
           (lambda ()

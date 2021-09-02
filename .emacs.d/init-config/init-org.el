@@ -291,7 +291,6 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
 
 (setq org-agenda-files (pbl-org-agenda-files "task"))
 
-
 (defun sl-get-padded-todo-parent (size)
   "Return string of length SIZE containing either padded or truncated parent name."
   (let* ((parent (cadr (org-get-outline-path)))

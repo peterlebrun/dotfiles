@@ -11,6 +11,7 @@
       (setf (alist-get key pbl--profile-times nil nil 'equal) `(,c-time)))))
 
 (pbl--profile "early-init")
+
 ;; Defer garbage collection further back in the startup process
 (setq gc-cons-threshold most-positive-fixnum)
 (setq gc-cons-percentage 0.6)

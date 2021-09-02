@@ -1,11 +1,18 @@
 ;; set key for agenda
 
+(pbl--profile "global set key")
 (global-set-key (kbd "C-c a") 'org-agenda)
+(pbl--profile "global set key")
 
+(pbl--profile "use package org")
 (use-package org :ensure t)
+(pbl--profile "use package org")
 
+(pbl--profile "setq org modules")
 (setq org-modules '(org-habit))
+(pbl--profile "setq org modules")
 
+(pbl--profile "set face attributes")
 ; Adjusting face attributes requires that org-faces have loaded (these come from `(use-package org ...)
 ;; Not sure if I should be setting these but eff it, YOLO
 (set-face-attribute 'org-agenda-structure nil :foreground "LightGray" :weight 'bold :underline t)
@@ -18,11 +25,14 @@
 (set-face-attribute 'org-done nil :foreground "#8C5353" :weight 'ultra-light)
 (set-face-attribute 'org-upcoming-deadline nil :foreground "white")
 (set-face-attribute 'org-warning nil :foreground "white")
+(pbl--profile "set face attributes")
 
+(pbl--profile "set org directory & archive")
 ;;file to save todo items
 (setq org-directory "~/org")
 
 (setq org-archive-location "~/org/archive.org::")
+(pbl--profile "set org directory & archive")
 
 ;(setq org-refile-targets `((,(expand-file-name "task.org" org-directory) :maxlevel . 1)
 ;                           (,(expand-file-name "project.org" org-directory) :maxlevel . 1)

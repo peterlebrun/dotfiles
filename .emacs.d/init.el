@@ -5,6 +5,7 @@
 ;; A big contributor to startup times is garbage collection. We up the gc
 ;; threshold to temporarily prevent it from running, and then reset it later
 ;; using a hook.
+(pbl--profile "start")
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6)
 
@@ -36,9 +37,7 @@
 
 ;; Visual presentation of window
 (global-visual-line-mode 1)
-(toggle-frame-maximized)
 
-(setq pbl-package-root "~/eng/github.com/peterlebrun/")
 (setq create-lockfiles nil)
 (setq vc-follow-symlinks t)
 
@@ -48,9 +47,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(init-minimap init-magit treemacs-persp treemacs-magit treemacs-icons-dired treemacs-projectile treemacs-evil treemacs doom-modeline org flycheck-mode minimap visual-fill-column writeroom-mode prettier-js clojure-mode unicode-fonts flow-minor-mode flow-mode flycheck-yamllint flycheck dockerfile-mode puppet-mode yaml-mode company zenburn-theme powerline-evil powerline org-bullets magit evil-indent-textobject evil-leader evil php-mode use-package)))
- ;'(prettier-js-command "/usr/local/bin/prettier"))
-
+   '(doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -65,36 +62,34 @@
 (use-package bind-key :defer 1)
 (use-package rainbow-delimiters :ensure t)
 
-(use-package prettier-js :ensure t)
-(use-package ivy :ensure t)
-(use-package counsel :ensure t)
-(use-package counsel-projectile :ensure t)
-
-(use-package projectile
-  :defer 1
-  :config
-  (projectile-global-mode)
-  (setq projectile-enable-caching t))
+(use-package ivy :ensure t :defer 1)
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
+(pbl--profile "start")
 
-(use-package exec-path-from-shell
-  :ensure t
-  :config
-  (exec-path-from-shell-initialize))
-
+(pbl--profile "init-evil")
 (require 'init-evil)
+(pbl--profile "init-evil")
+
+(pbl--profile "init-zenburn-theme")
 (require 'init-zenburn-theme)
+(pbl--profile "init-zenburn-theme")
+
+(pbl--profile "doom-modeline")
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
+(pbl--profile "doom-modeline")
 
+(pbl--profile "init-writeroom-mode")
 (use-package init-writeroom-mode :defer 1)
-(use-package init-minimap :defer 1)
-(use-package init-flycheck :defer 1)
+(pbl--profile "init-writeroom-mode")
 
+(pbl--profile "init-org")
 (require 'init-org)
+(pbl--profile "init-org")
+(pbl--profile "the rest")
 (org-agenda nil "c") ; load org-agenda
 
 (setq-default indent-tabs-mode nil)
@@ -167,8 +162,9 @@
                         (before (car ts))
                         (after (cadr ts))
                         (duration (float-time (time-subtract after before))))
-                   (when (>= duration 0.05)
-                     (insert (concat (pbl--right-pad-val key) (format "%.2fs" duration) "\n")))))
+                   ;(when (>= duration 0.05)
+                     ;(insert (concat (pbl--right-pad-val key) (format "%.2fs" duration) "\n")))))
+                     (insert (concat (pbl--right-pad-val key) (format "%.2fs" duration) "\n"))))
                pbl--profile-times)
        (insert (concat (pbl--right-pad-val "total init") (format "%.2fs" (float-time (time-subtract after-init-time before-init-time))) "\n"))
        (insert (concat (pbl--right-pad-val "gc") (format "%d" gcs-done))))
@@ -187,100 +183,9 @@
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (message "Emacs Init: %.2fs. GC: %d."
-                     (float-time (time-subtract after-init-time before-init-time))
-                     gcs-done)))
+            (pbl--display-init-profile-results)))
+;            (message "Emacs Init: %.2fs. GC: %d."
+;                     (float-time (time-subtract after-init-time before-init-time))
+;                     gcs-done)))
 
-(use-package treemacs
-  :ensure t
-  :defer t
-  :init
-  (with-eval-after-load 'winum
-    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-  :config
-  (progn
-    (setq treemacs-collapse-dirs                 (if treemacs-python-executable 3 0)
-          treemacs-deferred-git-apply-delay      0.5
-          treemacs-directory-name-transformer    #'identity
-          treemacs-display-in-side-window        t
-          treemacs-eldoc-display                 t
-          treemacs-file-event-delay              5000
-          treemacs-file-extension-regex          treemacs-last-period-regex-value
-          treemacs-file-follow-delay             0.2
-          treemacs-file-name-transformer         #'identity
-          treemacs-follow-after-init             t
-          treemacs-git-command-pipe              ""
-          treemacs-goto-tag-strategy             'refetch-index
-          treemacs-indentation                   2
-          treemacs-indentation-string            " "
-          treemacs-is-never-other-window         nil
-          treemacs-max-git-entries               5000
-          treemacs-missing-project-action        'ask
-          treemacs-move-forward-on-expand        nil
-          treemacs-no-png-images                 nil
-          treemacs-no-delete-other-windows       t
-          treemacs-project-follow-cleanup        nil
-          treemacs-persist-file                  (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-          treemacs-position                      'left
-          treemacs-read-string-input             'from-child-frame
-          treemacs-recenter-distance             0.1
-          treemacs-recenter-after-file-follow    nil
-          treemacs-recenter-after-tag-follow     nil
-          treemacs-recenter-after-project-jump   'always
-          treemacs-recenter-after-project-expand 'on-distance
-          treemacs-show-cursor                   nil
-          treemacs-show-hidden-files             t
-          treemacs-silent-filewatch              nil
-          treemacs-silent-refresh                nil
-          treemacs-sorting                       'alphabetic-asc
-          treemacs-space-between-root-nodes      t
-          treemacs-tag-follow-cleanup            t
-          treemacs-tag-follow-delay              1.5
-          treemacs-user-mode-line-format         nil
-          treemacs-user-header-line-format       nil
-          treemacs-width                         35
-          treemacs-workspace-switch-cleanup      nil)
-
-    ;; The default width and height of the icons is 22 pixels. If you are
-    ;; using a Hi-DPI display, uncomment this to double the icon size.
-    ;(treemacs-resize-icons 44)
-
-    (treemacs-follow-mode t)
-    (treemacs-filewatch-mode t)
-    (treemacs-fringe-indicator-mode 'always)
-    (pcase (cons (not (null (executable-find "git")))
-                 (not (null treemacs-python-executable)))
-      (`(t . t)
-       (treemacs-git-mode 'deferred))
-      (`(t . _)
-       (treemacs-git-mode 'simple))))
-  :bind
-  (:map global-map
-        ("M-0"       . treemacs-select-window)
-        ("C-x t 1"   . treemacs-delete-other-windows)
-        ("C-x t t"   . treemacs)
-        ("C-x t B"   . treemacs-bookmark)
-        ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag)))
-
-(use-package treemacs-evil
-  :after treemacs evil
-  :ensure t)
-
-(use-package treemacs-projectile
-  :after treemacs projectile
-  :ensure t)
-
-(use-package treemacs-icons-dired
-  :after treemacs dired
-  :ensure t
-  :config (treemacs-icons-dired-mode))
-
-(use-package treemacs-magit
-  :after treemacs magit
-  :ensure t)
-
-(use-package treemacs-persp ;;treemacs-perspective if you use perspective.el vs. persp-mode
-  :after treemacs persp-mode ;;or perspective vs. persp-mode
-  :ensure t
-  :config (treemacs-set-scope-type 'Perspectives))
+(pbl--profile "the rest")

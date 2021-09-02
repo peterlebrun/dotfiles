@@ -2,49 +2,15 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Provide named methods instead of lambda expressions
-;; so that mode-map (see leader ?) displays names
-;; instead of ??
-(defun pbl--config-evil-leader ()
-  "Configure evil leader mode."
-  (evil-leader/set-leader ",")
-  (pbl--profile "set key")
-  (evil-leader/set-key
-   "/" 'counsel-rg
-   "|" 'split-window-right
-   "-" 'split-window-below
-   "0" 'delete-window
-   "1" 'delete-other-windows
-   "aa" 'pbl--org-agenda
-   "b" 'ivy-switch-buffer
-   "ci" 'pbl--org-capture-inbox
-   "ch" 'pbl--org-capture-habit
-   "ct" 'pbl--org-capture-task
-   "cp" 'pbl--org-capture-project
-   "cf" 'pbl--org-capture-freewrite
-   "co" 'pbl--org-capture-thought
-   "cd" 'pbl--org-capture-daily-review
-   "cw" 'pbl--org-capture-weekly-review
-   "cc" 'pbl--org-capture-calendar
-   "cj" 'pbl--org-capture-daily-goal
-   "ck" 'pbl--org-capture-weekly-goal
-   "d" 'pbl--open-writing-file-for-today
-   "eo" 'pbl--open-org-config  ; emacs config for org
-   "ee" 'pbl--open-evil-config ; emacs config for evil
-   "ei" 'pbl--open-init-config ; emacs config for init
-   "f" 'counsel-projectile
-   "F" 'counsel-projectile-switch-project
-   "k" 'kill-buffer
-   "l" 'pbl--load-current-file
-	 "nl" 'pbl--narrow-to-line
-	 "nn" 'pbl--narrow-to-next-line
-   "nw" 'pbl--widen-and-move-point
-   "o" 'other-window
-   "q" 'kill-buffer-and-window
-   "r" 'toggle-frame-maximized
-   "w" 'pbl--toggle-writeroom-mode
-   "x" 'counsel-M-x)
-  (pbl--profile "set key")
+(pbl--profile "use package evil")
+(require 'evil)
+(evil-mode 1)
+(pbl--profile "use package evil")
+
+(pbl--profile "use package evil-leader")
+(require 'evil-leader)
+(global-evil-leader-mode)
+(pbl--profile "use package evil-leader")
 
   ;@TODO if single quote fails, try again w double quote
 ;  (defun pbl--open-file-at-point (other-window)
@@ -243,21 +209,51 @@ is already narrowed."
     (if writeroom-mode
         (writeroom-mode 0)
       (writeroom-mode t)))
-  (pbl--profile "define forms"))
+  (pbl--profile "define forms")
 
-(pbl--profile "use package evil")
-(use-package evil
-  :ensure t
-  :config
-  (evil-mode 1))
-(pbl--profile "use package evil")
 
-(pbl--profile "use package evil-leader")
-(use-package evil-leader
-  :ensure t
-  :config
-  (global-evil-leader-mode)
-  (pbl--config-evil-leader))
-(pbl--profile "use package evil-leader")
+;; Provide named methods instead of lambda expressions
+;; so that mode-map (see leader ?) displays names
+;; instead of ??
+  (evil-leader/set-leader ",")
+  (pbl--profile "set key")
+
+  (evil-leader/set-key
+   "/" 'counsel-rg
+   "|" 'split-window-right
+   "-" 'split-window-below
+   "0" 'delete-window
+   "1" 'delete-other-windows
+   "aa" 'pbl--org-agenda
+   "b" 'ivy-switch-buffer
+   "ci" 'pbl--org-capture-inbox
+   "ch" 'pbl--org-capture-habit
+   "ct" 'pbl--org-capture-task
+   "cp" 'pbl--org-capture-project
+   "cf" 'pbl--org-capture-freewrite
+   "co" 'pbl--org-capture-thought
+   "cd" 'pbl--org-capture-daily-review
+   "cw" 'pbl--org-capture-weekly-review
+   "cc" 'pbl--org-capture-calendar
+   "cj" 'pbl--org-capture-daily-goal
+   "ck" 'pbl--org-capture-weekly-goal
+   "d" 'pbl--open-writing-file-for-today
+   "eo" 'pbl--open-org-config  ; emacs config for org
+   "ee" 'pbl--open-evil-config ; emacs config for evil
+   "ei" 'pbl--open-init-config ; emacs config for init
+   "f" 'counsel-projectile
+   "F" 'counsel-projectile-switch-project
+   "k" 'kill-buffer
+   "l" 'pbl--load-current-file
+	 "nl" 'pbl--narrow-to-line
+	 "nn" 'pbl--narrow-to-next-line
+   "nw" 'pbl--widen-and-move-point
+   "o" 'other-window
+   "q" 'kill-buffer-and-window
+   "r" 'toggle-frame-maximized
+   "w" 'pbl--toggle-writeroom-mode
+   "x" 'counsel-M-x)
+  (pbl--profile "set key")
+
 
 (provide 'init-evil)

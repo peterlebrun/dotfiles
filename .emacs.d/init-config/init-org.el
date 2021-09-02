@@ -42,6 +42,7 @@
 ;                           (,(expand-file-name "habit.org" org-directory) :maxlevel . 1)
 ;                           (,(expand-file-name "backlog.org" org-directory) :maxlevel . 1)))
 
+(pbl--profile "org the rest")
 ;;set priority range from A to C with default A
 (setq org-highest-priority ?A)
 (setq org-lowest-priority ?C)
@@ -449,5 +450,6 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
 	(and name (not org-agenda-name)
 	     (setq-local org-agenda-name name)))
       (setq buffer-read-only nil))))
+(pbl--profile "org the rest")
 
 (provide 'init-org)

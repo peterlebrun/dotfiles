@@ -1,5 +1,4 @@
 ;; set key for agenda
-
 (pbl--profile "global set key")
 (global-set-key (kbd "C-c a") 'org-agenda)
 (pbl--profile "global set key")
@@ -7,10 +6,6 @@
 (pbl--profile "use package org")
 (use-package org :ensure t)
 (pbl--profile "use package org")
-
-(pbl--profile "setq org modules")
-(setq org-modules '(org-habit))
-(pbl--profile "setq org modules")
 
 (pbl--profile "set face attributes")
 ; Adjusting face attributes requires that org-faces have loaded (these come from `(use-package org ...)
@@ -34,15 +29,7 @@
 (setq org-archive-location "~/org/archive.org::")
 (pbl--profile "set org directory & archive")
 
-;(setq org-refile-targets `((,(expand-file-name "task.org" org-directory) :maxlevel . 1)
-;                           (,(expand-file-name "project.org" org-directory) :maxlevel . 1)
-;                           (,(expand-file-name "idea.org" org-directory) :maxlevel . 1)
-;                           (,(expand-file-name "inbox.org" org-directory) :maxlevel . 1)
-;                           (,(expand-file-name "thought.org" org-directory) :maxlevel . 1)
-;                           (,(expand-file-name "habit.org" org-directory) :maxlevel . 1)
-;                           (,(expand-file-name "backlog.org" org-directory) :maxlevel . 1)))
-
-(pbl--profile "org the rest")
+(pbl--profile "set values")
 ;;set priority range from A to C with default A
 (setq org-highest-priority ?A)
 (setq org-lowest-priority ?C)
@@ -77,7 +64,9 @@
 (setq pbl-org-agenda-sparkline-end "|")
 (setq pbl-org-agenda-sparkline-body ?·) ;used as a character
 (setq pbl-pad-val-size 3)
+(pbl--profile "set values")
 
+(pbl--profile "define functions")
 ;; Note 20190916: This would make a good blog post
 (defun pbl-format-project-prefix ()
   "Format project prefix to show parent heading"
@@ -379,77 +368,6 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
                      ((org-agenda-overriding-header (pbl-right-pad-header "IDEAS"))))
           (tags-todo "inbox+TODO=\"TODO\""
                      ((org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))))
-
-; Call this here because there is something deferred that is overwriting my settings.
-; So we load (including the deferred piece), immediately quit, then proceed with the rest of the loading
-(org-agenda nil "a")
-(org-agenda-quit)
-
-; overwrite function - exactly the same as "org-agenda.el"
-; except I add conditional on whether to add newline before block-separator
-(defun org-agenda-prepare (&optional name)
-  (let ((filter-alist (when org-agenda-persistent-filter
-			(with-current-buffer
-			    (get-buffer-create org-agenda-buffer-name)
-			  `((tag . ,org-agenda-tag-filter)
-			    (re . ,org-agenda-regexp-filter)
-			    (effort . ,org-agenda-effort-filter)
-			    (cat . ,org-agenda-category-filter))))))
-    (if (org-agenda-use-sticky-p)
-	(progn
-	  (put 'org-agenda-tag-filter :preset-filter nil)
-	  (put 'org-agenda-category-filter :preset-filter nil)
-	  (put 'org-agenda-regexp-filter :preset-filter nil)
-	  (put 'org-agenda-effort-filter :preset-filter nil)
-	  ;; Popup existing buffer
-	  (org-agenda-prepare-window (get-buffer org-agenda-buffer-name)
-				     filter-alist)
-	  (message "Sticky Agenda buffer, use `r' to refresh")
-	  (or org-agenda-multi (org-agenda-fit-window-to-buffer))
-	  (throw 'exit "Sticky Agenda buffer, use `r' to refresh"))
-      (setq org-todo-keywords-for-agenda nil)
-      (put 'org-agenda-tag-filter :preset-filter
-	   org-agenda-tag-filter-preset)
-      (put 'org-agenda-category-filter :preset-filter
-	   org-agenda-category-filter-preset)
-      (put 'org-agenda-regexp-filter :preset-filter
-	   org-agenda-regexp-filter-preset)
-      (put 'org-agenda-effort-filter :preset-filter
-	   org-agenda-effort-filter-preset)
-      (if org-agenda-multi
-	  (progn
-	    (setq buffer-read-only nil)
-	    (goto-char (point-max))
-	    (unless (or (bobp) org-agenda-compact-blocks
-			(not org-agenda-block-separator))
-	      (insert (if org-agenda-add-newline-before-block-separator "\n" "")
-		      (if (stringp org-agenda-block-separator)
-			  org-agenda-block-separator
-			(make-string (window-width) org-agenda-block-separator))
-		     "\n" ))
-	    (narrow-to-region (point) (point-max)))
-	(setq org-done-keywords-for-agenda nil)
-	;; Setting any org variables that are in org-agenda-local-vars
-	;; list need to be done after the prepare call
-	(org-agenda-prepare-window
-	 (get-buffer-create org-agenda-buffer-name) filter-alist)
-	(setq buffer-read-only nil)
-	(org-agenda-reset-markers)
-	(let ((inhibit-read-only t)) (erase-buffer))
-	(org-agenda-mode)
-	(setq org-agenda-buffer (current-buffer))
-	(setq org-agenda-contributing-files nil)
-	(setq org-agenda-columns-active nil)
-	(org-agenda-prepare-buffers (org-agenda-files nil 'ifmode))
-	(setq org-todo-keywords-for-agenda
-	      (org-uniquify org-todo-keywords-for-agenda))
-	(setq org-done-keywords-for-agenda
-	      (org-uniquify org-done-keywords-for-agenda))
-	(setq org-agenda-last-prefix-arg current-prefix-arg)
-	(setq org-agenda-this-buffer-name org-agenda-buffer-name)
-	(and name (not org-agenda-name)
-	     (setq-local org-agenda-name name)))
-      (setq buffer-read-only nil))))
-(pbl--profile "org the rest")
+(pbl--profile "define functions")
 
 (provide 'init-org)

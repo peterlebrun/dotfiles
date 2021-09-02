@@ -89,14 +89,18 @@
 (pbl--profile "init-org")
 (require 'init-org)
 (pbl--profile "init-org")
-(pbl--profile "the rest")
+(pbl--profile "org setup")
 (org-agenda nil "c") ; load org-agenda
+(pbl--profile "org setup")
 
+(pbl--profile "set values")
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (toggle-scroll-bar nil)
 (setq split-height-threshold 1) ;default to split windows horizontally
+(pbl--profile "set values")
 
+(pbl--profile "hooks")
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -115,9 +119,10 @@
 (add-hook 'writeroom-mode-hook
           (lambda ()
             (display-line-numbers-mode 0)))
+(pbl--profile "hooks")
 
+(pbl--profile "emacs stuff I didn't make")
 ; Don't edit these
-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -133,7 +138,9 @@
       kept-new-versions      20 ; how many of the newest versions to keep
       kept-old-versions      5) ; and how many of the old
 (put 'narrow-to-region 'disabled nil)
+(pbl--profile "emacs stuff I didn't make")
 
+(pbl--profile "profiler I made")
 (defvar pbl--init-profile-buffer-name "*init-profile*")
 (defvar pbl--init-profile-header-line "Init Profiler")
 (defvar pbl--right-pad-size 30)
@@ -188,4 +195,4 @@
 ;                     (float-time (time-subtract after-init-time before-init-time))
 ;                     gcs-done)))
 
-(pbl--profile "the rest")
+(pbl--profile "profiler I made")

@@ -48,6 +48,7 @@
 (setq org-stuck-projects '("+active+LEVEL=2/-COMPLETE" ("TODO")))
 (setq org-agenda-use-time-grid nil) ; I don't find this useful
 (setq org-tags-exclude-from-inheritance '("next" "st"))
+(setq org-agenda-use-tag-inheritance nil)
 ;; don't show tasks as scheduled if they are already shown as a deadline
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
 ;; don't give a warning color to tasks with impending deadlines
@@ -369,5 +370,76 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
           (tags-todo "inbox+TODO=\"TODO\""
                      ((org-agenda-overriding-header (pbl-right-pad-header "INBOX"))))))))
 (pbl--profile "define functions")
+
+(pbl--profile "load then quit")
+(org-agenda nil "c")
+(org-agenda-quit)
+(pbl--profile "load then quit")
+
+; overwrite function - exactly the same as "org-agenda.el"
+; except I add conditional on whether to add newline before block-separator
+(defun org-agenda-prepare (&optional name)
+  (let ((filter-alist (when org-agenda-persistent-filter
+			(with-current-buffer
+			    (get-buffer-create org-agenda-buffer-name)
+			  `((tag . ,org-agenda-tag-filter)
+			    (re . ,org-agenda-regexp-filter)
+			    (effort . ,org-agenda-effort-filter)
+			    (cat . ,org-agenda-category-filter))))))
+    (if (org-agenda-use-sticky-p)
+	(progn
+	  (put 'org-agenda-tag-filter :preset-filter nil)
+	  (put 'org-agenda-category-filter :preset-filter nil)
+	  (put 'org-agenda-regexp-filter :preset-filter nil)
+	  (put 'org-agenda-effort-filter :preset-filter nil)
+	  ;; Popup existing buffer
+	  (org-agenda-prepare-window (get-buffer org-agenda-buffer-name)
+				     filter-alist)
+	  (message "Sticky Agenda buffer, use `r' to refresh")
+	  (or org-agenda-multi (org-agenda-fit-window-to-buffer))
+	  (throw 'exit "Sticky Agenda buffer, use `r' to refresh"))
+      (setq org-todo-keywords-for-agenda nil)
+      (put 'org-agenda-tag-filter :preset-filter
+	   org-agenda-tag-filter-preset)
+      (put 'org-agenda-category-filter :preset-filter
+	   org-agenda-category-filter-preset)
+      (put 'org-agenda-regexp-filter :preset-filter
+	   org-agenda-regexp-filter-preset)
+      (put 'org-agenda-effort-filter :preset-filter
+	   org-agenda-effort-filter-preset)
+      (if org-agenda-multi
+	  (progn
+	    (setq buffer-read-only nil)
+	    (goto-char (point-max))
+	    (unless (or (bobp) org-agenda-compact-blocks
+			(not org-agenda-block-separator))
+	      (insert (if org-agenda-add-newline-before-block-separator "\n" "")
+		      (if (stringp org-agenda-block-separator)
+			  org-agenda-block-separator
+			(make-string (window-width) org-agenda-block-separator))
+		     "\n" ))
+	    (narrow-to-region (point) (point-max)))
+	(setq org-done-keywords-for-agenda nil)
+	;; Setting any org variables that are in org-agenda-local-vars
+	;; list need to be done after the prepare call
+	(org-agenda-prepare-window
+	 (get-buffer-create org-agenda-buffer-name) filter-alist)
+	(setq buffer-read-only nil)
+	(org-agenda-reset-markers)
+	(let ((inhibit-read-only t)) (erase-buffer))
+	(org-agenda-mode)
+	(setq org-agenda-buffer (current-buffer))
+	(setq org-agenda-contributing-files nil)
+	(setq org-agenda-columns-active nil)
+	(org-agenda-prepare-buffers (org-agenda-files nil 'ifmode))
+	(setq org-todo-keywords-for-agenda
+	      (org-uniquify org-todo-keywords-for-agenda))
+	(setq org-done-keywords-for-agenda
+	      (org-uniquify org-done-keywords-for-agenda))
+	(setq org-agenda-last-prefix-arg current-prefix-arg)
+	(setq org-agenda-this-buffer-name org-agenda-buffer-name)
+	(and name (not org-agenda-name)
+	     (setq-local org-agenda-name name)))
+      (setq buffer-read-only nil))))
 
 (provide 'init-org)

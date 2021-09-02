@@ -3,9 +3,9 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (pbl--profile "global set key")
 
-(pbl--profile "use package org")
-(use-package org :ensure t)
-(pbl--profile "use package org")
+(pbl--profile "require org")
+(require 'org)
+(pbl--profile "require org")
 
 (pbl--profile "set face attributes")
 ; Adjusting face attributes requires that org-faces have loaded (these come from `(use-package org ...)
@@ -356,7 +356,7 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
           ;            (org-agenda-span 1)
           ;            (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
           (tags-todo "-{.*}+TODO=\"TODO\""
-                      ((org-agenda-overriding-header (pbl-right-pad-header "TODO"))))
+                     ((org-agenda-overriding-header (pbl-right-pad-header "TODO"))))
           (tags-todo "commitment+TODO=\"TODO\""
                      ((org-agenda-overriding-header (pbl-right-pad-header "COMMITMENTS"))))
           (tags-todo "waiting+TODO=\"TODO\""

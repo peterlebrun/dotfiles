@@ -66,7 +66,7 @@
       "commands": ["workbench.action.openSnippets"]
     },
     {
-      "before": ["<leader>", "m"],
+      "before": ["<leader>", "-"],
       "commands": ["editor.action.toggleMinimap"]
     },
     {
@@ -80,11 +80,19 @@
     {
       "before": ["<leader>", "0"],
       "commands": ["workbench.action.focusSideBar"]
+    },
+    {
+      "before": ["<leader>", "n"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["<leader>", "m"],
+      "commands": ["workbench.action.nextEditor"]
     }
   ],
-  "editor.minimap.enabled": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[rust]": {
     "editor.defaultFormatter": "statiolake.vscode-rustfmt"
-  }
+  },
+  "prettier.requireConfig": true
 }

@@ -3,6 +3,6 @@
   {
     "key": ", f",
     "command": "workbench.action.quickOpen",
-    "when": "!editorTextFocus"
+    "when": "!editorTextFocus && !terminalFocus"
   }
 ]

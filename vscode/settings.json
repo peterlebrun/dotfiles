@@ -88,11 +88,17 @@
     {
       "before": ["<leader>", "m"],
       "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["<leader>", "z"],
+      "commands": ["workbench.action.toggleZenMode"]
     }
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[rust]": {
     "editor.defaultFormatter": "statiolake.vscode-rustfmt"
   },
-  "prettier.requireConfig": true
+  "prettier.requireConfig": true,
+  "editor.minimap.enabled": false,
+  "zenMode.hideLineNumbers": false
 }

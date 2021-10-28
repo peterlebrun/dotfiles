@@ -105,9 +105,9 @@
     "@TODO": {
       "type": "line",
       "gutterIcon": true,
-      "icon": "alert",
-      "foreground": "green",
-      "background": "blue",
+      "icon": "bell-fill",
+      "foreground": "red",
+      "background": "white",
       "opacity": 50,
       "iconColor": "red"
     }

@@ -66,7 +66,7 @@
       "commands": ["workbench.action.openSnippets"]
     },
     {
-      "before": ["<leader>", "-"],
+      "before": ["<leader>", "M"],
       "commands": ["editor.action.toggleMinimap"]
     },
     {
@@ -99,6 +99,17 @@
     "editor.defaultFormatter": "statiolake.vscode-rustfmt"
   },
   "prettier.requireConfig": true,
-  "editor.minimap.enabled": false,
-  "zenMode.hideLineNumbers": false
+  "zenMode.hideLineNumbers": false,
+  "todo-tree.general.tags": ["@TODO"],
+  "todo-tree.highlights.customHighlight": {
+    "@TODO": {
+      "type": "line",
+      "gutterIcon": true,
+      "icon": "alert",
+      "foreground": "green",
+      "background": "blue",
+      "opacity": 50,
+      "iconColor": "red"
+    }
+  }
 }

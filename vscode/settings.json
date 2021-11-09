@@ -111,5 +111,7 @@
       "opacity": 50,
       "iconColor": "red"
     }
-  }
+  },
+  "workbench.iconTheme": "vscode-icons",
+  "json.schemas": []
 }

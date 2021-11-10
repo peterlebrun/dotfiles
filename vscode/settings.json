@@ -74,7 +74,7 @@
       "commands": ["workbench.action.toggleFullScreen"]
     },
     {
-      "before": ["<leader>", "i"],
+      "before": ["<leader>", "c"],
       "commands": ["copyFilePath"]
     },
     {
@@ -92,6 +92,19 @@
     {
       "before": ["<leader>", "z"],
       "commands": ["workbench.action.toggleZenMode"]
+    },
+    {
+      "before": ["<leader>", "i", "t"],
+      "commands": [
+        {
+          "command": "editor.action.insertSnippet",
+          "when": "editorTextFocus",
+          "args": {
+            "snippet": "// @TODO: $1"
+          }
+        }
+      ],
+      "after": ["i"]
     }
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -114,6 +127,5 @@
   },
   "workbench.iconTheme": "vscode-icons",
   "json.schemas": [],
-  "editor.minimap.enabled": false,
   "editor.tabCompletion": "on"
 }

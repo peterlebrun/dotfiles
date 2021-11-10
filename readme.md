@@ -1,1 +1,1 @@
-These are my configs.  You can read them and learn from them if you'd like.
+All configs are provided as is.  The emacs stuff is pretty good but the rest is kinda hacked together.  I used to use emacs a lot; I love emacs.  But I switched to VS Code because frankly emacs is out of date in a lot of ways.

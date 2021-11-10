@@ -22,6 +22,7 @@ done
 vscodedotfiles="\
     settings.json \
     keybindings.json \
+    snippets
 "
 
 for file in $vscodedotfiles; do

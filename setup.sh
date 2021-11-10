@@ -3,11 +3,7 @@
 
 dotfiles="\
     .emacs.d \
-    .vimrc \
     .zshrc \
-    .tmux.conf \
-    .sbclrc \
-    .hushlogin \
 "
 
 vscode="$HOME/Library/Application Support/Code/User"
@@ -37,14 +33,6 @@ fi
 
 if [ ! -L ~/.config/starship.toml ]; then
   ln -s $PWD/starship.toml ~/.config/starship.toml
-fi
-
-if [ ! -L ~/.config/fish ]; then
-  ln -s $PWD/fish ~/.config/fish
-fi
-
-if [ ! -L ~/.config/omf ]; then
-  ln -s $PWD/omf ~/.config/omf
 fi
 
 # Set up iterm2

@@ -105,6 +105,19 @@
         }
       ],
       "after": ["i"]
+    },
+    {
+      "before": ["<leader>", "i", "c"],
+      "commands": [
+        {
+          "command": "editor.action.insertSnippet",
+          "when": "editorTextFocus",
+          "args": {
+            "snippet": "console.log(\"$1: \", $1);"
+          }
+        }
+      ],
+      "after": ["i"]
     }
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",

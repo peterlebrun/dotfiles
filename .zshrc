@@ -266,3 +266,4 @@ bindkey '^[[Z' autosuggest-accept #shift-tab
 export PATH=/Users/p/.meteor:$PATH
 eval "$(starship init zsh)"
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export GOPATH=$(go env GOPATH)

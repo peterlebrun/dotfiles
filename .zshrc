@@ -227,9 +227,9 @@ bashcompinit
     #return
 #}
 export PATH="/usr/local/opt/node@10/bin:$PATH"
-#if [ -f /usr/libexec/java_home ]; then
-#    export JAVA_HOME=$(/usr/libexec/java_home)
-#fi
+if [ -f /usr/libexec/java_home ]; then
+    export JAVA_HOME=$(/usr/libexec/java_home)
+fi
 
 if [ -f $HOME/private.sh ]; then
     source $HOME/private.sh
@@ -267,3 +267,16 @@ export PATH=/Users/p/.meteor:$PATH
 eval "$(starship init zsh)"
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export GOPATH=$(go env GOPATH)
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home
+
+function switch-java() {
+  if [ $1 = "14" ]; then
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home
+  elif [ $1 = "8" ]; then
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home
+  else
+    echo "Invalid java version"
+  fi
+  export PATH=$JAVA_HOME/bin:$PATH
+  $JAVA_HOME/bin/java -version
+}

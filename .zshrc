@@ -271,9 +271,9 @@ export GOPATH=$(go env GOPATH)
 
 function switch-java() {
   if [ $1 = "14" ]; then
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home
+    export JAVA_HOME=$(/usr/libexec/java_home -v14)
   elif [ $1 = "8" ]; then
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home
+    export JAVA_HOME=$(/usr/libexec/java_home -v1.8)
   else
     echo "Invalid java version"
   fi

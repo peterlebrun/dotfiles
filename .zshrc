@@ -280,5 +280,7 @@ function switch-java() {
   $JAVA_HOME/bin/java -version
 }
 
+export JAVA_HOME=$(/usr/libexec/java_home)
+
 export GOBIN=~/eng/go/bin
 export PATH=$GOBIN:$PATH

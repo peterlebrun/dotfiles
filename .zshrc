@@ -267,7 +267,6 @@ export PATH=/Users/p/.meteor:$PATH
 eval "$(starship init zsh)"
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export GOPATH=$(go env GOPATH)
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home
 
 function switch-java() {
   if [ $1 = "14" ]; then
@@ -280,3 +279,6 @@ function switch-java() {
   export PATH=$JAVA_HOME/bin:$PATH
   $JAVA_HOME/bin/java -version
 }
+
+export GOBIN=~/eng/go/bin
+export PATH=$GOBIN:$PATH

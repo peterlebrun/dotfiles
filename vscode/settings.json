@@ -140,5 +140,7 @@
   },
   "workbench.iconTheme": "vscode-icons",
   "json.schemas": [],
-  "editor.tabCompletion": "on"
+  "editor.tabCompletion": "on",
+  "aws.profile": "profile:biz",
+  "aws.onDefaultRegionMissing": "add"
 }

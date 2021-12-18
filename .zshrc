@@ -269,10 +269,14 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export GOPATH=$(go env GOPATH)
 
 function switch-java() {
-  if [ $1 = "14" ]; then
-    export JAVA_HOME=$(/usr/libexec/java_home -v14)
-  elif [ $1 = "8" ]; then
+  if [ $1 = "8" ]; then
     export JAVA_HOME=$(/usr/libexec/java_home -v1.8)
+  elif [ $1 = "11" ]; then
+    export JAVA_HOME=$(/usr/libexec/java_home -v11)
+  elif [ $1 = "14" ]; then
+    export JAVA_HOME=$(/usr/libexec/java_home -v14)
+  elif [ $1 = "16" ]; then
+    export JAVA_HOME=$(/usr/libexec/java_home -v16)
   else
     echo "Invalid java version"
   fi

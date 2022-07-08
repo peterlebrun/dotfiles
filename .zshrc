@@ -66,6 +66,7 @@ DISABLE_AUTO_TITLE=true;
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
   zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 # Not currently in use but leaving here for future reference
@@ -226,10 +227,10 @@ bashcompinit
     #echo "Tag:\t \e[32m$tag"
     #return
 #}
-export PATH="/usr/local/opt/node@10/bin:$PATH"
-if [ -f /usr/libexec/java_home ]; then
-    export JAVA_HOME=$(/usr/libexec/java_home)
-fi
+#export PATH="/usr/local/opt/node@10/bin:$PATH"
+#if [ -f /usr/libexec/java_home ]; then
+#    export JAVA_HOME=$(/usr/libexec/java_home)
+#fi
 
 if [ -f $HOME/private.sh ]; then
     source $HOME/private.sh
@@ -237,9 +238,9 @@ fi
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export DOTFILES="$HOME/eng/github.com/peterlebrun/dotfiles"
-export HTML2ORG="$HOME/eng/github.com/peterlebrun/html2org"
-export PCLISP="$HOME/eng/github.com/peterlebrun/practical-common-lisp"
-export QUANTECON="$HOME/eng/github.com/peterlebrun/quantecon"
+#export HTML2ORG="$HOME/eng/github.com/peterlebrun/html2org"
+#export PCLISP="$HOME/eng/github.com/peterlebrun/practical-common-lisp"
+#export QUANTECON="$HOME/eng/github.com/peterlebrun/quantecon"
 alias dotfiles="cd $DOTFILES"
 
 # added by Snowflake SnowSQL installer v1.0
@@ -263,28 +264,45 @@ alias dotfiles="cd $DOTFILES"
 #bindkey '^I' autosuggest-accept #tab
 bindkey '^[[Z' autosuggest-accept #shift-tab
 
-export PATH=/Users/p/.meteor:$PATH
+#export PATH=/Users/p/.meteor:$PATH
+[ -d /opt/homebrew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(starship init zsh)"
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export GOPATH=$(go env GOPATH)
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#export GOPATH=$(go env GOPATH)
 
-function switch-java() {
-  if [ $1 = "8" ]; then
-    export JAVA_HOME=$(/usr/libexec/java_home -v1.8)
-  elif [ $1 = "11" ]; then
-    export JAVA_HOME=$(/usr/libexec/java_home -v11)
-  elif [ $1 = "14" ]; then
-    export JAVA_HOME=$(/usr/libexec/java_home -v14)
-  elif [ $1 = "16" ]; then
-    export JAVA_HOME=$(/usr/libexec/java_home -v16)
-  else
-    echo "Invalid java version"
-  fi
-  export PATH=$JAVA_HOME/bin:$PATH
-  $JAVA_HOME/bin/java -version
-}
+#function switch-java() {
+#  if [ $1 = "8" ]; then
+#    export JAVA_HOME=$(/usr/libexec/java_home -v1.8)
+#  elif [ $1 = "11" ]; then
+#    export JAVA_HOME=$(/usr/libexec/java_home -v11)
+#  elif [ $1 = "14" ]; then
+#    export JAVA_HOME=$(/usr/libexec/java_home -v14)
+#  elif [ $1 = "16" ]; then
+#    export JAVA_HOME=$(/usr/libexec/java_home -v16)
+#  else
+#    echo "Invalid java version"
+#  fi
+#  export PATH=$JAVA_HOME/bin:$PATH
+#  $JAVA_HOME/bin/java -version
+#}
 
-export JAVA_HOME=$(/usr/libexec/java_home)
+#export JAVA_HOME=$(/usr/libexec/java_home)
 
-export GOBIN=~/eng/go/bin
-export PATH=$GOBIN:$PATH
+#export GOBIN=~/eng/go/bin
+#export PATH=$GOBIN:$PATHfunction tssh() { tsh ssh -A ${USER//./}@$1 }
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH=/usr/local/opt/openssl@1.0.2t/bin:$PATH
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+export PATH=/usr/local/opt/gnu-getopt/bin:$PATH
+export PATH=/usr/local/opt/mysql@5.7/bin:$PATH
+
+export PATH=/usr/local/opt/icu4c/bin:/usr/local/opt/icu4c/sbin:$PATH
+export PYICU_INCLUDES=/usr/local/Cellar/icu4c/70.1/include
+export PYICU_LFLAGS=-L/usr/local/Cellar/icu4c/70.1/lib
+export PYICU_CFLAGS=-std=c++11:-DPYICU_VER=\"2.4.2\"
+export PKG_CONFIG_PATH=/usr/local/opt/icu4c/lib/pkgconfig
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++

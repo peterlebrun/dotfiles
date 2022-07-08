@@ -40,3 +40,31 @@ fi
 # Tell iTerm2 to use the custom preferences in the directory
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$DOTFILES/iterm2-profile"
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
+# install oh-my-zsh if it doesn't exist
+if [ ! -d ~/.oh-my-zsh]; then
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";
+fi
+
+# install homebrew
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# install starship
+brew install starship
+# install necessary fonts
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code
+
+zshplugins="\
+    zsh-syntax-highlighting \
+    zsh-autosuggestions
+"
+# update next two lines to only run if it doesn't already exist
+for plugin in $zshplugins; do
+    if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$plugin ]; then
+        git clone https://github.com/zsh-users/$plugin.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$plugin;
+    fi
+done
+
+# only works after vscode has been installed
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false 

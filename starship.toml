@@ -1,7 +1,7 @@
 # Insert a blank line between shell prompts
 add_newline = true
 
-format = """$time$directory$git_branch$git_status$nodejs$memory_usage
+format = """$time$directory$git_branch$git_status$nodejs$python$memory_usage
 $character
 """
 

@@ -42,24 +42,27 @@ defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$DOTFILES/
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 # install oh-my-zsh if it doesn't exist
-if [ ! -d ~/.oh-my-zsh]; then
+if [ ! -d ~/.oh-my-zsh ]; then
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";
 fi
 
 # install homebrew
-NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
+brew -v >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)";
+[ -d /opt/homebrew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 # install starship
-brew install starship
-# install necessary fonts
-brew tap homebrew/cask-fonts
-brew install --cask font-fira-code
+starship -V >/dev/null 2>&1 || brew install starship
+# install fira code
+if [ ! -f $HOME/Library/Fonts/FiraCode-VF.ttf ]; then 
+    brew tap homebrew/cask-fonts
+    brew install --cask font-fira-code
+fi
+
+source $HOME/eng/github.com/peterlebrun/dotfiles/setup/gh-setup.sh
 
 zshplugins="\
     zsh-syntax-highlighting \
     zsh-autosuggestions
 "
-# update next two lines to only run if it doesn't already exist
 for plugin in $zshplugins; do
     if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$plugin ]; then
         git clone https://github.com/zsh-users/$plugin.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$plugin;

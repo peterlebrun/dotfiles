@@ -14,22 +14,6 @@ for file in $dotfiles; do
     ln -s $HOME/eng/github.com/peterlebrun/dotfiles/$file $HOME/$file;
 done
 
-vscodedotfiles="\
-    settings.json \
-    keybindings.json \
-    snippets
-"
-
-for file in $vscodedotfiles; do
-    if [ ! -L "$vscode"/$file ]; then
-        ln -s $PWD/vscode/$file "$vscode"/$file;
-    fi
-done
-
-if [ ! -L $HOME/.oh-my-zsh/themes/pl-custom.zsh-theme ]; then
-  ln -s $PWD/pl-custom.zsh-theme $HOME/.oh-my-zsh/themes/pl-custom.zsh-theme
-fi
-
 if [ ! -L ~/.config/starship.toml ]; then
   ln -s $PWD/starship.toml ~/.config/starship.toml
 fi

@@ -232,9 +232,8 @@ bashcompinit
 #    export JAVA_HOME=$(/usr/libexec/java_home)
 #fi
 
-if [ -f $HOME/eng/private.sh ]; then
-    source $HOME/eng/private.sh
-fi
+
+[ -f $HOME/eng/private.sh ] && source $HOME/eng/private.sh
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export DOTFILES="$HOME/eng/github.com/peterlebrun/dotfiles"

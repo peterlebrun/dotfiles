@@ -12,7 +12,7 @@ for file in $dotfiles; do
     if [ -L $HOME/$file ]; then
        rm $HOME/$file; # Clean out old symlink
     fi
-    ln -s $PWD/$file $HOME/$file;
+    ln -s $HOME/eng/github.com/peterlebrun/dotfiles/$file $HOME/$file;
 done
 
 vscodedotfiles="\
@@ -53,6 +53,7 @@ brew -v >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercont
 starship -V >/dev/null 2>&1 || brew install starship
 jq --version >/dev/null 2>&1 || brew install jq
 tree --version >/dev/null 2>&1 || brew install tree
+brew install devutils
 # install fira code
 if [ ! -f $HOME/Library/Fonts/FiraCode-VF.ttf ]; then 
     brew tap homebrew/cask-fonts

@@ -265,7 +265,7 @@ bindkey '^[[Z' autosuggest-accept #shift-tab
 
 #export PATH=/Users/p/.meteor:$PATH
 [ -d /opt/homebrew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(starship init zsh)"
+command -v starship && eval "$(starship init zsh)"
 #source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #export GOPATH=$(go env GOPATH)
 
@@ -292,6 +292,3 @@ eval "$(starship init zsh)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completionexport PATH=/usr/local/opt/openssl@1.0.2t/bin:$PATH
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-export PATH=/usr/local/opt/gnu-getopt/bin:$PATH

@@ -1,6 +1,5 @@
 #!/bin/bash
 # Create symlinks to all dotfiles in home directory
-
 dotfiles="\
     .emacs.d \
     .zshrc \

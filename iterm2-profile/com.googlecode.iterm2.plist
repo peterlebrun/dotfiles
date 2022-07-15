@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Command</key>
-	<string>/bin/zsh</string>
+	<string></string>
 	<key>Default Bookmark Guid</key>
 	<string>A277D6E1-651E-4DED-A68B-7597FE199FDB</string>
 	<key>HapticFeedbackForEsc</key>

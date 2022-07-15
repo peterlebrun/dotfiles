@@ -51,6 +51,8 @@ brew -v >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercont
 [ -d /opt/homebrew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 # install starship
 starship -V >/dev/null 2>&1 || brew install starship
+jq --version >/dev/null 2>&1 || brew install jq
+tree --version >/dev/null 2>&1 || brew install tree
 # install fira code
 if [ ! -f $HOME/Library/Fonts/FiraCode-VF.ttf ]; then 
     brew tap homebrew/cask-fonts

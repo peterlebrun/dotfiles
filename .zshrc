@@ -240,7 +240,7 @@ export DOTFILES="$HOME/eng/github.com/peterlebrun/dotfiles"
 #export HTML2ORG="$HOME/eng/github.com/peterlebrun/html2org"
 #export PCLISP="$HOME/eng/github.com/peterlebrun/practical-common-lisp"
 #export QUANTECON="$HOME/eng/github.com/peterlebrun/quantecon"
-alias dotfiles="cd $DOTFILES"
+alias dot="cd $DOTFILES"
 
 # added by Snowflake SnowSQL installer v1.0
 #export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
@@ -265,7 +265,7 @@ bindkey '^[[Z' autosuggest-accept #shift-tab
 
 #export PATH=/Users/p/.meteor:$PATH
 [ -d /opt/homebrew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
-command -v starship && eval "$(starship init zsh)"
+[ -L ~/.config/starship.toml ] && eval "$(starship init zsh)"
 #source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #export GOPATH=$(go env GOPATH)
 

@@ -239,6 +239,7 @@ export DOTFILES="$HOME/eng/github.com/peterlebrun/dotfiles"
 #export PCLISP="$HOME/eng/github.com/peterlebrun/practical-common-lisp"
 #export QUANTECON="$HOME/eng/github.com/peterlebrun/quantecon"
 alias dot="cd $DOTFILES"
+alias resource="source ~/.zshrc"
 
 # added by Snowflake SnowSQL installer v1.0
 #export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH

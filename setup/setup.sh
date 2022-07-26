@@ -37,6 +37,7 @@ starship -V >/dev/null 2>&1 || brew install starship
 jq --version >/dev/null 2>&1 || brew install jq
 tree --version >/dev/null 2>&1 || brew install tree
 gpg --version >/dev/null 2>&1 || brew install gpg
+aws --version >/dev/null 2>&1 || brew install awscli
 # install fira code
 if [ ! -f $HOME/Library/Fonts/FiraCode-VF.ttf ]; then 
     brew tap homebrew/cask-fonts

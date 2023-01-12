@@ -268,7 +268,7 @@
 			<key>Custom Command</key>
 			<string>Custom Shell</string>
 			<key>Custom Directory</key>
-			<string>No</string>
+			<string>Yes</string>
 			<key>Default Bookmark</key>
 			<string>No</string>
 			<key>Description</key>
@@ -674,7 +674,7 @@
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
-			<string></string>
+			<string>/Users/peter.lebrun/eng/github.com/Affirm/all-the-things</string>
 		</dict>
 	</array>
 	<key>PointerActions</key>

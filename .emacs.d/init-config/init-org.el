@@ -24,9 +24,9 @@
 
 (pbl--profile "set org directory & archive")
 ;;file to save todo items
-(setq org-directory "~/org")
+(setq org-directory "/opt/dropbox/org")
 
-(setq org-archive-location "~/org/archive.org::")
+(setq org-archive-location "/opt/dropbox/org/archive.org::")
 (pbl--profile "set org directory & archive")
 
 (pbl--profile "set values")
@@ -184,30 +184,30 @@
 ;;capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
-      '(("h" "habit" entry (file+headline "~/org/habit.org" "habits")
+      '(("h" "habit" entry (file+headline "/opt/dropbox/org/habit.org" "habits")
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
-        ("t" "task" entry (file+headline "~/org/task.org" "tasks")
+        ("t" "task" entry (file+headline "/opt/dropbox/org/task.org" "tasks")
          "* TODO %?\nSCHEDULED: %t")
-        ("j" "daily-goals" entry (file+headline "~/orgtask.org" "tasks")
+        ("j" "daily-goals" entry (file+headline "/opt/dropbox/org/task.org" "tasks")
          "* TODO %?                                             :st:dailygoal:
 DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
-        ("k" "weekly-goals" entry (file+headline "~/org/task.org" "tasks")
+        ("k" "weekly-goals" entry (file+headline "/opt/dropbox/org/task.org" "tasks")
          "* TODO %?                                             :st:weeklygoal:
 DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
-        ("p" "project" entry (file+headline "~/org/project.org" "projects")
+        ("p" "project" entry (file+headline "/opt/dropbox/org/project.org" "projects")
          "* NOT STARTED %?\n** TODO :next:")
         ;; Daily captures below
-        ("f" "freewrite" entry (file+olp+datetree "~/org/pensieve.org" "pensieve")
+        ("f" "freewrite" entry (file+olp+datetree "/opt/dropbox/org/pensieve.org" "pensieve")
          "* %U freewriting:%?\n")
-        ("a" "morning-writing" entry (file+olp+datetree "~/org/pensieve.org" "pensieve")
-         (file "~/org/templates/morning-writing.org"))
-        ("d" "daily-review" entry (file+olp+datetree "~/org/pensieve.org" "pensieve")
-         (file "~/org/templates/daily-review.org"))
-        ("w" "weekly-review" entry (file+olp+datetree "~/org/pensieve.org" "pensieve")
-         (file "~/org/templates/weekly-review.org"))
-        ("r" "waiting-on" entry (file+headline "~/org/task.org" "tasks")
+        ("a" "morning-writing" entry (file+olp+datetree "/opt/dropbox/org/pensieve.org" "pensieve")
+         (file "/opt/dropbox/org/templates/morning-writing.org"))
+        ("d" "daily-review" entry (file+olp+datetree "/opt/dropbox/org/pensieve.org" "pensieve")
+         (file "/opt/dropbox/org/templates/daily-review.org"))
+        ("w" "weekly-review" entry (file+olp+datetree "/opt/dropbox/org/pensieve.org" "pensieve")
+         (file "/opt/dropbox/org/templates/weekly-review.org"))
+        ("r" "waiting-on" entry (file+headline "/opt/dropbox/org/task.org" "tasks")
          "* TODO %? :waiting:")
-        ("c" "commitment" entry (file+headline "~/org/task.org" "tasks")
+        ("c" "commitment" entry (file+headline "/opt/dropbox/org/task.org" "tasks")
          "* TODO %? :commitment:\nDEADLINE: %t")))
 
 (add-hook 'org-agenda-mode-hook

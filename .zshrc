@@ -303,3 +303,4 @@ export PYICU_CFLAGS=-std=c++11:-DPYICU_VER=\"2.4.2\"
 export PKG_CONFIG_PATH=/usr/local/opt/icu4c/lib/pkgconfig
 export CC=/usr/bin/gcc
 export CXX=/usr/bin/g++
+export PATH="/usr/local/opt/kubernetes-cli@1.22/bin:$PATH"

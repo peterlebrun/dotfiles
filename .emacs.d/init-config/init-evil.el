@@ -3,12 +3,12 @@
 ;;; Code:
 
 (pbl--profile "use package evil")
-(require 'evil)
+(use-package evil)
 (evil-mode 1)
 (pbl--profile "use package evil")
 
 (pbl--profile "use package evil-leader")
-(require 'evil-leader)
+(use-package evil-leader)
 (global-evil-leader-mode)
 (pbl--profile "use package evil-leader")
 
@@ -86,7 +86,7 @@
     "Capture new bookmark to read"
     (interactive)
     (let ((url (read-from-minibuffer "URL: ")))
-      (with-current-buffer (find-file-noselect "~/org/bookmark.org")
+      (with-current-buffer (find-file-noselect "/opt/dropbox/org/bookmark.org")
         (goto-char (point-max))
         (insert (concat "** TODO " url))
         (save-buffer))))
@@ -95,7 +95,7 @@
     "Capture new inbox task"
     (interactive)
     (let ((task (read-from-minibuffer "TODO: ")))
-      (with-current-buffer (find-file-noselect "~/org/task.org")
+      (with-current-buffer (find-file-noselect "/opt/dropbox/org/task.org")
         (goto-char (point-max))
         (insert (concat "** TODO " task " :inbox:"))
         (save-buffer))))
@@ -109,7 +109,7 @@
     "Capture new task, scheduled for today"
     (interactive)
     (let ((task (read-from-minibuffer "TODO: ")))
-      (with-current-buffer (find-file-noselect "~/org/task.org")
+      (with-current-buffer (find-file-noselect "/opt/dropbox/org/task.org")
         (goto-char (point-max))
         (insert (concat "** TODO " task))
         (save-buffer))))

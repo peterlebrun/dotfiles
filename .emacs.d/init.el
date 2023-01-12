@@ -47,11 +47,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
+   '(counsel-projectile projectile counsel speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+;(dolist (package package-selected-packages)
+;  (unless (package-installed-p package)
+;    (package-install package)))
 
 (setq package-enable-at-startup nil)
 
@@ -76,15 +80,15 @@
 (require 'init-zenburn-theme)
 (pbl--profile "init-zenburn-theme")
 
-(pbl--profile "doom-modeline")
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
-(pbl--profile "doom-modeline")
-
-(pbl--profile "init-writeroom-mode")
-(use-package init-writeroom-mode :defer 1)
-(pbl--profile "init-writeroom-mode")
+;(pbl--profile "doom-modeline")
+;(use-package doom-modeline
+;  :ensure t
+;  :init (doom-modeline-mode 1))
+;(pbl--profile "doom-modeline")
+;
+;(pbl--profile "init-writeroom-mode")
+;(use-package init-writeroom-mode :defer 1)
+;(pbl--profile "init-writeroom-mode")
 
 (pbl--profile "init-org")
 (require 'init-org)

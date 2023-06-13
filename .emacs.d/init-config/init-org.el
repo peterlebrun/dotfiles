@@ -1,4 +1,4 @@
-;; set key for agenda
+;t/dropbox/org/; set key for agenda
 (pbl--profile "global set key")
 (global-set-key (kbd "C-c a") 'org-agenda)
 (pbl--profile "global set key")
@@ -24,9 +24,13 @@
 
 (pbl--profile "set org directory & archive")
 ;;file to save todo items
-(setq org-directory "/opt/dropbox/org")
+(setq org-directory "~/org")
+(defun pbl--get-org-file (filename)
+  "Syntactic sugar to return full org file path"
+  (concat org-directory filename))
 
-(setq org-archive-location "/opt/dropbox/org/archive.org::")
+(setq org-archive-location
+      (pbl--get-org-file "archive.org::"))
 (pbl--profile "set org directory & archive")
 
 (pbl--profile "set values")
@@ -44,7 +48,8 @@
 (setq org-habit-show-habits-only-for-today t)
 (setq org-agenda-window-setup 'current-window)
 (setq org-export-initial-scope 'subtree)
-(setq org-default-notes-file (concat org-directory "notes.org"))
+(setq org-default-notes-file
+      (pbl--get-org-file "notes.org"))
 (setq org-stuck-projects '("+active+LEVEL=2/-COMPLETE" ("TODO")))
 (setq org-agenda-use-time-grid nil) ; I don't find this useful
 (setq org-tags-exclude-from-inheritance '("next" "st"))
@@ -184,30 +189,30 @@
 ;;capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
-      '(("h" "habit" entry (file+headline "/opt/dropbox/org/habit.org" "habits")
+      '(("h" "habit" entry (file+headline (pbl--get-org-file "habit.org") "habits")
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
-        ("t" "task" entry (file+headline "/opt/dropbox/org/task.org" "tasks")
+        ("t" "task" entry (file+headline (pbl--get-org-file "task.org") "tasks")
          "* TODO %?\nSCHEDULED: %t")
-        ("j" "daily-goals" entry (file+headline "/opt/dropbox/org/task.org" "tasks")
+        ("j" "daily-goals" entry (file+headline (pbl--get-org-file "task.org") "tasks")
          "* TODO %?                                             :st:dailygoal:
 DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
-        ("k" "weekly-goals" entry (file+headline "/opt/dropbox/org/task.org" "tasks")
+        ("k" "weekly-goals" entry (file+headline (pbl--get-org-file "task.org") "tasks")
          "* TODO %?                                             :st:weeklygoal:
 DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
-        ("p" "project" entry (file+headline "/opt/dropbox/org/project.org" "projects")
+        ("p" "project" entry (file+headline (pbl--get-org-file "project.org") "projects")
          "* NOT STARTED %?\n** TODO :next:")
         ;; Daily captures below
-        ("f" "freewrite" entry (file+olp+datetree "/opt/dropbox/org/pensieve.org" "pensieve")
+        ("f" "freewrite" entry (file+olp+datetree (pbl--get-org-file "pensieve.org") "pensieve")
          "* %U freewriting:%?\n")
-        ("a" "morning-writing" entry (file+olp+datetree "/opt/dropbox/org/pensieve.org" "pensieve")
+        ("a" "morning-writing" entry (file+olp+datetree (pbl--get-org-file "pensieve.org") "pensieve")
          (file "/opt/dropbox/org/templates/morning-writing.org"))
-        ("d" "daily-review" entry (file+olp+datetree "/opt/dropbox/org/pensieve.org" "pensieve")
+        ("d" "daily-review" entry (file+olp+datetree (pbl--get-org-file "pensieve.org") "pensieve")
          (file "/opt/dropbox/org/templates/daily-review.org"))
-        ("w" "weekly-review" entry (file+olp+datetree "/opt/dropbox/org/pensieve.org" "pensieve")
+        ("w" "weekly-review" entry (file+olp+datetree (pbl--get-org-file "pensieve.org") "pensieve")
          (file "/opt/dropbox/org/templates/weekly-review.org"))
-        ("r" "waiting-on" entry (file+headline "/opt/dropbox/org/task.org" "tasks")
+        ("r" "waiting-on" entry (file+headline (pbl--get-org-file "task.org") "tasks")
          "* TODO %? :waiting:")
-        ("c" "commitment" entry (file+headline "/opt/dropbox/org/task.org" "tasks")
+        ("c" "commitment" entry (file+headline (pbl--get-org-file "task.org") "tasks")
          "* TODO %? :commitment:\nDEADLINE: %t")))
 
 (add-hook 'org-agenda-mode-hook

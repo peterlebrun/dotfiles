@@ -192,9 +192,9 @@
       (setq buffer-read-only t))
     buf))
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (pbl--display-init-profile-results)))
+;(add-hook 'emacs-startup-hook
+;          (lambda ()
+;            (pbl--display-init-profile-results)))
 ;            (message "Emacs Init: %.2fs. GC: %d."
 ;                     (float-time (time-subtract after-init-time before-init-time))
 ;                     gcs-done)))

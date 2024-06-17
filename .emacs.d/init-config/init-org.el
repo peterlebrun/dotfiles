@@ -27,7 +27,7 @@
 (setq org-directory "~/org")
 (defun pbl--get-org-file (filename)
   "Syntactic sugar to return full org file path"
-  (concat org-directory filename))
+  (concat org-directory "/" filename))
 
 (setq org-archive-location
       (pbl--get-org-file "archive.org::"))
@@ -189,30 +189,30 @@
 ;;capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
-      '(("h" "habit" entry (file+headline (pbl--get-org-file "habit.org") "habits")
+      '(("h" "habit" entry (file+headline "~/org/habit.org" "habits")
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
-        ("t" "task" entry (file+headline (pbl--get-org-file "task.org") "tasks")
+        ("t" "task" entry (file+headline ("~/org/task.org") "tasks")
          "* TODO %?\nSCHEDULED: %t")
-        ("j" "daily-goals" entry (file+headline (pbl--get-org-file "task.org") "tasks")
+        ("j" "daily-goals" entry (file+headline "~/org/task.org" "tasks")
          "* TODO %?                                             :st:dailygoal:
-DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
-        ("k" "weekly-goals" entry (file+headline (pbl--get-org-file "task.org") "tasks")
+;DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
+        ("k" "weekly-goals" entry (file+headline "~/org/task.org" "tasks")
          "* TODO %?                                             :st:weeklygoal:
-DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
-        ("p" "project" entry (file+headline (pbl--get-org-file "project.org") "projects")
+;DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
+        ("p" "project" entry (file+headline "~/org/project.org" "projects")
          "* NOT STARTED %?\n** TODO :next:")
         ;; Daily captures below
-        ("f" "freewrite" entry (file+olp+datetree (pbl--get-org-file "pensieve.org") "pensieve")
+        ("f" "freewrite" entry (file+olp+datetree "~/org/pensieve.org" "pensieve")
          "* %U freewriting:%?\n")
-        ("a" "morning-writing" entry (file+olp+datetree (pbl--get-org-file "pensieve.org") "pensieve")
+        ("a" "morning-writing" entry (file+olp+datetree "/org/pensieve.org" "pensieve")
          (file "/opt/dropbox/org/templates/morning-writing.org"))
-        ("d" "daily-review" entry (file+olp+datetree (pbl--get-org-file "pensieve.org") "pensieve")
+        ("d" "daily-review" entry (file+olp+datetree "~/org/pensieve.org" "pensieve")
          (file "/opt/dropbox/org/templates/daily-review.org"))
-        ("w" "weekly-review" entry (file+olp+datetree (pbl--get-org-file "pensieve.org") "pensieve")
+        ("w" "weekly-review" entry (file+olp+datetree "~/org/pensieve.org" "pensieve")
          (file "/opt/dropbox/org/templates/weekly-review.org"))
-        ("r" "waiting-on" entry (file+headline (pbl--get-org-file "task.org") "tasks")
+        ("r" "waiting-on" entry (file+headline "~/org/task.org" "tasks")
          "* TODO %? :waiting:")
-        ("c" "commitment" entry (file+headline (pbl--get-org-file "task.org") "tasks")
+        ("c" "commitment" entry (file+headline "~/org/task.org" "tasks")
          "* TODO %? :commitment:\nDEADLINE: %t")))
 
 (add-hook 'org-agenda-mode-hook
@@ -291,10 +291,10 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
 (setq org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
 (setq org-agenda-add-newline-before-block-separator nil)
 
-(defun pbl-org-agenda-files (&rest files)
+(defun pbl--org-agenda-files (&rest files)
   (cl-loop for f in files collect (expand-file-name (concat f ".org") org-directory)))
 
-(setq org-agenda-files (pbl-org-agenda-files "task"))
+(setq org-agenda-files (pbl--org-agenda-files "task"))
 
 (defun sl-get-padded-todo-parent (size)
   "Return string of length SIZE containing either padded or truncated parent name."
@@ -352,14 +352,14 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
 (setq org-agenda-custom-commands
       '(("c" "custom daily view"
          (;(tags-todo "frog+TODO=\"TODO\""
-          ;           ((org-agenda-files (pbl-org-agenda-files "task"))
+          ;           ((org-agenda-files (pbl--org-agenda-files "task"))
           ;            (org-agenda-overriding-header (pbl-right-pad-header "FROGS"))))
-          ;(agenda "" ((org-agenda-files (pbl-org-agenda-files "task"))
+          ;(agenda "" ((org-agenda-files (pbl--org-agenda-files "task"))
           ;            (org-agenda-span 4)
           ;            (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
-          ;(agenda "" ((org-agenda-files (pbl-org-agenda-files "habit"))
-          ;            (org-agenda-span 1)
-          ;            (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
+          (agenda "" ((org-agenda-files (pbl--org-agenda-files "habit"))
+                      (org-agenda-span 1)
+                      (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
           (tags-todo "-{.*}+TODO=\"TODO\""
                      ((org-agenda-overriding-header (pbl-right-pad-header "TODO"))))
           (tags-todo "commitment+TODO=\"TODO\""

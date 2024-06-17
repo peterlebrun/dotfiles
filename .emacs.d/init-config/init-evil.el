@@ -86,7 +86,7 @@
     "Capture new bookmark to read"
     (interactive)
     (let ((url (read-from-minibuffer "URL: ")))
-      (with-current-buffer (find-file-noselect "/opt/dropbox/org/bookmark.org")
+      (with-current-buffer (find-file-noselect "~/org/bookmark.org")
         (goto-char (point-max))
         (insert (concat "** TODO " url))
         (save-buffer))))
@@ -95,7 +95,7 @@
     "Capture new inbox task"
     (interactive)
     (let ((task (read-from-minibuffer "TODO: ")))
-      (with-current-buffer (find-file-noselect "/opt/dropbox/org/task.org")
+      (with-current-buffer (find-file-noselect "~/org/task.org")
         (goto-char (point-max))
         (insert (concat "** TODO " task " :inbox:"))
         (save-buffer))))
@@ -103,13 +103,13 @@
   (defun pbl--org-capture-habit ()
     "Capture new habit"
     (interactive)
-    (org-capture nil "h"))
+    (org-capture "h"))
 
   (defun pbl--org-capture-task ()
     "Capture new task, scheduled for today"
     (interactive)
     (let ((task (read-from-minibuffer "TODO: ")))
-      (with-current-buffer (find-file-noselect "/opt/dropbox/org/task.org")
+      (with-current-buffer (find-file-noselect "~/org/task.org")
         (goto-char (point-max))
         (insert (concat "** TODO " task))
         (save-buffer))))

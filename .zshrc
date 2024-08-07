@@ -263,7 +263,7 @@ unset __conda_setup
 bindkey '^[[Z' autosuggest-accept #shift-tab
 
 #export PATH=/Users/p/.meteor:$PATH
-[ -d /opt/homebrew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -d /opt/homebrew ] && eval "$(/usr/local/bin/brew shellenv)"
 [ -L ~/.config/starship.toml ] && eval "$(starship init zsh)"
 #source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #export GOPATH=$(go env GOPATH)
@@ -308,3 +308,5 @@ export PATH="/usr/local/opt/kubernetes-cli@1.22/bin:$PATH"
 function test() {
 
 }export PATH=/usr/local/protoc-grpc/bin:$PATH
+export GPG_TTY=$(tty)
+export REQUESTS_CA_BUNDLE=$HOME/Documents/Netskope_Cert_Bundle/nscacert_combined.pem

@@ -47,7 +47,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(counsel-projectile projectile counsel speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
+   '(zen-mode counsel-projectile projectile counsel speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -86,9 +86,9 @@
 ;  :init (doom-modeline-mode 1))
 ;(pbl--profile "doom-modeline")
 ;
-;(pbl--profile "init-writeroom-mode")
-;(use-package init-writeroom-mode :defer 1)
-;(pbl--profile "init-writeroom-mode")
+(pbl--profile "init-writeroom-mode")
+(use-package init-writeroom-mode :defer 1)
+(pbl--profile "init-writeroom-mode")
 
 (pbl--profile "init-org")
 (require 'init-org)
@@ -112,7 +112,7 @@
   (lambda ()
     (display-line-numbers-mode 1)
     (eldoc-mode 1)
-    (company-mode 1)
+    ;(company-mode 1)
     (define-key emacs-lisp-mode-map (kbd "<C-return>") 'eval-last-sexp)))
 
 (add-hook 'text-mode-hook

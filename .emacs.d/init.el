@@ -1,7 +1,3 @@
-;;; Commentary:
-;;; package -- summary
-;;; Code:
-
 ;; A big contributor to startup times is garbage collection. We up the gc
 ;; threshold to temporarily prevent it from running, and then reset it later
 ;; using a hook.
@@ -48,11 +44,7 @@
  ;; If there is more than one, they won't work right.
  '(org-agenda-files nil)
  '(package-selected-packages
-<<<<<<< HEAD
-   '(zen-mode counsel-projectile projectile counsel speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
-=======
    '(keycast command-log-mode doom-themes org-roam company-mode counsel-projectile projectile counsel speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
->>>>>>> 8231ecc (Setting up org-roam)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -93,18 +85,15 @@
   :config
   (global-command-log-mode))
 ;(use-package doom-modeline
-<<<<<<< HEAD
 ;  :ensure t
 ;  :init (doom-modeline-mode 1))
 ;(pbl--profile "doom-modeline")
 ;
-=======
   ;:ensure t
   ;:init (doom-modeline-mode 1))
 (require 'init-doom-modeline)
 (pbl--profile "doom-modeline")
 
->>>>>>> 8231ecc (Setting up org-roam)
 (pbl--profile "init-writeroom-mode")
 (use-package init-writeroom-mode :defer 1)
 (pbl--profile "init-writeroom-mode")

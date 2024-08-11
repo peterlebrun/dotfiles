@@ -354,10 +354,10 @@
          (;(tags-todo "frog+TODO=\"TODO\""
           ;           ((org-agenda-files (pbl--org-agenda-files "task"))
           ;            (org-agenda-overriding-header (pbl-right-pad-header "FROGS"))))
-          ;(agenda "" ((org-agenda-files (pbl--org-agenda-files "task"))
-          ;            (org-agenda-span 4)
-          ;            (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
-          (agenda "" ((org-agenda-files (pbl--org-agenda-files "habit"))
+          (agenda "" ((org-agenda-files (pbl-org-agenda-files "task"))
+                      (org-agenda-span 4)
+                      (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))
+          (agenda "" ((org-agenda-files (pbl-org-agenda-files "habit"))
                       (org-agenda-span 1)
                       (org-agenda-overriding-header (pbl-right-pad-header "HABITS"))))
           (tags-todo "-{.*}+TODO=\"TODO\""

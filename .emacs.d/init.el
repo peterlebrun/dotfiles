@@ -46,12 +46,19 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-agenda-files nil)
  '(package-selected-packages
+<<<<<<< HEAD
    '(zen-mode counsel-projectile projectile counsel speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
+=======
+   '(keycast command-log-mode doom-themes org-roam company-mode counsel-projectile projectile counsel speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
+>>>>>>> 8231ecc (Setting up org-roam)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+(use-package evil)
 
 ;(dolist (package package-selected-packages)
 ;  (unless (package-installed-p package)
@@ -80,12 +87,24 @@
 (require 'init-zenburn-theme)
 (pbl--profile "init-zenburn-theme")
 
-;(pbl--profile "doom-modeline")
+(pbl--profile "doom-modeline")
+(use-package command-log-mode
+  :ensure t
+  :config
+  (global-command-log-mode))
 ;(use-package doom-modeline
+<<<<<<< HEAD
 ;  :ensure t
 ;  :init (doom-modeline-mode 1))
 ;(pbl--profile "doom-modeline")
 ;
+=======
+  ;:ensure t
+  ;:init (doom-modeline-mode 1))
+(require 'init-doom-modeline)
+(pbl--profile "doom-modeline")
+
+>>>>>>> 8231ecc (Setting up org-roam)
 (pbl--profile "init-writeroom-mode")
 (use-package init-writeroom-mode :defer 1)
 (pbl--profile "init-writeroom-mode")
@@ -96,6 +115,9 @@
 (pbl--profile "org setup")
 (org-agenda nil "c") ; load org-agenda
 (pbl--profile "org setup")
+(pbl--profile "init-org-roam")
+(require 'init-org-roam)
+(pbl--profile "init-org-roam")
 
 (pbl--profile "set values")
 (setq-default indent-tabs-mode nil)
@@ -192,11 +214,11 @@
       (setq buffer-read-only t))
     buf))
 
-;(add-hook 'emacs-startup-hook
-;          (lambda ()
-;            (pbl--display-init-profile-results)))
-;            (message "Emacs Init: %.2fs. GC: %d."
-;                     (float-time (time-subtract after-init-time before-init-time))
-;                     gcs-done)))
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (pbl--display-init-profile-results)
+            (message "Emacs Init: %.2fs. GC: %d."
+                     (float-time (time-subtract after-init-time before-init-time))
+                     gcs-done)))
 
 (pbl--profile "profiler I made")

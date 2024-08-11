@@ -43,6 +43,10 @@
     "Open org config."
    (interactive) (find-file "~/.emacs.d/init-config/init-org.el"))
 
+  (defun pbl--open-org-roam-config ()
+    "Open org roam config."
+   (interactive) (find-file "~/.emacs.d/init-config/init-org-roam.el"))
+
   (defun pbl--open-evil-config ()
     "Open evil config."
    (interactive) (find-file "~/.emacs.d/init-config/init-evil.el"))
@@ -66,7 +70,7 @@
   (defun pbl--open-writing-file-for-today ()
     ""
     (interactive)
-    (find-file (concat "~/writings/" (format-time-string "%Y%m%d-%H%M%S") ".org"))
+    (find-file (concat "~/journal/" (format-time-string "%Y%m%d-%H%M%S") ".org"))
     (insert (concat "* " (format-time-string "%Y%m%d:%H%M\n")
                     "** Freewheeling Thoughts")))
 
@@ -241,6 +245,7 @@ is already narrowed."
    "eo" 'pbl--open-org-config  ; emacs config for org
    "ee" 'pbl--open-evil-config ; emacs config for evil
    "ei" 'pbl--open-init-config ; emacs config for init
+   "er" 'pbl--open-org-roam-config ; emacs config for org-roam
    "f" 'counsel-projectile
    "F" 'counsel-projectile-switch-project
    "k" 'kill-buffer

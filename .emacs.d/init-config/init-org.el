@@ -192,10 +192,10 @@
          "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a .+1d>>\n:PROPERTIES:\n:STYLE: habit\n:END:")
         ("t" "task" entry (file+headline ("~/org/task.org") "tasks")
          "* TODO %?\nSCHEDULED: %t")
-        ("j" "daily-goals" entry (file+headline "~/org/task.org" "tasks")
+        ("j" "daily-goals" entry (file+headline "~/org/goal.org" "goals")
          "* TODO %?                                             :st:dailygoal:
 DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
-        ("k" "weekly-goals" entry (file+headline "~/org/task.org" "tasks")
+        ("k" "weekly-goals" entry (file+headline "~/org/goal.org" "goals")
          "* TODO %?                                             :st:weeklygoal:
 DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
         ("p" "project" entry (file+headline "~/org/project.org" "projects")
@@ -353,6 +353,9 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
          (;(tags-todo "frog+TODO=\"TODO\""
           ;           ((org-agenda-files (pbl--org-agenda-files "task"))
           ;            (org-agenda-overriding-header (pbl-right-pad-header "FROGS"))))
+          (tags-todo "weeklygoal+TODO=\"TODO\""
+                     ((org-agenda-files (pbl--org-agenda-files "goal"))
+                      (org-agenda-overriding-header (pbl-right-pad-header "GOALS"))))
           (agenda "" ((org-agenda-files (pbl--org-agenda-files "task"))
                       (org-agenda-span 4)
                       (org-agenda-overriding-header (pbl-right-pad-header "AGENDA"))))

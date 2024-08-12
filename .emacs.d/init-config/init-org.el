@@ -194,10 +194,10 @@
          "* TODO %?\nSCHEDULED: %t")
         ("j" "daily-goals" entry (file+headline "~/org/task.org" "tasks")
          "* TODO %?                                             :st:dailygoal:
-;DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
+DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))")
         ("k" "weekly-goals" entry (file+headline "~/org/task.org" "tasks")
          "* TODO %?                                             :st:weeklygoal:
-;DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
+DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+1w\"))")
         ("p" "project" entry (file+headline "~/org/project.org" "projects")
          "* NOT STARTED %?\n** TODO :next:")
         ;; Daily captures below

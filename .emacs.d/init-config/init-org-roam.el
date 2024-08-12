@@ -8,10 +8,8 @@
    (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
   (org-roam-dailies-capture-templates
    '(("d" "default" entry
-      "* %?"
-      :target (file+head "%<%Y-%m-%d>.org"
-                         "#+title: %<%Y-%m-%d>\n")
-      :unnarrowed t)))
+      "* %<%H:%M %p>: %?"
+      :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
   (org-roam-capture-templates
    '(("d" "default" plain
       "%?"
@@ -36,12 +34,19 @@
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
          :map org-mode-map
+         ("C-M-i" . completion-at-point)
+         :map org-roam-dailies-map
+         ("Y" . org-roam-dailies-capture-yesterday)
+         ("T" . org-roam-dailies-capture-tomorrow))
          ;; Dailies
-         ("C-c n j" . org-roam-dailies-capture-today))
+         ;("C-c n j" . org-roam-dailies-capture-today))
+  :bind-keymap
+  ("C-c n d" . org-roam-dailies-map)
   :config
-  (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
-  (require 'org-roam-protocol))
+  (require 'org-roam-protocol)
+  (require 'org-roam-dailies)
+  (org-roam-db-autosync-mode))
 
 
 (provide 'init-org-roam)

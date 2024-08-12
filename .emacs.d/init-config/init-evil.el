@@ -118,6 +118,10 @@
         (insert (concat "** TODO " task))
         (save-buffer))))
 
+  (defun pbl--org-roam-dailies-today ()
+    ""
+    (interactive))
+
   (defun pbl--org-capture-project ()
     "Capture new project"
     (interactive)
@@ -241,7 +245,8 @@ is already narrowed."
    "cc" 'pbl--org-capture-calendar
    "cj" 'pbl--org-capture-daily-goal
    "ck" 'pbl--org-capture-weekly-goal
-   "d" 'pbl--open-writing-file-for-today
+   ;"d" 'pbl--open-writing-file-for-today
+   "d" 'org-roam-dailies-goto-today
    "eo" 'pbl--open-org-config  ; emacs config for org
    "ee" 'pbl--open-evil-config ; emacs config for evil
    "ei" 'pbl--open-init-config ; emacs config for init

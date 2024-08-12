@@ -168,46 +168,46 @@
          (spaces (make-string num-spaces ?\ )))
       (concat val-string spaces)))
 
-(defun pbl--display-init-profile-results ()
-  "Parse and display list in window"
-  (with-current-buffer (pbl--prepare-init-profile-buffer pbl--init-profile-buffer-name)
-    (setq buffer-read-only nil)
-    (setq header-line-format pbl--init-profile-header-line)
-    (pbl--display-init-profile-data)
-    (setq buffer-read-only t)
-    (pop-to-buffer (current-buffer))))
+;(defun pbl--display-init-profile-results ()
+  ;"Parse and display list in window"
+  ;(with-current-buffer (pbl--prepare-init-profile-buffer pbl--init-profile-buffer-name)
+    ;(setq buffer-read-only nil)
+    ;(setq header-line-format pbl--init-profile-header-line)
+    ;(pbl--display-init-profile-data)
+    ;(setq buffer-read-only t)
+    ;(pop-to-buffer (current-buffer))))
 
-(defun pbl--display-init-profile-data () ""
-       (mapcar (lambda (elem)
-                 (let* ((key (car elem))
-                        (ts (cdr elem))
-                        (before (car ts))
-                        (after (cadr ts))
-                        (duration (float-time (time-subtract after before))))
-                   ;(when (>= duration 0.05)
-                     ;(insert (concat (pbl--right-pad-val key) (format "%.2fs" duration) "\n")))))
-                     (insert (concat (pbl--right-pad-val key) (format "%.2fs" duration) "\n"))))
-               pbl--profile-times)
-       (insert (concat (pbl--right-pad-val "total init") (format "%.2fs" (float-time (time-subtract after-init-time before-init-time))) "\n"))
-       (insert (concat (pbl--right-pad-val "gc") (format "%d" gcs-done))))
+;(defun pbl--display-init-profile-data () ""
+       ;(mapcar (lambda (elem)
+                 ;(let* ((key (car elem))
+                        ;(ts (cdr elem))
+                        ;(before (car ts))
+                        ;(after (cadr ts))
+                        ;(duration (float-time (time-subtract after before))))
+                   ;;(when (>= duration 0.05)
+                     ;;(insert (concat (pbl--right-pad-val key) (format "%.2fs" duration) "\n")))))
+                     ;(insert (concat (pbl--right-pad-val key) (format "%.2fs" duration) "\n"))))
+               ;pbl--profile-times)
+       ;(insert (concat (pbl--right-pad-val "total init") (format "%.2fs" (float-time (time-subtract after-init-time before-init-time))) "\n"))
+       ;(insert (concat (pbl--right-pad-val "gc") (format "%d" gcs-done))))
 
 ;;@TODO: Add "q" to exit buffer
 ;; jk just going to bind ,q in evil-mode
-(defun pbl--prepare-init-profile-buffer (buffer-name)
-  "Create consistent buffer object for displaying list items"
-  (let ((buf (get-buffer-create buffer-name)))
-    (with-current-buffer buf
-      (setq buffer-read-only nil)
-      (erase-buffer)
-      (kill-all-local-variables)
-      (setq buffer-read-only t))
-    buf))
+;(defun pbl--prepare-init-profile-buffer (buffer-name)
+  ;"Create consistent buffer object for displaying list items"
+  ;(let ((buf (get-buffer-create buffer-name)))
+    ;(with-current-buffer buf
+      ;(setq buffer-read-only nil)
+      ;(erase-buffer)
+      ;(kill-all-local-variables)
+      ;(setq buffer-read-only t))
+    ;buf))
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (pbl--display-init-profile-results)
-            (message "Emacs Init: %.2fs. GC: %d."
-                     (float-time (time-subtract after-init-time before-init-time))
-                     gcs-done)))
+;(add-hook 'emacs-startup-hook
+          ;(lambda ()
+            ;(pbl--display-init-profile-results)
+            ;(message "Emacs Init: %.2fs. GC: %d."
+                     ;(float-time (time-subtract after-init-time before-init-time))
+                     ;gcs-done)))
 
-(pbl--profile "profiler I made")
+;(pbl--profile "profiler I made")

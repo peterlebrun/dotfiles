@@ -28,16 +28,16 @@
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: Project")
       :unnarrowed t)))
   (org-roam-completion-everywhere t)
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
-         ("C-c n g" . org-roam-graph)
-         ("C-c n i" . org-roam-node-insert)
-         ("C-c n c" . org-roam-capture)
-         :map org-mode-map
-         ("C-M-i" . completion-at-point)
-         :map org-roam-dailies-map
-         ("Y" . org-roam-dailies-capture-yesterday)
-         ("T" . org-roam-dailies-capture-tomorrow))
+  ;:bind (("C-c n l" . org-roam-buffer-toggle)
+         ;("C-c n f" . org-roam-node-find)
+         ;("C-c n g" . org-roam-graph)
+         ;("C-c n i" . org-roam-node-insert)
+         ;("C-c n c" . org-roam-capture)
+         ;:map org-mode-map
+         ;("C-M-i" . completion-at-point)
+         ;:map org-roam-dailies-map
+         ;("Y" . org-roam-dailies-capture-yesterday)
+         ;("T" . org-roam-dailies-capture-tomorrow))
          ;; Dailies
          ;("C-c n j" . org-roam-dailies-capture-today))
   :bind-keymap

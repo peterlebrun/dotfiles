@@ -227,6 +227,7 @@ is already narrowed."
   (pbl--profile "set key")
 
   (evil-leader/set-key
+   "RET" 'org-open-at-point
    "/" 'counsel-rg
    "|" 'split-window-right
    "-" 'split-window-below
@@ -246,7 +247,6 @@ is already narrowed."
    "cj" 'pbl--org-capture-daily-goal
    "ck" 'pbl--org-capture-weekly-goal
    ;"d" 'pbl--open-writing-file-for-today
-   "d" 'org-roam-dailies-goto-today
    "eo" 'pbl--open-org-config  ; emacs config for org
    "ee" 'pbl--open-evil-config ; emacs config for evil
    "ei" 'pbl--open-init-config ; emacs config for init
@@ -258,9 +258,18 @@ is already narrowed."
 	 "nl" 'pbl--narrow-to-line
 	 "nn" 'pbl--narrow-to-next-line
    "nw" 'pbl--widen-and-move-point
+   "m" 'toggle-frame-maximized
    "o" 'other-window
    "q" 'kill-buffer-and-window
-   "r" 'toggle-frame-maximized
+   "rb" 'org-roam-buffer-toggle
+   "rc" 'org-roam-capture
+   "rf" 'org-roam-node-find
+   "rg" 'org-roam-graph
+   "ri" 'org-roam-node-insert
+   "rp" 'completion-at-point
+   "rdn" 'org-roam-dailies-goto-today
+   "rdY" 'org-roam-dailies-capture-yesterday
+   "rdT" 'org-roam-dailies-capture-tomorrow
    "w" 'pbl--toggle-writeroom-mode
    "x" 'counsel-M-x)
   (pbl--profile "set key")

@@ -270,8 +270,8 @@ is already narrowed."
    "rdn" 'org-roam-dailies-goto-today
    "rdY" 'org-roam-dailies-capture-yesterday
    "rdT" 'org-roam-dailies-capture-tomorrow
-   "w" 'pbl--toggle-writeroom-mode
-   "x" 'counsel-M-x)
+   "x" 'counsel-M-x
+   "z" 'pbl--toggle-writeroom-mode) ; z for zen mode (same binding as vscode)
   (pbl--profile "set key")
 
 

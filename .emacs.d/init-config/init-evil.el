@@ -260,6 +260,7 @@ is already narrowed."
    "nw" 'pbl--widen-and-move-point
    "m" 'toggle-frame-maximized
    "o" 'other-window
+   "p" 'org-latex-preview
    "q" 'kill-buffer-and-window
    "rb" 'org-roam-buffer-toggle
    "rc" 'org-roam-capture

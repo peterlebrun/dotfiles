@@ -112,6 +112,10 @@
 (require 'init-org-roam)
 (pbl--profile "init-org-roam")
 
+(pbl--profile "init-org-babel")
+(require 'init-org-babel)
+(pbl--profile "init-org-babel")
+
 (pbl--profile "set values")
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)

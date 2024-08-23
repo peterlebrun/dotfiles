@@ -44,7 +44,7 @@
  ;; If there is more than one, they won't work right.
  '(org-agenda-files nil)
  '(package-selected-packages
-   '(keycast command-log-mode doom-themes org-roam company-mode counsel-projectile projectile counsel speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
+   '(org-modern keycast command-log-mode doom-themes org-roam company-mode counsel-projectile projectile counsel speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -80,10 +80,14 @@
 (pbl--profile "init-zenburn-theme")
 
 (pbl--profile "doom-modeline")
-(use-package command-log-mode
+(use-package org-modern
   :ensure t
   :config
-  (global-command-log-mode))
+  (global-org-modern-mode))
+;(use-package command-log-mode
+  ;:ensure t
+  ;:config
+  ;(global-command-log-mode))
 ;(use-package doom-modeline
 ;  :ensure t
 ;  :init (doom-modeline-mode 1))

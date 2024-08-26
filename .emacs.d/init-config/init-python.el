@@ -105,6 +105,7 @@
 
 ;; Language server for Python
 ;; Read the docs for the different variables set in the config.
+;; NOTE: This needs to have pyright installed via something like `brew install pyright`
 (use-package lsp-pyright
   :ensure t
   :defer t
@@ -114,14 +115,13 @@
         lsp-pyright-disable-organize-imports nil
         lsp-pyright-auto-import-completions t
         lsp-pyright-use-library-code-for-types t
-        lsp-pyright-venv-path "~/miniconda3/envs")) ; TODO Fix this
-
+        lsp-pyright-venv-path "~/miniconda3/envs") ; TODO Fix this
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp-deferred))))
 
 (add-hook 'python-mode-hook
-          (lambda ()
-            (require 'lsp-pyright)
-            (lsp-deferred)
             (display-line-numbers-mode 1)
-            (auto-fill-mode)))
+            (auto-fill-mode))
 
 (provide 'init-python)

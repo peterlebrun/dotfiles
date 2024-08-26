@@ -1,4 +1,4 @@
-;;;
+;;; Note to self: this is not actually in use.
 ;;;
 ;;;
 (use-package company

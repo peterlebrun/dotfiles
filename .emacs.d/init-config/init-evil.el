@@ -246,7 +246,7 @@ is already narrowed."
    "cc" 'pbl--org-capture-calendar
    "cj" 'pbl--org-capture-daily-goal
    "ck" 'pbl--org-capture-weekly-goal
-   ;"d" 'pbl--open-writing-file-for-today
+   "d" 'org-roam-dailies-goto-today
    "eo" 'pbl--open-org-config  ; emacs config for org
    "ee" 'pbl--open-evil-config ; emacs config for evil
    "ei" 'pbl--open-init-config ; emacs config for init
@@ -268,9 +268,9 @@ is already narrowed."
    "rg" 'org-roam-graph
    "ri" 'org-roam-node-insert
    "rp" 'completion-at-point
-   "rdn" 'org-roam-dailies-goto-today
    "rdY" 'org-roam-dailies-capture-yesterday
    "rdT" 'org-roam-dailies-capture-tomorrow
+   "t" 'treemacs
    "x" 'counsel-M-x
    "z" 'pbl--toggle-writeroom-mode) ; z for zen mode (same binding as vscode)
   (pbl--profile "set key")

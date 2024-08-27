@@ -231,6 +231,7 @@ is already narrowed."
    "/" 'counsel-rg
    "|" 'split-window-right
    "-" 'split-window-below
+   "," 'org-todo
    "0" 'delete-window
    "1" 'delete-other-windows
    "aa" 'pbl--org-agenda

@@ -44,7 +44,7 @@
  ;; If there is more than one, they won't work right.
  '(org-agenda-files nil)
  '(package-selected-packages
-   '(pyvenv lsp-pyright hide-mode-line dap-mode lsp-ui lsp-mode treemacs org-modern keycast command-log-mode doom-themes org-roam company-mode counsel-projectile projectile counsel speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
+   '(org-transclusion pyvenv lsp-pyright hide-mode-line dap-mode lsp-ui lsp-mode treemacs org-modern keycast command-log-mode doom-themes org-roam company-mode counsel-projectile projectile counsel speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -115,6 +115,10 @@
 (pbl--profile "init-org-babel")
 (require 'init-org-babel)
 (pbl--profile "init-org-babel")
+
+(pbl--profile "init-org-transclusion")
+(require 'init-org-transclusion)
+(pbl--profile "init-org-transclusion")
 
 (pbl--profile "init-python")
 (require 'init-python)

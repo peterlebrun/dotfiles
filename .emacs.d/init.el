@@ -65,7 +65,7 @@
 (use-package bind-key :defer 1)
 (use-package rainbow-delimiters :ensure t)
 
-(use-package ivy :ensure t :defer 1)
+;(use-package ivy :ensure t :defer 1)
 
 (add-to-list 'load-path (expand-file-name "init-config" user-emacs-directory))
 ;; Additional configs to load.
@@ -123,6 +123,8 @@
 (pbl--profile "init-python")
 (require 'init-python)
 (pbl--profile "init-python")
+
+(require 'init-counsel)
 
 (pbl--profile "set values")
 (setq-default indent-tabs-mode nil)

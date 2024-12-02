@@ -121,7 +121,8 @@
                          (lsp-deferred))))
 
 (add-hook 'python-mode-hook
+          (lambda ()
             (display-line-numbers-mode 1)
-            (auto-fill-mode))
+            (auto-fill-mode)))
 
 (provide 'init-python)

@@ -18,3 +18,4 @@
 .emacs.d/org-roam.db
 .emacs.d/.org-id-locations
 .emacs.d/eshell/
+.projectile

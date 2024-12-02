@@ -17,5 +17,6 @@
   (doom-modeline-mode 1)
   (column-number-mode)
   (display-time-mode))
+(use-package all-the-icons-nerd-fonts :ensure t)
 
 (provide 'init-doom-modeline)

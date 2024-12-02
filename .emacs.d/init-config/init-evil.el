@@ -3,12 +3,12 @@
 ;;; Code:
 
 (pbl--profile "use package evil")
-(use-package evil)
+(use-package evil :ensure t)
 (evil-mode 1)
 (pbl--profile "use package evil")
 
 (pbl--profile "use package evil-leader")
-(use-package evil-leader)
+(use-package evil-leader :ensure t)
 (global-evil-leader-mode)
 (pbl--profile "use package evil-leader")
 

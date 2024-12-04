@@ -18,4 +18,10 @@
 .emacs.d/org-roam.db
 .emacs.d/.org-id-locations
 .emacs.d/eshell/
-.projectile
+.emacs.d/.projectile
+.emacs.d/backup
+.emacs.d/games
+.emacs.d/projectile.cache
+.emacs.d/projectile-bookmarks.eld
+.emacs.d/.dap-breakpoints
+.emacs.d/.lsp-session*

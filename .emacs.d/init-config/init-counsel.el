@@ -14,8 +14,12 @@
   :config
   (setq projectile-enable-caching t
         projectile-completion-system 'ivy
-        projectile-indexing-method 'native)
-  (add-to-list 'projectile-globally-ignored-directories "*venv"))
+        projectile-indexing-method 'native
+        projectile-globally-ignored-directories
+        (append '("*venv"
+                  "*node_modules"
+                  "\\*backup")
+                projectile-globally-ignored-directories)))
 
 (use-package ivy :demand
   :config

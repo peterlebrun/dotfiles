@@ -4,6 +4,9 @@
 ;; Provides workspaces with file browsing (tree file viewer)
 ;; and project management when coupled with `projectile`.
 ;; TODO - Move treemacs config into its own file.
+(setenv "PATH" (concat (getenv "PATH") ":/opt/homebrew/bin"))
+(setq exec-path (append exec-path '("/opt/homebrew/bin")))
+
 (use-package treemacs
   :ensure t
   :defer t
@@ -110,7 +113,7 @@
   :ensure t
   :defer t
   :config
-  (setq lsp-clients-python-library-directories '("/usr/" "~/miniconda3/pkgs")) ; TODO Fix this
+  (setq lsp-clients-python-library-directories '("/usr/")) ; TODO Fix this
   (setq lsp-pyright-disable-language-service nil
         lsp-pyright-disable-organize-imports nil
         lsp-pyright-auto-import-completions t

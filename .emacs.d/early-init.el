@@ -39,7 +39,7 @@
 ;; Set default font
 (set-face-attribute 'default nil :family "Fira Code"
                     :height 180
-                    :weight 'medium
+                    :weight 'normal
                     :width 'normal)
 
 ;; Ignore X resources; its settings would be redundant with the other settings

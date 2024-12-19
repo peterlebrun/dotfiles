@@ -22,7 +22,9 @@
   :ensure t
   :defer t
   :commands (lsp lsp-deferred)
-  :init (setq lsp-keymap-prefix "C-c l")
+  :init
+  (setq lsp-keymap-prefix "C-c l"
+        lsp-enable-file-watchers nil)
   :hook (python-mode . lsp-deferred))
 
 ;; Provides completion, with the proper backend

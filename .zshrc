@@ -235,10 +235,12 @@ bashcompinit
 
 [ -f $HOME/eng/private.sh ] && source $HOME/eng/private.sh
 export DOTFILES="$HOME/eng/github.com/peterlebrun/dotfiles"
+export AOC="$HOME/eng/github.com/peterlebrun/2024-advent-of-code/"
 #export HTML2ORG="$HOME/eng/github.com/peterlebrun/html2org"
 #export PCLISP="$HOME/eng/github.com/peterlebrun/practical-common-lisp"
 #export QUANTECON="$HOME/eng/github.com/peterlebrun/quantecon"
 alias dot="cd $DOTFILES"
+alias aoc="cd $AOC"
 alias resource="source ~/.zshrc"
 
 # added by Snowflake SnowSQL installer v1.0

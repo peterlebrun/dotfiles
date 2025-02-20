@@ -10,23 +10,6 @@
    '(("d" "default" entry
       "* %<%H:%M %p>: %?"
       :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
-  (org-roam-capture-templates
-   '(("d" "default" plain
-      "%?"
-      :target
-      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U")
-      :unnarrowed t)
-     ("l" "programming language" plain
-      "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference\n\n"
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#-title: ${title}\n")
-      :unnarrowed t)
-     ("b" "book notes" plain (file "~/org/roam/_templates/book-note-template.org")
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-      :unnarrowed t)
-     ("p" "project" plain
-      "* Goals\n\n%?\n\n*Tasks\n\n** TODO Add initial tasks\n\n*Dates\n\n"
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: Project")
-      :unnarrowed t)))
   (org-roam-completion-everywhere t)
   ;:bind (("C-c n l" . org-roam-buffer-toggle)
          ;("C-c n f" . org-roam-node-find)
@@ -48,5 +31,13 @@
   (require 'org-roam-dailies)
   (org-roam-db-autosync-mode))
 
+(use-package ox-hugo
+  :ensure t
+  :pin melpa
+  :after ox)
+
+(setq
+  org-hugo-base-dir "~/second-brain/"
+  org-hugo-section "notes")
 
 (provide 'init-org-roam)

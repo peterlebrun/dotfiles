@@ -9,7 +9,7 @@
   (org-roam-dailies-capture-templates
    '(("d" "default" entry
       "* %<%H:%M %p>: %?"
-      :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+      :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n\n* %<%Y-%m-%d>\n\n** Work Completed\n\n** Stuff I Learned\n\n** Scratch"))))
   (org-roam-completion-everywhere t)
   ;:bind (("C-c n l" . org-roam-buffer-toggle)
          ;("C-c n f" . org-roam-node-find)

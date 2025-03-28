@@ -290,25 +290,3 @@ bindkey '^[[Z' autosuggest-accept #shift-tab
 
 #export GOBIN=~/eng/go/bin
 #export PATH=$GOBIN:$PATHfunction tssh() { tsh ssh -A ${USER//./}@$1 }
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completionexport PATH=/usr/local/opt/openssl@1.0.2t/bin:$PATH
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-export PATH=/usr/local/opt/gnu-getopt/bin:$PATH
-export PATH=/usr/local/opt/mysql@5.7/bin:$PATH
-
-export PATH=/usr/local/opt/icu4c/bin:/usr/local/opt/icu4c/sbin:$PATH
-export PYICU_INCLUDES=/usr/local/Cellar/icu4c/70.1/include
-export PYICU_LFLAGS=-L/usr/local/Cellar/icu4c/70.1/lib
-export PYICU_CFLAGS=-std=c++11:-DPYICU_VER=\"2.4.2\"
-export PKG_CONFIG_PATH=/usr/local/opt/icu4c/lib/pkgconfig
-export CC=/usr/bin/gcc
-export CXX=/usr/bin/g++
-export PATH="/usr/local/opt/kubernetes-cli@1.22/bin:$PATH"
-
-function test() {
-
-}export PATH=/usr/local/protoc-grpc/bin:$PATH
-export GPG_TTY=$(tty)
-export REQUESTS_CA_BUNDLE=$HOME/Documents/Netskope_Cert_Bundle/nscacert_combined.pem

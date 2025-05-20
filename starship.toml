@@ -1,13 +1,13 @@
 # Insert a blank line between shell prompts
-add_newline = true
-
-format = """$time$directory$git_branch$git_status$nodejs$python$memory_usage
-$character
+format = """$directory$git_branch$nodejs$python
+$time$character
 """
 
+continuation_prompt = '[➜➜](blue)'
+
 [character]
-success_symbol = '[>](blue)'
-error_symbol = '[>](bold red)'
+success_symbol = '[➜](blue)'
+error_symbol = '[➜](bold red)'
 
 [directory]
 truncation_length = 2
@@ -17,21 +17,18 @@ read_only = 'RO'
 [git_branch]
 format = '[$symbol](bold red)[$branch](green) '
 
-[git_status]
-format = '[$all_status$ahead_behind]($style) '
-style = 'red'
-
 [nodejs]
-format = '[$symbol($version )]($style)'
+symbol = "node "
+format = '[($symbol$version )]($style)'
 style = 'blue'
 
-[memory_usage]
-disabled = true
-format = '[${ram}(|${swap})]($style) '
-style = 'dimmed white'
+[python]
+symbol = "python "
+format = '[($symbol$version )]($style)'
+style = 'yellow'
 
 [time]
-disabled = true
+disabled = false
 format = '[$time]($style) '
 style = 'yellow'
-time_format = '%a-%Y%m%d-%H%M'
+time_format = '%Y%m%d%H%M'

@@ -39,14 +39,13 @@ tree --version >/dev/null 2>&1 || brew install tree
 gpg --version >/dev/null 2>&1 || brew install gpg
 aws --version >/dev/null 2>&1 || brew install awscli
 fnm --version >/dev/null 2>&1 || brew install fnm
+wezterm --version >/dev/null 2>&1 || brew install wezterm
 
 # install fira code
 if [ ! -f $HOME/Library/Fonts/FiraCode-VF.ttf ]; then
     brew tap homebrew/cask-fonts
     brew install --cask font-fira-code
 fi
-
-source $HOME/eng/github.com/peterlebrun/dotfiles/setup/gh-setup.sh
 
 zshplugins="\
     zsh-syntax-highlighting \

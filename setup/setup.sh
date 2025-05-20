@@ -12,6 +12,7 @@ for file in $dotfiles; do
     ln -s $HOME/eng/github.com/peterlebrun/dotfiles/$file $HOME/$file;
 done
 
+# Wath out for this use of $PWD. Needs to verify that it's running from the correct directory.
 if [ ! -L ~/.config/starship.toml ]; then
   ln -s $PWD/starship.toml ~/.config/starship.toml
 fi

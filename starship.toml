@@ -6,16 +6,16 @@ $time$character
 continuation_prompt = '[➜➜](blue)'
 
 [character]
-success_symbol = '[➜](bold bright-blue)'
+success_symbol = '[➜](bold blue)'
 error_symbol = '[➜](bold red)'
 
 [directory]
 truncation_length = 2
-style = 'bold bright-blue'
+style = 'bold blue'
 read_only = 'RO'
 
 [git_branch]
-format = '[$symbol](bold bright-red)[$branch](bright-green) '
+format = '[$symbol](bold red)[$branch](green) '
 
 [nodejs]
 symbol = "node "
@@ -30,5 +30,5 @@ style = 'yellow'
 [time]
 disabled = false
 format = '[$time]($style) '
-style = 'bright-yellow'
+style = 'yellow'
 time_format = '%Y%m%d%H%M'

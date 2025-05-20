@@ -5,8 +5,6 @@ dotfiles="\
     .zshrc \
 "
 
-vscode="$HOME/Library/Application Support/Code/User"
-
 for file in $dotfiles; do
     if [ -L $HOME/$file ]; then
        rm $HOME/$file; # Clean out old symlink
@@ -38,8 +36,10 @@ jq --version >/dev/null 2>&1 || brew install jq
 tree --version >/dev/null 2>&1 || brew install tree
 gpg --version >/dev/null 2>&1 || brew install gpg
 aws --version >/dev/null 2>&1 || brew install awscli
+fnm --version >/dev/null 2>&1 || brew install fnm
+
 # install fira code
-if [ ! -f $HOME/Library/Fonts/FiraCode-VF.ttf ]; then 
+if [ ! -f $HOME/Library/Fonts/FiraCode-VF.ttf ]; then
     brew tap homebrew/cask-fonts
     brew install --cask font-fira-code
 fi
@@ -55,6 +55,8 @@ for plugin in $zshplugins; do
         git clone https://github.com/zsh-users/$plugin.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$plugin;
     fi
 done
+git clone https://github.com/romkatv/zsh-defer.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-defer
+git clone https://github.com/mroth/evalcache ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/evalcache
 
 # only works after vscode has been installed
-defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false 
+defaults write -g ApplePressAndHoldEnabled -bool false

@@ -1,9 +1,11 @@
-# Insert a blank line between shell prompts
+add_newline=false
+
 format = """$directory$git_branch$nodejs$python
 $time$character
 """
 
 continuation_prompt = '[➜➜](blue)'
+
 
 [character]
 success_symbol = '[➜](bold blue)'

@@ -37,9 +37,9 @@
 (setq frame-inhibit-implied-resize t)
 
 ;; Set default font
-(set-face-attribute 'default nil :family "Fira Code"
-                    :height 180
-                    :weight 'normal
+(set-face-attribute 'default nil :family "Noto Sans Mono"
+                    :height 160
+                    :weight 'light
                     :width 'normal)
 
 ;; Ignore X resources; its settings would be redundant with the other settings

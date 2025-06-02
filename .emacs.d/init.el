@@ -44,7 +44,11 @@
  ;; If there is more than one, they won't work right.
  '(org-agenda-files nil)
  '(package-selected-packages
-   '(ox-hugo yaml-mode all-the-icons-nerd-fonts all-the-icons-nerd-font all-the-icons org-transclusion pyvenv lsp-pyright hide-mode-line dap-mode lsp-ui lsp-mode treemacs org-modern keycast command-log-mode doom-themes org-roam company-mode counsel-projectile projectile counsel speed-type doom-modeline org visual-fill-column writeroom-mode clojure-mode unicode-fonts flow-minor-mode flow-mode company zenburn-theme org-bullets evil-indent-textobject evil-leader evil use-package)))
+   '(all-the-icons-nerd-fonts company counsel-projectile dap-mode doom-modeline
+                              evil-leader hc-zenburn-theme hide-mode-line
+                              lsp-pyright lsp-ui org-modern org-roam
+                              org-transclusion ox-hugo pyvenv rainbow-delimiters
+                              visual-fill-column writeroom-mode yaml-mode)))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)

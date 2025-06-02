@@ -22,3 +22,4 @@ bindkey '^[[Z' autosuggest-accept #shift-tab
 
 [ -d /opt/homebrew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 [ -L ~/.config/starship.toml ] && eval "$(starship init zsh)"
+eval "$(fnm env --use-on-cd --shell zsh)"

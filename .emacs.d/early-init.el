@@ -39,7 +39,7 @@
 ;; Set default font
 (set-face-attribute 'default nil :family "Noto Sans Mono"
                     :height 160
-                    :weight 'light
+                    :weight 'regular
                     :width 'normal)
 
 ;; Ignore X resources; its settings would be redundant with the other settings

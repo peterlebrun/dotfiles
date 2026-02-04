@@ -22,12 +22,6 @@ if [ ! -L ~/.config/starship.toml ]; then
   ln -s "$DOTFILES/starship.toml" ~/.config/starship.toml
 fi
 
-# Set up iterm2
-# Specify the preferences directory
-# Tell iTerm2 to use the custom preferences in the directory
-defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$DOTFILES/iterm2-profile"
-defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-
 # install oh-my-zsh if it doesn't exist
 if [ ! -d ~/.oh-my-zsh ]; then
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";

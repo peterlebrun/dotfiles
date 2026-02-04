@@ -1,4 +1,8 @@
 #!/bin/bash
+set -e
+
+: "${DOTFILES:=$HOME/eng/github.com/peterlebrun/dotfiles}"
+
 # Create symlinks to all dotfiles in home directory
 dotfiles="\
     .emacs.d \
@@ -7,15 +11,15 @@ dotfiles="\
 "
 
 for file in $dotfiles; do
-    if [ -L $HOME/$file ]; then
-       rm $HOME/$file; # Clean out old symlink
+    if [ -e "$HOME/$file" ] || [ -L "$HOME/$file" ]; then
+       rm -rf "$HOME/$file"
     fi
-    ln -s $HOME/eng/github.com/peterlebrun/dotfiles/$file $HOME/$file;
+    ln -s "$DOTFILES/$file" "$HOME/$file"
 done
 
-# Wath out for this use of $PWD. Needs to verify that it's running from the correct directory.
+mkdir -p ~/.config
 if [ ! -L ~/.config/starship.toml ]; then
-  ln -s $PWD/starship.toml ~/.config/starship.toml
+  ln -s "$DOTFILES/starship.toml" ~/.config/starship.toml
 fi
 
 # Set up iterm2
@@ -40,12 +44,6 @@ gpg --version >/dev/null 2>&1 || brew install gpg
 aws --version >/dev/null 2>&1 || brew install awscli
 fnm --version >/dev/null 2>&1 || brew install fnm
 wezterm --version >/dev/null 2>&1 || brew install wezterm
-
-# install fira code
-if [ ! -f $HOME/Library/Fonts/FiraCode-VF.ttf ]; then
-    brew tap homebrew/cask-fonts
-    brew install --cask font-fira-code
-fi
 
 zshplugins="\
     zsh-syntax-highlighting \

@@ -28,6 +28,7 @@ style = 'blue'
 symbol = "python "
 format = '[($symbol$version )]($style)'
 style = 'yellow'
+python_binary = ['~/.pyenv/versions/3.9.18/bin/python3']
 
 [time]
 disabled = false

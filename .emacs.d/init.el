@@ -105,12 +105,16 @@
 (pbl--profile "init-writeroom-mode")
 
 ;; Ensure org directories and files exist before org loads
-(dolist (dir '("~/org/" "~/org/roam/" "~/org/roam/daily/"))
+(dolist (dir '("~/org/" "~/org/roam/" "~/org/roam/daily/" "~/journal/" "~/.emacs.d/backup/"))
   (unless (file-directory-p (expand-file-name dir))
     (make-directory (expand-file-name dir) t)))
 (dolist (file '(("~/org/task.org" . "* tasks\n")
                 ("~/org/habit.org" . "* habits\n")
-                ("~/org/goal.org" . "* goals\n")))
+                ("~/org/goal.org" . "* goals\n")
+                ("~/org/project.org" . "* projects\n")
+                ("~/org/pensieve.org" . "* pensieve\n")
+                ("~/org/notes.org" . "* notes\n")
+                ("~/org/bookmark.org" . "* bookmarks\n")))
   (let ((path (expand-file-name (car file))))
     (unless (and (file-exists-p path) (> (file-attribute-size (file-attributes path)) 0))
       (with-temp-file path (insert (cdr file))))))

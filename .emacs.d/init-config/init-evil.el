@@ -57,7 +57,7 @@
 
   (defun pbl--open-orgfile ()
     "Open org file."
-   (interactive) (find-file "~/org/org.org"))
+   (interactive) (find-file "~/org/notes.org"))
 
   (defun pbl--load-current-file ()
     "Load current file."

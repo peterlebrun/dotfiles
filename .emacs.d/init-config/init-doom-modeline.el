@@ -11,6 +11,12 @@
         ;(remove-hook 'pre-command-hook 'keycast-mode-line-update)))
   ;(add-to-list 'global-mode-string '("" mode-line-keycast " "))
   ;(keycast-mode))
+(use-package nerd-icons
+  :ensure t
+  :config
+  (unless (file-exists-p (expand-file-name "NFM.ttf" "~/Library/Fonts/"))
+    (nerd-icons-install-fonts t)))
+
 (use-package doom-modeline
   :ensure t
   :init

@@ -31,3 +31,5 @@ bindkey '^[[Z' autosuggest-accept  # shift-tab
 [ -L ~/.config/starship.toml ] && eval "$(starship init zsh)"
 eval "$(pyenv init -)"
 eval "$(fnm env --use-on-cd --shell zsh)"
+export PATH="$HOME/.local/bin:$PATH"
+
